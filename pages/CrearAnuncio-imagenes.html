@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Anuncio-informacion</title>
+    <link rel="stylesheet" href="../css/vendors/fonts.css">
+    <link rel="stylesheet" href="../css/VerAnuncios/header.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/PanelVendedor/CrearAnuncio/crearAnuncio.css ">
+    <link rel="stylesheet" href="../css/PanelVendedor/CrearAnuncio/crearAnuncio-imagenes.css">
+</head>
+
+<body>
+    <header class="header">
+        <a href="../index.html">
+            <h1 class="logo">AstroMarket</h1>
+        </a>
+
+        <nav class="menu">
+            <label class="menu-mobile-label" for="menu-switch">
+                <i class="fa-solid fa-bars"></i>
+                Menu
+            </label>
+            <input id="menu-switch" type="checkbox">
+            <ul>
+                <li>
+                    <a href="VerAnuncios.html">
+                        Ver Anuncios
+                    </a>
+                </li>
+                <li>
+                    <a href="Login.html">
+                        Iniciar Sesion
+                    </a>
+                </li>
+                <li>
+                    <a href="Registro.html">
+                        Registrar
+                    </a>
+                </li>
+                <li>
+                    <a href="/pages/MensajesComprador.html">
+                        Mensajes-Comprador
+                    </a>
+                </li>
+                <li>
+                    <a href="/pages/MensajesVendedorV2.html">
+                        Mensajes-Vendedor
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+        <div class="div-user"><img src="../recursos/img/npc.jpg" alt="Foto perfil" class="profile-pic"></div>
+    </header>
+
+    <body>
+        <main>
+            <form action="/crear-anuncio" method="post" enctype="multipart/form-data"></form>
+            <div class="CrearAnuncio-container">
+                <h1>Crear Anuncio</h1>
+                <p> Rellena el formulario con la informacion de tu producto</p>
+
+                <div class="crearAnuncio-tabs">
+                    <button class="secundary-button">Informacion</button>
+                    <button class="secundary-button">Imagenes</button>
+                </div>
+                <h2>Imagenes del producto</h2>
+                <p> Agrega 4 imagenes ,la primera sera la principal.</p>
+                <div class="ad-image-wrapper-container">
+                    <div class="ad-image-wrapper"><img id="input-img-principal"></div>
+                    <div class="ad-image-wrapper"><img id="input-img-1"></div>
+                    <div class="ad-image-wrapper"><img id="input-img-2"></div>
+                    <div class="ad-image-wrapper"><img id="input-img-3"></div>
+                </div>
+
+            </div>
+            <input type="file" name="imagenes[]" multiple accept="image/*">
+            <div class="crearAnuncio-btn-submit-container">
+                <button  type="button" class="primary-button"><a href="#">volver</a></button>
+                <button  type="submit" class="primary-button"><a href="#">Crear</a></button>
+            </div>
+        </main>
+    </body>
+    <footer>
+        <div class="copyright">
+            <p>@2024 AstroMarket.Todos los derechos reservados</p>
+        </div>
+
+        <html>

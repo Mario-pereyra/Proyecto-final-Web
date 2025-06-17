@@ -1,0 +1,134 @@
+.hero {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px 0;
+}
+
+
+.contenedor-main {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contenedor-hero-img {
+    max-width: 600px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin: 20px auto 20px auto;
+    background-color: #f5f5f5;
+    display: block;
+}
+
+
+.contenedor-hero-img img {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    object-position: center center;
+    display: block !important;
+    margin: 0 auto;
+    background-color: #f0f0f0;
+}
+
+
+
+.contenedor-hero-buttons {
+    margin: 20px auto 20px auto;
+
+}
+
+
+
+
+@media (max-width: 320px) {
+    .contenedor-hero-mg {
+        margin: 15px auto 0 auto;
+        border-radius: 8px;
+        max-width: 95%;
+    }
+
+    .contenedor-hero-mg img {
+        aspect-ratio: 4/3;
+    }
+
+    .hero {
+        padding: 15px 10px;
+    }
+}
+
+
+@media (min-width: 321px) and (max-width: 425px) {
+    .contenedor-hero-mg {
+        margin: 20px auto 0 auto;
+        border-radius: 8px;
+        max-width: 90%;
+    }
+
+    .contenedor-hero-mg img {
+        aspect-ratio: 3/2;
+    }
+
+    .hero {
+        padding: 20px 15px;
+    }
+}
+
+@media (min-width: 426px) and (max-width: 768px) {
+    .contenedor-hero-mg {
+        margin: 25px auto 0 auto;
+        max-width: 85%;
+    }
+
+    .contenedor-hero-mg img {
+        aspect-ratio: 16/10;
+    }
+
+    .hero {
+        padding: 25px 20px;
+    }
+}
+
+
+
+
+@media (min-width: 769px) {
+
+
+    .contenedor-hero-mg img {
+        aspect-ratio: 16/9;
+
+    }
+
+    .container-hero {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .contenedor-hero {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 8px;
+    }
+
+
+    @media (min-width: 1025px) {
+        .contenedor-hero-mg {
+            max-width: 650px;
+
+        }
+    }
+}

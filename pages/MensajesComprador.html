@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensajes - AstroMarket</title>
+    <link rel="stylesheet" href="../css/vendors/fonts.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/Mensajes/mensajesVendedor.css">
+</head>
+
+<body>
+    <header class="header">
+        <a href="../index.html">
+            <h1 class="logo">AstroMarket</h1>
+        </a>
+        <nav class="menu">
+            <label class="menu-mobile-label" for="menu-switch">
+                <i class="fa-solid fa-bars"></i>
+                Menu
+            </label>
+            <input id="menu-switch" type="checkbox">
+            <ul>                <li>
+                    <a href="/pages/VerAnuncios.html">
+                        Ver Anuncios
+                    </a>
+                </li>
+                <li><a href="Login.html">
+                        Iniciar Sesion
+                    </a>
+                </li>
+                <li>
+                    <a href="Registro.html">
+                        Registrar
+                    </a>
+                </li>
+                <li>
+                    <a href="/pages/MensajesComprador.html">
+                        Mensajes-Comprador
+                    </a>
+                </li>
+                <li>
+                    <a href="/pages/MensajesVendedorV2.html">
+                        Mensajes-Vendedor
+                    </a>
+                </li>
+            </ul>
+        </nav>
+         <div class="div-user"><img src="../recursos/img/npc.jpg" alt="Foto perfil" class="profile-pic"></div>
+    </header>
+
+    <main>
+        <div>
+
+        </div>
+        <div class="chat-container">
+
+            <input type="checkbox" id="chat-view-switch" class="chat-view-toggle">
+
+            <aside class="conversations-list">
+                <div class="conversations-header">
+                    <h1>Mensajes - Comprador</h1>
+                </div>
+                <div class="list-container">
+
+                    <label for="chat-view-switch">
+                        <div class="conversation-item conversation-item-unread">
+                            <div class="user-info">
+                                <div class="profile-pic-container">
+                                    <img src="../recursos/img/npc.jpg" alt="Foto perfil" class="profile-pic">
+                                    <div class="profile-status-dot online"></div>
+                                </div>
+                                <div class="user-details">
+                                    <span class="user-name">Carlos Gutierrez</span>
+                                    <span class="user-status">
+                                        <i class="fa-solid fa-circle online-indicator"></i>
+                                        Activo
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <img src="../recursos/img/MacBook_Pro_16.webp" alt="Foto de MacBook"
+                                    class="product-thumbnail">
+                                <span class="product-name">MacBook Pro 16 pulgadas</span>
+                            </div>
+                            <div class="message-details">
+                                <p class="last-message">¡Hola! Sí, aún está disponible.</p>
+                                <div class="meta-info">
+                                    <span class="timestamp">2h</span>
+                                    <span class="new-badge">Nuevo</span>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+
+                    <label for="chat-view-switch">
+                        <div class="conversation-item conversation-item-read">
+                            <div class="user-info">
+                                <img src="../recursos/img/npc.jpg" alt="Foto de Ana" class="profile-pic">
+                                <span class="user-name">Ana Lopez</span>
+                            </div>
+                            <div class="product-info">
+                                <img src="../recursos/img/Iphone_15_Pro_256GB_Negro.webp" alt="Foto de iPhone"
+                                    class="product-thumbnail">
+                                <span class="product-name">iPhone 14 Pro 256GB</span>
+                            </div>
+                            <div class="message-details">
+                                <p class="last-message">Envío disponible a tu ciudad por $15</p>
+                                <div class="meta-info">
+                                    <span class="timestamp">Ayer</span>
+                                    <span class="read-receipt">✓✓</span>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+
+                </div>
+            </aside>
+
+            <section class="chat-view">
+                <div class="header-chat-details">
+                    <label for="chat-view-switch" class="chat-back-button">
+                        <i class="fa fa-chevron-left"></i>
+                    </label>
+                    <div class="user-info">
+                        <img src="../recursos/img/npc.jpg" alt="Foto de Carlos" class="profile-pic">
+                    </div>
+                    <div class="vendor-info">
+                        <h3 class="vendor-name">Carlos Gutierrez</h3>
+                        <p class="vendor-status">En linea</p>
+                    </div>
+                    <div class="ads-card-details">
+                        <div class="ads-card-tags">
+                            <div class="ads-card-type">
+                                Vendedor
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-messages">
+                    <div class="message sent">
+                        <span>Hola, me interesa tu MacBook Pro. ¿Todavía está disponible?</span>
+                        <div class="timestamp">Ayer, 15:30</div>
+                    </div>
+                    <div class="message received">
+                        <span>¡Hola! Sí, aún está disponible.</span>
+                        <div class="timestamp">Ayer, 15:32</div>
+                    </div>
+                </div>
+
+                <div class="contact-vendor-footer">
+                    <div class="contact-vendor-footer-container">
+                        <input type="text" placeholder="Escribe tu mensaje aqui.....">
+                        <button type="button">
+                            <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
+
+    <footer>
+        <div class="copyright">
+            <p>@2024 AstroMarket.Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

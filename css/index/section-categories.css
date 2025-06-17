@@ -1,0 +1,163 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Geist', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: #f8f9fa;
+   
+    color: #212529;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+.popular-categories {
+    padding: 0px 24px 48px 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.section-title {
+    font-size: 29px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+
+.categories-container {
+    display: flex;
+    justify-content: center;
+    gap: 22px;
+    flex-wrap: wrap;
+    
+}
+
+
+.category-card {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(229, 231, 235);
+    border-radius: 8px;
+    padding: 24px;
+    text-align: center;
+    width: 100%;
+    max-width: 320px;
+    min-width: 280px;
+    flex: 1 1 300px;
+    transition: box-shadow 150ms ease-in-out;
+}
+
+.category-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+
+.icon-placeholder {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    margin: 20px auto 16px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+
+.bg-laptops {
+    background-color: rgb(219, 234, 254);
+    color: rgb(37, 99, 235);
+}
+
+.bg-smartphones {
+    background-color: rgb(220, 252, 231);
+    color: rgb(22, 163, 74);
+}
+
+.bg-accesorios {
+    background-color: rgb(243, 232, 255);
+    color: rgb(147, 51, 234);
+}
+
+.card-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.card-description {
+    color: rgb(75, 85, 99);
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+
+.button-container {
+    text-align: center;
+    margin-top: 32px;
+    height: 30px;
+
+}
+
+.arrow-icon {
+    font-size: 18px;
+    line-height: 1;
+}
+
+
+
+
+@media (max-width: 425px) {
+    .popular-categories {
+        padding: 0px 16px;
+    }
+
+    .categories-container {
+        gap:10px;
+        flex-direction:row;
+        align-items: center;
+    }
+
+    .category-card {
+        max-width: 100%;
+        min-width: auto;
+        width: 100%;
+    }
+
+    .section-title {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 375px) {
+    .popular-categories {
+        padding: 0px 12px;
+    }
+
+    .category-card {
+        padding: 20px;
+        margin: 0 auto;
+    }
+
+    .section-title {
+        font-size: 20px;
+        margin-bottom: 24px;
+    }
+
+    .card-title {
+        font-size: 18px;
+    }
+
+    .card-description {
+        font-size: 14px;
+    }
+}

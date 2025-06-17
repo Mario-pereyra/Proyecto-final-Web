@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="../css/vendors/fonts.css">
+    <link rel="stylesheet" href="../css/VerAnuncios/Buscador.css">
+    <link rel="stylesheet" href="../css/VerAnuncios/header.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/Login/Login.css">
+
+</head>
+
+<body>
+    <header class="header">
+        <a href="../index.html">
+            <h1 class="logo">AstroMarket</h1>
+        </a>
+
+        <nav class="menu">
+            <label class="menu-mobile-label" for="menu-switch">
+                <i class="fa-solid fa-bars"></i>
+                Menu
+            </label>
+            <input id="menu-switch" type="checkbox">
+            <ul>                <li>
+                    <a href="VerAnuncios.html">
+                        Ver Anuncios
+                    </a>
+                </li>
+                <li>
+                    <a href="Login.html">
+                        Iniciar Sesion
+                    </a>
+                </li>
+                <li>
+                    <a href="Registro.html">
+                        Registrar
+                    </a>
+                </li>
+                <li>
+                    <a href="/pages/MensajesComprador.html">
+                        Mensajes-Comprador
+                    </a>
+                </li>
+                <li>
+                    <a href="/pages/MensajesVendedorV2.html">
+                        Mensajes-Vendedor
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+        <div class="div-user"><img src="../recursos/img/npc.jpg" alt="Foto perfil" class="profile-pic"></div>
+    </header>
+    <main>
+        <div class="login">
+            <h1>Iniciar Sesion</h1>
+            <p>Ingresa tus credenciales para acceder a tu cuenta</p>
+
+            <div class="campo-grupo">
+                <label for="input-email">Email</label>
+                <input type="email" name="Email" id="input-email" placeholder="tu@email.com">
+                <div class="msg-error" id="msg-error-email">Porfavor ingrese su email</div>
+            </div>
+
+            <div class="campo-grupo">
+                <label for="input-password">Contraseña</label>
+                <input type="password" name="Password" id="input-password" placeholder="**********">
+                <div class="msg-error" id="msg-error-password">Porfavor ingrese su Contraseña</div>
+            </div>
+
+            <button type="submit" class="btn-login">Inicar Sesion</button>
+            
+            <div class="register-link">
+                <span>No tienes una cuenta?</span><a href="Registro.html">Registrate</a>
+            </div>
+            
+        </div>
+    </main>
+    <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
+
+</body>
+<footer>
+    <div class="copyright">
+        <p>@2024 AstroMarket.Todos los derechos reservados</p>
+    </div>
+</footer>
+
+</html>

@@ -1,0 +1,150 @@
+main {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+.login {
+    background-color: #E8E8E8;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    min-width: 320px;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    gap: 15px;
+}
+
+.login h1 {
+    margin: 0 0 5px 0;
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+}
+
+.login p {
+    margin: 0 0 20px 0;
+    color: #666;
+    font-size: 14px;
+}
+
+.campo-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.campo-grupo label {
+    font-weight: 500;
+    color: #333;
+    font-size: 14px;
+}
+
+.campo-grupo input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.campo-grupo input:focus {
+    outline: none;
+    border-color: #7C4DFF;
+}
+
+.campo-grupo input.error {
+    border-color: #FF5722;
+}
+
+.msg-error {
+    color: #FF5722;
+    font-size: 12px;
+    margin-top: 2px;
+    display: none;
+}
+
+.msg-error.show {
+    display: block;
+}
+
+.btn-login {
+    width: 100%;
+    padding: 14px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-login:hover {
+    background-color: #555;
+}
+
+.btn-login:active {
+    transform: translateY(1px);
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.register-link span {
+    color: #666;
+    margin-right: 5px;
+}
+
+.register-link a {
+    color: #7C4DFF;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    main {
+        padding: 10px;
+    }
+    
+    .login {
+        padding: 20px;
+        min-width: 280px;
+    }
+    
+    .login h1 {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 360px) {
+    .login {
+        padding: 15px;
+        min-width: 250px;
+    }
+    
+    .campo-grupo input {
+        padding: 10px;
+    }
+    
+    .btn-login {
+        padding: 12px;
+    }
+}

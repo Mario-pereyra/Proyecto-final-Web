@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensajes Vendedor V2 - AstroMarket</title>
+    <link rel="stylesheet" href="../css/vendors/fonts.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css\Mensajes\mensajesVendedorV2.css">
+</head>
+
+<body>
+    <header class="header">
+        <a href="../index.html">
+            <h1 class="logo">AstroMarket</h1>
+        </a>
+        <nav class="menu">
+            <label class="menu-mobile-label" for="menu-switch">
+                <i class="fa-solid fa-bars"></i>
+                Menu
+            </label>
+            <input id="menu-switch" type="checkbox">
+            <ul>                <li><a href="/pages/VerAnuncios.html">Ver Anuncios</a></li>
+                <li><a href="Login.html">Iniciar Sesion</a></li>
+                <li><a href="Registro.html">Registrar</a></li>
+                <li><a href="/pages/MensajesComprador.html">Mensajes-Comprador</a></li>
+                <li><a href="/pages/MensajesVendedor.html">Mensajes-Vendedor</a></li>
+            </ul>
+        </nav>
+        <div class="div-user"><img src="../recursos/img/npc.jpg" alt="Foto perfil" class="profile-pic"></div>
+    </header>
+
+    <main>
+        <div class="chat-container">
+            <!-- Sistema de navegación de 3 niveles -->
+            <input type="checkbox" id="product-view-switch" class="view-toggle">
+            <input type="checkbox" id="conversations-view-switch" class="view-toggle">
+            <input type="checkbox" id="chat-view-switch" class="view-toggle">
+
+            <!-- NIVEL 1: Lista de Productos -->
+            <aside class="products-list">
+                <div class="products-header">
+                    <h1>Mensajes Vendedor</h1>
+                    <p class="subtitle">Selecciona un producto para ver sus mensajes</p>
+                </div>
+                <div class="products-container">
+                    <label for="product-view-switch">
+                        <div class="product-item">
+                            <div class="product-main-info">
+                                <img src="../recursos/img/MacBook_Pro_16.webp" alt="MacBook Pro" class="product-image">
+                                <div class="product-details">
+                                    <h3 class="product-name">MacBook Pro 16 pulgadas</h3>
+                                    <p class="product-price">$2,500.00</p>
+                                    <p class="product-status">Activo</p>
+                                </div>
+                            </div>
+                            <div class="product-messages-info">
+                                <div class="messages-count">
+                                    <span class="count-number">3</span>
+                                    <span class="count-label">Chats</span>
+                                </div>
+                                <div class="new-messages-badge">2</div>
+                            </div>
+                        </div>
+                    </label>
+
+                    <label for="product-view-switch">
+                        <div class="product-item">
+                            <div class="product-main-info">
+                                <img src="../recursos/img/Iphone_15_Pro_256GB_Negro.webp" alt="iPhone 15 Pro" class="product-image">
+                                <div class="product-details">
+                                    <h3 class="product-name">iPhone 15 Pro 256GB</h3>
+                                    <p class="product-price">$1,200.00</p>
+                                    <p class="product-status">Activo</p>
+                                </div>
+                            </div>
+                            <div class="product-messages-info">
+                                <div class="messages-count">
+                                    <span class="count-number">1</span>
+                                    <span class="count-label">Chat</span>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+
+                    <label for="product-view-switch">
+                        <div class="product-item">
+                            <div class="product-main-info">
+                                <img src="../recursos/img/Play_station_5.webp" alt="PlayStation 5" class="product-image">
+                                <div class="product-details">
+                                    <h3 class="product-name">PlayStation 5</h3>
+                                    <p class="product-price">$750.00</p>
+                                    <p class="product-status">Vendido</p>
+                                </div>
+                            </div>
+                            <div class="product-messages-info">
+                                <div class="messages-count">
+                                    <span class="count-number">5</span>
+                                    <span class="count-label">Chats</span>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+            </aside>
+
+            <!-- NIVEL 2: Lista de Conversaciones del Producto -->
+            <aside class="conversations-list">
+                <div class="conversations-header">
+                    <label for="product-view-switch" class="back-button">
+                        <i class="fa fa-chevron-left"></i>
+                    </label>
+                    <div class="header-info">
+                        <h2>MacBook Pro 16"</h2>
+                        <p class="conversations-subtitle">3 conversaciones</p>
+                    </div>
+                </div>
+                <div class="conversations-container">
+                    <label for="conversations-view-switch">
+                        <div class="conversation-item conversation-item-unread">
+                            <div class="user-info">
+                                <div class="profile-pic-container">
+                                    <img src="../recursos/img/npc.jpg" alt="Foto de Carlos" class="profile-pic">
+                                    <div class="profile-status-dot online"></div>
+                                </div>
+                                <div class="user-details">
+                                    <span class="user-name">Carlos Gutierrez</span>
+                                    <span class="user-status">
+                                        <i class="fa-solid fa-circle online-indicator"></i>
+                                        Activo
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="message-details">
+                                <p class="last-message">Hola, ¿todavía está disponible?</p>
+                                <div class="meta-info">
+                                    <span class="timestamp">2h</span>
+                                    <span class="new-badge">Nuevo</span>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+
+                    <label for="conversations-view-switch">
+                        <div class="conversation-item conversation-item-read">
+                            <div class="user-info">
+                                <div class="profile-pic-container">
+                                    <img src="../recursos/img/npc.jpg" alt="Foto de Ana" class="profile-pic">
+                                    <div class="profile-status-dot offline"></div>
+                                </div>
+                                <div class="user-details">
+                                    <span class="user-name">Ana Lopez</span>
+                                    <span class="user-status">
+                                        <i class="fa-solid fa-circle offline-indicator"></i>
+                                        Hace 5 min
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="message-details">
+                                <p class="last-message">¿Podemos coordinar la entrega?</p>
+                                <div class="meta-info">
+                                    <span class="timestamp">Ayer</span>
+                                    <span class="read-receipt">✓✓</span>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+
+                    <label for="conversations-view-switch">
+                        <div class="conversation-item conversation-item-read">
+                            <div class="user-info">
+                                <div class="profile-pic-container">
+                                    <img src="../recursos/img/npc.jpg" alt="Foto de Miguel" class="profile-pic">
+                                    <div class="profile-status-dot online"></div>
+                                </div>
+                                <div class="user-details">
+                                    <span class="user-name">Miguel Rodriguez</span>
+                                    <span class="user-status">
+                                        <i class="fa-solid fa-circle online-indicator"></i>
+                                        En línea
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="message-details">
+                                <p class="last-message">Gracias por la información</p>
+                                <div class="meta-info">
+                                    <span class="timestamp">3h</span>
+                                    <span class="read-receipt">✓✓</span>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+            </aside>
+
+            <!-- NIVEL 3: Chat Activo -->
+            <section class="chat-view">
+                <div class="header-chat-details">
+                    <label for="conversations-view-switch" class="chat-back-button">
+                        <i class="fa fa-chevron-left"></i>
+                    </label>
+                    <div class="profile-pic-container">
+                        <img src="../recursos/img/npc.jpg" alt="Foto perfil" class="profile-pic">
+                        <div class="profile-status-dot online"></div>
+                    </div>
+                    <div class="vendor-info">
+                        <h3 class="vendor-name chat-header-username">Carlos Gutierrez</h3>
+                        <p class="vendor-status">
+                            <i class="fa-solid fa-circle online-indicator"></i>
+                            En línea
+                        </p>
+                    </div>
+                    <div class="product-context">
+                        <span class="product-context-label">MacBook Pro 16"</span>
+                    </div>
+                </div>
+
+                <div class="chat-messages">
+                    <div class="message received">
+                        <span>Hola, me interesa tu MacBook Pro. ¿Todavía está disponible?</span>
+                        <div class="timestamp">Ayer, 15:30</div>
+                    </div>
+                    <div class="message sent">
+                        <span>¡Hola! Sí, aún está disponible. Es el modelo de 16 pulgadas con chip M2 Pro.</span>
+                        <div class="timestamp">Ayer, 15:32</div>
+                    </div>
+                    <div class="message received">
+                        <span>Perfecto, ¿cuál es el estado del equipo?</span>
+                        <div class="timestamp">Ayer, 15:35</div>
+                    </div>
+                    <div class="message sent">
+                        <span>Está en excelente estado, prácticamente nuevo. Solo tiene 6 meses de uso.</span>
+                        <div class="timestamp">Ayer, 15:37</div>
+                    </div>
+                    <div class="message received">
+                        <span>¿Podríamos vernos para revisarlo?</span>
+                        <div class="timestamp">Hoy, 14:20</div>
+                    </div>
+                </div>
+
+                <div class="contact-vendor-footer">
+                    <div class="contact-vendor-footer-container">
+                        <input type="text" placeholder="Escribe tu mensaje aquí...">
+                        <button type="button">
+                            <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
+
+    <footer>
+        <div class="copyright">
+            <p>@2024 AstroMarket. Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

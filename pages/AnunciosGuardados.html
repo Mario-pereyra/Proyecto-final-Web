@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anuncios Guardados</title>
+    <link rel="stylesheet" href="../css/vendors/fonts.css">
+    <link rel="stylesheet" href="../css/VerAnuncios/Buscador.css">
+    <link rel="stylesheet" href="../css/VerAnuncios/header.css">
+    <link rel="stylesheet" href="../css/main.css">
+
+
+</head>
+
+<body>
+    <header class="header">
+        <a href="../index.html">
+            <h1 class="logo">AstroMarket</h1>
+        </a>
+
+        <nav class="menu">
+            <label class="menu-mobile-label" for="menu-switch">
+                <i class="fa-solid fa-bars"></i>
+                Menu
+            </label>
+            <input id="menu-switch" type="checkbox">
+            <ul>                <li>
+                    <a href="">
+                        Ver Anuncios
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="/pages/MensajesComprador.html">
+                        Mensajes-Comprador
+                    </a>
+                </li>
+                <li>
+                    <a href="/pages/MensajesVendedorV2.html">
+                        Mensajes-Vendedor
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+         <div class="div-user"><img src="../recursos/img/npc.jpg" alt="Foto perfil" class="profile-pic"></div>
+    </header>
+    <main>
+        <section class="ads-section">
+
+            <div class="container-ads-section">
+                <h1 class="ads-section-title">Anuncios Guardados</h1>
+                <div class="ads-search-filter">
+                    <div class="contenedor-buscador">
+                        <i class="fas fa-search"></i>
+                        <input type="text" class="buscador" placeholder="Buscar productos...">
+                    </div>
+                    <div class="ads-filter">
+                        <form id="filter-form">
+                            <label for="product-filter">Filtrar por:</label>
+                            <select id="product-filter" name="product-filter">
+                                <option value="all">Todas las Categorías y Subcategorías</option>
+                                <optgroup label="Todas las Categorías y Subcategorías">
+                                    <option value="celulare-y-smartphones">Celulares y Smartphones</option>
+                                    <option value="laptops-y-computadorass">Laptops y Computadoras</option>
+                                    <option value="tablets-y-e-readers">Tablets y E-readers</option>
+                                    <option value="audio-y-sonido">Audio y Sonido</option>
+                                    <option value="smartwatches-y-wearables">Smartwatches y Wearables</option>
+                                    <option value="dispositivos-de-hogar-inteligente">Dispositivos de Hogar Inteligente
+                                    </option>
+                                    <option value="Gaming">Gaming</option>
+                                    <option value="camaras-drones">Cámaras y Drones</option>
+                                    <option value="accesorios-electrónicos-Generales">Accesorios Electrónicos Generales
+                                    </option>
+                                </optgroup>
+                                <optgroup label="Celulares y Smartphones">
+                                    <option value="celulare-y-smartphones">Celulares y Smartphones</option>
+                                    <option value="android-celulares">Android</option>
+                                    <option value="iphone-celulares">iPhone</option>
+                                    <option value="basicos-celulares">Teléfonos Básicos</option>
+                                    <option value="accesorios-celulares">Accesorios para Celulares</option>
+                                </optgroup>
+
+                                <optgroup label="Laptops y Computadoras">
+                                    <option value="laptops-y-computadorass">Laptops y Computadoras</option>
+                                    <option value="gaming-laptops">Laptops Gaming</option>
+                                    <option value="ultrabooks-laptops">Ultrabooks</option>
+                                    <option value="dos-en-uno-laptops">Laptops 2 en 1</option>
+                                    <option value="gaming-pcs">PCs de Escritorio Gaming</option>
+                                    <option value="workstation-pcs">PCs de Escritorio Workstation</option>
+                                    <option value="componentes-pc">Componentes de PC</option>
+                                    <option value="monitores">Monitores</option>
+                                    <option value="accesorios-computadoras">Accesorios para Computadoras</option>
+                                </optgroup>
+
+                                <optgroup label="Tablets y E-readers">
+                                    <option value="tablets-y-e-readers">Tablets y E-readers</option>
+                                    <option value="android-tablets">Tablets Android</option>
+                                    <option value="ipad-tablets">iPad</option>
+                                    <option value="e-readers">E-readers</option>
+                                    <option value="accesorios-tablets">Accesorios para Tablets</option>
+                                </optgroup>
+
+                                <optgroup label="Audio y Sonido">
+                                    <option value="audio-y-sonido">Audio y Sonido</option>
+                                    <option value="auriculares">Auriculares</option>
+                                    <option value="parlantes-bluetooth">Parlantes Bluetooth</option>
+                                    <option value="barras-sonido">Barras de Sonido</option>
+                                    <option value="equipos-sonido">Equipos de Sonido</option>
+                                    <option value="microfonos">Micrófonos</option>
+                                </optgroup>
+
+                                <optgroup label="Smartwatches y Wearables">
+                                    <option value="smartwatches-y-wearables">Smartwatches y Wearables</option>
+                                    <option value="smartwatches">Smartwatches</option>
+                                    <option value="pulseras-actividad">Pulseras de Actividad</option>
+                                    <option value="anillos-inteligentes">Anillos Inteligentes</option>
+                                    <option value="gafas-inteligentes">Gafas Inteligentes</option>
+                                </optgroup>
+
+                                <optgroup label="Dispositivos de Hogar Inteligente">
+                                    <option value="dispositivos-de-hogar-inteligente">Dispositivos de Hogar Inteligente
+                                    </option>
+                                    <option value="asistentes-voz">Asistentes de Voz</option>
+                                    <option value="iluminacion-inteligente">Iluminación Inteligente</option>
+                                    <option value="camaras-seguridad">Cámaras de Seguridad</option>
+                                    <option value="termostatos-inteligentes">Termostatos Inteligentes</option>
+                                    <option value="enchufes-inteligentes">Enchufes Inteligentes</option>
+                                    <option value="robots-aspiradores">Robots Aspiradores</option>
+                                </optgroup>
+
+                                <optgroup label="Gaming">
+                                    <option value="Gaming">Gaming</option>
+                                    <option value="videojuegos">Videojuegos</option>
+                                    <option value="accesorios-gaming">Accesorios Gaming</option>
+                                    <option value="realidad-virtual-aumentada">Realidad Virtual (VR) y Aumentada (AR)
+                                    </option>
+                                    <option value="consolas-gaming">Consolas</option>
+                                    <option value="videojuegos">Videojuegos</option>
+                                    <option value="accesorios-gaming">Accesorios Gaming</option>
+                                    <option value="realidad-virtual-aumentada">Realidad Virtual (VR) y Aumentada (AR)
+                                    </option>
+                                </optgroup>
+
+                                <optgroup label="Cámaras y Drones">
+                                    <option value="camaras-drones">Cámaras y Drones</option>
+                                    <option value="camaras-digitales">Cámaras Digitales</option>
+                                    <option value="camaras-accion">Cámaras de Acción</option>
+                                    <option value="drones">Drones</option>
+                                    <option value="accesorios-fotografia">Accesorios de Fotografía</option>
+                                </optgroup>
+
+                                <optgroup label="Accesorios Electrónicos Generales">
+                                    <option value="accesorios-electrónicos-Generales">Accesorios Electrónicos Generales
+                                    </option>
+                                    <option value="power-banks">Power Banks</option>
+                                    <option value="cargadores-cables">Cargadores y Cables</option>
+                                    <option value="adaptadores">Adaptadores</option>
+                                    <option value="hubs-usb">Hubs USB</option>
+                                    <option value="memorias-usb">Memorias USB</option>
+                                    <option value="tarjetas-sd">Tarjetas SD</option>
+                                    <option value="protectores-voltaje">Protectores de Voltaje</option>
+                                    <option value="routers-conectividad">Routers y Conectividad</option>
+                                </optgroup>
+
+                                <optgroup label="Almacenamiento">
+                                    <option value="discos-duros-externos">Discos Duros Externos</option>
+                                    <option value="ssd-portatiles">SSD Portátiles</option>
+                                    <option value="nas">NAS (Network Attached Storage)</option>
+                                    <option value="pendrives">Pendrives</option>
+                                    <option value="tarjetas-memoria">Tarjetas de Memoria</option>
+                                </optgroup>
+                            </select>
+                            <input type="submit" value="Aplicar Filtro">
+                        </form>
+                    </div>
+                    <div>
+                        <p>8 resultados encontrados</p>
+                    </div>
+                </div>
+                <div class="container-ads">
+                    <div class="ads-card-container">                        <div class="ads-card">
+                            <div class="ads-card-img">
+                                <a href="../pages/DetalleAnuncio.html">
+                                    <div class="ads-card-img-container">
+                                        <img src="../recursos/img/MacBook_Pro_16.webp" alt="MacBook_Pro_16">
+                                    </div>
+                                </a>
+                                <i class="fas fa-bookmark bookmark-icon"></i>
+                            </div>
+                            <div class="ads-card-details">
+                                <div class="ads-card-tags">
+                                    <div class="ads-card-category">Laptops</div>
+                                    <div class="ads-card-condition">Nuevo</div>
+                                </div>
+                                <h3 class="ads-card-title">MacBook Pro 16 pulgadas</h3>
+                                <p class="ads-card-price">$2.499,99</p>
+                            </div>
+                            <div class="ads-card-vendor">
+                                <div class="ads-card-vendor-label">Vendedor:</div>
+                                <div class="ads-card-vendor-name">Tech tecnologic</div>
+                            </div>
+                        </div>                        <div class="ads-card">
+                            <div class="ads-card-img">
+                                <a href="#">
+                                    <div class="ads-card-img-container">
+                                        <img src="../recursos/img/Iphone_15_Pro_256GB_Negro.webp" alt="MacBook_Pro_16">
+                                    </div>
+                                </a>
+                                <i class="fas fa-bookmark bookmark-icon"></i>
+                            </div>
+                            <div class="ads-card-details">
+                                <div class="ads-card-tags">
+                                    <div class="ads-card-category">Laptops</div>
+                                    <div class="ads-card-condition">Nuevo</div>
+                                </div>
+                                <h3 class="ads-card-title">iPhone 15 Pro Max 256GB</h3>
+                                <p class="ads-card-price">$1.299,99</p>
+                            </div>
+                            <div class="ads-card-vendor">
+                                <div class="ads-card-vendor-label">Vendedor:</div>
+                                <div class="ads-card-vendor-name">Tech tecnologic</div>
+                            </div>
+                        </div>
+
+                        
+
+                    </div>
+        </section>
+    </main>
+    <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
+
+</body>
+<footer>
+    <div class="copyright">
+        <p>@2024 AstroMarket.Todos los derechos reservados</p>
+    </div>
+</footer>
+
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Anuncio-informacion</title>
+    <link rel="stylesheet" href="../css/vendors/fonts.css">
+    <link rel="stylesheet" href="../css/VerAnuncios/header.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/PanelVendedor/CrearAnuncio/crearAnuncio.css ">
+</head>
+
+<body>
+    <header class="header">
+        <a href="../index.html">
+            <h1 class="logo">AstroMarket</h1>
+        </a>
+
+        <nav class="menu">
+            <label class="menu-mobile-label" for="menu-switch">
+                <i class="fa-solid fa-bars"></i>
+                Menu
+            </label>
+            <input id="menu-switch" type="checkbox">
+            <ul>
+                <li>
+                    <a href="VerAnuncios.html">
+                        Ver Anuncios
+                    </a>
+                </li>
+                <li>
+                    <a href="Login.html">
+                        Iniciar Sesion
+                    </a>
+                </li>
+                <li>
+                    <a href="Registro.html">
+                        Registrar
+                    </a>
+                </li>
+                <li>
+                    <a href="/pages/MensajesComprador.html">
+                        Mensajes-Comprador
+                    </a>
+                </li>
+                <li>
+                    <a href="/pages/MensajesVendedorV2.html">
+                        Mensajes-Vendedor
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+        <div class="div-user"><img src="../recursos/img/npc.jpg" alt="Foto perfil" class="profile-pic"></div>
+    </header>
+
+    <body>
+        <main>
+            <form action="/editar-anuncio" method="post" enctype="multipart/form-data">
+                <div class="CrearAnuncio-container">
+                    <h1>Editar Anuncio</h1>
+                    <p> Edita el formulario con la nueva informacion  que desee actualizar de tu producto</p>
+                    <label for="input-titulo-anuncio">Titulo de Anuncio <br>
+                        <input type="text" id="input-titulo-anuncio" name="Titulo de Anuncio">
+                        <div class="msg-error" id="msg-error-input-titulo-anuncio"></div>
+                    </label>
+
+                    <div class="crearAnuncio-tabs">
+                        <button class="secundary-button">Informacion</button>
+                        <button class="secundary-button">Imagenes</button>
+                    </div>
+
+                    <label for="input-descripcion-anuncio">Descripcion de Anuncio <br>
+                        <textarea type="text" id="input-descripcion-anuncio" name="Descripcion de Anuncio"></textarea>
+                        <div class="msg-error" id="msg-error-input-descripcion-anuncio"></div>
+                    </label>
+
+
+                    <label for="input-precio-anuncio">Precio(USD) <br>
+
+                        <input type="text" id="input-precio-anuncio" name="Precio del Anuncio">
+                        <div class="msg-error" id="msg-error-input-precio-anuncio"></div>
+                    </label>
+
+                    <label for="input-categoria-anuncio">Categoria <br>
+                        <select name="Categoria del Anuncio" id="input-categoria-anuncio">
+                            <option value="Categorias de la base de datos">Categorias de la base de datos</option>
+                        </select>
+                        <div class="msg-error" id="msg-error-input-categoria-anuncio"></div>
+                    </label>
+
+                    <label for="input-subcategoria-anuncio">Subcategoría <br>
+                        <select name="Subategoria del Anuncio" id="input-subcategoria-anuncio">
+                            <option value="Subcategorias de la base de datos">Subcategorias de la base de datos</option>
+                        </select>
+                        <div class="msg-error" id="msg-error-input-subcategoria-anuncio"></div>
+                    </label>
+
+                    <label for="input-condicion-anuncio">Condicion <br>
+                        <select name="Condicion del Anuncio" id="input-condicion-anuncio">
+                            <option value="Condicion de la base de datos">Condicion de la base de datos</option>
+                            <option value="Nuevo">Nuevo</option>
+                            <option value="Usado">Usado</option>
+                            <option value="Seminuevo">Seminuevo</option>
+                        </select>
+                        <div class="msg-error" id="msg-error-input-condicion-anuncio"></div>
+                    </label>
+
+                </div>
+                <div class="crearAnuncio-btn-submit-container">
+                    <a href="/pages/editarAnuncio-imagenes.html"><button type="button" class="primary-button">Siguiente</button></a>
+                </div>
+            </form>
+        </main>
+    </body>
+    <footer>
+        <div class="copyright">
+            <p>@2024 AstroMarket.Todos los derechos reservados</p>
+        </div>
+
+        <html>

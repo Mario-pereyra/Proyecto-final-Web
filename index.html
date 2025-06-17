@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AstroMarket</title>
+    
+    <meta name="author" content="Mario Alberto Pereyra Justiniano">
+    <meta name="description"content="AstroMarket es tu marketplace de confianza para comprar y vender
+             productos tecnológicos. Encuentra las mejores ofertas en computadoras, smartphones y más.">
+    <meta name="theme-color" content="#4338ca">
+
+    <meta property="og:url" content="https://nur-university.github.io/web1-2025-1-pf-p4-Mario-pereyra/">
+    <meta property="og:title" content="AstroMarket - Marketplace de Tecnología">
+    <meta property="og:image" content="https://i.ibb.co/pB8p68Tw/logo.png">
+    <meta property="og:description" content="Tu marketplace de confianza para comprar y vender productos tecnológicos.">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="all.min.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/index/section-hero.css">
+    <link rel="stylesheet" href="css/index/section-categories.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/index/section-features-ads.css">
+    <link rel="stylesheet" href="css/footer.css">
+</head>
+
+<body>
+    <header class="header">
+        <a href="index.html">
+            <h1 class="logo">AstroMarket</h1>
+        </a>
+        <div class="contenedor-buscador">
+            <i class="fas fa-search"></i>
+            <input type="text" class="buscador" placeholder="Buscar productos...">
+        </div>
+        <nav class="menu">
+            <label class="menu-mobile-label" for="menu-switch">
+                <i class="fa-solid fa-bars"></i>
+                Menu
+            </label>
+            <input id="menu-switch" type="checkbox">
+            <ul>                <li>
+                    <a href="/pages/VerAnuncios.html">
+                        Ver Anuncios
+                    </a>
+                </li>
+                <li>
+                    <a href="/pages/Login.html">
+                        Iniciar Sesion
+                    </a>
+                </li>
+                <li>
+                    <a href="/pages/Registro.html">
+                        Registrar
+                    </a>
+                </li>
+                <li>
+                    <a href="/pages/MensajesComprador.html">
+                        Mensajes-Comprador
+                    </a>
+                </li>
+                <li>
+                    <a href="/pages/MensajesVendedorV2.html">
+                        Mensajes-Vendedor
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+    </header>
+    <main class="contenedor-main">
+        <section class="hero">
+            <div class="container-hero">
+                <div class="contenedor-hero-img">
+                    <img src="recursos/img/logo.png" alt="hero-banner">
+                </div>
+
+                <div class="contenedor-hero">
+                    <h1>Tu destino para productos electrónicos</h1>
+                    <p>Compra y vende dispositivos electrónicos de forma
+                        fácil y
+                        segura. Encuentra las mejores ofertas en
+                        laptops,<br>
+                        smartphones, accesorios y más.</p>
+
+                    <div class="contenedor-hero-buttons">
+                        <a href="/pages/Login.html"><input class="primary-button" type="button" value="Iniciar Sesion"></a>
+                        <a href="/pages/Registro.html"><input class="primary-button" type="button" value="Registrase"></a>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
+        <section class="popular-categories">
+            <h2 class="section-title">Categorías Populares</h2>
+
+            <div class="categories-container">
+                <a href="#" class="category-card">
+                    <div class="icon-placeholder bg-laptops">
+                        <i class="fa-solid fa-laptop" style="font-size:1.5rem;"></i>
+                    </div>
+                    <h3 class="card-title">Laptops</h3>
+                    <p class="card-description">Encuentra laptops para trabajo o gaming</p>
+                </a>
+
+                <a href="#" class="category-card">
+                    <div class="icon-placeholder bg-smartphones">
+                        <i class="fa-solid fa-mobile" style="font-size: 1.5rem;"></i>
+                    </div>
+                    <h3 class="card-title">Smartphones</h3>
+                    <p class="card-description">Los últimos modelos y mejores precios</p>
+                </a>
+
+                <a href="#" class="category-card">
+                    <div class="icon-placeholder bg-accesorios">
+                        <i class="fa-solid fa-headphones" style="font-size: 1.5rem;"></i>
+                    </div>
+                    <h3 class="card-title">Accesorios</h3>
+                    <p class="card-description">Complementos para tus dispositivos</p>
+                </a>
+            </div>
+
+            <div class="button-container">
+                <a href="/pages/Categorias.html" class="secundary-button">
+                    Ver todas las categorías
+                    <span class="arrow-icon">&rarr;</span>
+                </a>
+            </div>
+        </section>
+        <section class="featured-ads">
+            <h2 class="section-title">Anuncios Destacados</h2>
+
+            <div class="ads-card-container">                
+                <div class="ads-card">
+                    <a href="/pages/DetalleAnuncio.html">
+                        <div class="ads-card-img">
+                            <a href="/pages/DetalleAnuncio.html">
+                                <div class="ads-card-img-container">
+                                    <img src="recursos/img/MacBook_Pro_16.webp" alt="MacBook_Pro_16">
+                                </div>
+                            </a>
+                            <i class="fas fa-bookmark bookmark-icon"></i>
+                        </div>
+                        <div class="ads-card-details">
+                            <div class="ads-card-tags">
+                                <div class="ads-card-category">Laptops</div>
+                                <div class="ads-card-condition">Nuevo</div>
+                            </div>
+                            <h3 class="ads-card-title">MacBook Pro 16 pulgadas</h3>
+                            <p class="ads-card-price">$2.499,99</p>
+                        </div>
+                        <div class="ads-card-vendor">
+                            <div class="ads-card-vendor-label">Vendedor:</div>
+                            <div class="ads-card-vendor-name">Tech tecnologic</div>
+                        </div>
+                    </a>
+                </div>                
+                <div class="ads-card">
+                    <div class="ads-card-img">
+                        <a href="#">
+                            <div class="ads-card-img-container">
+                                <img src="recursos/img/Iphone_15_Pro_256GB_Negro.webp" alt="MacBook_Pro_16">
+                            </div>
+                        </a>
+                        <i class="fas fa-bookmark bookmark-icon"></i>
+                    </div>
+                    <div class="ads-card-details">
+                        <div class="ads-card-tags">
+                            <div class="ads-card-category">Laptops</div>
+                            <div class="ads-card-condition">Nuevo</div>
+                        </div>
+                        <h3 class="ads-card-title">iPhone 15 Pro Max 256GB</h3>
+                        <p class="ads-card-price">$1.299,99</p>
+                    </div>
+                    <div class="ads-card-vendor">
+                        <div class="ads-card-vendor-label">Vendedor:</div>
+                        <div class="ads-card-vendor-name">Tech tecnologic</div>
+                    </div>
+                </div>                <div class="ads-card">
+                    <div class="ads-card-img">
+                        <a href="#">
+                            <div class="ads-card-img-container">
+                                <img src="recursos/img/Samsung S24 Ultra 12+256GB gris.webp" alt="MacBook_Pro_16">
+                            </div>
+                        </a>
+                        <i class="fas fa-bookmark bookmark-icon"></i>
+                    </div>
+                    <div class="ads-card-details">
+                        <div class="ads-card-tags">
+                            <div class="ads-card-category">Smartphones</div>
+                            <div class="ads-card-condition">Nuevo</div>
+                        </div>
+                        <h3 class="ads-card-title">Samsung Galaxy S24 Ultra</h3>
+                        <p class="ads-card-price">$1.199,99</p>
+                    </div>
+                    <div class="ads-card-vendor">
+                        <div class="ads-card-vendor-label">Vendedor:</div>
+                        <div class="ads-card-vendor-name">Tech tecnologic</div>
+                    </div>
+                </div>                <div class="ads-card">
+                    <div class="ads-card-img">
+                        <a href="#">
+                            <div class="ads-card-img-container">
+                                <img src="recursos/img/Sony_WH_1000XM5.jpg" alt="Sony_WH_1000XM5">
+                            </div>
+                        </a>
+                        <i class="fas fa-bookmark bookmark-icon"></i>
+                    </div>
+                    <div class="ads-card-details">
+                        <div class="ads-card-tags">
+                            <div class="ads-card-category">Accesorios</div>
+                            <div class="ads-card-condition">Nuevo</div>
+                        </div>
+                        <h3 class="ads-card-title">Sony WH-1000XM5</h3>
+                        <p class="ads-card-price">$399,99</p>
+                    </div>
+                    <div class="ads-card-vendor">
+                        <div class="ads-card-vendor-label">Vendedor:</div>
+                        <div class="ads-card-vendor-name">Tech tecnologic</div>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+
+        </section>
+
+
+
+
+    </main>
+
+    <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
+</body>
+<footer>
+    <div class="copyright">
+        <p>@2024 AstroMarket.Todos los derechos reservados</p>
+    </div>
+</footer>
+
+</html>

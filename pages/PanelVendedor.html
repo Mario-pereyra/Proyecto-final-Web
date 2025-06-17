@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de vendedor</title>
+    <link rel="stylesheet" href="../css/vendors/fonts.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/PanelVendedor/panelVendedor.css">
+
+</head>
+
+<body>
+    <header class="header">
+        <a href="../index.html">
+            <h1 class="logo">AstroMarket</h1>
+        </a>
+        <nav class="menu">
+            <label class="menu-mobile-label" for="menu-switch">
+                <i class="fa-solid fa-bars"></i>
+                Menu
+            </label>
+            <input id="menu-switch" type="checkbox">
+            <ul>
+                <li>
+                    <a href="/pages/VerAnuncios.html">
+                        Ver Anuncios
+                    </a>
+                </li>
+                <li><a href="Login.html">
+                        Iniciar Sesion
+                    </a>
+                </li>
+                <li>
+                    <a href="Registro.html">
+                        Registrar
+                    </a>
+                </li>
+                <li>
+                    <a href="/pages/MensajesComprador.html">
+                        Mensajes-Comprador
+                    </a>
+                </li>
+                <li>
+                    <a href="/pages/MensajesVendedorV2.html">
+                        Mensajes-Vendedor
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="div-user"><img src="../recursos/img/npc.jpg" alt="Foto perfil" class="profile-pic"></div>
+    </header>
+
+    <main>
+        <div>
+            <div>
+                <h1>Panel de Vendedor</h1>
+            </div>
+            <div class="container-btn-new-ad">
+                <a href="CrearAnuncio-informacion.html">
+                    <button class="primary-button" type="button">
+                        Crear Anuncio
+                    </button>
+                </a>
+            </div>
+        </div>
+        <div class="selector-tabs">
+            <button class="primary-button"><a href="#">Mis anuncios</a></button>
+            <button class="primary-button"><a href="#">Mis Mensajes</a></button>
+
+        </div>
+        <div class="ad-container">
+
+            <div class="ad-card">
+                <div class="ad-image-wrapper-container">
+                    <div class="ad-image-wrapper">
+                        <img src="../recursos/img/canon_eos-r10.jpg" alt="nintendo-switch" class="ad-image">
+                    </div>
+                </div>
+                <div class="ad-content">
+                    <h3 class="ad-title">Nintendo Switch oled</h3>
+                    <p class="ad-price">2,9999 $</p>
+                    <div class="ad-stats">
+                        <div class="ad-stat-item"><b>Publicado:</b> <span class="stat-value">2025-02-13</span></div>
+                        <div class="ad-stat-item"><b>Visitas:</b> <span class="stat-value">123</span></div>
+                    </div>
+                    <div class="ad-visibility">
+                        <label for="input-anuncio-visible" class="visibility-label">
+                            <input type="checkbox" id="input-anuncio-visible" class="visibility-checkbox">
+                            Anuncio visible
+                        </label>
+                    </div>
+                </div>
+                <div class="ad-actions">
+                    <a href="#"><button class="secundary-button action-btn edit-btn" type="button">editar</button></a>
+                    <button class="secundary-button action-btn delete-btn" type="button">eliminar</button>
+                    <button class="secundary-button action-btn messages-btn" type="button" >Ver Mensajes</button>
+                    <button class="secundary-button action-btn verAnuncio-btn" type="button">Ver Anuncio</button>
+                </div>
+            </div>
+            <div class="ad-card">
+                <div class="ad-image-wrapper-container">
+                    <div class="ad-image-wrapper">
+                        <img src="../recursos/img/MacBook_Pro_16.webp" alt="nintendo-switch" class="ad-image">
+                    </div>
+                </div>
+                <div class="ad-content">
+                    <h3 class="ad-title">Nintendo Switch oled</h3>
+                    <p class="ad-price">2,9999 $</p>
+                    <div class="ad-stats">
+                        <div class="ad-stat-item">Publicado: <span class="stat-value">2025-02-13</span></div>
+                        <div class="ad-stat-item">Visitas: <span class="stat-value">123</span></div>
+                    </div>
+                    <div class="ad-visibility">
+                        <label for="input-anuncio-visible" class="visibility-label">
+                            <input type="checkbox" id="input-anuncio-visible" class="visibility-checkbox">
+                            Anuncio visible
+                        </label>
+                    </div>
+                </div>
+                <div class="ad-actions">
+                    <button class="secundary-button action-btn edit-btn"><a href="#">editar</a></button>
+                    <button class="secundary-button action-btn delete-btn"><a href="#">eliminar</a></button>
+                    <button class="secundary-button action-btn messages-btn"><a href="#">Ver Mensajes</a></button>
+                    <button class="secundary-button action-btn verAnuncio-btn"><a href="#">Ver Anuncio</a></button>
+
+                </div>
+            </div>
+            <div class="ad-card">
+                <div class="ad-image-wrapper-container">
+                    <div class="ad-image-wrapper">
+                        <img src="../recursos/img/Play_station_5.webp" alt="nintendo-switch" class="ad-image">
+                    </div>
+                </div>
+                <div class="ad-content">
+                    <h3 class="ad-title">Nintendo Switch oled</h3>
+                    <p class="ad-price">2,9999 $</p>
+                    <div class="ad-stats">
+                        <div class="ad-stat-item">Publicado: <span class="stat-value">2025-02-13</span></div>
+                        <div class="ad-stat-item">Visitas: <span class="stat-value">123</span></div>
+                    </div>
+                    <div class="ad-visibility">
+                        <label for="input-anuncio-visible" class="visibility-label">
+                            <input type="checkbox" id="input-anuncio-visible" class="visibility-checkbox">
+                            Anuncio visible
+                        </label>
+                    </div>
+                </div>
+                <div class="ad-actions">
+                    <button class="secundary-button action-btn edit-btn"><a href="#">editar</a></button>
+                    <button class="secundary-button action-btn delete-btn"><a href="#">eliminar</a></button>
+                    <button class="secundary-button action-btn messages-btn"><a href="#">Ver Mensajes</a></button>
+                    <button class="secundary-button action-btn verAnuncio-btn"><a href="#">Ver Anuncio</a></button>
+
+                </div>
+            </div>
+
+        </div>
+
+
+    </main>
+
+    <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
+
+    <footer>
+        <div class="copyright">
+            <p>@2024 AstroMarket.Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,851 @@
+/* ============================================
+   SISTEMA DE NAVEGACIÓN DE 3 NIVELES
+============================================ */
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0px auto;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+    min-height: 80vh;
+}
+
+/* Ocultar checkboxes de navegación */
+.view-toggle {
+    display: none;
+}
+
+/* ============================================
+   NIVEL 1: LISTA DE PRODUCTOS
+============================================ */
+
+.products-list {
+    display: flex;
+    flex-direction: column;
+    background-color: #fcfcfc;
+}
+
+.products-header {
+    padding: 16px;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: #fff;
+}
+
+.products-header h1 {
+    margin: 0 0 4px 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #212529;
+}
+
+.subtitle {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.products-container {
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.product-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.product-item:hover {
+    background-color: #f5f5f5;
+}
+
+.product-main-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+}
+
+.product-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+    background-color: #f0f0f0;
+}
+
+.product-details h3 {
+    margin: 0 0 4px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #212529;
+}
+
+.product-price {
+    margin: 0 0 2px 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #007bff;
+}
+
+.product-status {
+    margin: 0;
+    font-size: 12px;
+    color: #28a745;
+}
+
+.product-status:contains("Vendido") {
+    color: #6c757d;
+}
+
+.product-messages-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+}
+
+.messages-count {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 12px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.count-number {
+    font-size: 18px;
+    font-weight: 700;
+    color: #007bff;
+    line-height: 1;
+}
+
+.count-label {
+    font-size: 10px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.new-messages-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #dc3545;
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 10px;
+    min-width: 18px;
+    text-align: center;
+}
+
+/* ============================================
+   NIVEL 2: LISTA DE CONVERSACIONES
+============================================ */
+
+.conversations-list {
+    display: none;
+    flex-direction: column;
+    background-color: #fcfcfc;
+}
+
+.conversations-header {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: #fff;
+    gap: 12px;
+}
+
+.back-button {
+    padding: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #007bff;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.back-button:hover {
+    background-color: #f0f8ff;
+}
+
+.header-info h2 {
+    margin: 0 0 2px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #212529;
+}
+
+.conversations-subtitle {
+    margin: 0;
+    font-size: 13px;
+    color: #666;
+}
+
+.conversations-container {
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.conversation-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px 16px;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.conversation-item:hover {
+    background-color: #f5f5f5;
+}
+
+.conversation-item.active {
+    background-color: #e3f2fd;
+}
+
+.user-info, .message-details {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.profile-pic {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-pic-container {
+    position: relative;
+    display: inline-block;
+}
+
+.profile-status-dot {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.profile-status-dot.online {
+    background-color: #28a745;
+}
+
+.profile-status-dot.offline {
+    background-color: #6c757d;
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.user-name {
+    font-weight: 600;
+    font-size: 15px;
+    color: #212529;
+}
+
+.user-status {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    color: #666;
+}
+
+.online-indicator {
+    color: #28a745;
+    font-size: 8px;
+}
+
+.offline-indicator {
+    color: #6c757d;
+    font-size: 8px;
+}
+
+.last-message {
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+}
+
+.message-details {
+    justify-content: space-between;
+}
+
+.meta-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.timestamp {
+    font-size: 12px;
+    color: #999;
+}
+
+.new-badge {
+    background-color: #007bff;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.read-receipt {
+    font-size: 14px;
+    color: #34b7f1;
+}
+
+.conversation-item-unread .last-message {
+    font-weight: bold;
+    color: #212529;
+}
+
+.conversation-item-unread .read-receipt {
+    display: none;
+}
+
+.conversation-item-read .new-badge {
+    display: none;
+}
+
+.conversation-item-read .read-receipt {
+    display: inline-block;
+}
+
+/* ============================================
+   NIVEL 3: CHAT ACTIVO
+============================================ */
+
+.chat-view {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+}
+
+.header-chat-details {
+    display: flex;
+    align-items: center;
+    padding: 10px 16px;
+    border-bottom: 1px solid #e0e0e0;
+    gap: 8px;
+    background-color: #fff;
+}
+
+.chat-back-button {
+    display: block;
+    padding: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #007bff;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.chat-back-button:hover {
+    background-color: #f0f8ff;
+}
+
+.header-chat-details .profile-pic-container .profile-status-dot {
+    width: 12px;
+    height: 12px;
+}
+
+.vendor-info {
+    flex-grow: 1;
+}
+
+.vendor-info h3, .vendor-info p {
+    margin: 0;
+}
+
+.vendor-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #212529;
+}
+
+.vendor-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: #666;
+    margin: 0;
+}
+
+.vendor-status .online-indicator {
+    font-size: 10px;
+}
+
+.product-context {
+    background-color: #f8f9fa;
+    padding: 4px 8px;
+    border-radius: 12px;
+    border: 1px solid #e9ecef;
+}
+
+.product-context-label {
+    font-size: 12px;
+    color: #007bff;
+    font-weight: 500;
+}
+
+.chat-messages {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 50vh;
+    max-height: 70vh;
+}
+
+.message {
+    padding: 10px 15px;
+    border-radius: 18px;
+    max-width: 70%;
+    line-height: 1.4;
+}
+
+.message .timestamp {
+    display: block;
+    text-align: right;
+    font-size: 11px;
+    margin-top: 5px;
+    color: #888;
+}
+
+.message.sent {
+    background-color: #dcf8c6;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+}
+
+.message.sent .timestamp {
+    color: #6a8a5b;
+}
+
+.message.received {
+    background-color: #ffffff;
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+    border: 1px solid #eee;
+}
+
+.contact-vendor-footer {
+    border-top: 1px solid #dee2e6;
+    background-color: #fcfcfc;
+    position: relative;
+    z-index: 10;
+    margin-top: auto;
+}
+
+.contact-vendor-footer-container {
+    border: none;
+    margin: 10px;
+    display: flex;
+    gap: 10px;
+    position: relative;
+    z-index: 11;
+}
+
+.contact-vendor-footer-container input {
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 10px 15px;
+    flex-grow: 1;
+    font-size: 14px;
+}
+
+.contact-vendor-footer-container input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.contact-vendor-footer-container button {
+    background: #007bff;
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.contact-vendor-footer-container button:hover {
+    background: #0056b3;
+}
+
+/* ============================================
+   NAVEGACIÓN MÓVIL (3 NIVELES)
+============================================ */
+
+@media (max-width: 425px) {
+    /* Por defecto: mostrar solo productos */
+    .products-list {
+        display: flex;
+    }
+    
+    .conversations-list,
+    .chat-view {
+        display: none;
+    }
+
+    /* Nivel 1 → Nivel 2: Producto seleccionado */
+    #product-view-switch:checked ~ .products-list {
+        display: none;
+    }
+    
+    #product-view-switch:checked ~ .conversations-list {
+        display: flex;
+    }
+
+    /* Nivel 2 → Nivel 3: Conversación seleccionada */
+    #conversations-view-switch:checked ~ .products-list,
+    #conversations-view-switch:checked ~ .conversations-list {
+        display: none;
+    }
+    
+    #conversations-view-switch:checked ~ .chat-view {
+        display: flex;
+    }
+
+    /* Chat activo (nivel 3) */
+    #chat-view-switch:checked ~ .products-list,
+    #chat-view-switch:checked ~ .conversations-list {
+        display: none;
+    }
+    
+    #chat-view-switch:checked ~ .chat-view {
+        display: flex;
+    }
+
+    .chat-messages {
+        min-height: 60vh;
+        padding: 16px;
+    }
+    
+    .chat-container {
+        margin-bottom: 40px;
+    }
+}
+
+/* ============================================
+   NAVEGACIÓN TABLET (LAYOUT GRID 2x2)
+============================================ */
+
+@media (min-width: 426px) and (max-width: 768px) {
+    .chat-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr auto;
+        grid-template-areas: 
+            "products conversations"
+            "chat chat";
+        height: 90vh;
+        gap: 1px;
+        background-color: #e0e0e0;
+    }
+
+    /* GRID AREAS */
+    .products-list {
+        grid-area: products;
+        display: flex !important;
+        background-color: #fcfcfc;
+        border: none;
+        border-right: 1px solid #e0e0e0;
+    }
+
+    .conversations-list {
+        grid-area: conversations;
+        display: flex !important;
+        background-color: #fcfcfc;
+        border: none;
+    }    .chat-view {
+        grid-area: chat;
+        display: flex !important;
+        background-color: #fff;
+        border: none;
+        border-top: 1px solid #e0e0e0;
+        min-height: 45vh;
+        max-height: 50vh;
+    }
+
+    /* El chat siempre está visible y activo */
+    .chat-container {
+        grid-template-rows: 1fr 1fr;
+    }
+
+    /* Ocultar botones back en este layout */
+    .back-button,
+    .chat-back-button {
+        display: none;
+    }
+
+    /* Habilitar clicks en tablets */
+    .products-container label,
+    .conversations-container label {
+        pointer-events: auto;
+    }
+
+    /* Ajustes de tamaño para el layout compacto */
+    .product-item {
+        padding: 8px 12px;
+    }
+
+    .product-image {
+        width: 45px;
+        height: 45px;
+    }
+
+    .product-details h3 {
+        font-size: 14px;
+        margin-bottom: 2px;
+    }
+
+    .product-price {
+        font-size: 13px;
+    }
+
+    .conversation-item {
+        padding: 8px 12px;
+    }
+
+    .profile-pic {
+        width: 28px;
+        height: 28px;
+    }
+
+    .user-name {
+        font-size: 14px;
+    }
+
+    .last-message {
+        font-size: 13px;
+    }
+
+    .products-header h1 {
+        font-size: 16px;
+        margin-bottom: 2px;
+    }
+
+    .subtitle {
+        font-size: 12px;
+    }
+
+    .conversations-header h2 {
+        font-size: 15px;
+    }
+
+    .conversations-subtitle {
+        font-size: 12px;
+    }
+
+    /* Optimizar chat para layout horizontal */
+    .chat-messages {
+        padding: 16px 20px;
+        min-height: 35vh;
+        max-height: 45vh;
+    }
+
+    .header-chat-details {
+        padding: 8px 16px;
+        background-color: #f8f9fa;
+    }
+
+    .message {
+        max-width: 85%;
+        padding: 8px 12px;
+    }
+
+    .contact-vendor-footer-container {
+        margin: 8px;
+    }
+
+    /* Scrollbars más delgados */
+    .products-container,
+    .conversations-container,
+    .chat-messages {
+        scrollbar-width: thin;
+    }
+
+    .products-container::-webkit-scrollbar,
+    .conversations-container::-webkit-scrollbar,
+    .chat-messages::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .products-container::-webkit-scrollbar-thumb,
+    .conversations-container::-webkit-scrollbar-thumb,
+    .chat-messages::-webkit-scrollbar-thumb {
+        background-color: #ccc;
+        border-radius: 2px;
+    }
+}
+
+/* ============================================
+   NAVEGACIÓN DESKTOP (3 COLUMNAS FIJAS)
+============================================ */
+
+@media (min-width: 769px) {
+    .chat-container {
+        flex-direction: row;
+    }
+
+    /* Mostrar las 3 columnas en desktop */
+    .products-list {
+        flex: 0 0 25%;
+        border-right: 1px solid #e0e0e0;
+        display: flex !important;
+    }
+
+    .conversations-list {
+        flex: 0 0 35%;
+        border-right: 1px solid #e0e0e0;
+        display: flex !important;
+    }
+
+    .chat-view {
+        flex: 1;
+        display: flex !important;
+    }
+
+    /* Ocultar botones de navegación en desktop */
+    .back-button,
+    .chat-back-button {
+        display: none;
+    }
+
+    /* Deshabilitar labels en desktop para evitar clicks */
+    .products-container label,
+    .conversations-container label {
+        pointer-events: none;
+    }
+    
+    .product-item,
+    .conversation-item {
+        pointer-events: auto;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .product-item:hover,
+    .conversation-item:hover {
+        background-color: #f5f5f5;
+        transform: translateX(2px);
+        transition: all 0.2s ease;
+    }
+
+    .product-item.active,
+    .conversation-item.active {
+        background-color: #e3f2fd;
+        border-left: 4px solid #007bff;
+    }
+
+    .chat-messages {
+        min-height: 65vh;
+        max-height: 75vh;
+    }
+    
+    .chat-container {
+        margin-bottom: 50px;
+    }
+}
+
+/* ============================================
+   LAPTOP Y PC (PANTALLAS GRANDES)
+============================================ */
+
+@media (min-width: 1025px) {
+    .chat-container {
+        max-width: 1600px;
+    }
+
+    .products-list {
+        flex: 0 0 22%;
+    }
+
+    .conversations-list {
+        flex: 0 0 28%;
+    }
+}
+
+/* ============================================
+   FIXES PARA FOOTER Y LAYOUT
+============================================ */
+
+/* Asegurar que el chat-view tenga suficiente espacio */
+.chat-view {
+    position: relative;
+    z-index: 5;
+}
+
+/* Evitar que el footer de la página tape el chat */
+body {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+/* Asegurar que el footer de la página no interfiera */
+footer {
+    position: relative;
+    z-index: 1;
+    margin-top: 60px;
+    clear: both;
+}
+
+/* Para tablets: asegurar que el grid no sea tapado */
+@media (min-width: 426px) and (max-width: 768px) {
+    body {
+        padding-bottom: 10px;
+    }
+      .chat-container {
+        margin-bottom: 60px;
+        position: relative;
+        z-index: 5;
+    }
+    
+    .contact-vendor-footer {
+        position: sticky;
+        bottom: 0;
+        z-index: 15;
+        box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+    }
+}
