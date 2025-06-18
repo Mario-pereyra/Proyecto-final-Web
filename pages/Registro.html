@@ -26,7 +26,8 @@
                 Menu
             </label>
             <input id="menu-switch" type="checkbox">
-            <ul>                <li>
+            <ul>
+                <li>
                     <a href="VerAnuncios.html">
                         Ver Anuncios
                     </a>
@@ -50,62 +51,75 @@
                     <a href="/pages/MensajesVendedorV2.html">
                         Mensajes-Vendedor
                     </a>
-                </li>            </ul>
+                </li>
+            </ul>
         </nav>
         <div class="header-user-profile" id="header-profile" data-component="header-user-profile">
             <div class="header-profile-container" data-info="header-profile">
-                <img src="../recursos/img/npc.jpg" alt="Foto perfil" class="header-profile-pic" id="header-profile-image" data-image="header-user-avatar">
+                <img src="../recursos/img/npc.jpg" alt="Foto perfil" class="header-profile-pic"
+                    id="header-profile-image" data-image="header-user-avatar">
                 <div class="header-user-info" data-info="header-user-details">
                     <span class="header-user-name" data-info="header-user-name">Desconocido</span>
                     <span class="header-user-role" data-info="header-user-role">Visitante</span>
                 </div>
             </div>
         </div>
-       
+
     </header>
     <main>
-        <div class="login">
+        <div class="login" data-component="register-container">
             <h1>Registrarte</h1>
-            <p>Ingresa tus credenciales para registrarte</p>            <div class="campo-grupo">
-                <label for="input-nombreCompleto">Nombre Completo</label>
-                <input type="text" name="NombreCompleto" id="input-nombreCompleto" placeholder="Tu nombre">
-                <div class="msg-error" id="msg-error-nombreCompleto">Porfavor ingrese su nombre completo</div>
-            </div>            <div class="campo-grupo">
-                <label for="input-email">Email</label>
-                <input type="email" name="Email" id="input-email" placeholder="tu@email.com">
-                <div class="msg-error" id="msg-error-email">Porfavor ingrese su email</div>
-            </div>            <div class="campo-grupo">
-                <label for="input-password">Contraseña</label>
-                <input type="password" name="Password" id="input-password" placeholder="**********">
-                <div class="msg-error" id="msg-error-password">Porfavor ingrese su contraseña</div>
-            </div>
-            
-            <div class="password-requirements">
-                <p>La contraseña debe tener :</p>
-                <ul class="requirements-list">
-                    <li>Mínimo 8 caracteres</li>
-                    <li>Una mayúscula</li>
-                    <li>Una minúscula</li>
-                    <li>Un número</li>
-                </ul>
-            </div>
+            <p>Ingresa tus credenciales para registrarte</p>
 
-            <div class="campo-grupo">
-                <label for="input-confirmarcontraseña">Confirmar Contraseña</label>
-                <input type="password" name="ConfirmarContraseña" id="input-confirmarcontraseña" placeholder="**********">
-                <div class="msg-error" id="msg-error-confirmarcontraseña">Porfavor confirme su contraseña</div>
-            </div>
+            
+            <form id="register-form" data-form="register" data-action="create-account">
+                <div class="campo-grupo" data-field="fullName">
+                    <label for="input-nombreCompleto">Nombre Completo *</label>
+                    <input type="text" name="fullName" id="input-nombreCompleto" placeholder="Tu nombre completo"
+                        required minlength="2" data-validation="name" data-info="user-fullname">
+                    <div class="msg-error" id="msg-error-nombreCompleto" data-error="fullName"></div>
+                </div>
+                <div class="campo-grupo" data-field="email">
+                    <label for="input-email">Email *</label>
+                    <input type="email" name="email" id="input-email" placeholder="tu@email.com" required
+                        data-validation="email" data-info="user-email">
+                    <div class="msg-error" id="msg-error-email" data-error="email"></div>
+                </div>
+                <div class="campo-grupo" data-field="password">
+                    <label for="input-password">Contraseña *</label>
+                    <input type="password" name="password" id="input-password" placeholder="**********" required
+                        minlength="6" data-validation="password" data-info="user-password">
+                    <div class="msg-error" id="msg-error-password" data-error="password"></div>
+                </div>
+                <div class="password-requirements" data-info="password-requirements">
+                    <p>La contraseña debe tener:</p>
+                    <ul class="requirements-list">
+                        <li id="req-length" data-requirement="length">Mínimo 6 caracteres</li>
+                        <li id="req-uppercase" data-requirement="uppercase">Una mayúscula</li>
+                        <li id="req-lowercase" data-requirement="lowercase">Una minúscula</li>
+                        <li id="req-number" data-requirement="number">Un número</li>
+                    </ul>
+                </div>
+                <div class="campo-grupo" data-field="confirmPassword">
+                    <label for="input-confirmarcontraseña">Confirmar Contraseña *</label>
+                    <input type="password" name="confirmPassword" id="input-confirmarcontraseña"
+                        placeholder="**********" required data-validation="confirm-password"
+                        data-info="confirm-password">
+                    <div class="msg-error" id="msg-error-confirmarcontraseña" data-error="confirmPassword"></div>
+                </div>
+                <button type="submit" id="btn-register" class="btn-registrarse" data-action="submit-register">
+                    <span data-text="register-btn">Registrarse</span>
+                    <span id="register-spinner" style="display: none;" data-state="loading">Creando cuenta...</span>
+                </button>
+            </form>
 
-            <button type="submit" class="btn-registrarse">Registrarse</button>
-            
-            <div class="login-link">
-                <span>Ya tienes Cuenta?</span><a href="Login.html">Inicia Sesion</a>
+            <div class="login-options" style="margin-top: 20px; text-align: center;">
+                <span>¿Ya tienes una cuenta?</span>
+                <a href="Login.html" data-action="navigate" data-page="login">Inicia Sesión</a>
             </div>
-            
         </div>
     </main>
     <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
-
 </body>
 <footer>
     <div class="copyright">

@@ -48,104 +48,338 @@
                 </div>
             </div>
         </div>
-    </header>
-    <main>
-
-        <section class="details-ads-section">
+    </header>    <main>
+        <section class="details-ads-section" data-component="ad-details">
             <div class="container-ads-section">
                 <h1 class="ads-section-title">Detalles del anuncio</h1>
 
-                <hr>
-                <div class="detail">
-                    <div class="ad-details-gallery">
-                        <a>
-                            <div class="ad-main-img-container">
-                                <img class="ad-main-img" src="../recursos/img/MacBook_Pro_16.webp" alt="MacBook Pro 16">
-                            </div>
-                        </a>
-                        <div class="ad-thumbnails">
+                <!-- MENSAJES DE ESTADO -->
+                <div id="loading-state" class="state-message" style="display: none;" data-state="loading">
+                    <p>Cargando detalles del anuncio...</p>
+                </div>
+                <div id="error-state" class="state-message error" style="display: none;" data-state="error">
+                    <p id="error-message" data-info="error-message">Error al cargar el anuncio</p>
+                </div>
+                <div id="not-found-state" class="state-message error" style="display: none;" data-state="not-found">
+                    <p>Anuncio no encontrado o no disponible</p>
+                </div>
 
-                            <a>
-                                <div class="ad-thumbnail">
-                                    <img class="ad-thumbnail-img" src="../recursos/img/Iphone_15_Pro_256GB_Negro.webp"
-                                        alt="iPhone 15 Pro 256GB Negro">
-                                </div>
-                            </a>
-                            <a>
-                                <div class="ad-thumbnail">
-                                    <img class="ad-thumbnail-img" src="../recursos/img/Iphone_15_Pro_256GB_Negro.webp"
-                                        alt="iPhone 15 Pro 256GB Negro">
-                                </div>
-                            </a>
-                            <a>
-                                <div class="ad-thumbnail">
-                                    <img class="ad-thumbnail-img" src="../recursos/img/Iphone_15_Pro_256GB_Negro.webp"
-                                        alt="iPhone 15 Pro 256GB Negro">
-                                </div>
-                            </a>
+                <hr>
+                <div class="detail" id="ad-content" data-product="" data-vendor="">
+                    <div class="ad-details-gallery" data-component="gallery">
+                        <div class="ad-main-img-container" data-image="main-container">
+                            <img class="ad-main-img" id="main-image" src="../recursos/img/MacBook_Pro_16.webp" 
+                                 alt="Imagen principal" data-image="main">
+                            <button class="bookmark-btn" id="bookmark-btn" data-action="toggle-bookmark" 
+                                    data-product="" data-saved="false">
+                                <i class="fas fa-bookmark" id="bookmark-icon"></i>
+                                <span id="bookmark-text">Guardar</span>
+                            </button>
+                        </div>
+                        <div class="ad-thumbnails" data-component="thumbnails">
+                            <div class="ad-thumbnail active" data-image="thumb-1">
+                                <img class="ad-thumbnail-img" src="../recursos/img/MacBook_Pro_16.webp"
+                                     alt="Imagen 1" data-action="change-main-image" data-image-src="../recursos/img/MacBook_Pro_16.webp">
+                            </div>
+                            <div class="ad-thumbnail" data-image="thumb-2">
+                                <img class="ad-thumbnail-img" src="../recursos/img/Iphone_15_Pro_256GB_Negro.webp"
+                                     alt="Imagen 2" data-action="change-main-image" data-image-src="../recursos/img/Iphone_15_Pro_256GB_Negro.webp">
+                            </div>
+                            <div class="ad-thumbnail" data-image="thumb-3">
+                                <img class="ad-thumbnail-img" src="../recursos/img/Iphone_15_Pro_256GB_Negro.webp"
+                                     alt="Imagen 3" data-action="change-main-image" data-image-src="../recursos/img/Iphone_15_Pro_256GB_Negro.webp">
+                            </div>
+                            <div class="ad-thumbnail" data-image="thumb-4">
+                                <img class="ad-thumbnail-img" src="../recursos/img/Iphone_15_Pro_256GB_Negro.webp"
+                                     alt="Imagen 4" data-action="change-main-image" data-image-src="../recursos/img/Iphone_15_Pro_256GB_Negro.webp">
+                            </div>
                         </div>
                     </div>
+                    
                     <div class="ads-detail-info-container">
-                        <div class="ads-details-info">
-                            <h2 class="ads-card-title">MacBook Pro 16</h2>
-                            <p class="ads-card-price">$2999</p>
+                        <div class="ads-details-info" data-component="product-info">
+                            <h2 class="ads-card-title" id="product-title" data-info="title">MacBook Pro 16</h2>
+                            <p class="ads-card-price" id="product-price" data-info="price">$2999</p>
                             <div class="ads-card-tags">
-                                <div class="ads-card-category">Laptops</div>
-                                <div class="ads-card-condition">Nuevo</div>
+                                <div class="ads-card-category" id="product-category" data-info="category">Laptops</div>
+                                <div class="ads-card-condition" id="product-condition" data-info="condition">Nuevo</div>
                             </div>
-                            <div>
-                                <h2>Descripcion</h2>
-                                <div>
+                            <div class="product-metadata" data-info="metadata">
+                                <p><strong>Publicado:</strong> <span id="publish-date" data-info="publish-date">Hace 2 días</span></p>
+                                <p><strong>Ubicación:</strong> <span id="location" data-info="location">Ciudad, País</span></p>
+                                <p><strong>Vistas:</strong> <span id="view-count" data-info="views">127</span></p>
+                            </div>
+                            <div class="description-section">
+                                <h3>Descripción</h3>
+                                <div class="product-description" id="product-description" data-info="description">
                                     <p>MacBook Pro con chip M2 Pro, 16GB RAM, 512GB SSD. Pantalla Liquid Retina XDR,
-                                        Magic
-                                        Keyboard
-                                        con Touch ID. Color Space Gray. Incluye cargador original y caja.
-
-                                    </p>
+                                        Magic Keyboard con Touch ID. Color Space Gray. Incluye cargador original y caja.</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="contact-vendor">
+                        
+                        <div class="contact-vendor" data-component="vendor-contact">
                             <div class="header-chat-details">
-                                <div class="header-chat-details">
+                                <div class="vendor-profile" data-info="vendor-profile">
                                     <i class="fa fa-user" aria-hidden="true"></i>
                                     <div class="vendor-info">
-                                        <h3 class="vendor-name">Tech Store</h3>
-                                        <p class="vendor-status">En linea</p>
+                                        <h3 class="vendor-name" id="vendor-name" data-info="vendor-name">Tech Store</h3>
+                                        <p class="vendor-status" id="vendor-status" data-info="vendor-status">En línea</p>
+                                        <p class="vendor-rating" id="vendor-rating" data-info="vendor-rating">⭐ 4.8 (23 reseñas)</p>
                                     </div>
                                 </div>
                                 <div class="ads-card-details">
                                     <div class="ads-card-tags">
-                                        <div class="ads-card-type">
-                                            Vendedor
-                                        </div>
+                                        <div class="ads-card-type" data-info="vendor-type">Vendedor</div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="contact-vendor-midium">
+                            
+                            <!-- SECCIÓN PARA USUARIOS NO AUTENTICADOS -->
+                            <div class="contact-vendor-login" id="login-required" style="display: block;" data-state="guest">
                                 <i class="fa-solid fa-message"></i>
                                 <p>Inicia sesión para contactar al vendedor</p>
-                                <input class="primary-button" type="button" value="Iniciar sesion">
+                                <button class="primary-button" data-action="navigate" data-page="login">
+                                    Iniciar sesión
+                                </button>
                             </div>
-                            <div class="contact-vendor-footer">
-                                <div class="contact-vendor-footer-container">
-                                    <input type="text" style="width: 85%;" placeholder="Escribe tu mensaje aqui.....">
-                                    <button type="button">
-                                        <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                            
+                            <!-- SECCIÓN PARA USUARIOS AUTENTICADOS -->
+                            <div class="contact-vendor-authenticated" id="contact-section" style="display: none;" data-state="authenticated">
+                                <div class="action-buttons">
+                                    <button class="primary-button" id="btn-start-conversation" 
+                                            data-action="start-conversation" data-vendor="" data-product="">
+                                        <i class="fa-solid fa-message"></i>
+                                        Enviar mensaje
+                                    </button>
+                                    <button class="secondary-button" id="btn-view-profile" 
+                                            data-action="view-vendor-profile" data-vendor="">
+                                        <i class="fa-solid fa-user"></i>
+                                        Ver perfil
                                     </button>
                                 </div>
-
+                                
+                                <!-- FORMULARIO DE MENSAJE RÁPIDO -->
+                                <form class="quick-message-form" id="quick-message-form" 
+                                      data-form="quick-message" style="display: none;">
+                                    <textarea id="message-input" placeholder="Escribe tu mensaje aquí..." 
+                                              required data-info="message-content"></textarea>
+                                    <div class="message-actions">
+                                        <button type="button" class="secondary-button" 
+                                                data-action="cancel-message">Cancelar</button>
+                                        <button type="submit" class="primary-button" 
+                                                data-action="send-message">
+                                            <i class="fa fa-paper-plane"></i>
+                                            Enviar
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
-
         </section>
-    </main>
-    <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
+
+        <!-- CONTENEDOR PARA MENSAJES DE NOTIFICACIÓN -->
+        <div id="notification-container" class="notification-container" style="display: none;" data-component="notifications">
+            <div id="notification-message" class="notification" data-info="message"></div>
+        </div>
+    </main>    <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
+    
+    <!-- ESTILOS PARA ELEMENTOS DEL BACKEND -->
+    <style>
+        /* Estados de carga y error */
+        .state-message {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+            font-size: 16px;
+        }
+        
+        .state-message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            border-radius: 4px;
+        }
+        
+        /* Botón de bookmark */
+        .bookmark-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 20px;
+            padding: 8px 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .bookmark-btn:hover {
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        
+        .bookmark-btn.saved {
+            background: #007bff;
+            color: white;
+        }
+        
+        /* Thumbnails activos */
+        .ad-thumbnail {
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+        
+        .ad-thumbnail.active,
+        .ad-thumbnail:hover {
+            opacity: 1;
+        }
+        
+        /* Metadata del producto */
+        .product-metadata {
+            margin: 15px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+        
+        .product-metadata p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        
+        /* Rating del vendedor */
+        .vendor-rating {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* Sección de contacto */
+        .contact-vendor-login {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+        
+        .contact-vendor-authenticated {
+            padding: 20px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .action-buttons button {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .primary-button {
+            background: #007bff;
+            color: white;
+        }
+        
+        .secondary-button {
+            background: #6c757d;
+            color: white;
+        }
+        
+        /* Formulario de mensaje rápido */
+        .quick-message-form {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+        
+        .quick-message-form textarea {
+            width: 100%;
+            min-height: 80px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            resize: vertical;
+            font-family: inherit;
+        }
+        
+        .message-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+            justify-content: flex-end;
+        }
+        
+        .message-actions button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        /* Notificaciones */
+        .notification-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .notification {
+            padding: 15px 20px;
+            background-color: #28a745;
+            color: white;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            animation: slideIn 0.3s ease;
+        }
+        
+        .notification.error {
+            background-color: #dc3545;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .message-actions {
+                flex-direction: column;
+            }
+            
+            .bookmark-btn {
+                top: 10px;
+                right: 10px;
+                padding: 6px 10px;
+            }
+        }
+    </style>
+
 </body>
 <footer>
     <div class="copyright">

@@ -1,0 +1,26 @@
+.featured-ads-actions{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2px;
+    align-items: center;
+    margin: 20px auto;
+}
+.section-subtitle{
+    font-size: 1rem;
+    line-height: 1.5;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.stats-grid{
+    display: flex;
+    flex-direction: row;
+    gap: 2px;    
+}
+.ads-card-actions{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding-bottom: 10px;
+    
+}

@@ -1,19 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
-<head>    <meta charset="UTF-8">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anuncios Guardados</title>
+    <title>Anuncios Guardados - AstroMarket</title>
     <link rel="stylesheet" href="../css/vendors/fonts.css">
     <link rel="stylesheet" href="../css/VerAnuncios/Buscador.css">
     <link rel="stylesheet" href="../css/VerAnuncios/header.css">
     <link rel="stylesheet" href="../css/main.css">
-
-
 </head>
 
-<body>
-    <header class="header">
+<body>    <header class="header" data-component="main-header">
         <a href="../index.html">
             <h1 class="logo">AstroMarket</h1>
         </a>
@@ -24,22 +22,23 @@
                 Menu
             </label>
             <input id="menu-switch" type="checkbox">
-            <ul>                <li>
-                    <a href="">
+            <ul>
+                <li>
+                    <a href="../pages/VerAnuncios.html">
                         Ver Anuncios
                     </a>
                 </li>
-                
                 <li>
-                    <a href="/pages/MensajesComprador.html">
+                    <a href="../pages/MensajesComprador.html">
                         Mensajes-Comprador
                     </a>
                 </li>
                 <li>
-                    <a href="/pages/MensajesVendedorV2.html">
+                    <a href="../pages/MensajesVendedorV2.html">
                         Mensajes-Vendedor
                     </a>
-                </li>            </ul>
+                </li>
+            </ul>
         </nav>
         <div class="header-user-profile" id="header-profile" data-component="header-user-profile">
             <div class="header-profile-container" data-info="header-profile">
@@ -49,197 +48,394 @@
                     <span class="header-user-role" id="header-user-role" data-info="user-role">Visitante</span>
                 </div>
             </div>
+            
+            <!-- User Profile Menu -->
+            <div class="header-profile-menu" id="header-profile-menu" data-component="header-profile-menu" data-state="hidden">
+                <div class="profile-menu-item" data-action="view-profile">
+                    <i class="fa-solid fa-user"></i>
+                    Ver Perfil
+                </div>
+                <div class="profile-menu-item" data-action="view-saved-ads">
+                    <i class="fa-solid fa-bookmark"></i>
+                    Anuncios Guardados
+                </div>
+                <div class="profile-menu-item" data-action="view-vendor-panel">
+                    <i class="fa-solid fa-store"></i>
+                    Panel Vendedor
+                </div>
+                <div class="profile-menu-item" data-action="logout">
+                    <i class="fa-solid fa-sign-out-alt"></i>
+                    Cerrar Sesión
+                </div>
+            </div>
         </div>
-    </header>
-    <main>
-        <section class="ads-section">
+    </header>    <main data-component="saved-ads-main">
+        <!-- Loading State -->
+        <div id="loading-state" data-state="loading" class="loading-container" style="display: none;">
+            <div class="loading-spinner"></div>
+            <p>Cargando anuncios guardados...</p>
+        </div>
 
+        <!-- Error State -->
+        <div id="error-state" data-state="error" class="error-container" style="display: none;">
+            <div class="error-message">
+                <i class="fa-solid fa-exclamation-triangle"></i>
+                <h2>Error al cargar anuncios</h2>
+                <p id="error-text">No se pudieron cargar los anuncios guardados</p>
+                <button data-action="retry-load" class="btn-retry">Reintentar</button>
+            </div>
+        </div>
+
+        <!-- Empty State -->
+        <div id="empty-state" data-state="empty" class="empty-container" style="display: none;">
+            <div class="empty-message">
+                <i class="fa-solid fa-bookmark"></i>
+                <h2>No tienes anuncios guardados</h2>
+                <p>Explora nuestros productos y guarda los que te interesen</p>
+                <a href="../pages/VerAnuncios.html" class="btn-primary">Ver Anuncios</a>
+            </div>
+        </div>
+
+        <!-- Success State - Main Content -->
+        <section class="ads-section" id="main-content" data-state="success">
             <div class="container-ads-section">
-                <h1 class="ads-section-title">Anuncios Guardados</h1>
-                <div class="ads-search-filter">
-                    <div class="contenedor-buscador">
-                        <i class="fas fa-search"></i>
-                        <input type="text" class="buscador" placeholder="Buscar productos...">
-                    </div>
-                    <div class="ads-filter">
-                        <form id="filter-form">
-                            <label for="product-filter">Filtrar por:</label>
-                            <select id="product-filter" name="product-filter">
-                                <option value="all">Todas las Categorías y Subcategorías</option>
-                                <optgroup label="Todas las Categorías y Subcategorías">
-                                    <option value="celulare-y-smartphones">Celulares y Smartphones</option>
-                                    <option value="laptops-y-computadorass">Laptops y Computadoras</option>
-                                    <option value="tablets-y-e-readers">Tablets y E-readers</option>
-                                    <option value="audio-y-sonido">Audio y Sonido</option>
-                                    <option value="smartwatches-y-wearables">Smartwatches y Wearables</option>
-                                    <option value="dispositivos-de-hogar-inteligente">Dispositivos de Hogar Inteligente
-                                    </option>
-                                    <option value="Gaming">Gaming</option>
-                                    <option value="camaras-drones">Cámaras y Drones</option>
-                                    <option value="accesorios-electrónicos-Generales">Accesorios Electrónicos Generales
-                                    </option>
-                                </optgroup>
-                                <optgroup label="Celulares y Smartphones">
-                                    <option value="celulare-y-smartphones">Celulares y Smartphones</option>
-                                    <option value="android-celulares">Android</option>
-                                    <option value="iphone-celulares">iPhone</option>
-                                    <option value="basicos-celulares">Teléfonos Básicos</option>
-                                    <option value="accesorios-celulares">Accesorios para Celulares</option>
-                                </optgroup>
-
-                                <optgroup label="Laptops y Computadoras">
-                                    <option value="laptops-y-computadorass">Laptops y Computadoras</option>
-                                    <option value="gaming-laptops">Laptops Gaming</option>
-                                    <option value="ultrabooks-laptops">Ultrabooks</option>
-                                    <option value="dos-en-uno-laptops">Laptops 2 en 1</option>
-                                    <option value="gaming-pcs">PCs de Escritorio Gaming</option>
-                                    <option value="workstation-pcs">PCs de Escritorio Workstation</option>
-                                    <option value="componentes-pc">Componentes de PC</option>
-                                    <option value="monitores">Monitores</option>
-                                    <option value="accesorios-computadoras">Accesorios para Computadoras</option>
-                                </optgroup>
-
-                                <optgroup label="Tablets y E-readers">
-                                    <option value="tablets-y-e-readers">Tablets y E-readers</option>
-                                    <option value="android-tablets">Tablets Android</option>
-                                    <option value="ipad-tablets">iPad</option>
-                                    <option value="e-readers">E-readers</option>
-                                    <option value="accesorios-tablets">Accesorios para Tablets</option>
-                                </optgroup>
-
-                                <optgroup label="Audio y Sonido">
-                                    <option value="audio-y-sonido">Audio y Sonido</option>
-                                    <option value="auriculares">Auriculares</option>
-                                    <option value="parlantes-bluetooth">Parlantes Bluetooth</option>
-                                    <option value="barras-sonido">Barras de Sonido</option>
-                                    <option value="equipos-sonido">Equipos de Sonido</option>
-                                    <option value="microfonos">Micrófonos</option>
-                                </optgroup>
-
-                                <optgroup label="Smartwatches y Wearables">
-                                    <option value="smartwatches-y-wearables">Smartwatches y Wearables</option>
-                                    <option value="smartwatches">Smartwatches</option>
-                                    <option value="pulseras-actividad">Pulseras de Actividad</option>
-                                    <option value="anillos-inteligentes">Anillos Inteligentes</option>
-                                    <option value="gafas-inteligentes">Gafas Inteligentes</option>
-                                </optgroup>
-
-                                <optgroup label="Dispositivos de Hogar Inteligente">
-                                    <option value="dispositivos-de-hogar-inteligente">Dispositivos de Hogar Inteligente
-                                    </option>
-                                    <option value="asistentes-voz">Asistentes de Voz</option>
-                                    <option value="iluminacion-inteligente">Iluminación Inteligente</option>
-                                    <option value="camaras-seguridad">Cámaras de Seguridad</option>
-                                    <option value="termostatos-inteligentes">Termostatos Inteligentes</option>
-                                    <option value="enchufes-inteligentes">Enchufes Inteligentes</option>
-                                    <option value="robots-aspiradores">Robots Aspiradores</option>
-                                </optgroup>
-
-                                <optgroup label="Gaming">
-                                    <option value="Gaming">Gaming</option>
-                                    <option value="videojuegos">Videojuegos</option>
-                                    <option value="accesorios-gaming">Accesorios Gaming</option>
-                                    <option value="realidad-virtual-aumentada">Realidad Virtual (VR) y Aumentada (AR)
-                                    </option>
-                                    <option value="consolas-gaming">Consolas</option>
-                                    <option value="videojuegos">Videojuegos</option>
-                                    <option value="accesorios-gaming">Accesorios Gaming</option>
-                                    <option value="realidad-virtual-aumentada">Realidad Virtual (VR) y Aumentada (AR)
-                                    </option>
-                                </optgroup>
-
-                                <optgroup label="Cámaras y Drones">
-                                    <option value="camaras-drones">Cámaras y Drones</option>
-                                    <option value="camaras-digitales">Cámaras Digitales</option>
-                                    <option value="camaras-accion">Cámaras de Acción</option>
-                                    <option value="drones">Drones</option>
-                                    <option value="accesorios-fotografia">Accesorios de Fotografía</option>
-                                </optgroup>
-
-                                <optgroup label="Accesorios Electrónicos Generales">
-                                    <option value="accesorios-electrónicos-Generales">Accesorios Electrónicos Generales
-                                    </option>
-                                    <option value="power-banks">Power Banks</option>
-                                    <option value="cargadores-cables">Cargadores y Cables</option>
-                                    <option value="adaptadores">Adaptadores</option>
-                                    <option value="hubs-usb">Hubs USB</option>
-                                    <option value="memorias-usb">Memorias USB</option>
-                                    <option value="tarjetas-sd">Tarjetas SD</option>
-                                    <option value="protectores-voltaje">Protectores de Voltaje</option>
-                                    <option value="routers-conectividad">Routers y Conectividad</option>
-                                </optgroup>
-
-                                <optgroup label="Almacenamiento">
-                                    <option value="discos-duros-externos">Discos Duros Externos</option>
-                                    <option value="ssd-portatiles">SSD Portátiles</option>
-                                    <option value="nas">NAS (Network Attached Storage)</option>
-                                    <option value="pendrives">Pendrives</option>
-                                    <option value="tarjetas-memoria">Tarjetas de Memoria</option>
-                                </optgroup>
-                            </select>
-                            <input type="submit" value="Aplicar Filtro">
-                        </form>
-                    </div>
-                    <div>
-                        <p>8 resultados encontrados</p>
+                <div class="saved-ads-header">
+                    <h1 class="ads-section-title">Anuncios Guardados</h1>
+                    <div class="saved-ads-actions">
+                        <button data-action="select-all" class="btn-secondary">
+                            <i class="fa-solid fa-check-square"></i>
+                            Seleccionar Todo
+                        </button>
+                        <button data-action="delete-selected" class="btn-danger" disabled>
+                            <i class="fa-solid fa-trash"></i>
+                            Eliminar Seleccionados
+                        </button>
+                        <button data-action="export-saved" class="btn-secondary">
+                            <i class="fa-solid fa-download"></i>
+                            Exportar Lista
+                        </button>
                     </div>
                 </div>
-                <div class="container-ads">
-                    <div class="ads-card-container">                        <div class="ads-card">
+
+                <div class="ads-search-filter" data-component="search-filter">
+                    <div class="contenedor-buscador">
+                        <i class="fas fa-search"></i>
+                        <input 
+                            type="text" 
+                            class="buscador" 
+                            id="search-input"
+                            placeholder="Buscar en anuncios guardados..."
+                            data-action="search-saved-ads"
+                        >
+                        <button type="button" class="clear-search" data-action="clear-search" style="display: none;">
+                            <i class="fa-solid fa-times"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="ads-filter">
+                        <form id="filter-form" data-form="saved-ads-filter">
+                            <label for="product-filter">Filtrar por:</label>
+                            <select id="product-filter" name="product-filter" data-action="filter-saved-ads">
+                                <option value="all">Todas las Categorías</option>
+                                <optgroup label="Categorías Principales">
+                                    <option value="celulares-y-smartphones">Celulares y Smartphones</option>
+                                    <option value="laptops-y-computadoras">Laptops y Computadoras</option>
+                                    <option value="tablets-y-e-readers">Tablets y E-readers</option>
+                                    <option value="audio-y-sonido">Audio y Sonido</option>
+                                    <option value="smartwatches-y-wearables">Smartwatches y Wearables</option>
+                                    <option value="dispositivos-de-hogar-inteligente">Dispositivos de Hogar Inteligente</option>
+                                    <option value="gaming">Gaming</option>
+                                    <option value="camaras-drones">Cámaras y Drones</option>
+                                    <option value="accesorios-electronicos-generales">Accesorios Electrónicos Generales</option>
+                                </optgroup>
+                            </select>
+                            
+                            <select id="condition-filter" name="condition-filter" data-action="filter-by-condition">
+                                <option value="all">Todas las Condiciones</option>
+                                <option value="new">Nuevo</option>
+                                <option value="used">Usado</option>
+                                <option value="refurbished">Reacondicionado</option>
+                            </select>
+                            
+                            <select id="date-filter" name="date-filter" data-action="filter-by-date">
+                                <option value="all">Guardado en</option>
+                                <option value="today">Hoy</option>
+                                <option value="week">Esta semana</option>
+                                <option value="month">Este mes</option>
+                                <option value="older">Más antiguo</option>
+                            </select>
+
+                            <input type="submit" value="Aplicar Filtros" data-action="apply-filters">
+                            <button type="button" data-action="clear-filters" class="btn-secondary">Limpiar</button>
+                        </form>
+                    </div>
+                    
+                    <div class="search-results-info">
+                        <p id="results-count" data-info="results-count">8 anuncios guardados</p>
+                        <div class="view-options">
+                            <button data-action="toggle-view" data-view="grid" class="view-btn active">
+                                <i class="fa-solid fa-th"></i>
+                            </button>
+                            <button data-action="toggle-view" data-view="list" class="view-btn">
+                                <i class="fa-solid fa-list"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container-ads" id="ads-container" data-component="saved-ads-container" data-view="grid">
+                    <div class="ads-card-container" id="ads-list" data-info="ads-list">
+                        <!-- Saved ads will be populated here -->
+                        <div class="ads-card" data-component="saved-ad-card" data-ad-id="1" data-category="laptops" data-condition="new" data-saved-date="2024-01-15">
+                            <div class="ads-card-checkbox">
+                                <input type="checkbox" class="ad-select-checkbox" data-action="select-ad" data-ad-id="1">
+                            </div>
                             <div class="ads-card-img">
-                                <a href="../pages/DetalleAnuncio.html">
+                                <a href="../pages/DetalleAnuncio.html" data-action="view-ad-detail" data-ad-id="1">
                                     <div class="ads-card-img-container">
-                                        <img src="../recursos/img/MacBook_Pro_16.webp" alt="MacBook_Pro_16">
+                                        <img src="../recursos/img/MacBook_Pro_16.webp" alt="MacBook_Pro_16" data-image="ad-thumbnail">
                                     </div>
                                 </a>
-                                <i class="fas fa-bookmark bookmark-icon"></i>
+                                <div class="bookmark-controls">
+                                    <button class="bookmark-icon saved" data-action="toggle-bookmark" data-ad-id="1" title="Quitar de guardados">
+                                        <i class="fas fa-bookmark"></i>
+                                    </button>
+                                    <span class="saved-date" data-info="saved-date">Guardado: 15 Ene</span>
+                                </div>
                             </div>
                             <div class="ads-card-details">
                                 <div class="ads-card-tags">
-                                    <div class="ads-card-category">Laptops</div>
-                                    <div class="ads-card-condition">Nuevo</div>
+                                    <div class="ads-card-category" data-info="ad-category">Laptops</div>
+                                    <div class="ads-card-condition" data-info="ad-condition">Nuevo</div>
                                 </div>
-                                <h3 class="ads-card-title">MacBook Pro 16 pulgadas</h3>
-                                <p class="ads-card-price">$2.499,99</p>
+                                <h3 class="ads-card-title" data-info="ad-title">MacBook Pro 16 pulgadas</h3>
+                                <p class="ads-card-price" data-info="ad-price">$2.499,99</p>
+                                <div class="ads-card-actions">
+                                    <button data-action="contact-vendor" data-vendor-id="tech-store" class="btn-primary btn-sm">
+                                        <i class="fa-solid fa-message"></i>
+                                        Contactar
+                                    </button>
+                                    <button data-action="share-ad" data-ad-id="1" class="btn-secondary btn-sm">
+                                        <i class="fa-solid fa-share"></i>
+                                        Compartir
+                                    </button>
+                                </div>
                             </div>
                             <div class="ads-card-vendor">
                                 <div class="ads-card-vendor-label">Vendedor:</div>
-                                <div class="ads-card-vendor-name">Tech tecnologic</div>
-                            </div>
-                        </div>                        <div class="ads-card">
-                            <div class="ads-card-img">
-                                <a href="#">
-                                    <div class="ads-card-img-container">
-                                        <img src="../recursos/img/Iphone_15_Pro_256GB_Negro.webp" alt="MacBook_Pro_16">
-                                    </div>
-                                </a>
-                                <i class="fas fa-bookmark bookmark-icon"></i>
-                            </div>
-                            <div class="ads-card-details">
-                                <div class="ads-card-tags">
-                                    <div class="ads-card-category">Laptops</div>
-                                    <div class="ads-card-condition">Nuevo</div>
+                                <div class="ads-card-vendor-name" data-info="vendor-name">Tech Store</div>
+                                <div class="vendor-rating" data-info="vendor-rating">
+                                    <span class="stars">★★★★☆</span>
+                                    <span class="rating-text">(4.2)</span>
                                 </div>
-                                <h3 class="ads-card-title">iPhone 15 Pro Max 256GB</h3>
-                                <p class="ads-card-price">$1.299,99</p>
-                            </div>
-                            <div class="ads-card-vendor">
-                                <div class="ads-card-vendor-label">Vendedor:</div>
-                                <div class="ads-card-vendor-name">Tech tecnologic</div>
                             </div>
                         </div>
 
-                        
-
+                        <div class="ads-card" data-component="saved-ad-card" data-ad-id="2" data-category="smartphones" data-condition="new" data-saved-date="2024-01-10">
+                            <div class="ads-card-checkbox">
+                                <input type="checkbox" class="ad-select-checkbox" data-action="select-ad" data-ad-id="2">
+                            </div>
+                            <div class="ads-card-img">
+                                <a href="../pages/DetalleAnuncio.html" data-action="view-ad-detail" data-ad-id="2">
+                                    <div class="ads-card-img-container">
+                                        <img src="../recursos/img/Iphone_15_Pro_256GB_Negro.webp" alt="iPhone_15_Pro" data-image="ad-thumbnail">
+                                    </div>
+                                </a>
+                                <div class="bookmark-controls">
+                                    <button class="bookmark-icon saved" data-action="toggle-bookmark" data-ad-id="2" title="Quitar de guardados">
+                                        <i class="fas fa-bookmark"></i>
+                                    </button>
+                                    <span class="saved-date" data-info="saved-date">Guardado: 10 Ene</span>
+                                </div>
+                            </div>
+                            <div class="ads-card-details">
+                                <div class="ads-card-tags">
+                                    <div class="ads-card-category" data-info="ad-category">Smartphones</div>
+                                    <div class="ads-card-condition" data-info="ad-condition">Nuevo</div>
+                                </div>
+                                <h3 class="ads-card-title" data-info="ad-title">iPhone 15 Pro Max 256GB</h3>
+                                <p class="ads-card-price" data-info="ad-price">$1.299,99</p>
+                                <div class="ads-card-actions">
+                                    <button data-action="contact-vendor" data-vendor-id="mobile-shop" class="btn-primary btn-sm">
+                                        <i class="fa-solid fa-message"></i>
+                                        Contactar
+                                    </button>
+                                    <button data-action="share-ad" data-ad-id="2" class="btn-secondary btn-sm">
+                                        <i class="fa-solid fa-share"></i>
+                                        Compartir
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="ads-card-vendor">
+                                <div class="ads-card-vendor-label">Vendedor:</div>
+                                <div class="ads-card-vendor-name" data-info="vendor-name">Mobile Shop</div>
+                                <div class="vendor-rating" data-info="vendor-rating">
+                                    <span class="stars">★★★★★</span>
+                                    <span class="rating-text">(4.8)</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination-container" data-component="pagination">
+                    <button data-action="prev-page" class="pagination-btn" disabled>
+                        <i class="fa-solid fa-chevron-left"></i>
+                        Anterior
+                    </button>
+                    <div class="pagination-numbers" data-info="pagination-numbers">
+                        <span class="page-number active" data-page="1">1</span>
+                        <span class="page-number" data-page="2">2</span>
+                        <span class="page-dots">...</span>
+                        <span class="page-number" data-page="5">5</span>
+                    </div>
+                    <button data-action="next-page" class="pagination-btn">
+                        Siguiente
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
         </section>
-    </main>
-    <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
+
+        <!-- Delete Confirmation Modal -->
+        <div id="delete-modal" class="modal" data-component="delete-confirmation-modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Confirmar Eliminación</h2>
+                    <button class="modal-close" data-action="close-modal">
+                        <i class="fa-solid fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="delete-message">¿Estás seguro de que deseas eliminar los anuncios seleccionados de tu lista de guardados?</p>
+                    <div class="selected-ads-preview" id="selected-ads-preview" data-info="selected-ads">
+                        <!-- Selected ads preview will be populated here -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button data-action="cancel-delete" class="btn-secondary">Cancelar</button>
+                    <button data-action="confirm-delete" class="btn-danger">
+                        <i class="fa-solid fa-trash"></i>
+                        Eliminar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Share Modal -->
+        <div id="share-modal" class="modal" data-component="share-modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Compartir Anuncio</h2>
+                    <button class="modal-close" data-action="close-modal">
+                        <i class="fa-solid fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="share-options">
+                        <button data-action="share-whatsapp" class="share-btn">
+                            <i class="fab fa-whatsapp"></i>
+                            WhatsApp
+                        </button>
+                        <button data-action="share-facebook" class="share-btn">
+                            <i class="fab fa-facebook"></i>
+                            Facebook
+                        </button>
+                        <button data-action="share-twitter" class="share-btn">
+                            <i class="fab fa-twitter"></i>
+                            Twitter
+                        </button>
+                        <button data-action="copy-link" class="share-btn">
+                            <i class="fa-solid fa-link"></i>
+                            Copiar Enlace
+                        </button>
+                    </div>
+                    <div class="share-link-container">
+                        <label for="share-link">Enlace del anuncio:</label>
+                        <div class="input-copy-group">
+                            <input type="text" id="share-link" readonly data-info="share-link">
+                            <button data-action="copy-to-clipboard" class="btn-copy">
+                                <i class="fa-solid fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notification Container -->
+        <div id="notification-container" data-component="notifications"></div>
+    </main>    <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
+    
+    <!-- Templates for dynamic content -->
+    <template id="saved-ad-card-template" data-template="saved-ad-card">
+        <div class="ads-card" data-component="saved-ad-card">
+            <div class="ads-card-checkbox">
+                <input type="checkbox" class="ad-select-checkbox" data-action="select-ad">
+            </div>
+            <div class="ads-card-img">
+                <a href="#" data-action="view-ad-detail">
+                    <div class="ads-card-img-container">
+                        <img src="" alt="" data-image="ad-thumbnail">
+                    </div>
+                </a>
+                <div class="bookmark-controls">
+                    <button class="bookmark-icon saved" data-action="toggle-bookmark" title="Quitar de guardados">
+                        <i class="fas fa-bookmark"></i>
+                    </button>
+                    <span class="saved-date" data-info="saved-date"></span>
+                </div>
+            </div>
+            <div class="ads-card-details">
+                <div class="ads-card-tags">
+                    <div class="ads-card-category" data-info="ad-category"></div>
+                    <div class="ads-card-condition" data-info="ad-condition"></div>
+                </div>
+                <h3 class="ads-card-title" data-info="ad-title"></h3>
+                <p class="ads-card-price" data-info="ad-price"></p>
+                <div class="ads-card-actions">
+                    <button data-action="contact-vendor" class="btn-primary btn-sm">
+                        <i class="fa-solid fa-message"></i>
+                        Contactar
+                    </button>
+                    <button data-action="share-ad" class="btn-secondary btn-sm">
+                        <i class="fa-solid fa-share"></i>
+                        Compartir
+                    </button>
+                </div>
+            </div>
+            <div class="ads-card-vendor">
+                <div class="ads-card-vendor-label">Vendedor:</div>
+                <div class="ads-card-vendor-name" data-info="vendor-name"></div>
+                <div class="vendor-rating" data-info="vendor-rating">
+                    <span class="stars"></span>
+                    <span class="rating-text"></span>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="notification-template" data-template="notification">
+        <div class="notification" data-component="notification">
+            <div class="notification-icon">
+                <i class="notification-icon-element"></i>
+            </div>
+            <div class="notification-content">
+                <div class="notification-title"></div>
+                <div class="notification-message"></div>
+            </div>
+            <button class="notification-close" data-action="close-notification">
+                <i class="fa-solid fa-times"></i>
+            </button>
+        </div>
+    </template>
 
 </body>
-<footer>
+
+<footer data-component="main-footer">
     <div class="copyright">
-        <p>@2024 AstroMarket.Todos los derechos reservados</p>
+        <p>&copy; 2024 AstroMarket. Todos los derechos reservados</p>
     </div>
 </footer>
 

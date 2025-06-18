@@ -59,70 +59,197 @@
                 </div>
             </div>
         </div>
-    </header>
+    </header>    
+    <main>
+        <div class="CrearAnuncio-container" data-component="edit-ad-form">
+            <div class="form-header">
+                <h1>Editar Anuncio</h1>
+                <p>Modifica la información de tu producto</p>
+            </div>
 
-    <body>
-        <main>
-            <form action="/editar-anuncio" method="post" enctype="multipart/form-data">
-                <div class="CrearAnuncio-container">
-                    <h1>Editar Anuncio</h1>
-                    <p> Edita el formulario con la nueva informacion  que desee actualizar de tu producto</p>
-                    <label for="input-titulo-anuncio">Titulo de Anuncio <br>
-                        <input type="text" id="input-titulo-anuncio" name="Titulo de Anuncio">
-                        <div class="msg-error" id="msg-error-input-titulo-anuncio"></div>
-                    </label>
+            
 
-                    <div class="crearAnuncio-tabs">
-                        <button class="secundary-button">Informacion</button>
-                        <button class="secundary-button">Imagenes</button>
+            <div class="crearAnuncio-tabs" data-component="form-tabs">
+                <button type="button" class="tab-button active" data-tab="information" data-action="switch-tab">
+                    <i class="fas fa-info-circle"></i>
+                    Información
+                </button>
+                <button type="button" class="tab-button" data-tab="images" data-action="switch-tab">
+                    <i class="fas fa-images"></i>
+                    Imágenes
+                </button>
+            </div>
+
+            <form id="edit-ad-form" data-form="edit-ad" data-action="update-ad-info" data-product="" enctype="multipart/form-data">
+                <!-- INFORMACIÓN BÁSICA -->
+                <div class="form-section" data-section="basic-info">
+                    <h3>Información Básica</h3>
+                    
+                    <div class="campo-grupo" data-field="title">
+                        <label for="input-titulo-anuncio">Título del Anuncio *</label>
+                        <input type="text" id="input-titulo-anuncio" name="title" 
+                               placeholder="Ej: iPhone 15 Pro Max 256GB Como Nuevo"
+                               required maxlength="100" data-validation="title" data-info="ad-title">
+                        <div class="field-help">Máximo 100 caracteres. Sé específico y claro.</div>
+                        <div class="msg-error" id="msg-error-titulo" data-error="title" style="display: none;"></div>
                     </div>
 
-                    <label for="input-descripcion-anuncio">Descripcion de Anuncio <br>
-                        <textarea type="text" id="input-descripcion-anuncio" name="Descripcion de Anuncio"></textarea>
-                        <div class="msg-error" id="msg-error-input-descripcion-anuncio"></div>
-                    </label>
-
-
-                    <label for="input-precio-anuncio">Precio(USD) <br>
-
-                        <input type="text" id="input-precio-anuncio" name="Precio del Anuncio">
-                        <div class="msg-error" id="msg-error-input-precio-anuncio"></div>
-                    </label>
-
-                    <label for="input-categoria-anuncio">Categoria <br>
-                        <select name="Categoria del Anuncio" id="input-categoria-anuncio">
-                            <option value="Categorias de la base de datos">Categorias de la base de datos</option>
-                        </select>
-                        <div class="msg-error" id="msg-error-input-categoria-anuncio"></div>
-                    </label>
-
-                    <label for="input-subcategoria-anuncio">Subcategoría <br>
-                        <select name="Subategoria del Anuncio" id="input-subcategoria-anuncio">
-                            <option value="Subcategorias de la base de datos">Subcategorias de la base de datos</option>
-                        </select>
-                        <div class="msg-error" id="msg-error-input-subcategoria-anuncio"></div>
-                    </label>
-
-                    <label for="input-condicion-anuncio">Condicion <br>
-                        <select name="Condicion del Anuncio" id="input-condicion-anuncio">
-                            <option value="Condicion de la base de datos">Condicion de la base de datos</option>
-                            <option value="Nuevo">Nuevo</option>
-                            <option value="Usado">Usado</option>
-                            <option value="Seminuevo">Seminuevo</option>
-                        </select>
-                        <div class="msg-error" id="msg-error-input-condicion-anuncio"></div>
-                    </label>
-
+                    <div class="campo-grupo" data-field="description">
+                        <label for="input-descripcion-anuncio">Descripción del Anuncio *</label>
+                        <textarea id="input-descripcion-anuncio" name="description" 
+                                  placeholder="Describe tu producto: estado, características, accesorios incluidos, razón de venta..."
+                                  required maxlength="2000" rows="6" data-validation="description" data-info="ad-description"></textarea>
+                        <div class="field-help">
+                            <span id="description-count">0</span>/2000 caracteres. Incluye detalles importantes.
+                        </div>
+                        <div class="msg-error" id="msg-error-descripcion" data-error="description" style="display: none;"></div>
+                    </div>
                 </div>
-                <div class="crearAnuncio-btn-submit-container">
-                    <a href="/pages/editarAnuncio-imagenes.html"><button type="button" class="primary-button">Siguiente</button></a>
+
+                <!-- INFORMACIÓN DE PRECIO Y CATEGORÍA -->
+                <div class="form-section" data-section="price-category">
+                    <h3>Precio y Categoría</h3>
+                    
+                    <div class="campo-grupo" data-field="price">
+                        <label for="input-precio-anuncio">Precio (USD) *</label>
+                        <input type="number" id="input-precio-anuncio" name="price" 
+                               placeholder="0.00" min="0" step="0.01" required 
+                               data-validation="price" data-info="ad-price">
+                        <div class="field-help">Precio en dólares americanos</div>
+                        <div class="msg-error" id="msg-error-precio" data-error="price" style="display: none;"></div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="campo-grupo" data-field="category">
+                            <label for="input-categoria-anuncio">Categoría *</label>
+                            <select name="category" id="input-categoria-anuncio" required 
+                                    data-validation="category" data-info="ad-category" data-action="load-subcategories">
+                                <option value="">Selecciona una categoría</option>
+                                <option value="celulares-smartphones">Celulares y Smartphones</option>
+                                <option value="laptops-computadoras">Laptops y Computadoras</option>
+                                <option value="tablets-e-readers">Tablets y E-readers</option>
+                                <option value="audio-sonido">Audio y Sonido</option>
+                                <option value="smartwatches-wearables">Smartwatches y Wearables</option>
+                                <option value="hogar-inteligente">Dispositivos de Hogar Inteligente</option>
+                                <option value="gaming">Gaming</option>
+                                <option value="camaras-drones">Cámaras y Drones</option>
+                                <option value="accesorios-electronicos">Accesorios Electrónicos</option>
+                            </select>
+                            <div class="msg-error" id="msg-error-categoria" data-error="category" style="display: none;"></div>
+                        </div>
+
+                        <div class="campo-grupo" data-field="subcategory">
+                            <label for="input-subcategoria-anuncio">Subcategoría *</label>
+                            <select name="subcategory" id="input-subcategoria-anuncio" required 
+                                    data-validation="subcategory" data-info="ad-subcategory">
+                                <option value="">Primero selecciona una categoría</option>
+                            </select>
+                            <div class="msg-error" id="msg-error-subcategoria" data-error="subcategory" style="display: none;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INFORMACIÓN ADICIONAL -->
+                <div class="form-section" data-section="additional-info">
+                    <h3>Información Adicional</h3>
+                    
+                    <div class="form-row">
+                        <div class="campo-grupo" data-field="condition">
+                            <label for="input-condicion-anuncio">Condición *</label>
+                            <select name="condition" id="input-condicion-anuncio" required 
+                                    data-validation="condition" data-info="ad-condition">
+                                <option value="">Selecciona la condición</option>
+                                <option value="nuevo">Nuevo</option>
+                                <option value="seminuevo">Seminuevo</option>
+                                <option value="usado">Usado</option>
+                                <option value="para-repuestos">Para Repuestos</option>
+                            </select>
+                            <div class="msg-error" id="msg-error-condicion" data-error="condition" style="display: none;"></div>
+                        </div>
+
+                        <div class="campo-grupo" data-field="location">
+                            <label for="input-ubicacion-anuncio">Ubicación *</label>
+                            <input type="text" id="input-ubicacion-anuncio" name="location" 
+                                   placeholder="Ciudad, País" required maxlength="100"
+                                   data-validation="location" data-info="ad-location">
+                            <div class="field-help">Ubicación donde se encuentra el producto</div>
+                            <div class="msg-error" id="msg-error-ubicacion" data-error="location" style="display: none;"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="campo-grupo" data-field="status">
+                            <label for="input-estado-anuncio">Estado del Anuncio *</label>
+                            <select name="status" id="input-estado-anuncio" required 
+                                    data-validation="status" data-info="ad-status">
+                                <option value="active">Activo</option>
+                                <option value="inactive">Inactivo</option>
+                                <option value="sold">Vendido</option>
+                            </select>
+                            <div class="msg-error" id="msg-error-estado" data-error="status" style="display: none;"></div>
+                        </div>
+
+                        <div class="campo-grupo" data-field="negotiable">
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="negotiable" id="input-negociable" 
+                                       data-info="ad-negotiable">
+                                <span class="checkmark"></span>
+                                Precio negociable
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INFORMACIÓN DE ACTUALIZACIÓN -->
+                <div class="form-section" data-section="update-info">
+                    <h3>Información de Actualización</h3>
+                    <div class="update-details">
+                        <p><strong>Última actualización:</strong> <span id="last-updated" data-info="last-updated">--</span></p>
+                        <p><strong>Vistas totales:</strong> <span id="total-views" data-info="total-views">--</span></p>
+                        <p><strong>Mensajes recibidos:</strong> <span id="total-messages" data-info="total-messages">--</span></p>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="secondary-button" data-action="cancel-edit">
+                        <i class="fas fa-times"></i>
+                        Cancelar
+                    </button>
+                    <button type="button" class="danger-button" data-action="delete-ad">
+                        <i class="fas fa-trash"></i>
+                        Eliminar Anuncio
+                    </button>
+                    <button type="submit" class="primary-button" data-action="save-changes">
+                        <i class="fas fa-save"></i>
+                        Guardar Cambios
+                    </button>
                 </div>
             </form>
-        </main>
-    </body>
-    <footer>
-        <div class="copyright">
-            <p>@2024 AstroMarket.Todos los derechos reservados</p>
         </div>
 
-        <html>
+        <!-- MODAL DE CONFIRMACIÓN PARA ELIMINACIÓN -->
+        <div id="delete-modal" class="modal" style="display: none;" data-component="delete-modal">
+            <div class="modal-content">
+                <h3>Confirmar eliminación</h3>
+                <p>¿Estás seguro de que quieres eliminar este anuncio? Esta acción no se puede deshacer.</p>
+                <div class="modal-actions">
+                    <button class="secondary-button" data-action="cancel-delete">Cancelar</button>
+                    <button class="danger-button" data-action="confirm-delete">Eliminar</button>
+                </div>
+            </div>
+        </div>
+
+        
+    </main>    
+    <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
+    
+    
+
+</body>
+<footer>
+    <div class="copyright">
+        <p>@2024 AstroMarket.Todos los derechos reservados</p>
+    </div>
+</footer>
+
+</html>

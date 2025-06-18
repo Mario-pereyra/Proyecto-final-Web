@@ -59,70 +59,452 @@
                 </div>
             </div>
         </div>
-    </header>
+    </header>    <main>
+        <div class="CrearAnuncio-container" data-component="create-ad-form">
+            <div class="form-header">
+                <h1>Crear Anuncio</h1>
+                <p>Rellena el formulario con la información de tu producto</p>
+            </div>
 
-    <body>
-        <main>
-            <form action="/crear-anuncio" method="post" enctype="multipart/form-data">
-                <div class="CrearAnuncio-container">
-                    <h1>Crear Anuncio</h1>
-                    <p> Rellena el formulario con la informacion de tu producto</p>
-                    <label for="input-titulo-anuncio">Titulo de Anuncio <br>
-                        <input type="text" id="input-titulo-anuncio" name="Titulo de Anuncio">
-                        <div class="msg-error" id="msg-error-input-titulo-anuncio"></div>
-                    </label>
+            <!-- MENSAJES DE ESTADO -->
+            <div id="form-loading" class="state-message" style="display: none;" data-state="loading">
+                <p>Guardando información del anuncio...</p>
+            </div>
+            <div id="form-error" class="state-message error" style="display: none;" data-state="error">
+                <p id="form-error-message" data-info="error-message"></p>
+            </div>
 
-                    <div class="crearAnuncio-tabs">
-                        <button class="secundary-button">Informacion</button>
-                        <button class="secundary-button">Imagenes</button>
+            <div class="crearAnuncio-tabs" data-component="form-tabs">
+                <button type="button" class="tab-button active" data-tab="information" data-action="switch-tab">
+                    <i class="fas fa-info-circle"></i>
+                    Información
+                </button>
+                <button type="button" class="tab-button" data-tab="images" data-action="switch-tab">
+                    <i class="fas fa-images"></i>
+                    Imágenes
+                </button>
+            </div>
+
+            <form id="create-ad-form" data-form="create-ad" data-action="save-ad-info" enctype="multipart/form-data">
+                <!-- INFORMACIÓN BÁSICA -->
+                <div class="form-section" data-section="basic-info">
+                    <h3>Información Básica</h3>
+                    
+                    <div class="campo-grupo" data-field="title">
+                        <label for="input-titulo-anuncio">Título del Anuncio *</label>
+                        <input type="text" id="input-titulo-anuncio" name="title" 
+                               placeholder="Ej: iPhone 15 Pro Max 256GB Como Nuevo"
+                               required maxlength="100" data-validation="title" data-info="ad-title">
+                        <div class="field-help">Máximo 100 caracteres. Sé específico y claro.</div>
+                        <div class="msg-error" id="msg-error-titulo" data-error="title" style="display: none;"></div>
                     </div>
 
-                    <label for="input-descripcion-anuncio">Descripcion de Anuncio <br>
-                        <textarea type="text" id="input-descripcion-anuncio" name="Descripcion de Anuncio"></textarea>
-                        <div class="msg-error" id="msg-error-input-descripcion-anuncio"></div>
-                    </label>
-
-
-                    <label for="input-precio-anuncio">Precio(USD) <br>
-
-                        <input type="text" id="input-precio-anuncio" name="Precio del Anuncio">
-                        <div class="msg-error" id="msg-error-input-precio-anuncio"></div>
-                    </label>
-
-                    <label for="input-categoria-anuncio">Categoria <br>
-                        <select name="Categoria del Anuncio" id="input-categoria-anuncio">
-                            <option value="Categorias de la base de datos">Categorias de la base de datos</option>
-                        </select>
-                        <div class="msg-error" id="msg-error-input-categoria-anuncio"></div>
-                    </label>
-
-                    <label for="input-subcategoria-anuncio">Subcategoría <br>
-                        <select name="Subategoria del Anuncio" id="input-subcategoria-anuncio">
-                            <option value="Subcategorias de la base de datos">Subcategorias de la base de datos</option>
-                        </select>
-                        <div class="msg-error" id="msg-error-input-subcategoria-anuncio"></div>
-                    </label>
-
-                    <label for="input-condicion-anuncio">Condicion <br>
-                        <select name="Condicion del Anuncio" id="input-condicion-anuncio">
-                            <option value="Condicion de la base de datos">Condicion de la base de datos</option>
-                            <option value="Nuevo">Nuevo</option>
-                            <option value="Usado">Usado</option>
-                            <option value="Seminuevo">Seminuevo</option>
-                        </select>
-                        <div class="msg-error" id="msg-error-input-condicion-anuncio"></div>
-                    </label>
-
+                    <div class="campo-grupo" data-field="description">
+                        <label for="input-descripcion-anuncio">Descripción del Anuncio *</label>
+                        <textarea id="input-descripcion-anuncio" name="description" 
+                                  placeholder="Describe tu producto: estado, características, accesorios incluidos, razón de venta..."
+                                  required maxlength="2000" rows="6" data-validation="description" data-info="ad-description"></textarea>
+                        <div class="field-help">
+                            <span id="description-count">0</span>/2000 caracteres. Incluye detalles importantes.
+                        </div>
+                        <div class="msg-error" id="msg-error-descripcion" data-error="description" style="display: none;"></div>
+                    </div>
                 </div>
-                <div class="crearAnuncio-btn-submit-container">
-                    <a href="/pages/CrearAnuncio-imagenes.html"><button type="button" class="primary-button">Siguiente</button></a>
+
+                <!-- INFORMACIÓN DE PRECIO Y CATEGORÍA -->
+                <div class="form-section" data-section="price-category">
+                    <h3>Precio y Categoría</h3>
+                    
+                    <div class="campo-grupo" data-field="price">
+                        <label for="input-precio-anuncio">Precio (USD) *</label>
+                        <input type="number" id="input-precio-anuncio" name="price" 
+                               placeholder="0.00" min="0" step="0.01" required 
+                               data-validation="price" data-info="ad-price">
+                        <div class="field-help">Precio en dólares americanos</div>
+                        <div class="msg-error" id="msg-error-precio" data-error="price" style="display: none;"></div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="campo-grupo" data-field="category">
+                            <label for="input-categoria-anuncio">Categoría *</label>
+                            <select name="category" id="input-categoria-anuncio" required 
+                                    data-validation="category" data-info="ad-category" data-action="load-subcategories">
+                                <option value="">Selecciona una categoría</option>
+                                <option value="celulares-smartphones">Celulares y Smartphones</option>
+                                <option value="laptops-computadoras">Laptops y Computadoras</option>
+                                <option value="tablets-e-readers">Tablets y E-readers</option>
+                                <option value="audio-sonido">Audio y Sonido</option>
+                                <option value="smartwatches-wearables">Smartwatches y Wearables</option>
+                                <option value="hogar-inteligente">Dispositivos de Hogar Inteligente</option>
+                                <option value="gaming">Gaming</option>
+                                <option value="camaras-drones">Cámaras y Drones</option>
+                                <option value="accesorios-electronicos">Accesorios Electrónicos</option>
+                            </select>
+                            <div class="msg-error" id="msg-error-categoria" data-error="category" style="display: none;"></div>
+                        </div>
+
+                        <div class="campo-grupo" data-field="subcategory">
+                            <label for="input-subcategoria-anuncio">Subcategoría *</label>
+                            <select name="subcategory" id="input-subcategoria-anuncio" required 
+                                    data-validation="subcategory" data-info="ad-subcategory" disabled>
+                                <option value="">Primero selecciona una categoría</option>
+                            </select>
+                            <div class="msg-error" id="msg-error-subcategoria" data-error="subcategory" style="display: none;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INFORMACIÓN ADICIONAL -->
+                <div class="form-section" data-section="additional-info">
+                    <h3>Información Adicional</h3>
+                    
+                    <div class="form-row">
+                        <div class="campo-grupo" data-field="condition">
+                            <label for="input-condicion-anuncio">Condición *</label>
+                            <select name="condition" id="input-condicion-anuncio" required 
+                                    data-validation="condition" data-info="ad-condition">
+                                <option value="">Selecciona la condición</option>
+                                <option value="nuevo">Nuevo</option>
+                                <option value="seminuevo">Seminuevo</option>
+                                <option value="usado">Usado</option>
+                                <option value="para-repuestos">Para Repuestos</option>
+                            </select>
+                            <div class="msg-error" id="msg-error-condicion" data-error="condition" style="display: none;"></div>
+                        </div>
+
+                        <div class="campo-grupo" data-field="location">
+                            <label for="input-ubicacion-anuncio">Ubicación *</label>
+                            <input type="text" id="input-ubicacion-anuncio" name="location" 
+                                   placeholder="Ciudad, País" required maxlength="100"
+                                   data-validation="location" data-info="ad-location">
+                            <div class="field-help">Ubicación donde se encuentra el producto</div>
+                            <div class="msg-error" id="msg-error-ubicacion" data-error="location" style="display: none;"></div>
+                        </div>
+                    </div>
+
+                    <div class="campo-grupo" data-field="negotiable">
+                        <label class="checkbox-container">
+                            <input type="checkbox" name="negotiable" id="input-negociable" 
+                                   data-info="ad-negotiable">
+                            <span class="checkmark"></span>
+                            Precio negociable
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="secondary-button" data-action="cancel-create">
+                        <i class="fas fa-times"></i>
+                        Cancelar
+                    </button>
+                    <button type="submit" class="primary-button" data-action="save-and-continue">
+                        <i class="fas fa-arrow-right"></i>
+                        Guardar y Continuar
+                    </button>
                 </div>
             </form>
-        </main>
-    </body>
-    <footer>
-        <div class="copyright">
-            <p>@2024 AstroMarket.Todos los derechos reservados</p>
+        </div>        <!-- CONTENEDOR PARA MENSAJES DE NOTIFICACIÓN -->
+        <div id="notification-container" class="notification-container" style="display: none;" data-component="notifications">
+            <div id="notification-message" class="notification" data-info="message"></div>
         </div>
+    </main>
+    
+    <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
+    
+    <!-- ESTILOS PARA ELEMENTOS DEL BACKEND -->
+    <style>
+        /* Form structure */
+        .CrearAnuncio-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .form-header h1 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+        
+        .form-header p {
+            margin: 0;
+            color: #666;
+            font-size: 16px;
+        }
+        
+        /* Tabs */
+        .crearAnuncio-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tab-button {
+            padding: 12px 20px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-button.active {
+            color: #007bff;
+            border-bottom-color: #007bff;
+        }
+        
+        /* Form sections */
+        .form-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .form-section h3 {
+            margin: 0 0 20px 0;
+            color: #333;
+            font-size: 18px;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        /* Campo grupo */
+        .campo-grupo {
+            margin-bottom: 20px;
+        }
+        
+        .campo-grupo label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .campo-grupo input,
+        .campo-grupo select,
+        .campo-grupo textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+        
+        .campo-grupo input:focus,
+        .campo-grupo select:focus,
+        .campo-grupo textarea:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+        }
+        
+        .campo-grupo textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        /* Field help */
+        .field-help {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        /* Estados de error */
+        .state-message {
+            text-align: center;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .state-message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .msg-error {
+            color: #dc3545;
+            font-size: 12px;
+            margin-top: 5px;
+            padding: 0;
+        }
+        
+        /* Checkbox personalizado */
+        .checkbox-container {
+            display: block;
+            position: relative;
+            padding-left: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
+        .checkbox-container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+        
+        .checkmark {
+            position: absolute;
+            top: 2px;
+            left: 0;
+            height: 18px;
+            width: 18px;
+            background-color: #eee;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+        
+        .checkbox-container:hover input ~ .checkmark {
+            background-color: #ccc;
+        }
+        
+        .checkbox-container input:checked ~ .checkmark {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+        
+        .checkbox-container input:checked ~ .checkmark:after {
+            display: block;
+        }
+        
+        .checkbox-container .checkmark:after {
+            left: 6px;
+            top: 3px;
+            width: 5px;
+            height: 8px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        
+        /* Form actions */
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+        
+        .form-actions button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .primary-button {
+            background: #007bff;
+            color: white;
+        }
+        
+        .secondary-button {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .form-actions button:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+        
+        /* Notificaciones */
+        .notification-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .notification {
+            padding: 15px 20px;
+            background-color: #28a745;
+            color: white;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            animation: slideIn 0.3s ease;
+        }
+        
+        .notification.error {
+            background-color: #dc3545;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        /* Validación visual */
+        input:required:invalid {
+            border-color: #dc3545;
+        }
+        
+        input:required:valid {
+            border-color: #28a745;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .CrearAnuncio-container {
+                padding: 15px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .crearAnuncio-tabs {
+                flex-direction: column;
+            }
+        }
+    </style>
 
-        <html>
+</body>
+<footer>
+    <div class="copyright">
+        <p>@2024 AstroMarket.Todos los derechos reservados</p>
+    </div>
+</footer>
+
+</html>

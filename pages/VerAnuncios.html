@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>    <meta charset="UTF-8">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anuncios</title>
     <link rel="stylesheet" href="../css/vendors/fonts.css">
@@ -24,35 +25,38 @@
                 Menu
             </label>
             <input id="menu-switch" type="checkbox">
-            <ul>                <li>
-                    <a href="">
+            <ul>
+                <li>
+                    <a href="" data-action="navigate" data-page="ads">
                         Ver Anuncios
                     </a>
                 </li>
                 <li>
-                    <a href="Login.html">
+                    <a href="Login.html" data-action="navigate" data-page="login">
                         Iniciar Sesion
                     </a>
                 </li>
                 <li>
-                    <a href="Registro.html">
+                    <a href="Registro.html" data-action="navigate" data-page="register">
                         Registrar
                     </a>
                 </li>
                 <li>
-                    <a href="/pages/MensajesComprador.html">
+                    <a href="/pages/MensajesComprador.html" data-action="navigate" data-page="messages-buyer">
                         Mensajes-Comprador
                     </a>
                 </li>
                 <li>
-                    <a href="/pages/MensajesVendedorV2.html">
+                    <a href="/pages/MensajesVendedorV2.html" data-action="navigate" data-page="messages-seller">
                         Mensajes-Vendedor
                     </a>
-                </li>            </ul>
+                </li>
+            </ul>
         </nav>
         <div class="header-user-profile" id="header-profile" data-component="header-user-profile">
             <div class="header-profile-container" data-info="header-profile">
-                <img src="../recursos/img/npc.jpg" alt="Foto perfil" class="header-profile-pic" id="header-profile-image" data-image="header-user-avatar">
+                <img src="../recursos/img/npc.jpg" alt="Foto perfil" class="header-profile-pic"
+                    id="header-profile-image" data-image="header-user-avatar">
                 <div class="header-user-info" data-info="header-user-details">
                     <span class="header-user-name" data-info="header-user-name">Desconocido</span>
                     <span class="header-user-role" data-info="header-user-role">Visitante</span>
@@ -68,12 +72,13 @@
                 <div class="ads-search-filter">
                     <div class="contenedor-buscador">
                         <i class="fas fa-search"></i>
-                        <input type="text" class="buscador" placeholder="Buscar productos...">
+                        <input type="text" id="search-input" class="buscador" placeholder="Buscar productos..."
+                            data-component="search">
                     </div>
                     <div class="ads-filter">
-                        <form id="filter-form">
+                        <form id="filter-form" data-form="filter">
                             <label for="product-filter">Filtrar por:</label>
-                            <select id="product-filter" name="product-filter">
+                            <select id="product-filter" name="product-filter" data-component="category-filter">
                                 <option value="all">Todas las Categorías y Subcategorías</option>
                                 <optgroup label="Todas las Categorías y Subcategorías">
                                     <option value="celulare-y-smartphones">Celulares y Smartphones</option>
@@ -185,56 +190,66 @@
                                     <option value="pendrives">Pendrives</option>
                                     <option value="tarjetas-memoria">Tarjetas de Memoria</option>
                                 </optgroup>
-                            </select>
-                            <input type="submit" value="Aplicar Filtro">
+                            </select> <input type="submit" value="Aplicar Filtro" id="btn-apply-filter"
+                                data-action="apply-filter">
                         </form>
                     </div>
-                    <div>
+                    <div id="results-count" data-info="results-count">
                         <p>8 resultados encontrados</p>
                     </div>
                 </div>
-                <div class="container-ads">
-                    <div class="ads-card-container">                        <div class="ads-card">
+                <div class="container-ads" id="ads-container" data-component="ads-list">
+                    <div class="ads-card-container" id="ads-grid" data-list="products">
+                        <div class="ads-card" id="product-1" data-product="1" data-category="laptops" data-vendor="1"
+                            data-status="active">
                             <div class="ads-card-img">
-                                <a href="../pages/DetalleAnuncio.html">
+                                <a href="../pages/DetalleAnuncio.html" data-action="view-detail" data-product="1">
                                     <div class="ads-card-img-container">
-                                        <img src="../recursos/img/MacBook_Pro_16.webp" alt="MacBook_Pro_16">
+                                        <img src="../recursos/img/MacBook_Pro_16.webp" alt="MacBook_Pro_16"
+                                            data-image="product-main">
                                     </div>
                                 </a>
-                                <i class="fas fa-bookmark bookmark-icon"></i>
+                                <i class="fas fa-bookmark bookmark-icon" data-action="toggle-bookmark" data-product="1"
+                                    data-saved="false"></i>
                             </div>
                             <div class="ads-card-details">
                                 <div class="ads-card-tags">
-                                    <div class="ads-card-category">Laptops</div>
-                                    <div class="ads-card-condition">Nuevo</div>
+                                    <div class="ads-card-category" data-info="category">Laptops</div>
+                                    <div class="ads-card-condition" data-info="condition">Nuevo</div>
                                 </div>
-                                <h3 class="ads-card-title">MacBook Pro 16 pulgadas</h3>
-                                <p class="ads-card-price">$2.499,99</p>
+                                <h3 class="ads-card-title" data-info="title">MacBook Pro 16 pulgadas</h3>
+                                <p class="ads-card-price" data-info="price">$2.499,99</p>
                             </div>
                             <div class="ads-card-vendor">
                                 <div class="ads-card-vendor-label">Vendedor:</div>
-                                <div class="ads-card-vendor-name">Tech tecnologic</div>
+                                <div class="ads-card-vendor-name" data-info="vendor-name" data-vendor="1">Tech
+                                    tecnologic</div>
                             </div>
-                        </div>                        <div class="ads-card">
+                        </div>
+                        <div class="ads-card" id="product-2" data-product="2" data-category="smartphones"
+                            data-vendor="1" data-status="active">
                             <div class="ads-card-img">
-                                <a href="#">
+                                <a href="#" data-action="view-detail" data-product="2">
                                     <div class="ads-card-img-container">
-                                        <img src="../recursos/img/Iphone_15_Pro_256GB_Negro.webp" alt="MacBook_Pro_16">
+                                        <img src="../recursos/img/Iphone_15_Pro_256GB_Negro.webp" alt="iPhone_15_Pro"
+                                            data-image="product-main">
                                     </div>
                                 </a>
-                                <i class="fas fa-bookmark bookmark-icon"></i>
+                                <i class="fas fa-bookmark bookmark-icon" data-action="toggle-bookmark" data-product="2"
+                                    data-saved="false"></i>
                             </div>
                             <div class="ads-card-details">
                                 <div class="ads-card-tags">
-                                    <div class="ads-card-category">Laptops</div>
-                                    <div class="ads-card-condition">Nuevo</div>
+                                    <div class="ads-card-category" data-info="category">Smartphones</div>
+                                    <div class="ads-card-condition" data-info="condition">Nuevo</div>
                                 </div>
-                                <h3 class="ads-card-title">iPhone 15 Pro Max 256GB</h3>
-                                <p class="ads-card-price">$1.299,99</p>
+                                <h3 class="ads-card-title" data-info="title">iPhone 15 Pro Max 256GB</h3>
+                                <p class="ads-card-price" data-info="price">$1.299,99</p>
                             </div>
                             <div class="ads-card-vendor">
                                 <div class="ads-card-vendor-label">Vendedor:</div>
-                                <div class="ads-card-vendor-name">Tech tecnologic</div>
+                                <div class="ads-card-vendor-name" data-info="vendor-name" data-vendor="1">Tech
+                                    tecnologic</div>
                             </div>
                         </div>
 
@@ -309,8 +324,7 @@
                             <div class="ads-card-img">
                                 <a href="#">
                                     <div class="ads-card-img-container">
-                                        <img src="../recursos/img/canon_eos-r10.jpg"
-                                            alt="Canon EOS R10">
+                                        <img src="../recursos/img/canon_eos-r10.jpg" alt="Canon EOS R10">
                                     </div>
                                 </a>
                             </div>
@@ -331,7 +345,8 @@
                             <div class="ads-card-img">
                                 <a href="#">
                                     <div class="ads-card-img-container">
-                                        <img src="../recursos/img/apple_watch_series_9_45_webp.webp" alt="Apple Watch Series 9 45mm">
+                                        <img src="../recursos/img/apple_watch_series_9_45_webp.webp"
+                                            alt="Apple Watch Series 9 45mm">
                                     </div>
                                 </a>
                             </div>
@@ -353,7 +368,8 @@
                             <div class="ads-card-img">
                                 <a href="#">
                                     <div class="ads-card-img-container">
-                                        <img src="../recursos/img/Anker-20000mAh-A1367H11-1-Power-Bank-15Wjpg.jpg" alt="Anker Power Bank 20000mAh">
+                                        <img src="../recursos/img/Anker-20000mAh-A1367H11-1-Power-Bank-15Wjpg.jpg"
+                                            alt="Anker Power Bank 20000mAh">
                                     </div>
                                 </a>
                             </div>
@@ -440,8 +456,7 @@
                             <div class="ads-card-img">
                                 <a href="#">
                                     <div class="ads-card-img-container">
-                                        <img src="../recursos/img/Xiaomi_14_ultra.jpeg"
-                                            alt="Xiaomi 14 Ultra">
+                                        <img src="../recursos/img/Xiaomi_14_ultra.jpeg" alt="Xiaomi 14 Ultra">
                                     </div>
                                 </a>
                             </div>
@@ -484,7 +499,8 @@
                             <div class="ads-card-img">
                                 <a href="#">
                                     <div class="ads-card-img-container">
-                                        <img src="../recursos/img/Alexa_echo_dot_4ta_generaci_n_color_blanco.webp" alt="Echo Dot 4ta Generación Blanco">
+                                        <img src="../recursos/img/Alexa_echo_dot_4ta_generaci_n_color_blanco.webp"
+                                            alt="Echo Dot 4ta Generación Blanco">
                                     </div>
                                 </a>
                             </div>
@@ -529,8 +545,7 @@
                             <div class="ads-card-img">
                                 <a href="#">
                                     <div class="ads-card-img-container">
-                                        <img src="../recursos/img/oculus_quest2_meta.webp"
-                                            alt="Oculus Quest 2 Meta">
+                                        <img src="../recursos/img/oculus_quest2_meta.webp" alt="Oculus Quest 2 Meta">
                                     </div>
                                 </a>
                             </div>
@@ -547,11 +562,42 @@
                                 <div class="ads-card-vendor-name">Tech tecnologic</div>
                             </div>
                         </div>
-
                     </div>
+
+                    
         </section>
     </main>
+
+    <!-- PLANTILLA PARA JAVASCRIPT - OCULTA -->
+    <template id="product-card-template">
+        <div class="ads-card" data-product="" data-category="" data-vendor="" data-status="active">
+            <div class="ads-card-img">
+                <a href="#" data-action="view-detail" data-product="">
+                    <div class="ads-card-img-container">
+                        <img src="" alt="" data-image="product-main">
+                    </div>
+                </a>
+                <i class="fas fa-bookmark bookmark-icon" data-action="toggle-bookmark" data-product=""
+                    data-saved="false"></i>
+            </div>
+            <div class="ads-card-details">
+                <div class="ads-card-tags">
+                    <div class="ads-card-category" data-info="category"></div>
+                    <div class="ads-card-condition" data-info="condition"></div>
+                </div>
+                <h3 class="ads-card-title" data-info="title"></h3>
+                <p class="ads-card-price" data-info="price"></p>
+            </div>
+            <div class="ads-card-vendor">
+                <div class="ads-card-vendor-label">Vendedor:</div>
+                <div class="ads-card-vendor-name" data-info="vendor-name" data-vendor=""></div>
+            </div>
+        </div>
+    </template>
+
     <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
+
+    
 
 </body>
 <footer>
