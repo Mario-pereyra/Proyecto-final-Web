@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/Mario-pereyra/Proyecto-final-Web/issues"
   },
-  "homepage": "https://github.com/Mario-pereyra/Proyecto-final-Web#readme"
+  "homepage": "https://github.com/Mario-pereyra/Proyecto-final-Web#readme",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0"
+  }
 }
