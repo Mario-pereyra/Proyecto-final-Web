@@ -61,13 +61,16 @@
             </div>
         </div>
     </header>    <main>
-        <div class="CrearAnuncio-container" data-component="edit-ad-images">
+        <div class="CrearAnuncio-container" data-component="create-ad-images">
             <div class="form-header">
-                <h1>Editar Anuncio</h1>
-                <p>Actualiza las imágenes de tu producto</p>
+                <h1>Crear Anuncio</h1>
+                <p>Agrega las imágenes de tu producto</p>
             </div>
 
-            
+
+            <div id="upload-error" class="state-message error" style="display: none;" data-state="error">
+                <p id="upload-error-message" data-info="error-message"></p>
+            </div>
 
             <div class="crearAnuncio-tabs" data-component="form-tabs">
                 <button type="button" class="tab-button" data-tab="information" data-action="switch-tab">
@@ -80,10 +83,10 @@
                 </button>
             </div>
 
-            <form id="update-images-form" data-form="update-images" data-action="update-ad-images" data-product="" enctype="multipart/form-data">
+            <form id="upload-images-form" data-form="upload-images" data-action="save-ad-images" enctype="multipart/form-data">
                 <div class="images-section" data-section="images">
                     <h3>Imágenes del producto</h3>
-                    <p>Actualiza las imágenes de tu anuncio. La primera será la imagen principal.</p>
+                    <p>Agrega hasta 4 imágenes. La primera será la imagen principal.</p>
                     
                     <div class="upload-instructions">
                         <div class="instruction-item">
@@ -98,51 +101,38 @@
                             <i class="fas fa-expand-arrows-alt"></i>
                             <span>Resolución mínima: 800x600px</span>
                         </div>
-                        <div class="instruction-item">
-                            <i class="fas fa-info-circle"></i>
-                            <span>Deja vacío para mantener imagen actual</span>
-                        </div>
                     </div>
 
                     <!-- CONTENEDOR DE PREVISUALIZACIÓN -->
                     <div class="ad-image-wrapper-container" data-component="image-previews">
-                        <div class="ad-image-wrapper primary" data-image-slot="0" data-status="current" data-current-image="">
-                            <div class="image-placeholder" data-placeholder="main" style="display: none;">
+                        <div class="ad-image-wrapper primary" data-image-slot="0" data-status="empty">
+                            <div class="image-placeholder" data-placeholder="main">
                                 <i class="fas fa-camera"></i>
                                 <span>Imagen Principal</span>
                                 <small>Arrastra o haz clic</small>
                             </div>
-                            <img class="current-image" src="../recursos/img/npc.jpg" alt="Imagen actual" data-current="0">
                             <img class="preview-image" style="display: none;" data-preview="0">
-                            <div class="image-controls">
-                                <button type="button" class="control-btn set-main" data-action="set-main" data-slot="0" title="Imagen principal">
+                            <div class="image-controls" style="display: none;">
+                                <button type="button" class="control-btn set-main" data-action="set-main" data-slot="0">
                                     <i class="fas fa-star"></i>
                                 </button>
-                                <button type="button" class="control-btn change-image" data-action="change-image" data-slot="0" title="Cambiar imagen">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button type="button" class="control-btn remove-image" data-action="remove-image" data-slot="0" title="Eliminar imagen">
+                                <button type="button" class="control-btn remove-image" data-action="remove-image" data-slot="0">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </div>
-                            <div class="image-status-badge main">Principal</div>
                         </div>
 
-                        <div class="ad-image-wrapper" data-image-slot="1" data-status="current" data-current-image="">
-                            <div class="image-placeholder" style="display: none;">
+                        <div class="ad-image-wrapper" data-image-slot="1" data-status="empty">
+                            <div class="image-placeholder">
                                 <i class="fas fa-plus"></i>
                                 <span>Imagen 2</span>
                             </div>
-                            <img class="current-image" src="../recursos/img/npc.jpg" alt="Imagen actual" data-current="1">
                             <img class="preview-image" style="display: none;" data-preview="1">
-                            <div class="image-controls">
-                                <button type="button" class="control-btn set-main" data-action="set-main" data-slot="1" title="Imagen principal">
+                            <div class="image-controls" style="display: none;">
+                                <button type="button" class="control-btn set-main" data-action="set-main" data-slot="1">
                                     <i class="fas fa-star"></i>
                                 </button>
-                                <button type="button" class="control-btn change-image" data-action="change-image" data-slot="1" title="Cambiar imagen">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button type="button" class="control-btn remove-image" data-action="remove-image" data-slot="1" title="Eliminar imagen">
+                                <button type="button" class="control-btn remove-image" data-action="remove-image" data-slot="1">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </div>
@@ -152,7 +142,6 @@
                             <div class="image-placeholder">
                                 <i class="fas fa-plus"></i>
                                 <span>Imagen 3</span>
-                                <small>Añadir nueva</small>
                             </div>
                             <img class="preview-image" style="display: none;" data-preview="2">
                             <div class="image-controls" style="display: none;">
@@ -169,7 +158,6 @@
                             <div class="image-placeholder">
                                 <i class="fas fa-plus"></i>
                                 <span>Imagen 4</span>
-                                <small>Añadir nueva</small>
                             </div>
                             <img class="preview-image" style="display: none;" data-preview="3">
                             <div class="image-controls" style="display: none;">
@@ -187,12 +175,12 @@
                     <input type="file" id="image-upload" name="images[]" multiple accept="image/jpeg,image/png,image/webp" 
                            style="display: none;" data-input="images">
                     
-                    <!-- INFORMACIÓN DE CAMBIOS -->
-                    <div class="changes-summary" data-component="changes-summary" style="display: none;">
-                        <h4>Cambios a realizar:</h4>
-                        <ul id="changes-list" data-list="changes">
-                            <!-- Se llena dinámicamente -->
-                        </ul>
+                    <!-- BOTÓN DE SUBIDA -->
+                    <div class="upload-button-container">
+                        <button type="button" class="upload-btn" data-action="trigger-upload">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            Subir Imágenes
+                        </button>
                     </div>
 
                     <!-- PROGRESO DE SUBIDA -->
@@ -201,38 +189,29 @@
                             <div class="progress-fill" data-progress="bar"></div>
                         </div>
                         <div class="progress-text">
-                            <span data-progress="text">Actualizando...</span>
+                            <span data-progress="text">Subiendo...</span>
                             <span data-progress="percentage">0%</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-actions">
-                    <button type="button" class="secondary-button" data-action="cancel-edit">
-                        <i class="fas fa-times"></i>
-                        Cancelar
+                    <button type="button" class="secondary-button" data-action="go-back">
+                        <i class="fas fa-arrow-left"></i>
+                        Volver
                     </button>
-                    <button type="button" class="secondary-button" data-action="reset-changes">
-                        <i class="fas fa-undo"></i>
-                        Deshacer Cambios
-                    </button>
-                    <button type="submit" class="primary-button" data-action="save-images">
-                        <i class="fas fa-save"></i>
-                        Guardar Cambios
+                    <button type="submit" class="primary-button" data-action="publish-ad">
+                        <i class="fas fa-check"></i>
+                        Publicar Anuncio
                     </button>
                 </div>
             </form>
         </div>
 
-        <!-- CONTENEDOR PARA MENSAJES DE NOTIFICACIÓN -->
-        <div id="notification-container" class="notification-container" style="display: none;" data-component="notifications">
-            <div id="notification-message" class="notification" data-info="message"></div>
-        </div>
     </main>    
     <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
     
-
-   
+    
 
 </body>
 <footer>

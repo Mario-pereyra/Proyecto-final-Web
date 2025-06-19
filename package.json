@@ -1,0 +1,19 @@
+{
+  "name": "proyecto-final-web-astromarket",
+  "version": "1.0.0",
+  "description": "markplace de productos tecnologicos",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mario-pereyra/Proyecto-final-Web.git"
+  },
+  "author": "Mario Pereyra",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Mario-pereyra/Proyecto-final-Web/issues"
+  },
+  "homepage": "https://github.com/Mario-pereyra/Proyecto-final-Web#readme"
+}

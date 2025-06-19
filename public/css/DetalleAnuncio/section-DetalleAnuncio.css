@@ -9,14 +9,18 @@ main {
 
 }
 
-.detail,.ad-main-img-container,.ad-thumbnail {
+.detail,
+.ad-main-img-container,
+.ad-thumbnail {
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     border: 1px solid #dee2e6;
 }
-.ads-section-title{
+
+.ads-section-title {
     margin-bottom: 15px;
 }
+
 .ad-details-gallery {
     width: 100%;
     height: auto;
@@ -108,7 +112,7 @@ main {
     text-align: center;
     gap: 8px;
     padding: 5px 5px;
-    border:1px solid #dee2e6;
+    border: 1px solid #dee2e6;
 
 }
 
@@ -144,7 +148,8 @@ main {
     margin: 0;
     height: 35px;
 }
-.contact-vendor-footer{
+
+.contact-vendor-footer {
     border: 1px solid #dee2e6;
     border-radius: 8px;
 
@@ -160,12 +165,112 @@ main {
     border: 1px solid #dee2e6;
     padding: 8px;
 }
-.contact-vendor-footer-container input{
-    width: 80%; 
+
+.contact-vendor-footer-container input {
+    width: 80%;
     height: 29px;
 }
-.contact-vendor-footer-container button{
+
+.contact-vendor-footer-container button {
     padding: 8px;
+}
+
+.bookmark-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 20px;
+    padding: 8px 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.bookmark-btn:hover {
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.bookmark-btn.saved {
+    background: #007bff;
+    color: white;
+}
+
+/* Thumbnails activos */
+.ad-thumbnail {
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.ad-thumbnail.active,
+.ad-thumbnail:hover {
+    opacity: 1;
+}
+
+/* Metadata del producto */
+.product-metadata {
+    margin: 15px 0;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 4px;
+}
+
+.product-metadata p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+/* Rating del vendedor */
+.vendor-rating {
+    font-size: 12px;
+    color: #666;
+}
+
+/* Sección de contacto */
+.contact-vendor-login {
+    text-align: center;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 4px;
+}
+
+.contact-vendor-authenticated {
+    padding: 20px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.action-buttons button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.primary-button {
+    background: #007bff;
+    color: white;
+}
+
+.secondary-button {
+    background: #6c757d;
+    color: white;
 }
 
 @media(min-width:769px) {
@@ -178,9 +283,16 @@ main {
     .ad-details-gallery {
         width: 100%;
     }
-    .ads-detail-info-container{
+
+    .ads-detail-info-container {
         display: flex;
         flex-direction: column;
-        
+
+    }
+
+    .bookmark-btn {
+        top: 10px;
+        right: 10px;
+        padding: 6px 10px;
     }
 }

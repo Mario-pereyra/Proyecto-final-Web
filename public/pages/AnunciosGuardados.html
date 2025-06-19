@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="../css/main.css">
 </head>
 
-<body>    <header class="header" data-component="main-header">
+<body>
+    <header class="header" data-component="main-header">
         <a href="../index.html">
             <h1 class="logo">AstroMarket</h1>
         </a>
@@ -42,15 +43,17 @@
         </nav>
         <div class="header-user-profile" id="header-profile" data-component="header-user-profile">
             <div class="header-profile-container" data-info="header-profile">
-                <img src="../recursos/img/npc.jpg" alt="Foto perfil" class="header-profile-pic" id="header-profile-image" data-image="header-user-avatar">
+                <img src="../recursos/img/npc.jpg" alt="Foto perfil" class="header-profile-pic"
+                    id="header-profile-image" data-image="header-user-avatar">
                 <div class="header-user-info" data-info="header-user-details">
                     <span class="header-user-name" id="header-user-name" data-info="user-name">Desconocido</span>
                     <span class="header-user-role" id="header-user-role" data-info="user-role">Visitante</span>
                 </div>
             </div>
-            
+
             <!-- User Profile Menu -->
-            <div class="header-profile-menu" id="header-profile-menu" data-component="header-profile-menu" data-state="hidden">
+            <div class="header-profile-menu" id="header-profile-menu" data-component="header-profile-menu"
+                data-state="hidden">
                 <div class="profile-menu-item" data-action="view-profile">
                     <i class="fa-solid fa-user"></i>
                     Ver Perfil
@@ -69,69 +72,25 @@
                 </div>
             </div>
         </div>
-    </header>    <main data-component="saved-ads-main">
-        <!-- Loading State -->
-        <div id="loading-state" data-state="loading" class="loading-container" style="display: none;">
-            <div class="loading-spinner"></div>
-            <p>Cargando anuncios guardados...</p>
-        </div>
+    </header>
+    <main data-component="saved-ads-main">
 
-        <!-- Error State -->
-        <div id="error-state" data-state="error" class="error-container" style="display: none;">
-            <div class="error-message">
-                <i class="fa-solid fa-exclamation-triangle"></i>
-                <h2>Error al cargar anuncios</h2>
-                <p id="error-text">No se pudieron cargar los anuncios guardados</p>
-                <button data-action="retry-load" class="btn-retry">Reintentar</button>
-            </div>
-        </div>
-
-        <!-- Empty State -->
-        <div id="empty-state" data-state="empty" class="empty-container" style="display: none;">
-            <div class="empty-message">
-                <i class="fa-solid fa-bookmark"></i>
-                <h2>No tienes anuncios guardados</h2>
-                <p>Explora nuestros productos y guarda los que te interesen</p>
-                <a href="../pages/VerAnuncios.html" class="btn-primary">Ver Anuncios</a>
-            </div>
-        </div>
 
         <!-- Success State - Main Content -->
         <section class="ads-section" id="main-content" data-state="success">
             <div class="container-ads-section">
-                <div class="saved-ads-header">
-                    <h1 class="ads-section-title">Anuncios Guardados</h1>
-                    <div class="saved-ads-actions">
-                        <button data-action="select-all" class="btn-secondary">
-                            <i class="fa-solid fa-check-square"></i>
-                            Seleccionar Todo
-                        </button>
-                        <button data-action="delete-selected" class="btn-danger" disabled>
-                            <i class="fa-solid fa-trash"></i>
-                            Eliminar Seleccionados
-                        </button>
-                        <button data-action="export-saved" class="btn-secondary">
-                            <i class="fa-solid fa-download"></i>
-                            Exportar Lista
-                        </button>
-                    </div>
-                </div>
+
 
                 <div class="ads-search-filter" data-component="search-filter">
                     <div class="contenedor-buscador">
                         <i class="fas fa-search"></i>
-                        <input 
-                            type="text" 
-                            class="buscador" 
-                            id="search-input"
-                            placeholder="Buscar en anuncios guardados..."
-                            data-action="search-saved-ads"
-                        >
+                        <input type="text" class="buscador" id="search-input"
+                            placeholder="Buscar en anuncios guardados..." data-action="search-saved-ads">
                         <button type="button" class="clear-search" data-action="clear-search" style="display: none;">
                             <i class="fa-solid fa-times"></i>
                         </button>
                     </div>
-                    
+
                     <div class="ads-filter">
                         <form id="filter-form" data-form="saved-ads-filter">
                             <label for="product-filter">Filtrar por:</label>
@@ -143,20 +102,22 @@
                                     <option value="tablets-y-e-readers">Tablets y E-readers</option>
                                     <option value="audio-y-sonido">Audio y Sonido</option>
                                     <option value="smartwatches-y-wearables">Smartwatches y Wearables</option>
-                                    <option value="dispositivos-de-hogar-inteligente">Dispositivos de Hogar Inteligente</option>
+                                    <option value="dispositivos-de-hogar-inteligente">Dispositivos de Hogar Inteligente
+                                    </option>
                                     <option value="gaming">Gaming</option>
                                     <option value="camaras-drones">Cámaras y Drones</option>
-                                    <option value="accesorios-electronicos-generales">Accesorios Electrónicos Generales</option>
+                                    <option value="accesorios-electronicos-generales">Accesorios Electrónicos Generales
+                                    </option>
                                 </optgroup>
                             </select>
-                            
+
                             <select id="condition-filter" name="condition-filter" data-action="filter-by-condition">
                                 <option value="all">Todas las Condiciones</option>
                                 <option value="new">Nuevo</option>
                                 <option value="used">Usado</option>
                                 <option value="refurbished">Reacondicionado</option>
                             </select>
-                            
+
                             <select id="date-filter" name="date-filter" data-action="filter-by-date">
                                 <option value="all">Guardado en</option>
                                 <option value="today">Hoy</option>
@@ -169,39 +130,29 @@
                             <button type="button" data-action="clear-filters" class="btn-secondary">Limpiar</button>
                         </form>
                     </div>
-                    
+
                     <div class="search-results-info">
                         <p id="results-count" data-info="results-count">8 anuncios guardados</p>
-                        <div class="view-options">
-                            <button data-action="toggle-view" data-view="grid" class="view-btn active">
-                                <i class="fa-solid fa-th"></i>
-                            </button>
-                            <button data-action="toggle-view" data-view="list" class="view-btn">
-                                <i class="fa-solid fa-list"></i>
-                            </button>
-                        </div>
+
                     </div>
                 </div>
 
                 <div class="container-ads" id="ads-container" data-component="saved-ads-container" data-view="grid">
                     <div class="ads-card-container" id="ads-list" data-info="ads-list">
                         <!-- Saved ads will be populated here -->
-                        <div class="ads-card" data-component="saved-ad-card" data-ad-id="1" data-category="laptops" data-condition="new" data-saved-date="2024-01-15">
-                            <div class="ads-card-checkbox">
-                                <input type="checkbox" class="ad-select-checkbox" data-action="select-ad" data-ad-id="1">
-                            </div>
+                        <div class="ads-card" data-component="featured-ad-card" data-ad-id="1" data-category="laptops">
                             <div class="ads-card-img">
-                                <a href="../pages/DetalleAnuncio.html" data-action="view-ad-detail" data-ad-id="1">
+                                <a href="pages/DetalleAnuncio.html?id=1" data-action="view-ad-detail" data-ad-id="1">
                                     <div class="ads-card-img-container">
-                                        <img src="../recursos/img/MacBook_Pro_16.webp" alt="MacBook_Pro_16" data-image="ad-thumbnail">
+                                        <img src="../recursos/img/MacBook_Pro_16.webp" alt="MacBook Pro 16"
+                                            data-image="ad-thumbnail">
                                     </div>
                                 </a>
-                                <div class="bookmark-controls">
-                                    <button class="bookmark-icon saved" data-action="toggle-bookmark" data-ad-id="1" title="Quitar de guardados">
-                                        <i class="fas fa-bookmark"></i>
-                                    </button>
-                                    <span class="saved-date" data-info="saved-date">Guardado: 15 Ene</span>
-                                </div>
+                                <button class="bookmark-icon" data-action="toggle-bookmark" data-ad-id="1"
+                                    title="Guardar anuncio">
+                                    <i class="fas fa-bookmark"></i>
+                                </button>
+
                             </div>
                             <div class="ads-card-details">
                                 <div class="ads-card-tags">
@@ -210,91 +161,54 @@
                                 </div>
                                 <h3 class="ads-card-title" data-info="ad-title">MacBook Pro 16 pulgadas</h3>
                                 <p class="ads-card-price" data-info="ad-price">$2.499,99</p>
-                                <div class="ads-card-actions">
-                                    <button data-action="contact-vendor" data-vendor-id="tech-store" class="btn-primary btn-sm">
-                                        <i class="fa-solid fa-message"></i>
-                                        Contactar
-                                    </button>
-                                    <button data-action="share-ad" data-ad-id="1" class="btn-secondary btn-sm">
-                                        <i class="fa-solid fa-share"></i>
-                                        Compartir
-                                    </button>
+                                <div class="ads-card-rating" data-info="vendor-rating">
+                                    <span class="stars">★★★★☆</span>
+                                    <span class="rating-text">(4.2)</span>
                                 </div>
                             </div>
                             <div class="ads-card-vendor">
                                 <div class="ads-card-vendor-label">Vendedor:</div>
                                 <div class="ads-card-vendor-name" data-info="vendor-name">Tech Store</div>
-                                <div class="vendor-rating" data-info="vendor-rating">
-                                    <span class="stars">★★★★☆</span>
-                                    <span class="rating-text">(4.2)</span>
-                                </div>
                             </div>
+
                         </div>
 
-                        <div class="ads-card" data-component="saved-ad-card" data-ad-id="2" data-category="smartphones" data-condition="new" data-saved-date="2024-01-10">
-                            <div class="ads-card-checkbox">
-                                <input type="checkbox" class="ad-select-checkbox" data-action="select-ad" data-ad-id="2">
+                        <div class="ads-card" data-component="featured-ad-card" data-ad-id="2" data-category="smartphones">
+                    <div class="ads-card-img">
+                        <a href="pages/DetalleAnuncio.html?id=2" data-action="view-ad-detail" data-ad-id="2">
+                            <div class="ads-card-img-container">
+                                <img src="../recursos/img/Iphone_15_Pro_256GB_Negro.webp" alt="iPhone 15 Pro"
+                                    data-image="ad-thumbnail">
                             </div>
-                            <div class="ads-card-img">
-                                <a href="../pages/DetalleAnuncio.html" data-action="view-ad-detail" data-ad-id="2">
-                                    <div class="ads-card-img-container">
-                                        <img src="../recursos/img/Iphone_15_Pro_256GB_Negro.webp" alt="iPhone_15_Pro" data-image="ad-thumbnail">
-                                    </div>
-                                </a>
-                                <div class="bookmark-controls">
-                                    <button class="bookmark-icon saved" data-action="toggle-bookmark" data-ad-id="2" title="Quitar de guardados">
-                                        <i class="fas fa-bookmark"></i>
-                                    </button>
-                                    <span class="saved-date" data-info="saved-date">Guardado: 10 Ene</span>
-                                </div>
-                            </div>
-                            <div class="ads-card-details">
-                                <div class="ads-card-tags">
-                                    <div class="ads-card-category" data-info="ad-category">Smartphones</div>
-                                    <div class="ads-card-condition" data-info="ad-condition">Nuevo</div>
-                                </div>
-                                <h3 class="ads-card-title" data-info="ad-title">iPhone 15 Pro Max 256GB</h3>
-                                <p class="ads-card-price" data-info="ad-price">$1.299,99</p>
-                                <div class="ads-card-actions">
-                                    <button data-action="contact-vendor" data-vendor-id="mobile-shop" class="btn-primary btn-sm">
-                                        <i class="fa-solid fa-message"></i>
-                                        Contactar
-                                    </button>
-                                    <button data-action="share-ad" data-ad-id="2" class="btn-secondary btn-sm">
-                                        <i class="fa-solid fa-share"></i>
-                                        Compartir
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="ads-card-vendor">
-                                <div class="ads-card-vendor-label">Vendedor:</div>
-                                <div class="ads-card-vendor-name" data-info="vendor-name">Mobile Shop</div>
-                                <div class="vendor-rating" data-info="vendor-rating">
-                                    <span class="stars">★★★★★</span>
-                                    <span class="rating-text">(4.8)</span>
-                                </div>
-                            </div>
+                        </a>
+                        <button class="bookmark-icon" data-action="toggle-bookmark" data-ad-id="2"
+                            title="Guardar anuncio">
+                            <i class="fas fa-bookmark"></i>
+                        </button>
+                        
+                    </div>
+                    <div class="ads-card-details">
+                        <div class="ads-card-tags">
+                            <div class="ads-card-category" data-info="ad-category">Smartphones</div>
+                            <div class="ads-card-condition" data-info="ad-condition">Nuevo</div>
                         </div>
+                        <h3 class="ads-card-title" data-info="ad-title">iPhone 15 Pro 256GB</h3>
+                        <p class="ads-card-price" data-info="ad-price">$1.299,99</p>
+                        <div class="ads-card-rating" data-info="vendor-rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="rating-text">(4.8)</span>
+                        </div>
+                    </div>
+                    <div class="ads-card-vendor">
+                        <div class="ads-card-vendor-label">Vendedor:</div>
+                        <div class="ads-card-vendor-name" data-info="vendor-name">Mobile Shop</div>
+                    </div>
+                    
+                </div>
                     </div>
                 </div>
 
-                <!-- Pagination -->
-                <div class="pagination-container" data-component="pagination">
-                    <button data-action="prev-page" class="pagination-btn" disabled>
-                        <i class="fa-solid fa-chevron-left"></i>
-                        Anterior
-                    </button>
-                    <div class="pagination-numbers" data-info="pagination-numbers">
-                        <span class="page-number active" data-page="1">1</span>
-                        <span class="page-number" data-page="2">2</span>
-                        <span class="page-dots">...</span>
-                        <span class="page-number" data-page="5">5</span>
-                    </div>
-                    <button data-action="next-page" class="pagination-btn">
-                        Siguiente
-                        <i class="fa-solid fa-chevron-right"></i>
-                    </button>
-                </div>
+
             </div>
         </section>
 
@@ -308,7 +222,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p id="delete-message">¿Estás seguro de que deseas eliminar los anuncios seleccionados de tu lista de guardados?</p>
+                    <p id="delete-message">¿Estás seguro de que deseas eliminar los anuncios seleccionados de tu lista
+                        de guardados?</p>
                     <div class="selected-ads-preview" id="selected-ads-preview" data-info="selected-ads">
                         <!-- Selected ads preview will be populated here -->
                     </div>
@@ -366,8 +281,9 @@
 
         <!-- Notification Container -->
         <div id="notification-container" data-component="notifications"></div>
-    </main>    <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
-    
+    </main>
+    <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
+
     <!-- Templates for dynamic content -->
     <template id="saved-ad-card-template" data-template="saved-ad-card">
         <div class="ads-card" data-component="saved-ad-card">
