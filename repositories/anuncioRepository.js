@@ -29,9 +29,9 @@ exports.getAnuncioById = async (anuncioId) => {
     return getAnuncioByIdResultado
 }
 
-exports.createAnuncio = async (anuncioId, titulo, descripcion,
+exports.createAnuncio = async ( titulo, descripcion,
     precio, categoriaId, estado, estado_publicacion, departamentoId,
-    ciudadId, zona, vistas, valoracion, fecha_modificacion) => {
+    ciudadId, zona, vistas, valoracion) => {
     const connection = await getConnection();
 
     const [createAnuncioResultado] = await connection.query('INSERT INTO anuncios (titulo,descripcion,precio,categoriaId,estado,estado_publicacion,departamentoId,ciudadId,zona,vistas,valoracion) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)',
@@ -44,7 +44,7 @@ exports.createAnuncio = async (anuncioId, titulo, descripcion,
 
 exports.updateAnuncio = async (anuncioId, titulo, descripcion,
     precio, categoriaId, estado, estado_publicacion, departamentoId,
-    ciudadId, zona, vistas, valoracion, fecha_modificacion) => {
+    ciudadId, zona, vistas, valoracion) => {
     const connection = await getConnection();
 
     const [updateAnuncioResultado] = await connection.query('UPDATE anuncios SET titulo = ?,descripcion = ?,precio = ?,categoriaId = ?,estado = ?,estado_publicacion = ?,departamentoId = ?,ciudadId = ?,zona = ?,vistas = ?,valoracion = ? WHERE anuncioId = ?',
