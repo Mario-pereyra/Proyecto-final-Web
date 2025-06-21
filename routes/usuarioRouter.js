@@ -4,7 +4,7 @@ const router = express.Router();
 const usuarioController = require('../controllers/usuarioController')
 
 
-// GET /api/usuario /1
+// GET /api/usuario /
 router.get('/',usuarioController.getUsuarios);
 //GET /api/usuario /1
 router.get('/:usuarioId',usuarioController.getUsuarioById);
