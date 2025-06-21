@@ -11,7 +11,7 @@ const getConnection = async () => {
 exports.getAnuncios = async () => {
     const connection = await getConnection();
     const [getAnunciosResultados] = await connection.query('SELECT* FROM anuncios ')
-    if (!getAnunciosResultados || getAnunciosResultados.length > 0) {
+    if (!getAnunciosResultados || getAnunciosResultados.length === 0) {
         return null
 
     }
@@ -21,7 +21,7 @@ exports.getAnuncios = async () => {
 exports.getAnuncioById = async (anuncioId) => {
     const connection = await getConnection();
 
-    const [getAnuncioByIdResultado] = await connection.query('SELECT* FROM anuncios WHERE anunciosId = ?', [anuncioId])
+    const [getAnuncioByIdResultado] = await connection.query('SELECT* FROM anuncios WHERE anuncioId = ?', [anuncioId])
     if (!getAnuncioByIdResultado || getAnuncioByIdResultado.length === 0) {
         return null
 
@@ -29,13 +29,13 @@ exports.getAnuncioById = async (anuncioId) => {
     return getAnuncioByIdResultado
 }
 
-exports.createAnuncio = async ( titulo, descripcion,
+exports.createAnuncio = async ( usuarioId,titulo, descripcion,
     precio, categoriaId, estado, estado_publicacion, departamentoId,
     ciudadId, zona, vistas, valoracion) => {
     const connection = await getConnection();
 
-    const [createAnuncioResultado] = await connection.query('INSERT INTO anuncios (titulo,descripcion,precio,categoriaId,estado,estado_publicacion,departamentoId,ciudadId,zona,vistas,valoracion) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)',
-        [titulo, descripcion, precio, categoriaId, estado, estado_publicacion, departamentoId, ciudadId, zona, vistas, valoracion])
+    const [createAnuncioResultado] = await connection.query('INSERT INTO anuncios (usuarioId,titulo,descripcion,precio,categoriaId,estado,estado_publicacion,departamentoId,ciudadId,zona,vistas,valoracion) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)',
+        [usuarioId,titulo, descripcion, precio, categoriaId, estado, estado_publicacion, departamentoId, ciudadId, zona, vistas, valoracion])
     if (!createAnuncioResultado || createAnuncioResultado.length === 0) {
         return null
     }

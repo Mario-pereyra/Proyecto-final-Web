@@ -28,6 +28,14 @@ exports.getUsuarioById = async (usuarioId) => {
     }
     return filas
 }
+exports.getUsuarioByCorreo = async (correo) =>{
+    const connection = await getConnection();
+     const [Usuario] = await connection.query('SELECT* FROM usuarios WHERE correo = ?',[correo])
+    if (!Usuario || Usuario.length === 0) {
+       return null;
+    }
+     return Usuario[0]   
+}
 
 exports.deleteUsuarioById = async (usuarioId) => {
     const connection = await getConnection();

@@ -9,7 +9,7 @@ router.get('/:anuncioId',AnuncioController.getAnuncioById)
 // POST /api/anuncios/
 router.post('/',AnuncioController.createAnuncio)
 // PUT /api/anuncios/
-router.put('/',AnuncioController.updateAnuncio)
+router.put('/:anuncioId',AnuncioController.updateAnuncio)
 // DELETE /api/anuncios/1
 router.delete('/:anuncioId',AnuncioController.deleteAnuncio)
 
