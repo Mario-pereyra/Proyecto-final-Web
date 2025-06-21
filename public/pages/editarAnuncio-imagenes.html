@@ -49,25 +49,28 @@
                     <a href="/pages/MensajesVendedorV2.html">
                         Mensajes-Vendedor
                     </a>
-                </li>            </ul>
+                </li>
+            </ul>
         </nav>
         <div class="header-user-profile" id="header-profile" data-component="header-user-profile">
             <div class="header-profile-container" data-info="header-profile">
-                <img src="../recursos/img/npc.jpg" alt="Foto perfil" class="header-profile-pic" id="header-profile-image" data-image="header-user-avatar">
+                <img src="../recursos/img/npc.jpg" alt="Foto perfil" class="header-profile-pic"
+                    id="header-profile-image" data-image="header-user-avatar">
                 <div class="header-user-info" data-info="header-user-details">
                     <span class="header-user-name" id="header-user-name" data-info="user-name">Desconocido</span>
                     <span class="header-user-role" id="header-user-role" data-info="user-role">Visitante</span>
                 </div>
             </div>
         </div>
-    </header>    <main>
+    </header>
+    <main>
         <div class="CrearAnuncio-container" data-component="edit-ad-images">
             <div class="form-header">
                 <h1>Editar Anuncio</h1>
                 <p>Actualiza las imágenes de tu producto</p>
             </div>
 
-            
+
 
             <div class="crearAnuncio-tabs" data-component="form-tabs">
                 <button type="button" class="tab-button" data-tab="information" data-action="switch-tab">
@@ -80,11 +83,12 @@
                 </button>
             </div>
 
-            <form id="update-images-form" data-form="update-images" data-action="update-ad-images" data-product="" enctype="multipart/form-data">
+            <form id="update-images-form" data-form="update-images" data-action="update-ad-images" data-product=""
+                enctype="multipart/form-data">
                 <div class="images-section" data-section="images">
                     <h3>Imágenes del producto</h3>
                     <p>Actualiza las imágenes de tu anuncio. La primera será la imagen principal.</p>
-                    
+
                     <div class="upload-instructions">
                         <div class="instruction-item">
                             <i class="fas fa-image"></i>
@@ -104,50 +108,59 @@
                         </div>
                     </div>
 
-                    <!-- CONTENEDOR DE PREVISUALIZACIÓN -->
+                    <!-- CONTENEDOR DE PREVISUALIZACIÓN CON INPUTS INDIVIDUALES -->
                     <div class="ad-image-wrapper-container" data-component="image-previews">
-                        <div class="ad-image-wrapper primary" data-image-slot="0" data-status="current" data-current-image="">
+                        <div class="ad-image-wrapper primary" data-image-slot="0" data-status="current"
+                            data-current-image="">
                             <div class="image-placeholder" data-placeholder="main" style="display: none;">
                                 <i class="fas fa-camera"></i>
                                 <span>Imagen Principal</span>
-                                <small>Arrastra o haz clic</small>
+                                <small>Haz clic para seleccionar</small>
                             </div>
-                            <img class="current-image" src="../recursos/img/npc.jpg" alt="Imagen actual" data-current="0">
+                            <img class="current-image" src="" alt="Imagen actual"
+                                data-current="0">
                             <img class="preview-image" style="display: none;" data-preview="0">
+                            <input type="file" class="image-input" name="images[]"
+                                accept="image/jpeg,image/png,image/webp" style="display:none" data-input="image-0">
                             <div class="image-controls">
-                                <button type="button" class="control-btn set-main" data-action="set-main" data-slot="0" title="Imagen principal">
+                                <button type="button" class="control-btn set-main" data-action="set-main" data-slot="0"
+                                    title="Imagen principal">
                                     <i class="fas fa-star"></i>
                                 </button>
-                                <button type="button" class="control-btn change-image" data-action="change-image" data-slot="0" title="Cambiar imagen">
+                                <button type="button" class="control-btn change-image" data-action="change-image"
+                                    data-slot="0" title="Cambiar imagen">
                                     <i class="fas fa-edit"></i>
                                 </button>
-                                <button type="button" class="control-btn remove-image" data-action="remove-image" data-slot="0" title="Eliminar imagen">
+                                <button type="button" class="control-btn remove-image" data-action="remove-image"
+                                    data-slot="0" title="Eliminar imagen">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </div>
                             <div class="image-status-badge main">Principal</div>
                         </div>
-
                         <div class="ad-image-wrapper" data-image-slot="1" data-status="current" data-current-image="">
                             <div class="image-placeholder" style="display: none;">
                                 <i class="fas fa-plus"></i>
                                 <span>Imagen 2</span>
                             </div>
-                            <img class="current-image" src="../recursos/img/npc.jpg" alt="Imagen actual" data-current="1">
+                            <img class="current-image" src="" alt="Imagen actual"
+                                data-current="1">
                             <img class="preview-image" style="display: none;" data-preview="1">
+                            <input type="file" class="image-input" name="images[]"
+                                accept="image/jpeg,image/png,image/webp" style="display:none" data-input="image-1">
                             <div class="image-controls">
-                                <button type="button" class="control-btn set-main" data-action="set-main" data-slot="1" title="Imagen principal">
-                                    <i class="fas fa-star"></i>
+
                                 </button>
-                                <button type="button" class="control-btn change-image" data-action="change-image" data-slot="1" title="Cambiar imagen">
+                                <button type="button" class="control-btn change-image" data-action="change-image"
+                                    data-slot="1" title="Cambiar imagen">
                                     <i class="fas fa-edit"></i>
                                 </button>
-                                <button type="button" class="control-btn remove-image" data-action="remove-image" data-slot="1" title="Eliminar imagen">
+                                <button type="button" class="control-btn remove-image" data-action="remove-image"
+                                    data-slot="1" title="Eliminar imagen">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </div>
                         </div>
-
                         <div class="ad-image-wrapper" data-image-slot="2" data-status="empty">
                             <div class="image-placeholder">
                                 <i class="fas fa-plus"></i>
@@ -155,16 +168,16 @@
                                 <small>Añadir nueva</small>
                             </div>
                             <img class="preview-image" style="display: none;" data-preview="2">
+                            <input type="file" class="image-input" name="images[]"
+                                accept="image/jpeg,image/png,image/webp" style="display:none" data-input="image-2">
                             <div class="image-controls" style="display: none;">
-                                <button type="button" class="control-btn set-main" data-action="set-main" data-slot="2">
-                                    <i class="fas fa-star"></i>
-                                </button>
-                                <button type="button" class="control-btn remove-image" data-action="remove-image" data-slot="2">
+
+                                <button type="button" class="control-btn remove-image" data-action="remove-image"
+                                    data-slot="2">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </div>
                         </div>
-
                         <div class="ad-image-wrapper" data-image-slot="3" data-status="empty">
                             <div class="image-placeholder">
                                 <i class="fas fa-plus"></i>
@@ -172,21 +185,20 @@
                                 <small>Añadir nueva</small>
                             </div>
                             <img class="preview-image" style="display: none;" data-preview="3">
+                            <input type="file" class="image-input" name="images[]"
+                                accept="image/jpeg,image/png,image/webp" style="display:none" data-input="image-3">
                             <div class="image-controls" style="display: none;">
-                                <button type="button" class="control-btn set-main" data-action="set-main" data-slot="3">
-                                    <i class="fas fa-star"></i>
-                                </button>
-                                <button type="button" class="control-btn remove-image" data-action="remove-image" data-slot="3">
+
+                                <button type="button" class="control-btn remove-image" data-action="remove-image"
+                                    data-slot="3">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- INPUT DE ARCHIVOS -->
-                    <input type="file" id="image-upload" name="images[]" multiple accept="image/jpeg,image/png,image/webp" 
-                           style="display: none;" data-input="images">
-                    
+
+
                     <!-- INFORMACIÓN DE CAMBIOS -->
                     <div class="changes-summary" data-component="changes-summary" style="display: none;">
                         <h4>Cambios a realizar:</h4>
@@ -196,28 +208,105 @@
                     </div>
 
 
-                <div class="form-actions">
-                    <button type="button" class="secondary-button" data-action="cancel-edit">
-                        <i class="fas fa-times"></i>
-                        Cancelar
-                    </button>
-                    <button type="button" class="secondary-button" data-action="reset-changes">
-                        <i class="fas fa-undo"></i>
-                        Deshacer Cambios
-                    </button>
-                    <button type="submit" class="primary-button" data-action="save-images">
-                        <i class="fas fa-save"></i>
-                        Guardar Cambios
-                    </button>
-                </div>
+                    <div class="form-actions">
+                        <button type="button" class="secondary-button" data-action="cancel-edit">
+                            <i class="fas fa-times"></i>
+                            Cancelar
+                        </button>
+                        <button type="button" class="secondary-button" data-action="reset-changes">
+                            <i class="fas fa-undo"></i>
+                            Deshacer Cambios
+                        </button>
+                        <button type="submit" class="primary-button" data-action="save-images">
+                            <i class="fas fa-save"></i>
+                            Guardar Cambios
+                        </button>
+                    </div>
             </form>
         </div>
 
-    </main>    
-    <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
-    
+    </main>
 
-   
+    <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const wrappers = document.querySelectorAll('.ad-image-wrapper');
+            const previewImages = document.querySelectorAll('.preview-image');
+            const controls = document.querySelectorAll('.image-controls');
+            const inputs = document.querySelectorAll('.image-input');
+            const currentImages = document.querySelectorAll('.current-image');
+
+            // Al hacer clic en el wrapper o en el botón editar, abrir el input correspondiente
+            wrappers.forEach((wrapper, idx) => {
+                // Click en el cuadro (solo si está vacío)
+                wrapper.addEventListener('click', function (e) {
+                    if (e.target.closest('.control-btn')) return;
+                    if (wrapper.getAttribute('data-status') === 'empty') {
+                        inputs[idx].click();
+                    }
+                });
+                // Click en el botón editar
+                const changeBtn = wrapper.querySelector('.change-image');
+                if (changeBtn) {
+                    changeBtn.addEventListener('click', function (e) {
+                        e.stopPropagation();
+                        inputs[idx].click();
+                    });
+                }
+            });
+
+            // Manejar la selección de cada input individual
+            inputs.forEach((input, idx) => {
+                input.addEventListener('change', function (e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function (event) {
+                            previewImages[idx].src = event.target.result;
+                            previewImages[idx].style.display = 'block';
+                            wrappers[idx].setAttribute('data-status', 'modified');
+                            wrappers[idx].querySelector('.image-controls').style.display = 'flex';
+                            const placeholder = wrappers[idx].querySelector('.image-placeholder');
+                            if (placeholder) placeholder.style.display = 'none';
+                            // Ocultar imagen actual si existe
+                            if (currentImages[idx]) currentImages[idx].style.display = 'none';
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        // Si se elimina la selección
+                        previewImages[idx].src = '';
+                        previewImages[idx].style.display = 'none';
+                        wrappers[idx].setAttribute('data-status', currentImages[idx] && currentImages[idx].src ? 'current' : 'empty');
+                        wrappers[idx].querySelector('.image-controls').style.display = (currentImages[idx] && currentImages[idx].src) ? 'flex' : 'none';
+                        const placeholder = wrappers[idx].querySelector('.image-placeholder');
+                        if (placeholder) placeholder.style.display = (currentImages[idx] && currentImages[idx].src) ? 'none' : 'flex';
+                        if (currentImages[idx] && currentImages[idx].src) currentImages[idx].style.display = 'block';
+                    }
+                });
+            });
+
+            // Botón eliminar imagen
+            controls.forEach((control, idx) => {
+                const removeBtn = control.querySelector('.remove-image');
+                removeBtn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    inputs[idx].value = '';
+                    previewImages[idx].src = '';
+                    previewImages[idx].style.display = 'none';
+                    // Si había imagen actual, la marcamos como eliminada visualmente
+                    if (currentImages[idx] && currentImages[idx].src) {
+                        wrappers[idx].setAttribute('data-status', 'removed');
+                        currentImages[idx].style.display = 'none';
+                    } else {
+                        wrappers[idx].setAttribute('data-status', 'empty');
+                    }
+                    control.style.display = 'none';
+                    const placeholder = wrappers[idx].querySelector('.image-placeholder');
+                    if (placeholder) placeholder.style.display = 'flex';
+                });
+            });
+        });
+    </script>
 
 </body>
 <footer>

@@ -49,18 +49,21 @@
                     <a href="/pages/MensajesVendedorV2.html">
                         Mensajes-Vendedor
                     </a>
-                </li>            </ul>
+                </li>
+            </ul>
         </nav>
         <div class="header-user-profile" id="header-profile" data-component="header-user-profile">
             <div class="header-profile-container" data-info="header-profile">
-                <img src="../recursos/img/npc.jpg" alt="Foto perfil" class="header-profile-pic" id="header-profile-image" data-image="header-user-avatar">
+                <img src="../recursos/img/npc.jpg" alt="Foto perfil" class="header-profile-pic"
+                    id="header-profile-image" data-image="header-user-avatar">
                 <div class="header-user-info" data-info="header-user-details">
                     <span class="header-user-name" id="header-user-name" data-info="user-name">Desconocido</span>
                     <span class="header-user-role" id="header-user-role" data-info="user-role">Visitante</span>
                 </div>
             </div>
         </div>
-    </header>    <main>
+    </header>
+    <main>
         <div class="CrearAnuncio-container" data-component="create-ad-images">
             <div class="form-header">
                 <h1>Crear Anuncio</h1>
@@ -83,11 +86,12 @@
                 </button>
             </div>
 
-            <form id="upload-images-form" data-form="upload-images" data-action="save-ad-images" enctype="multipart/form-data">
+            <form id="upload-images-form" data-form="upload-images" data-action="save-ad-images"
+                enctype="multipart/form-data">
                 <div class="images-section" data-section="images">
                     <h3>Imágenes del producto</h3>
                     <p>Agrega hasta 4 imágenes. La primera será la imagen principal.</p>
-                    
+
                     <div class="upload-instructions">
                         <div class="instruction-item">
                             <i class="fas fa-image"></i>
@@ -109,9 +113,10 @@
                             <div class="image-placeholder" data-placeholder="main">
                                 <i class="fas fa-camera"></i>
                                 <span>Imagen Principal</span>
-                                <small>Arrastra o haz clic</small>
+                                <small>Haz clic para seleccionar</small>
                             </div>
                             <img class="preview-image" style="display: none;" data-preview="0">
+                            <input type="file" class="image-input" name="images[]" accept="image/jpeg,image/png,image/webp" style="display:none" data-input="image-0">
                             <div class="image-controls" style="display: none;">
                                 <button type="button" class="control-btn set-main" data-action="set-main" data-slot="0">
                                     <i class="fas fa-star"></i>
@@ -121,49 +126,43 @@
                                 </button>
                             </div>
                         </div>
-
                         <div class="ad-image-wrapper" data-image-slot="1" data-status="empty">
                             <div class="image-placeholder">
                                 <i class="fas fa-plus"></i>
                                 <span>Imagen 2</span>
                             </div>
                             <img class="preview-image" style="display: none;" data-preview="1">
+                            <input type="file" class="image-input" name="images[]" accept="image/jpeg,image/png,image/webp" style="display:none" data-input="image-1">
                             <div class="image-controls" style="display: none;">
-                                <button type="button" class="control-btn set-main" data-action="set-main" data-slot="1">
-                                    <i class="fas fa-star"></i>
-                                </button>
+                                
                                 <button type="button" class="control-btn remove-image" data-action="remove-image" data-slot="1">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </div>
                         </div>
-
                         <div class="ad-image-wrapper" data-image-slot="2" data-status="empty">
                             <div class="image-placeholder">
                                 <i class="fas fa-plus"></i>
                                 <span>Imagen 3</span>
                             </div>
                             <img class="preview-image" style="display: none;" data-preview="2">
+                            <input type="file" class="image-input" name="images[]" accept="image/jpeg,image/png,image/webp" style="display:none" data-input="image-2">
                             <div class="image-controls" style="display: none;">
-                                <button type="button" class="control-btn set-main" data-action="set-main" data-slot="2">
-                                    <i class="fas fa-star"></i>
-                                </button>
+                                
                                 <button type="button" class="control-btn remove-image" data-action="remove-image" data-slot="2">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </div>
                         </div>
-
                         <div class="ad-image-wrapper" data-image-slot="3" data-status="empty">
                             <div class="image-placeholder">
                                 <i class="fas fa-plus"></i>
                                 <span>Imagen 4</span>
                             </div>
                             <img class="preview-image" style="display: none;" data-preview="3">
+                            <input type="file" class="image-input" name="images[]" accept="image/jpeg,image/png,image/webp" style="display:none" data-input="image-3">
                             <div class="image-controls" style="display: none;">
-                                <button type="button" class="control-btn set-main" data-action="set-main" data-slot="3">
-                                    <i class="fas fa-star"></i>
-                                </button>
+                                
                                 <button type="button" class="control-btn remove-image" data-action="remove-image" data-slot="3">
                                     <i class="fas fa-trash"></i>
                                 </button>
@@ -171,47 +170,84 @@
                         </div>
                     </div>
 
-                    <!-- INPUT DE ARCHIVOS -->
-                    <input type="file" id="image-upload" name="images[]" multiple accept="image/jpeg,image/png,image/webp" 
-                           style="display: none;" data-input="images">
-                    
-                    <!-- BOTÓN DE SUBIDA -->
-                    <div class="upload-button-container">
-                        <button type="button" class="upload-btn" data-action="trigger-upload">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                            Subir Imágenes
+
+
+
+
+                    <div class="form-actions">
+                        <button type="button" class="secondary-button" data-action="go-back">
+                            <i class="fas fa-arrow-left"></i>
+                            Volver
+                        </button>
+                        <button type="submit" class="primary-button" data-action="publish-ad">
+                            <i class="fas fa-check"></i>
+                            Publicar Anuncio
                         </button>
                     </div>
-
-                    <!-- PROGRESO DE SUBIDA -->
-                    <div class="upload-progress" style="display: none;" data-component="upload-progress">
-                        <div class="progress-bar">
-                            <div class="progress-fill" data-progress="bar"></div>
-                        </div>
-                        <div class="progress-text">
-                            <span data-progress="text">Subiendo...</span>
-                            <span data-progress="percentage">0%</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-actions">
-                    <button type="button" class="secondary-button" data-action="go-back">
-                        <i class="fas fa-arrow-left"></i>
-                        Volver
-                    </button>
-                    <button type="submit" class="primary-button" data-action="publish-ad">
-                        <i class="fas fa-check"></i>
-                        Publicar Anuncio
-                    </button>
-                </div>
             </form>
         </div>
 
-    </main>    
+    </main>
     <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
-    
-    
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const wrappers = document.querySelectorAll('.ad-image-wrapper');
+        const previewImages = document.querySelectorAll('.preview-image');
+        const controls = document.querySelectorAll('.image-controls');
+        const inputs = document.querySelectorAll('.image-input');
+
+        // Al hacer clic en el wrapper, abrir el input correspondiente
+        wrappers.forEach((wrapper, idx) => {
+            wrapper.addEventListener('click', function (e) {
+                if (e.target.closest('.control-btn')) return;
+                inputs[idx].click();
+            });
+        });
+
+        // Manejar la selección de cada input individual
+        inputs.forEach((input, idx) => {
+            input.addEventListener('change', function (e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (event) {
+                        previewImages[idx].src = event.target.result;
+                        previewImages[idx].style.display = 'block';
+                        wrappers[idx].setAttribute('data-status', 'filled');
+                        wrappers[idx].querySelector('.image-controls').style.display = 'flex';
+                        const placeholder = wrappers[idx].querySelector('.image-placeholder');
+                        if (placeholder) placeholder.style.display = 'none';
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    // Si se elimina la selección
+                    previewImages[idx].src = '';
+                    previewImages[idx].style.display = 'none';
+                    wrappers[idx].setAttribute('data-status', 'empty');
+                    wrappers[idx].querySelector('.image-controls').style.display = 'none';
+                    const placeholder = wrappers[idx].querySelector('.image-placeholder');
+                    if (placeholder) placeholder.style.display = 'flex';
+                }
+            });
+        });
+
+        // Botón eliminar imagen
+        controls.forEach((control, idx) => {
+            const removeBtn = control.querySelector('.remove-image');
+            removeBtn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                inputs[idx].value = '';
+                previewImages[idx].src = '';
+                previewImages[idx].style.display = 'none';
+                wrappers[idx].setAttribute('data-status', 'empty');
+                control.style.display = 'none';
+                const placeholder = wrappers[idx].querySelector('.image-placeholder');
+                if (placeholder) placeholder.style.display = 'flex';
+            });
+        });
+    });
+    </script>
+
 
 </body>
 <footer>
