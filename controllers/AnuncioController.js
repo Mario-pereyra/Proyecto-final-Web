@@ -59,7 +59,7 @@ exports.createAnuncio = async (req, rep) => {
 exports.updateAnuncio = async (req, rep) => {
     const anuncioId = req.params.anuncioId;
     const {
-        
+
         titulo, descripcion, precio, categoriaId, estado,
         estado_publicacion, departamentoId, ciudadId, zona, vistas, valoracion
     } = req.body;

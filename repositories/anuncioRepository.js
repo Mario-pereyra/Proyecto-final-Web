@@ -29,30 +29,36 @@ exports.getAnuncioById = async (anuncioId) => {
     return getAnuncioByIdResultado
 }
 
-exports.createAnuncio = async ( usuarioId,titulo, descripcion,
-    precio, categoriaId, estado, estado_publicacion, departamentoId,
+
+
+exports.createAnuncio = async (usuarioId, titulo, descripcion,
+    precio, categoriaId, subcategoriaId, estado, estado_publicacion, departamentoId,
     ciudadId, zona, vistas, valoracion) => {
     const connection = await getConnection();
-
-    const [createAnuncioResultado] = await connection.query('INSERT INTO anuncios (usuarioId,titulo,descripcion,precio,categoriaId,estado,estado_publicacion,departamentoId,ciudadId,zona,vistas,valoracion) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)',
-        [usuarioId,titulo, descripcion, precio, categoriaId, estado, estado_publicacion, departamentoId, ciudadId, zona, vistas, valoracion])
+    const [createAnuncioResultado] = await connection.query(
+        'INSERT INTO anuncios (usuarioId, titulo, descripcion, precio, categoriaId, subcategoriaId, estado, estado_publicacion, departamentoId, ciudadId, zona, vistas, valoracion) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)',
+        [usuarioId, titulo, descripcion, precio, categoriaId, subcategoriaId, estado, estado_publicacion, departamentoId, ciudadId, zona, vistas, valoracion]
+    );
     if (!createAnuncioResultado || createAnuncioResultado.length === 0) {
-        return null
+        return null;
     }
-    return createAnuncioResultado
+    return createAnuncioResultado;
 }
 
+
+
 exports.updateAnuncio = async (anuncioId, titulo, descripcion,
-    precio, categoriaId, estado, estado_publicacion, departamentoId,
+    precio, categoriaId, subcategoriaId, estado, estado_publicacion, departamentoId,
     ciudadId, zona, vistas, valoracion) => {
     const connection = await getConnection();
-
-    const [updateAnuncioResultado] = await connection.query('UPDATE anuncios SET titulo = ?,descripcion = ?,precio = ?,categoriaId = ?,estado = ?,estado_publicacion = ?,departamentoId = ?,ciudadId = ?,zona = ?,vistas = ?,valoracion = ? WHERE anuncioId = ?',
-        [titulo, descripcion, precio, categoriaId, estado, estado_publicacion, departamentoId, ciudadId, zona, vistas, valoracion, anuncioId])
+    const [updateAnuncioResultado] = await connection.query(
+        'UPDATE anuncios SET titulo = ?, descripcion = ?, precio = ?, categoriaId = ?, subcategoriaId = ?, estado = ?, estado_publicacion = ?, departamentoId = ?, ciudadId = ?, zona = ?, vistas = ?, valoracion = ? WHERE anuncioId = ?',
+        [titulo, descripcion, precio, categoriaId, subcategoriaId, estado, estado_publicacion, departamentoId, ciudadId, zona, vistas, valoracion, anuncioId]
+    );
     if (!updateAnuncioResultado || updateAnuncioResultado.length === 0) {
-        return null
+        return null;
     }
-    return updateAnuncioResultado
+    return updateAnuncioResultado;
 }
 
 exports.deleteAnuncio = async (anuncioId) => {

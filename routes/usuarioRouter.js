@@ -13,7 +13,7 @@ router.post('/',usuarioController.createUsuario);
 //DELETE /api/usuario/1
 router.delete('/:usuarioId',usuarioController.deleteUsuario);
 //UPDATE /api/usuario/1
-router.put('/',usuarioController.updateUsuario)
+router.put('/:usuarioId',usuarioController.updateUsuario)
 
 
 // POST /api/usuario/login

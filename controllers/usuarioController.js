@@ -100,7 +100,7 @@ exports.deleteUsuario = async (req, rep) => {
 
 }
 exports.updateUsuario = async (req, rep) => {
-    const usuarioId = req.body.usuarioId
+    const usuarioId = req.params.usuarioId
     const nombre_completo = req.body.nombre_completo
     const correo = req.body.correo
     const contrasena = req.body.contrasena
@@ -131,13 +131,8 @@ exports.login = async (req, rep) => {
         if (usuario.contrasena !== contrasena) {
             return rep.status(401).json({ message: "contraseña incorrectos" });
         }
-
-        return rep.status(200).json({
-            message: "Login exitoso",
-            usuarioId: usuario.usuarioId,
-            nombre_completo: usuario.nombre_completo,
-            correo: usuario.correo
-        });
+        delete usuario.contrasena
+        return rep.status(200).json(usuario)
     } catch (error) {
         console.error(error);
         return rep.status(500).json({ message: "Error al hacer el login" });

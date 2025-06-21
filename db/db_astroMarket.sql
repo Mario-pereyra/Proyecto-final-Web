@@ -5,14 +5,20 @@ CREATE TABLE usuarios (
     nombre_completo VARCHAR(100) NOT NULL,
     correo VARCHAR(100) NOT NULL UNIQUE,
     contrasena VARCHAR(100) NOT NULL,
-    fecha_creacion DATETIME DEFAULT CURRENT_TIMESTAMP
+    
 );
+
 
 CREATE TABLE categorias (
     categoriaId INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE subcategorias (
+    subcategoriaId INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
-    categoriaPadreId INT DEFAULT NULL,
-    FOREIGN KEY (categoriaPadreId) REFERENCES categorias(categoriaId)
+    categoriaId INT NOT NULL,
+    FOREIGN KEY (categoriaId) REFERENCES categorias(categoriaId)
 );
 
 CREATE TABLE departamentos (
@@ -27,6 +33,7 @@ CREATE TABLE ciudades (
     FOREIGN KEY (departamentoId) REFERENCES departamentos(departamentoId)
 );
 
+
 CREATE TABLE anuncios (
     anuncioId INT AUTO_INCREMENT PRIMARY KEY,
     usuarioId INT NOT NULL,
@@ -34,6 +41,7 @@ CREATE TABLE anuncios (
     descripcion TEXT NOT NULL,
     precio DECIMAL(10,2) NOT NULL,
     categoriaId INT NOT NULL,
+    subcategoriaId INT NOT NULL,
     estado ENUM('nuevo', 'usado') NOT NULL,
     estado_publicacion ENUM('activo', 'inactivo', 'vendido') NOT NULL DEFAULT 'activo',
     departamentoId INT NOT NULL,
@@ -45,6 +53,7 @@ CREATE TABLE anuncios (
     fecha_modificacion DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (usuarioId) REFERENCES usuarios(usuarioId),
     FOREIGN KEY (categoriaId) REFERENCES categorias(categoriaId),
+    FOREIGN KEY (subcategoriaId) REFERENCES subcategorias(subcategoriaId),
     FOREIGN KEY (departamentoId) REFERENCES departamentos(departamentoId),
     FOREIGN KEY (ciudadId) REFERENCES ciudades(ciudadId)
 );
@@ -119,3 +128,13 @@ CREATE TABLE auditoria_anuncios (
     FOREIGN KEY (anuncioId) REFERENCES anuncios(anuncioId),
     FOREIGN KEY (usuarioId) REFERENCES usuarios(usuarioId)
 );
+
+
+DELIMITER $$
+CREATE TRIGGER no_actualizar_fecha_creacion
+BEFORE UPDATE ON anuncios
+FOR EACH ROW
+BEGIN
+    SET NEW.fecha_creacion = OLD.fecha_creacion;
+END$$
+DELIMITER ;
