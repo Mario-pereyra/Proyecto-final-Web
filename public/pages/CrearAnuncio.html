@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/VerAnuncios/header.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/PanelVendedor/CrearAnuncio/crearAnuncio.css ">
+    <link rel="stylesheet" href="../css/PanelVendedor/CrearAnuncio/crearAnuncio-imagenes.css">
 </head>
 
 <body>
@@ -66,13 +67,6 @@
                 <p>Rellena el formulario con la información de tu producto</p>
             </div>
 
-            <!-- MENSAJES DE ESTADO -->
-            <div id="form-loading" class="state-message" style="display: none;" data-state="loading">
-                <p>Guardando información del anuncio...</p>
-            </div>
-            <div id="form-error" class="state-message error" style="display: none;" data-state="error">
-                <p id="form-error-message" data-info="error-message"></p>
-            </div>
 
             <div class="crearAnuncio-tabs" data-component="form-tabs">
                 <button type="button" class="tab-button active" data-tab="information" data-action="switch-tab">
@@ -85,11 +79,11 @@
                 </button>
             </div>
 
-            <form id="create-ad-form" data-form="create-ad" data-action="save-ad-info" enctype="multipart/form-data">
+            <!-- FORMULARIO INFORMACIÓN -->
+            <form id="create-ad-form" data-form="create-ad" data-action="save-ad-info" enctype="multipart/form-data" style="display:block;">
                 <!-- INFORMACIÓN BÁSICA -->
                 <div class="form-section" data-section="basic-info">
                     <h3>Información Básica</h3>
-                    
                     <div class="campo-grupo" data-field="title">
                         <label for="input-titulo-anuncio">Título del Anuncio *</label>
                         <input type="text" id="input-titulo-anuncio" name="title" 
@@ -98,7 +92,6 @@
                         <div class="field-help">Máximo 100 caracteres. Sé específico y claro.</div>
                         <div class="msg-error" id="msg-error-titulo" data-error="title" style="display: none;"></div>
                     </div>
-
                     <div class="campo-grupo" data-field="description">
                         <label for="input-descripcion-anuncio">Descripción del Anuncio *</label>
                         <textarea id="input-descripcion-anuncio" name="description" 
@@ -110,11 +103,9 @@
                         <div class="msg-error" id="msg-error-descripcion" data-error="description" style="display: none;"></div>
                     </div>
                 </div>
-
                 <!-- INFORMACIÓN DE PRECIO Y CATEGORÍA -->
                 <div class="form-section" data-section="price-category">
                     <h3>Precio y Categoría</h3>
-                    
                     <div class="campo-grupo" data-field="price">
                         <label for="input-precio-anuncio">Precio (USD) *</label>
                         <input type="number" id="input-precio-anuncio" name="price" 
@@ -123,7 +114,6 @@
                         <div class="field-help">Precio en dólares americanos</div>
                         <div class="msg-error" id="msg-error-precio" data-error="price" style="display: none;"></div>
                     </div>
-
                     <div class="form-row">
                         <div class="campo-grupo" data-field="category">
                             <label for="input-categoria-anuncio">Categoría *</label>
@@ -142,7 +132,6 @@
                             </select>
                             <div class="msg-error" id="msg-error-categoria" data-error="category" style="display: none;"></div>
                         </div>
-
                         <div class="campo-grupo" data-field="subcategory">
                             <label for="input-subcategoria-anuncio">Subcategoría *</label>
                             <select name="subcategory" id="input-subcategoria-anuncio" required 
@@ -153,11 +142,9 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- INFORMACIÓN ADICIONAL -->
                 <div class="form-section" data-section="additional-info">
                     <h3>Información Adicional</h3>
-                    
                     <div class="form-row">
                         <div class="campo-grupo" data-field="condition">
                             <label for="input-condicion-anuncio">Condición *</label>
@@ -171,7 +158,6 @@
                             </select>
                             <div class="msg-error" id="msg-error-condicion" data-error="condition" style="display: none;"></div>
                         </div>
-
                         <div class="campo-grupo" data-field="location">
                             <label for="input-ubicacion-anuncio">Ubicación *</label>
                             <input type="text" id="input-ubicacion-anuncio" name="location" 
@@ -181,19 +167,105 @@
                             <div class="msg-error" id="msg-error-ubicacion" data-error="location" style="display: none;"></div>
                         </div>
                     </div>
-
-                    
                 </div>
-
                 <div class="form-actions">
                     <button type="button" class="secondary-button" data-action="cancel-create">
                         <i class="fas fa-times"></i>
                         Cancelar
                     </button>
-                    <button type="submit" class="primary-button" data-action="save-and-continue">
+                    <button type="button" class="primary-button" data-action="save-and-continue">
                         <i class="fas fa-arrow-right"></i>
                         Guardar y Continuar
                     </button>
+                </div>
+            </form>
+            <!-- FORMULARIO IMÁGENES (INICIALMENTE OCULTO) -->
+            <form id="upload-images-form" data-form="upload-images" data-action="save-ad-images" enctype="multipart/form-data" style="display:none;">
+                <div class="images-section" data-section="images">
+                    <h3>Imágenes del producto</h3>
+                    <p>Agrega hasta 4 imágenes. La primera será la imagen principal.</p>
+                    <div class="upload-instructions">
+                        <div class="instruction-item">
+                            <i class="fas fa-image"></i>
+                            <span>Formatos: JPG, PNG, WebP</span>
+                        </div>
+                        <div class="instruction-item">
+                            <i class="fas fa-weight-hanging"></i>
+                            <span>Máximo 5MB por imagen</span>
+                        </div>
+                        <div class="instruction-item">
+                            <i class="fas fa-expand-arrows-alt"></i>
+                            <span>Resolución mínima: 800x600px</span>
+                        </div>
+                    </div>
+                    <div class="ad-image-wrapper-container" data-component="image-previews">
+                        <div class="ad-image-wrapper primary" data-image-slot="0" data-status="empty">
+                            <div class="image-placeholder" data-placeholder="main">
+                                <i class="fas fa-camera"></i>
+                                <span>Imagen Principal</span>
+                                <small>Haz clic para seleccionar</small>
+                            </div>
+                            <img class="preview-image" style="display: none;" data-preview="0">
+                            <input type="file" class="image-input" name="images[]" accept="image/jpeg,image/png,image/webp" style="display:none" data-input="image-0">
+                            <div class="image-controls" style="display: none;">
+                                <button type="button" class="control-btn set-main" data-action="set-main" data-slot="0">
+                                    <i class="fas fa-star"></i>
+                                </button>
+                                <button type="button" class="control-btn remove-image" data-action="remove-image" data-slot="0">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="ad-image-wrapper" data-image-slot="1" data-status="empty">
+                            <div class="image-placeholder">
+                                <i class="fas fa-plus"></i>
+                                <span>Imagen 2</span>
+                            </div>
+                            <img class="preview-image" style="display: none;" data-preview="1">
+                            <input type="file" class="image-input" name="images[]" accept="image/jpeg,image/png,image/webp" style="display:none" data-input="image-1">
+                            <div class="image-controls" style="display: none;">
+                                <button type="button" class="control-btn remove-image" data-action="remove-image" data-slot="1">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="ad-image-wrapper" data-image-slot="2" data-status="empty">
+                            <div class="image-placeholder">
+                                <i class="fas fa-plus"></i>
+                                <span>Imagen 3</span>
+                            </div>
+                            <img class="preview-image" style="display: none;" data-preview="2">
+                            <input type="file" class="image-input" name="images[]" accept="image/jpeg,image/png,image/webp" style="display:none" data-input="image-2">
+                            <div class="image-controls" style="display: none;">
+                                <button type="button" class="control-btn remove-image" data-action="remove-image" data-slot="2">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="ad-image-wrapper" data-image-slot="3" data-status="empty">
+                            <div class="image-placeholder">
+                                <i class="fas fa-plus"></i>
+                                <span>Imagen 4</span>
+                            </div>
+                            <img class="preview-image" style="display: none;" data-preview="3">
+                            <input type="file" class="image-input" name="images[]" accept="image/jpeg,image/png,image/webp" style="display:none" data-input="image-3">
+                            <div class="image-controls" style="display: none;">
+                                <button type="button" class="control-btn remove-image" data-action="remove-image" data-slot="3">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="secondary-button" data-action="go-back">
+                            <i class="fas fa-arrow-left"></i>
+                            Volver
+                        </button>
+                        <button type="submit" class="primary-button" data-action="publish-ad">
+                            <i class="fas fa-check"></i>
+                            Publicar Anuncio
+                        </button>
+                    </div>
                 </div>
             </form>
         </div>    
@@ -202,7 +274,7 @@
     
     <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
     
-    
+    <script src="../js/Tabs_y_previsualizacion.js"></script>
 </body>
 <footer>
     <div class="copyright">
