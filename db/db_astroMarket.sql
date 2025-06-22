@@ -62,7 +62,7 @@ CREATE TABLE imagenes (
     imagenId INT AUTO_INCREMENT PRIMARY KEY,
     nombre_archivo VARCHAR(150) NOT NULL,
     ruta_archivo VARCHAR(255) NOT NULL,
-    es_temporal BOOLEAN NOT NULL DEFAULT 1,
+    
     fecha_creacion DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 

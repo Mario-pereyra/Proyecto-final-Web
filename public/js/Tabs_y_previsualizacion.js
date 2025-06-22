@@ -1,25 +1,26 @@
-// Tabs funcionalidad
-document.addEventListener('DOMContentLoaded', function () {
+
+    // Tabs funcionalidad para formulario unificado
+    document.addEventListener('DOMContentLoaded', function () {
         const tabInfo = document.querySelector('.tab-button[data-tab="information"]');
         const tabImages = document.querySelector('.tab-button[data-tab="images"]');
-        const formInfo = document.getElementById('create-ad-form');
-        const formImages = document.getElementById('upload-images-form');
+        const infoSection = document.getElementById('info-section');
+        const imagesSection = document.getElementById('images-section');
 
         tabInfo.addEventListener('click', function () {
             tabInfo.classList.add('active');
             tabImages.classList.remove('active');
-            formInfo.style.display = 'block';
-            formImages.style.display = 'none';
+            infoSection.style.display = 'block';
+            imagesSection.style.display = 'none';
         });
         tabImages.addEventListener('click', function () {
             tabImages.classList.add('active');
             tabInfo.classList.remove('active');
-            formInfo.style.display = 'none';
-            formImages.style.display = 'block';
+            infoSection.style.display = 'none';
+            imagesSection.style.display = 'block';
         });
 
         // Botón "Guardar y Continuar" pasa a la pestaña de imágenes
-        const btnContinue = formInfo.querySelector('[data-action="save-and-continue"]');
+        const btnContinue = document.querySelector('[data-action="save-and-continue"]');
         if (btnContinue) {
             btnContinue.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -27,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
         // Botón "Volver" regresa a la pestaña de información
-        const btnBack = formImages.querySelector('[data-action="go-back"]');
+        const btnBack = document.querySelector('[data-action="go-back"]');
         if (btnBack) {
             btnBack.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -35,11 +36,11 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
 
-        // Lógica de previsualización de imágenes (idéntica a la de crear anuncio)
-        const wrappers = formImages.querySelectorAll('.ad-image-wrapper');
-        const previewImages = formImages.querySelectorAll('.preview-image');
-        const controls = formImages.querySelectorAll('.image-controls');
-        const inputs = formImages.querySelectorAll('.image-input');
+        // Lógica de previsualización de imágenes
+        const wrappers = document.querySelectorAll('.ad-image-wrapper');
+        const previewImages = document.querySelectorAll('.preview-image');
+        const controls = document.querySelectorAll('.image-controls');
+        const inputs = document.querySelectorAll('.image-input');
 
         wrappers.forEach((wrapper, idx) => {
             wrapper.addEventListener('click', function (e) {

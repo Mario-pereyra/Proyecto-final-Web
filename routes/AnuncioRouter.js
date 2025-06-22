@@ -1,17 +1,33 @@
 const express = require('express')
 const router = express.Router();
+const multer = require('multer');
+const path = require('path');
+const AnuncioController = require('../controllers/AnuncioController');
 
-const AnuncioController = require('../controllers/AnuncioController')
+const uploadDirectory = process.env.UPLOADS_PATH || 'uploads/';
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => cb(null, uploadDirectory),
+    filename: (req, file, cb) => {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        cb(null, uniqueSuffix + path.extname(file.originalname));
+    }
+});
+const upload = multer({ storage })
 // GET /api/anuncios/
 router.get('/',AnuncioController.getAnuncios)
 // GET /api/anuncios/1
 router.get('/:anuncioId',AnuncioController.getAnuncioById)
-// POST /api/anuncios/
-router.post('/',AnuncioController.createAnuncio)
+
+
 // PUT /api/anuncios/
 router.put('/:anuncioId',AnuncioController.updateAnuncio)
-// DELETE /api/anuncios/1
-router.delete('/:anuncioId',AnuncioController.deleteAnuncio)
+// DELETE /api/anuncios/:anuncioId (elimina anuncio y sus imágenes asociadas)
+router.delete('/:anuncioId', AnuncioController.deleteAnuncioConImagenes);
 
-
+//GET /api/anuncios/con-imagenes
+router.get('/con-imagenes', AnuncioController.getAnunciosConImagenes);
+//GET /api/anuncios/:anuncioId/con-imagenes
+router.get('/:anuncioId/con-imagenes', AnuncioController.getAnuncioConImagenesById);
+// POST /api/anuncios/ (con imágenes)
+router.post('/', upload.array('images[]', 4), AnuncioController.createAnuncioConImagenes);
 module.exports = router;

@@ -71,6 +71,11 @@
                         Mensajes-Vendedor
                     </a>
                 </li>
+                <li>
+                    <a href="./pages/PanelVendedor.html">
+                        Panel-vendedor
+                    </a>
+                </li>
             </ul>
         </nav>
         <div class="header-user-profile" id="header-profile" data-component="header-user-profile">
@@ -102,25 +107,12 @@
                     <i class="fa-solid fa-sign-out-alt"></i>
                     Cerrar Sesión
                 </div>
+
             </div>
         </div>
     </header>
     <main class="contenedor-main" data-component="home-main">
-        <!-- Loading State -->
-        <div id="loading-state" data-state="loading" class="loading-container" style="display: none;">
-            <div class="loading-spinner"></div>
-            <p>Cargando contenido...</p>
-        </div>
-
-        <!-- Error State -->
-        <div id="error-state" data-state="error" class="error-container" style="display: none;">
-            <div class="error-message">
-                <i class="fa-solid fa-exclamation-triangle"></i>
-                <h2>Error al cargar contenido</h2>
-                <p id="error-text">Hubo un problema al cargar la página</p>
-                <button data-action="retry-load" class="btn-retry">Reintentar</button>
-            </div>
-        </div>
+        
 
         <section class="hero" data-component="hero-section">
             <div class="container-hero">

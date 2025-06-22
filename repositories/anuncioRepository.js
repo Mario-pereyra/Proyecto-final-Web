@@ -1,3 +1,19 @@
+// Obtiene los IDs de las imágenes asociadas a un anuncio
+exports.getImagenesIdsByAnuncio = async (anuncioId) => {
+    const connection = await getConnection();
+    const [rows] = await connection.query(
+        'SELECT imagenId FROM anuncio_imagenes WHERE anuncioId = ?', [anuncioId]
+    );
+    return rows.map(row => row.imagenId);
+};
+
+// Elimina los registros de anuncio_imagenes asociados a un anuncio
+exports.deleteAnuncioImagenes = async (anuncioId) => {
+    const connection = await getConnection();
+    await connection.query('DELETE FROM anuncio_imagenes WHERE anuncioId = ?', [anuncioId]);
+};
+
+
 const dbconnection = require('../db/mysqlConecction')
 let connection = null
 
@@ -70,3 +86,46 @@ exports.deleteAnuncio = async (anuncioId) => {
     }
     return deleteAnuncioResultado
 }
+exports.asociarImagen = async (anuncioId, imagenId, es_principal, orden) => {
+  const connection = await getConnection();
+  await connection.query(
+    'INSERT INTO anuncio_imagenes (anuncioId, imagenId, es_principal, orden) VALUES (?, ?, ?, ?)',
+    [anuncioId, imagenId, es_principal ? 1 : 0, orden]
+  );
+};
+
+exports.getAnunciosConImagenes = async () => {
+    const connection = await getConnection();
+    // Trae todos los anuncios
+    const [anuncios] = await connection.query('SELECT * FROM anuncios');
+    if (!anuncios || anuncios.length === 0) return [];
+    // Trae todas las imágenes asociadas
+    const [imagenes] = await connection.query(
+        `SELECT ai.anuncioId, i.imagenId, i.nombre_archivo, i.ruta_archivo, ai.es_principal, ai.orden
+         FROM anuncio_imagenes ai
+         JOIN imagenes i ON ai.imagenId = i.imagenId`
+    );
+    // Asocia imágenes a cada anuncio
+    anuncios.forEach(anuncio => {
+        anuncio.imagenes = imagenes.filter(img => img.anuncioId === anuncio.anuncioId);
+    });
+    return anuncios;
+};
+
+exports.getAnuncioConImagenesById = async (anuncioId) => {
+    const connection = await getConnection();
+    // Trae el anuncio
+    const [anuncioRows] = await connection.query('SELECT * FROM anuncios WHERE anuncioId = ?', [anuncioId]);
+    if (!anuncioRows || anuncioRows.length === 0) return null;
+    const anuncio = anuncioRows[0];
+    // Trae las imágenes asociadas
+    const [imagenes] = await connection.query(
+        `SELECT i.imagenId, i.nombre_archivo, i.ruta_archivo, ai.es_principal, ai.orden
+         FROM anuncio_imagenes ai
+         JOIN imagenes i ON ai.imagenId = i.imagenId
+         WHERE ai.anuncioId = ?
+         ORDER BY ai.orden ASC`, [anuncioId]
+    );
+    anuncio.imagenes = imagenes;
+    return anuncio;
+};

@@ -1,4 +1,9 @@
+const fs = require('fs');
+const path = require('path');
+
 const anuncioRepository = require('../repositories/anuncioRepository')
+const imagenRepository = require('../repositories/imagenRepository');
+
 
 exports.getAnuncios = async (req, rep) => {
     try {
@@ -31,6 +36,7 @@ exports.createAnuncio = async (req, rep) => {
     const descripcion = req.body.descripcion
     const precio = req.body.precio
     const categoriaId = req.body.categoriaId
+    const subcategoriaId = req.body.subcategoriaId
     const estado = req.body.estado
     const estado_publicacion = req.body.estado_publicacion
     const departamentoId = req.body.departamentoId
@@ -41,7 +47,7 @@ exports.createAnuncio = async (req, rep) => {
 
     try {
         const createAnuncioResultado = await anuncioRepository.createAnuncio(
-            usuarioId, titulo, descripcion, precio, categoriaId, estado,
+            usuarioId, titulo, descripcion, precio, categoriaId, subcategoriaId, estado,
             estado_publicacion, departamentoId, ciudadId, zona, vistas, valoracion
         );
         if (!createAnuncioResultado || !createAnuncioResultado.insertId) {
@@ -56,17 +62,20 @@ exports.createAnuncio = async (req, rep) => {
         return rep.status(500).json({ message: "Error al crear el anuncio" });
     }
 }
+
+
+
 exports.updateAnuncio = async (req, rep) => {
     const anuncioId = req.params.anuncioId;
     const {
 
-        titulo, descripcion, precio, categoriaId, estado,
+        titulo, descripcion, precio, categoriaId,subcategoriaId, estado,
         estado_publicacion, departamentoId, ciudadId, zona, vistas, valoracion
     } = req.body;
 
     try {
         const updateAnuncioResultado = await anuncioRepository.updateAnuncio(
-            anuncioId, titulo, descripcion, precio, categoriaId, estado,
+            anuncioId, titulo, descripcion, precio, categoriaId,subcategoriaId, estado,
             estado_publicacion, departamentoId, ciudadId, zona, vistas, valoracion
         );
         if (!updateAnuncioResultado || updateAnuncioResultado.affectedRows === 0) {
@@ -91,3 +100,97 @@ exports.deleteAnuncio = async (req, rep) => {
         return rep.status(500).json({ message: "Error al eliminar el anuncio" });
     }
 }
+
+exports.getAnunciosConImagenes = async (req, res) => {
+    try {
+        const anuncios = await anuncioRepository.getAnunciosConImagenes();
+        return res.status(200).json(anuncios);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: "Error al obtener los anuncios" });
+    }
+};
+
+
+exports.getAnuncioConImagenesById = async (req, res) => {
+    const anuncioId = req.params.anuncioId;
+    try {
+        const anuncio = await anuncioRepository.getAnuncioConImagenesById(anuncioId);
+        if (!anuncio) {
+            return res.status(404).json({ message: "No se encontró el anuncio" });
+        }
+        return res.status(200).json(anuncio);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: "Error al obtener el anuncio" });
+    }
+};
+
+exports.createAnuncioConImagenes = async (req, res) => {
+  try {
+    // 1. Extraer datos del body
+    const {
+      usuarioId, titulo, descripcion, precio, categoriaId, subcategoriaId, estado,
+      estado_publicacion, departamentoId, ciudadId, zona, vistas, valoracion
+    } = req.body;
+
+    // 2. Crear el anuncio (ajusta los campos según tu base de datos)
+    const anuncioResult = await anuncioRepository.createAnuncio(
+      usuarioId, titulo, descripcion, precio, categoriaId, subcategoriaId, estado,
+      estado_publicacion, departamentoId, ciudadId, zona, vistas, valoracion
+    );
+    const anuncioId = anuncioResult.insertId;
+
+    // 3. Guardar imágenes y asociarlas
+    const files = req.files || [];
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      const imagenId = await imagenRepository.createImage(file.filename, file.path);
+      await anuncioRepository.asociarImagen(anuncioId, imagenId, i === 0, i); // es_principal, orden
+    }
+
+    res.status(201).json({ message: 'Anuncio creado correctamente', anuncioId });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error al crear el anuncio' });
+  }
+};
+
+// Elimina un anuncio y todas sus imágenes asociadas (registros y archivos)
+exports.deleteAnuncioConImagenes = async (req, rep) => {
+    const anuncioId = req.params.anuncioId;
+    try {
+        // 1. Obtener los IDs de las imágenes asociadas
+        const imagenIds = await anuncioRepository.getImagenesIdsByAnuncio(anuncioId);
+
+        // 2. Eliminar los registros de anuncio_imagenes
+        await anuncioRepository.deleteAnuncioImagenes(anuncioId);
+
+        // 3. Eliminar los registros de imágenes y archivos físicos
+        for (const imagenId of imagenIds) {
+            // Obtener info de la imagen
+            const imagen = await imagenRepository.getImagenesById(imagenId);
+            if (imagen && imagen[0]) {
+                // Eliminar archivo físico
+                try {
+                    fs.unlinkSync(path.resolve(imagen[0].ruta_archivo));
+                } catch (err) {
+                    // Si el archivo no existe, continuar
+                }
+            }
+            // Eliminar registro de la imagen
+            await imagenRepository.deleteImagenById(imagenId);
+        }
+
+        // 4. Eliminar el anuncio
+        const deleteAnuncioResultado = await anuncioRepository.deleteAnuncio(anuncioId);
+        if (!deleteAnuncioResultado || deleteAnuncioResultado.affectedRows === 0) {
+            return rep.status(404).json({ message: `No se encontró el anuncio con el id ${anuncioId}` });
+        }
+        return rep.status(200).json({ message: `Se eliminó con éxito el anuncio y sus imágenes asociadas` });
+    } catch (error) {
+        console.error(error);
+        return rep.status(500).json({ message: "Error al eliminar el anuncio y sus imágenes" });
+    }
+};
+
