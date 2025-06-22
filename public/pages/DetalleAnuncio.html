@@ -23,30 +23,45 @@
             </label>
             <input id="menu-switch" type="checkbox">
             <ul>
-                <li>
+                <li class="nav-todos">
                     <a href="VerAnuncios.html">
                         Ver Anuncios
                     </a>
                 </li>
-                <li>
+                <li class="nav-publico">
                     <a href="Login.html">
-                        Iniciar Sesion
+                        Iniciar Sesión
                     </a>
                 </li>
-                <li>
+                <li class="nav-publico">
                     <a href="Registro.html">
-                        Registrar
+                        Registrarse
+                    </a>
+                </li>
+                <li class="nav-privado" style="display:none">
+                    <a href="MensajesComprador.html">
+                        Mensajes-Comprador
+                    </a>
+                </li>
+                <li class="nav-privado" style="display:none">
+                    <a href="MensajesVendedorV2.html">
+                        Mensajes-Vendedor
+                    </a>
+                </li>
+                <li class="nav-privado" style="display:none">
+                    <a href="PanelVendedor.html">
+                        Panel-vendedor
                     </a>
                 </li>
             </ul>
         </nav>
         <div class="header-user-profile" id="header-profile" data-component="header-user-profile">
-            <div class="header-profile-container" data-info="header-profile">
+            <div class="header-profile-container" data-info="header-profile" id="profile-trigger">
                 <img src="../recursos/img/npc.jpg" alt="Foto perfil" class="header-profile-pic"
                     id="header-profile-image" data-image="header-user-avatar">
                 <div class="header-user-info" data-info="header-user-details">
-                    <span class="header-user-name" data-info="header-user-name">Desconocido</span>
-                    <span class="header-user-role" data-info="header-user-role">Visitante</span>
+                    <span class="header-user-name" data-info="user-name">Desconocido</span>
+                    <span class="header-user-role" data-info="user-role">Visitante</span>
                 </div>
             </div>
         </div>
@@ -290,6 +305,7 @@
     <div class="copyright">
         <p>@2024 AstroMarket.Todos los derechos reservados</p>
     </div>
+    <script src="../js/profileMenu.js"></script>
 </footer>
 
 </html>

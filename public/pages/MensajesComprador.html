@@ -21,62 +21,51 @@
                 Menu
             </label>
             <input id="menu-switch" type="checkbox">
-            <ul>                <li>
-                    <a href="/pages/VerAnuncios.html">
+            <ul>
+                <li class="nav-todos">
+                    <a href="VerAnuncios.html">
                         Ver Anuncios
                     </a>
                 </li>
-                <li><a href="Login.html">
-                        Iniciar Sesion
+                <li class="nav-publico">
+                    <a href="Login.html">
+                        Iniciar Sesión
                     </a>
                 </li>
-                <li>
+                <li class="nav-publico">
                     <a href="Registro.html">
-                        Registrar
+                        Registrarse
                     </a>
                 </li>
-                <li>
-                    <a href="/pages/MensajesComprador.html">
+                <li class="nav-privado" style="display:none">
+                    <a href="MensajesComprador.html">
                         Mensajes-Comprador
                     </a>
                 </li>
-                <li>
-                    <a href="/pages/MensajesVendedorV2.html">
+                <li class="nav-privado" style="display:none">
+                    <a href="MensajesVendedorV2.html">
                         Mensajes-Vendedor
+                    </a>
+                </li>
+                <li class="nav-privado" style="display:none">
+                    <a href="PanelVendedor.html">
+                        Panel-vendedor
                     </a>
                 </li>
             </ul>
         </nav>        <div class="header-user-profile" id="header-profile" data-component="header-user-profile">
-            <div class="header-profile-container" data-info="header-profile">
+            <div class="header-profile-container" data-info="header-profile" id="profile-trigger">
                 <img src="../recursos/img/npc.jpg" alt="Foto perfil" class="header-profile-pic" id="header-profile-image" data-image="header-user-avatar">
                 <div class="header-user-info" data-info="header-user-details">
                     <span class="header-user-name" data-info="user-name">Desconocido</span>
                     <span class="header-user-role" data-info="user-role">Visitante</span>
                 </div>
             </div>
-            
-            <!-- User Profile Menu -->
-            <div class="header-profile-menu" id="header-profile-menu" data-component="header-profile-menu" data-state="hidden">
-                <div class="profile-menu-item" data-action="view-profile">
-                    <i class="fa-solid fa-user"></i>
-                    Ver Perfil
-                </div>
-                <div class="profile-menu-item" data-action="view-saved-ads">
-                    <i class="fa-solid fa-bookmark"></i>
-                    Anuncios Guardados
-                </div>
-                <div class="profile-menu-item" data-action="view-vendor-panel">
-                    <i class="fa-solid fa-store"></i>
-                    Panel Vendedor
-                </div>
-                <div class="profile-menu-item" data-action="logout">
-                    <i class="fa-solid fa-sign-out-alt"></i>
-                    Cerrar Sesión
-                </div>
-            </div>
+
         </div>
         
-    </header>    <main data-component="buyer-messages-main">
+    </header>   
+     <main data-component="buyer-messages-main">
         
         <div class="chat-container" data-component="buyer-messaging-system">
             <input type="checkbox" id="chat-view-switch" class="chat-view-toggle" data-action="toggle-chat-view">
@@ -85,9 +74,7 @@
                 <div class="conversations-header">
                     <h1>Mensajes - Comprador</h1>
                     <div class="conversations-actions">
-                        <button data-action="mark-all-read" class="btn-secondary btn-sm" title="Marcar todo como leído">
-                            <i class="fa-solid fa-check-double"></i>
-                        </button>
+                        
                         <button data-action="refresh-conversations" class="btn-secondary btn-sm" title="Actualizar">
                             <i class="fa-solid fa-refresh"></i>
                         </button>
@@ -366,7 +353,8 @@
         <div class="copyright">
             <p>&copy; 2024 AstroMarket. Todos los derechos reservados</p>
         </div>
-    </footer>
+    <script src="../js/profileMenu.js"></script>
+</footer>
 
 </body>
 
