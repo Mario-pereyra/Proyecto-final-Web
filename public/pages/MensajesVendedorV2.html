@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mensajes Vendedor V2 - AstroMarket</title>
     <link rel="stylesheet" href="../css/vendors/fonts.css">
     <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css\Mensajes\mensajesVendedorV2.css">
+    <link rel="stylesheet" href="../css/Mensajes/mensajesVendedorV2.css">
 </head>
-
 <body>
     <header class="header">
         <a href="../index.html">
@@ -69,385 +67,154 @@
 
     </header>
     <main data-component="vendor-messages-main">
-
         <div class="chat-container" data-component="messaging-system">
-            <!-- Sistema de navegación de 3 niveles -->
-            <input type="checkbox" id="product-view-switch" class="view-toggle" data-action="toggle-products-view">
-            <input type="checkbox" id="conversations-view-switch" class="view-toggle"
-                data-action="toggle-conversations-view">
-            <input type="checkbox" id="chat-view-switch" class="view-toggle" data-action="toggle-chat-view">
+            <input type="checkbox" id="product-view-switch" class="view-toggle">
+            <input type="checkbox" id="conversations-view-switch" class="view-toggle">
 
-            <!-- NIVEL 1: Lista de Productos -->
             <aside class="products-list" data-component="products-list">
                 <div class="products-header">
                     <h1>Mensajes Vendedor</h1>
-                    <p class="subtitle">Selecciona un producto para ver sus mensajes</p>
-                    <div class="products-actions">
-                        <button data-action="refresh-products" class="btn-secondary btn-sm">
-                            <i class="fa-solid fa-refresh"></i>
-                            Actualizar
-                        </button>
-
-                    </div>
+                    <p class="subtitle">Selecciona un producto</p>
                 </div>
-
-                <div class="products-search">
-                    <div class="search-container">
-                        <i class="fa-solid fa-search"></i>
-                        <input type="text" placeholder="Buscar productos..." data-action="search-products"
-                            id="products-search">
-                    </div>
-                </div>
-
-                <div class="products-container" data-component="products-container" id="products-list">
+                <div class="products-container" id="products-list-container">
                     <label for="product-view-switch">
-                        <div class="product-item" data-component="product-item" data-product-id="1"
-                            data-product-slug="macbook-pro-16">
+                        <div class="product-item active" data-product-id="1">
                             <div class="product-main-info">
-                                <img src="../recursos/img/MacBook_Pro_16.webp" alt="MacBook Pro" class="product-image"
-                                    data-image="product-thumbnail">
+                                <img src="../recursos/img/MacBook_Pro_16.webp" alt="MacBook Pro" class="product-image" >
                                 <div class="product-details">
-                                    <h3 class="product-name" data-info="product-name">MacBook Pro 16 pulgadas</h3>
-                                    <p class="product-price" data-info="product-price">$2,500.00</p>
-                                    <p class="product-status active" data-info="product-status">Activo</p>
+                                    <h3 class="product-name">MacBook Pro 16 pulgadas</h3>
+                                    <p class="product-price">$2,500.00</p>
                                 </div>
                             </div>
                             <div class="product-messages-info">
                                 <div class="messages-count">
-                                    <span class="count-number" data-info="conversations-count">3</span>
+                                    <span class="count-number">3</span>
                                     <span class="count-label">Chats</span>
                                 </div>
-                                <div class="new-messages-badge" data-info="unread-count" data-count="2">2</div>
-                                <div class="last-activity" data-info="last-activity">Hace 2h</div>
+                                <div class="new-messages-badge">2</div>
                             </div>
                         </div>
                     </label>
-
-                    <label for="product-view-switch">
-                        <div class="product-item" data-component="product-item" data-product-id="2"
-                            data-product-slug="iphone-15-pro">
-                            <div class="product-main-info">
-                                <img src="../recursos/img/Iphone_15_Pro_256GB_Negro.webp" alt="iPhone 15 Pro"
-                                    class="product-image" data-image="product-thumbnail">
-                                <div class="product-details">
-                                    <h3 class="product-name" data-info="product-name">iPhone 15 Pro 256GB</h3>
-                                    <p class="product-price" data-info="product-price">$1,200.00</p>
-                                    <p class="product-status active" data-info="product-status">Activo</p>
-                                </div>
-                            </div>
-                            <div class="product-messages-info">
-                                <div class="messages-count">
-                                    <span class="count-number" data-info="conversations-count">1</span>
-                                    <span class="count-label">Chat</span>
-                                </div>
-                                <div class="last-activity" data-info="last-activity">Ayer</div>
-                            </div>
-                        </div>
-                    </label>
-
-                    <label for="product-view-switch">
-                        <div class="product-item" data-component="product-item" data-product-id="3"
-                            data-product-slug="playstation-5">
-                            <div class="product-main-info">
-                                <img src="../recursos/img/Play_station_5.webp" alt="PlayStation 5" class="product-image"
-                                    data-image="product-thumbnail">
-                                <div class="product-details">
-                                    <h3 class="product-name" data-info="product-name">PlayStation 5</h3>
-                                    <p class="product-price" data-info="product-price">$600.00</p>
-                                    <p class="product-status sold" data-info="product-status">Vendido</p>
-                                </div>
-                            </div>
-                            <div class="product-messages-info">
-                                <div class="messages-count">
-                                    <span class="count-number" data-info="conversations-count">0</span>
-                                    <span class="count-label">Chats</span>
-                                </div>
-                                <div class="last-activity" data-info="last-activity">Hace 1 semana</div>
-                            </div>
-                        </div>
-                    </label>
-                </div>
+                    </div>
             </aside>
 
-            <!-- NIVEL 2: Lista de Conversaciones -->
             <aside class="conversations-list" data-component="conversations-list">
                 <div class="conversations-header">
-                    <label for="product-view-switch" class="conversations-back-button" data-action="back-to-products">
+                    <label for="product-view-switch" class="conversations-back-button">
                         <i class="fa fa-chevron-left"></i>
                     </label>
                     <div class="conversations-title">
-                        <h2 id="product-conversations-title" data-info="selected-product-name">MacBook Pro 16"</h2>
-                        <p class="conversations-subtitle" data-info="conversations-summary">3 conversaciones activas</p>
-                    </div>
-                    
-                </div>
-
-                <div class="conversations-search">
-                    <div class="search-container">
-                        <i class="fa-solid fa-search"></i>
-                        <input type="text" placeholder="Buscar conversaciones..." data-action="search-conversations"
-                            id="conversations-search">
+                        <h2>MacBook Pro 16"</h2>
                     </div>
                 </div>
-
-                <div class="conversations-container" data-component="conversations-container" id="conversations-list">
+                <div class="conversations-container" id="conversations-list-container">
                     <label for="conversations-view-switch">
-                        <div class="conversation-item unread" data-component="conversation-item"
-                            data-conversation-id="1" data-buyer-id="user123">
+                        <div class="conversation-item unread active" data-conversation-id="1">
                             <div class="user-info">
                                 <div class="profile-pic-container">
-                                    <img src="../recursos/img/npc.jpg" alt="Foto de Carlos" class="profile-pic"
-                                        data-image="buyer-avatar">
-                                    <div class="profile-status-dot online" data-info="user-status"></div>
+                                    <img src="../recursos/img/npc.jpg" alt="Foto de Comprador" class="profile-pic">
                                 </div>
                                 <div class="user-details">
-                                    <span class="user-name" data-info="buyer-name">Carlos Gutierrez</span>
-                                    <span class="user-status">
-                                        <i class="fa-solid fa-circle online-indicator"></i>
-                                        <span data-info="user-last-seen">En línea</span>
-                                    </span>
+                                    <span class="user-name">Carlos Gutierrez</span>
                                 </div>
                             </div>
                             <div class="message-details">
-                                <p class="last-message" data-info="last-message">¿Podríamos vernos para revisarlo?</p>
+                                <p class="last-message">¿Podríamos vernos para revisarlo?</p>
                                 <div class="meta-info">
-                                    <span class="timestamp" data-info="last-message-time">Hoy, 14:20</span>
-                                    <div class="message-indicators">
-                                        <span class="unread-count" data-info="unread-messages-count">2</span>
-                                    </div>
+                                    <span class="timestamp">14:20</span>
+                                    <span class="new-badge">2</span>
                                 </div>
                             </div>
                         </div>
                     </label>
-
-                    <label for="conversations-view-switch">
-                        <div class="conversation-item conversation-item-read" data-component="conversation-item"
-                            data-conversation-id="2" data-buyer-id="user456">
-                            <div class="user-info">
-                                <div class="profile-pic-container">
-                                    <img src="../recursos/img/npc.jpg" alt="Foto de Ana" class="profile-pic"
-                                        data-image="buyer-avatar">
-                                    <div class="profile-status-dot offline" data-info="user-status"></div>
-                                </div>
-                                <div class="user-details">
-                                    <span class="user-name" data-info="buyer-name">Ana Lopez</span>
-                                    <span class="user-status">
-                                        <i class="fa-solid fa-circle offline-indicator"></i>
-                                        <span data-info="user-last-seen">Hace 5 min</span>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="message-details">
-                                <p class="last-message" data-info="last-message">¿Podemos coordinar la entrega?</p>
-                                <div class="meta-info">
-                                    <span class="timestamp" data-info="last-message-time">Ayer</span>
-                                    <span class="read-receipt" data-info="message-status">✓✓</span>
-                                </div>
-                            </div>
-                        </div>
-                    </label>
-
-                    <label for="conversations-view-switch">
-                        <div class="conversation-item conversation-item-read" data-component="conversation-item"
-                            data-conversation-id="3" data-buyer-id="user789">
-                            <div class="user-info">
-                                <div class="profile-pic-container">
-                                    <img src="../recursos/img/npc.jpg" alt="Foto de Miguel" class="profile-pic"
-                                        data-image="buyer-avatar">
-                                    <div class="profile-status-dot online" data-info="user-status"></div>
-                                </div>
-                                <div class="user-details">
-                                    <span class="user-name" data-info="buyer-name">Miguel Rodriguez</span>
-                                    <span class="user-status">
-                                        <i class="fa-solid fa-circle online-indicator"></i>
-                                        <span data-info="user-last-seen">En línea</span>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="message-details">
-                                <p class="last-message" data-info="last-message">Gracias por la información</p>
-                                <div class="meta-info">
-                                    <span class="timestamp" data-info="last-message-time">3h</span>
-                                    <span class="read-receipt" data-info="message-status">✓✓</span>
-                                </div>
-                            </div>
-                        </div>
-                    </label>
-                </div>
+                    </div>
             </aside>
 
-            <!-- NIVEL 3: Chat Activo -->
             <section class="chat-view" data-component="active-chat">
-                <div class="header-chat-details" data-component="chat-header">
-                    <label for="conversations-view-switch" class="chat-back-button" data-action="back-to-conversations">
+                <div class="header-chat-details" id="chat-header">
+                    <label for="conversations-view-switch" class="chat-back-button">
                         <i class="fa fa-chevron-left"></i>
                     </label>
                     <div class="profile-pic-container">
-                        <img src="../recursos/img/npc.jpg" alt="Foto perfil" class="profile-pic"
-                            data-image="current-buyer-avatar">
-                        <div class="profile-status-dot online" data-info="current-buyer-status"></div>
+                        <img src="../recursos/img/npc.jpg" alt="Foto perfil" class="profile-pic">
                     </div>
                     <div class="vendor-info">
-                        <h3 class="vendor-name chat-header-username" data-info="current-buyer-name">Carlos Gutierrez
-                        </h3>
-                        <p class="vendor-status">
-                            <i class="fa-solid fa-circle online-indicator"></i>
-                            <span data-info="current-buyer-last-seen">En línea</span>
-                        </p>
+                        <h3 class="vendor-name chat-header-username">Carlos Gutierrez</h3>
+                        <p class="vendor-status">En línea</p>
                     </div>
                     <div class="product-context">
                         <img src="../recursos/img/MacBook_Pro_16.webp" alt="" style="width: 64px; height: 64px; object-fit: cover; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); background: #f3f3f3;">
-                         <div class="product-context-label" data-info="chat-product-name">MacBook Pro 16"</div>
+                         <div class="product-context-label">MacBook Pro 16"</div>
                     </div>
-
                 </div>
 
-                <div class="chat-messages" data-component="chat-messages" id="chat-messages-container">
-                    <div class="message received" data-component="message" data-message-id="1"
-                        data-timestamp="2024-01-14T15:30:00Z">
-                        <div class="message-content">
-                            <span>Hola, me interesa tu MacBook Pro. ¿Todavía está disponible?</span>
-                        </div>
-                        <div class="message-meta">
-                            <div class="timestamp" data-info="message-time">Ayer, 15:30</div>
-                            
-                        </div>
+                <div class="chat-messages" id="chat-messages-container">
+                    <div class="message received">
+                        <div class="message-content"><span>¿Podríamos vernos para revisarlo?</span></div>
+                        <div class="message-meta"><div class="timestamp">Hoy, 14:20</div></div>
+                    </div>
                     </div>
 
-                    <div class="message sent" data-component="message" data-message-id="2"
-                        data-timestamp="2024-01-14T15:32:00Z">
-                        <div class="message-content">
-                            <span>¡Hola! Sí, aún está disponible. Es el modelo de 16 pulgadas con chip M2 Pro.</span>
-                        </div>
-                        <div class="message-meta">
-                            <div class="timestamp" data-info="message-time">Ayer, 15:32</div>
-                            <div class="message-status">
-                                <span class="read-receipt" data-info="delivery-status">✓✓</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="message received" data-component="message" data-message-id="3"
-                        data-timestamp="2024-01-14T15:35:00Z">
-                        <div class="message-content">
-                            <span>Perfecto, ¿cuál es el estado del equipo?</span>
-                        </div>
-                        <div class="message-meta">
-                            <div class="timestamp" data-info="message-time">Ayer, 15:35</div>
-                        </div>
-                    </div>
-
-                    <div class="message sent" data-component="message" data-message-id="4"
-                        data-timestamp="2024-01-14T15:37:00Z">
-                        <div class="message-content">
-                            <span>Está en excelente estado, prácticamente nuevo. Solo tiene 6 meses de uso.</span>
-                        </div>
-                        <div class="message-meta">
-                            <div class="timestamp" data-info="message-time">Ayer, 15:37</div>
-                            <div class="message-status">
-                                <span class="read-receipt" data-info="delivery-status">✓✓</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="message received" data-component="message" data-message-id="5"
-                        data-timestamp="2024-01-15T14:20:00Z">
-                        <div class="message-content">
-                            <span>¿Podríamos vernos para revisarlo?</span>
-                        </div>
-                        <div class="message-meta">
-                            <div class="timestamp" data-info="message-time">Hoy, 14:20</div>
-                        </div>
-                    </div>
-
-
-
-                    <div class="contact-vendor-footer" data-component="message-composer">
-                        <div class="message-attachments" id="message-attachments" style="display: none;">
-                            <!-- Attachment previews will appear here -->
-                        </div>
-
-                        <div class="contact-vendor-footer-container">
-                            <button type="button" class="attachment-btn" data-action="attach-file"
-                                title="Adjuntar archivo">
-                                <i class="fa-solid fa-paperclip"></i>
-                            </button>
-
-                            <div class="message-input-container">
-                                <textarea id="message-input" placeholder="Escribe tu mensaje aquí..."
-                                    data-action="compose-message" maxlength="1000" rows="1"></textarea>
-                                <div class="character-count">
-                                    <span id="char-count" data-info="character-count">0</span>/1000
-                                </div>
-                            </div>
-
-
-                            <button type="button" id="send-button" data-action="send-message" disabled>
-                                <i class="fa fa-paper-plane" aria-hidden="true"></i>
-                            </button>
-                        </div>
-
-                    </div>
+                <div class="contact-vendor-footer" data-component="message-composer">
+                    <textarea id="message-input" placeholder="Escribe tu respuesta..." rows="1"></textarea>
+                    <button type="button" id="send-button"><i class="fa fa-paper-plane"></i></button>
+                </div>
             </section>
         </div>
+    </main>
 
+    <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
 
-
-
-        <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
-
-        <!-- Templates for dynamic content -->
-        <template id="message-template" data-template="message">
-            <div class="message" data-component="message">
-                <div class="message-content">
-                    <span class="message-text"></span>
+    <template id="message-template">
+        <div class="message" data-component="message">
+            <div class="message-content">
+                <span class="message-text"></span>
+            </div>
+            <div class="message-meta">
+                <div class="timestamp" data-info="message-time"></div>
+                <div class="message-status">
+                    <span class="read-receipt" data-info="delivery-status"></span>
                 </div>
-                <div class="message-meta">
-                    <div class="timestamp" data-info="message-time"></div>
-                    <div class="message-status">
-                        <span class="read-receipt" data-info="delivery-status"></span>
+            </div>
+        </div>
+    </template>
+
+    <template id="conversation-item-template">
+        <div class="conversation-item" data-component="conversation-item">
+            <div class="user-info">
+                <div class="profile-pic-container">
+                    <img src="" alt="" class="profile-pic" data-image="buyer-avatar">
+                    <div class="profile-status-dot" data-info="user-status"></div>
+                </div>
+                <div class="user-details">
+                    <span class="user-name" data-info="buyer-name"></span>
+                    <span class="user-status">
+                        <i class="fa-solid fa-circle"></i>
+                        <span data-info="user-last-seen"></span>
+                    </span>
+                </div>
+            </div>
+            <div class="message-details">
+                <p class="last-message" data-info="last-message"></p>
+                <div class="meta-info">
+                    <span class="timestamp" data-info="last-message-time"></span>
+                    <div class="message-indicators">
+                        <span class="unread-count" data-info="unread-messages-count"></span>
+                        <span class="read-receipt" data-info="message-status"></span>
                     </div>
                 </div>
             </div>
-        </template>
-
-        <template id="conversation-item-template" data-template="conversation-item">
-            <div class="conversation-item" data-component="conversation-item">
-                <div class="user-info">
-                    <div class="profile-pic-container">
-                        <img src="" alt="" class="profile-pic" data-image="buyer-avatar">
-                        <div class="profile-status-dot" data-info="user-status"></div>
-                    </div>
-                    <div class="user-details">
-                        <span class="user-name" data-info="buyer-name"></span>
-                        <span class="user-status">
-                            <i class="fa-solid fa-circle"></i>
-                            <span data-info="user-last-seen"></span>
-                        </span>
-                    </div>
-                </div>
-                <div class="message-details">
-                    <p class="last-message" data-info="last-message"></p>
-                    <div class="meta-info">
-                        <span class="timestamp" data-info="last-message-time"></span>
-                        <div class="message-indicators">
-                            <span class="unread-count" data-info="unread-messages-count"></span>
-                            <span class="read-receipt" data-info="message-status"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </template>
+        </div>
+    </template>
 
 
 
-        <footer data-component="main-footer">
-            <div class="copyright">
-                <p>&copy; 2024 AstroMarket. Todos los derechos reservados</p>
-            </div>
-            <script src="../js/profileMenu.js"></script>
-        </footer>
-
+    <footer data-component="main-footer">
+        <div class="copyright">
+            <p>&copy; 2024 AstroMarket. Todos los derechos reservados</p>
+        </div>
+        <script src="../js/profileMenu.js"></script>
+    </footer>
+    
 </body>
-
 </html>
