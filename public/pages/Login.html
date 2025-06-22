@@ -70,24 +70,21 @@
             <h1>Iniciar Sesion</h1>
             <p>Ingresa tus credenciales para acceder a tu cuenta</p>
 
-            <form id="login-form" data-form="login" data-action="authenticate">
+            <form id="login-form" data-form="login" autocomplete="off">
                 <div class="campo-grupo" data-field="email">
                     <label for="input-email">Email *</label>
-                    <input type="email" name="email" id="input-email" placeholder="tu@email.com" required
-                        data-validation="email" data-info="user-email">
-                    <div class="msg-error" id="msg-error-email" data-error="email" style="display: none;"></div>
+                    <input type="email" name="correo" id="input-email" placeholder="tu@email.com" >
+                    <div class="msg-error" id="msg-error-email" ></div>
                 </div>
 
-                <div class="campo-grupo" data-field="password">
-                    <label for="input-password">Contraseña *</label>
-                    <input type="password" name="password" id="input-password" placeholder="**********" required
-                        minlength="6" data-validation="password" data-info="user-password">
-                    <div class="msg-error" id="msg-error-password" data-error="password" style="display: none;"></div>
+                <div class="campo-grupo" data-field="contrasena">
+                    <label for="input-contrasena">Contraseña *</label>
+                    <input type="password" name="contrasena" id="input-contrasena" placeholder="**********"  >
+                    <div class="msg-error" id="msg-error-contrasena" ></div>
                 </div>
 
-                <button type="submit" id="btn-login" class="btn-login" data-action="submit-login">
-                    <span data-text="login-btn">Iniciar Sesión</span>
-                    <span id="login-spinner" style="display: none;" data-state="loading">Verificando...</span>
+                <button type="submit" id="btn-login" class="btn-login" >
+                    <span>Iniciar Sesión</span>
                 </button>
             </form>
 
@@ -107,6 +104,9 @@
 
     </main>
     <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
+    <script src="../js/login-script.js"></script>
+    
+    
 </body>
 <footer>
     <div class="copyright">

@@ -118,10 +118,7 @@
                                         <i class="fa-solid fa-circle online-indicator"></i>
                                         <span data-info="vendor-last-seen">Activo</span>
                                     </span>
-                                    <div class="vendor-rating" data-info="vendor-rating">
-                                        <span class="stars">★★★★☆</span>
-                                        <span class="rating-text">(4.2)</span>
-                                    </div>
+                                    
                                 </div>
                             </div>
                             <div class="product-info">
@@ -156,10 +153,7 @@
                                         <i class="fa-solid fa-circle offline-indicator"></i>
                                         <span data-info="vendor-last-seen">Hace 30 min</span>
                                     </span>
-                                    <div class="vendor-rating" data-info="vendor-rating">
-                                        <span class="stars">★★★★★</span>
-                                        <span class="rating-text">(4.8)</span>
-                                    </div>
+                                    
                                 </div>
                             </div>
                             <div class="product-info">
@@ -199,26 +193,13 @@
                         </div>
                     </div>
                     <div class="product-context">
-                        <img src="../recursos/img/MacBook_Pro_16.webp" alt="Producto" class="product-context-image" data-image="chat-product-thumbnail">
+                        <img src="../recursos/img/MacBook_Pro_16.webp" alt="Producto" class="product-context-image" data-image="chat-product-thumbnail" style="width: 64px; height: 64px; object-fit: cover; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); background: #f3f3f3;">
                         <div class="product-context-details">
                             <span class="product-context-name" data-info="chat-product-name">MacBook Pro 16"</span>
                             <span class="product-context-price" data-info="chat-product-price">$2,500.00</span>
                         </div>
                     </div>
-                    <div class="chat-actions">
-                        <button data-action="view-product" class="btn-secondary btn-sm" title="Ver producto">
-                            <i class="fa-solid fa-eye"></i>
-                        </button>
-                        <button data-action="save-product" class="btn-secondary btn-sm" title="Guardar producto">
-                            <i class="fa-solid fa-bookmark"></i>
-                        </button>
-                        <button data-action="report-vendor" class="btn-warning btn-sm" title="Reportar vendedor">
-                            <i class="fa-solid fa-flag"></i>
-                        </button>
-                        <button data-action="block-vendor" class="btn-danger btn-sm" title="Bloquear vendedor">
-                            <i class="fa-solid fa-ban"></i>
-                        </button>
-                    </div>
+                    
                 </div>
 
                 <div class="chat-messages" data-component="chat-messages" id="chat-messages-container">
@@ -294,9 +275,7 @@
                             </div>
                         </div>
                         
-                        <button type="button" class="emoji-btn" data-action="toggle-emoji-picker" title="Añadir emoji">
-                            <i class="fa-solid fa-smile"></i>
-                        </button>
+                        
                         
                         <button type="button" id="send-button" data-action="send-message" disabled>
                             <i class="fa fa-paper-plane" aria-hidden="true"></i>

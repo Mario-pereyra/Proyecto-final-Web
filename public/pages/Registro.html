@@ -75,21 +75,18 @@
             <form id="register-form" data-form="register" data-action="create-account">
                 <div class="campo-grupo" data-field="fullName">
                     <label for="input-nombreCompleto">Nombre Completo *</label>
-                    <input type="text" name="fullName" id="input-nombreCompleto" placeholder="Tu nombre completo"
-                        required minlength="2" data-validation="name" data-info="user-fullname">
-                    <div class="msg-error" id="msg-error-nombreCompleto" data-error="fullName"></div>
+                    <input type="text" name="nombre_completo" id="input-nombreCompleto" placeholder="Tu nombre completo">
+                    <div class="msg-error" id="msg-error-nombreCompleto"></div>
                 </div>
                 <div class="campo-grupo" data-field="email">
                     <label for="input-email">Email *</label>
-                    <input type="email" name="email" id="input-email" placeholder="tu@email.com" required
-                        data-validation="email" data-info="user-email">
-                    <div class="msg-error" id="msg-error-email" data-error="email"></div>
+                    <input type="email" name="correo" id="input-email" placeholder="tu@email.com" >
+                    <div class="msg-error" id="msg-error-email" ></div>
                 </div>
                 <div class="campo-grupo" data-field="password">
                     <label for="input-password">Contraseña *</label>
-                    <input type="password" name="password" id="input-password" placeholder="**********" required
-                        minlength="6" data-validation="password" data-info="user-password">
-                    <div class="msg-error" id="msg-error-password" data-error="password"></div>
+                    <input type="password" name="contrasena" id="input-contrasena" placeholder="**********">
+                    <div class="msg-error" id="msg-error-password" ></div>
                 </div>
                 <div class="password-requirements" data-info="password-requirements">
                     <p>La contraseña debe tener:</p>
@@ -120,6 +117,7 @@
         </div>
     </main>
     <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
+    <script src="../js/registro-script.js"></script>
 </body>
 <footer>
     <div class="copyright">

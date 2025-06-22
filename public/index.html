@@ -46,32 +46,32 @@
             </label>
             <input id="menu-switch" type="checkbox">
             <ul>
-                <li>
+                <li class="nav-todos">
                     <a href="pages/VerAnuncios.html">
                         Ver Anuncios
                     </a>
                 </li>
-                <li>
+                <li class="nav-publico">
                     <a href="pages/Login.html">
                         Iniciar Sesión
                     </a>
                 </li>
-                <li>
+                <li class="nav-publico">
                     <a href="pages/Registro.html">
                         Registrarse
                     </a>
                 </li>
-                <li>
+                <li class="nav-privado" style="display:none">
                     <a href="pages/MensajesComprador.html">
                         Mensajes-Comprador
                     </a>
                 </li>
-                <li>
+                <li class="nav-privado" style="display:none">
                     <a href="pages/MensajesVendedorV2.html">
                         Mensajes-Vendedor
                     </a>
                 </li>
-                <li>
+                <li class="nav-privado" style="display:none">
                     <a href="./pages/PanelVendedor.html">
                         Panel-vendedor
                     </a>
@@ -88,27 +88,7 @@
                 </div>
             </div>
 
-            <!-- User Profile Menu -->
-            <div class="header-profile-menu" id="header-profile-menu" data-component="header-profile-menu"
-                data-state="hidden">
-                <div class="profile-menu-item" data-action="view-profile">
-                    <i class="fa-solid fa-user"></i>
-                    Ver Perfil
-                </div>
-                <div class="profile-menu-item" data-action="view-saved-ads">
-                    <i class="fa-solid fa-bookmark"></i>
-                    Anuncios Guardados
-                </div>
-                <div class="profile-menu-item" data-action="view-vendor-panel">
-                    <i class="fa-solid fa-store"></i>
-                    Panel Vendedor
-                </div>
-                <div class="profile-menu-item" data-action="logout">
-                    <i class="fa-solid fa-sign-out-alt"></i>
-                    Cerrar Sesión
-                </div>
-
-            </div>
+            
         </div>
     </header>
     <main class="contenedor-main" data-component="home-main">
@@ -135,7 +115,6 @@
                         </a>
                     </div>
 
-                    <!-- Authenticated User Actions -->
                     <div class="contenedor-hero-buttons" id="hero-user-actions" data-component="hero-user-actions"
                         data-state="authenticated" style="display: none;">
                         <a href="pages/VerAnuncios.html">
@@ -477,6 +456,7 @@
     </template>
 
     
+    <script src="js//header-script"></script>
     <script src="js/profileMenu.js"></script>
 </body>
 

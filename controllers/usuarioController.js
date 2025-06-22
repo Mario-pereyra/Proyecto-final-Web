@@ -121,6 +121,7 @@ exports.updateUsuario = async (req, rep) => {
 }
 
 exports.login = async (req, rep) => {
+    console.log('BODY:', req.body);
     const { correo, contrasena } = req.body;
 
     try {

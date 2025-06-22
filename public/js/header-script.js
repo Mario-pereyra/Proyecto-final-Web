@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     navPublico.forEach(el => el.style.display = '');
   }
 });
+
 // Menú lateral/side bar de usuario y lógica de sesión
 document.addEventListener('DOMContentLoaded', function() {
   const profileTrigger = document.getElementById('profile-trigger');

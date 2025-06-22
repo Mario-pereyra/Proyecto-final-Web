@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Anuncio-informacion</title>
+    <title>Crear Anuncio</title>
     <link rel="stylesheet" href="../css/vendors/fonts.css">
     <link rel="stylesheet" href="../css/VerAnuncios/header.css">
     <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/PanelVendedor/CrearAnuncio/crearAnuncio.css ">
+    <link rel="stylesheet" href="../css/PanelVendedor/CrearAnuncio/crearAnuncio.css">
     <link rel="stylesheet" href="../css/PanelVendedor/CrearAnuncio/crearAnuncio-imagenes.css">
 </head>
 
@@ -17,7 +17,6 @@
         <a href="../index.html">
             <h1 class="logo">AstroMarket</h1>
         </a>
-
         <nav class="menu">
             <label class="menu-mobile-label" for="menu-switch">
                 <i class="fa-solid fa-bars"></i>
@@ -25,57 +24,28 @@
             </label>
             <input id="menu-switch" type="checkbox">
             <ul>
-                <li>
-                    <a href="VerAnuncios.html">
-                        Ver Anuncios
-                    </a>
-                </li>
-                <li>
-                    <a href="Login.html">
-                        Iniciar Sesion
-                    </a>
-                </li>
-                <li>
-                    <a href="Registro.html">
-                        Registrar
-                    </a>
-                </li>
-                <li>
-                    <a href="/pages/MensajesComprador.html">
-                        Mensajes-Comprador
-                    </a>
-                </li>
-                <li>
-                    <a href="/pages/MensajesVendedorV2.html">
-                        Mensajes-Vendedor
-                    </a>
-                </li>            </ul>
+                <li><a href="VerAnuncios.html">Ver Anuncios</a></li>
+                <li><a href="Login.html">Iniciar Sesion</a></li>
+                <li><a href="Registro.html">Registrar</a></li>
+                <li><a href="/pages/MensajesComprador.html">Mensajes-Comprador</a></li>
+                <li><a href="/pages/MensajesVendedorV2.html">Mensajes-Vendedor</a></li>
+            </ul>
         </nav>
         <div class="header-user-profile" id="header-profile" data-component="header-user-profile">
             <div class="header-profile-container" data-info="header-profile">
                 <img src="../recursos/img/npc.jpg" alt="Foto perfil" class="header-profile-pic" id="header-profile-image" data-image="header-user-avatar">
                 <div class="header-user-info" data-info="header-user-details">
-                    <span class="header-user-name" id="header-user-name" data-info="user-name">Desconocido</span>
-                    <span class="header-user-role" id="header-user-role" data-info="user-role">Visitante</span>
+                    <span class="header-user-name" data-info="header-user-name">Desconocido</span>
+                    <span class="header-user-role" data-info="header-user-role">Visitante</span>
                 </div>
             </div>
         </div>
-    </header>    
+    </header>
     <main>
-        <div class="CrearAnuncio-container" data-component="edit-ad-form">
+        <div class="CrearAnuncio-container" data-component="create-ad-form">
             <div class="form-header">
                 <h1>Editar Anuncio</h1>
-                <p>Modifica la información de tu producto</p>
-            </div>
-
-            <!-- Información adicional del anuncio -->
-            <div class="ad-extra-info" style="margin-bottom: 24px; background: #f7f7f7; border-radius: 8px; padding: 16px;">
-                <h4>Información del anuncio</h4>
-                <ul style="list-style: none; padding: 0; margin: 0;">
-                    <li><strong>Última actualización:</strong> <span id="last-updated">--</span></li>
-                    <li><strong>Vistas totales:</strong> <span id="total-views">--</span></li>
-                    <li><strong>Mensajes recibidos:</strong> <span id="total-messages">--</span></li>
-                </ul>
+                <p>Edita el formulario con la información de tu producto</p>
             </div>
 
             <div class="crearAnuncio-tabs" data-component="form-tabs">
@@ -89,89 +59,93 @@
                 </button>
             </div>
 
-            <form id="edit-ad-form" enctype="multipart/form-data" method="POST">
+            <!-- FORMULARIO UNIFICADO -->
+            <form id="create-ad-form" enctype="multipart/form-data" action="/api/anuncios" method="PUT">
                 <!-- SECCIÓN INFORMACIÓN -->
+                <!-- Campo oculto para usuarioId (rellenado por JS al loguear, por defecto 0) -->
+                <input type="hidden" id="input-usuario-id" name="usuarioId" value="1">
                 <div id="info-section" style="display:block;">
-                    <!-- INFORMACIÓN BÁSICA -->
                     <div class="form-section" data-section="basic-info">
                         <h3>Información Básica</h3>
                         <div class="campo-grupo" data-field="titulo">
                             <label for="input-titulo-anuncio">Título del Anuncio *</label>
                             <input type="text" id="input-titulo-anuncio" name="titulo"
-                                   placeholder="Ej: iPhone 15 Pro Max 256GB Como Nuevo"
-                                   required maxlength="100" data-validation="titulo" data-info="ad-titulo">
+                                placeholder="Ej: iPhone 15 Pro Max 256GB Como Nuevo"
+                                required maxlength="100" data-validation="titulo" data-info="ad-titulo">
                             <div class="field-help">Máximo 100 caracteres. Sé específico y claro.</div>
                             <div class="msg-error" id="msg-error-titulo" data-error="titulo" style="display: none;"></div>
                         </div>
-                        <div class="campo-grupo" data-field="descripcion">
+                        <div class="campo-grupo" data-field="description">
                             <label for="input-descripcion-anuncio">Descripción del Anuncio *</label>
                             <textarea id="input-descripcion-anuncio" name="descripcion"
-                                      placeholder="Describe tu producto: estado, características, accesorios incluidos, razón de venta..."
-                                      required maxlength="2000" rows="6" data-validation="descripcion" data-info="ad-descripcion"></textarea>
+                                placeholder="Describe tu producto: estado, características, accesorios incluidos, razón de venta..."
+                                required maxlength="2000" rows="6" data-validation="description" data-info="ad-description"></textarea>
                             <div class="field-help">
                                 <span id="description-count">0</span>/2000 caracteres. Incluye detalles importantes.
                             </div>
                             <div class="msg-error" id="msg-error-descripcion" data-error="descripcion" style="display: none;"></div>
                         </div>
                     </div>
-                    <!-- INFORMACIÓN DE PRECIO Y CATEGORÍA -->
                     <div class="form-section" data-section="price-category">
                         <h3>Precio, Categoría y Condición</h3>
                         <div class="form-row">
                             <div class="campo-grupo" data-field="price" style="flex:1; min-width:180px;">
                                 <label for="input-precio-anuncio">Precio (USD) *</label>
                                 <input type="number" id="input-precio-anuncio" name="precio"
-                                       placeholder="0.00" min="0" step="0.01" required
-                                       data-validation="precio" data-info="ad-precio">
+                                    placeholder="0.00" min="0" step="0.01" required
+                                    data-validation="price" data-info="ad-price">
                                 <div class="field-help">Precio en dólares americanos</div>
-                                <div class="msg-error" id="msg-error-precio" data-error="precio" style="display: none;"></div>
+                                <div class="msg-error" id="msg-error-precio" data-error="price" style="display: none;"></div>
                                 <label for="input-condicion-anuncio" style="margin-top:16px;">Condición *</label>
                                 <select name="estado" id="input-condicion-anuncio" required
-                                        data-validation="estado" data-info="ad-condicion">
+                                    data-validation="condition" data-info="ad-condition">
                                     <option value="">Selecciona la condición</option>
+                                    
                                     <option value="nuevo">Nuevo</option>
                                     <option value="usado">Usado</option>
                                     <option value="seminuevo">Seminuevo</option>
                                 </select>
-                                <div class="msg-error" id="msg-error-condicion" data-error="estado" style="display: none;"></div>
+                                <div class="msg-error" id="msg-error-condicion" data-error="condition" style="display: none;"></div>
+                                <label for="input-estado-publicacion" style="margin-top:16px;">Estado publicación</label>
+                                <input type="hidden" name="estado_publicacion" id="input-estado-publicacion" value="activo">
                             </div>
                             <div style="display:flex; flex-direction:column; flex:1; min-width:200px; gap:10px;">
                                 <div class="campo-grupo" data-field="category">
                                     <label for="input-categoria-anuncio">Categoría *</label>
                                     <select name="categoriaId" id="input-categoria-anuncio" required
-                                            data-validation="categoriaId" data-info="ad-categoria" data-action="load-subcategories">
+                                        data-validation="category" data-info="ad-category" data-action="load-subcategories">
                                         <option value="">Selecciona una categoría</option>
                                     </select>
-                                    <div class="msg-error" id="msg-error-categoria" data-error="categoriaId" style="display: none;"></div>
+                                    <div class="msg-error" id="msg-error-categoria" data-error="category" style="display: none;"></div>
                                 </div>
                                 <div class="campo-grupo" data-field="subcategory">
                                     <label for="input-subcategoria-anuncio">Subcategoría *</label>
                                     <select name="subcategoriaId" id="input-subcategoria-anuncio" required
-                                            data-validation="subcategoriaId" data-info="ad-subcategoria">
+                                        data-validation="subcategory" data-info="ad-subcategory" disabled>
                                         <option value="">Primero selecciona una categoría</option>
+                                        
                                     </select>
-                                    <div class="msg-error" id="msg-error-subcategoria" data-error="subcategoriaId" style="display: none;"></div>
+                                    <div class="msg-error" id="msg-error-subcategoria" data-error="subcategory" style="display: none;"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- INFORMACIÓN ADICIONAL -->
                     <div class="form-section" data-section="additional-info">
                         <h3>Ubicación</h3>
                         <div class="form-row" style="gap: 16px; align-items: flex-end;">
                             <div class="campo-grupo" data-field="departamento" style="flex:1; min-width:160px;">
                                 <label for="input-departamento-anuncio">Departamento *</label>
-                                <select name="departamentoId" id="input-departamento-anuncio" required data-validation="departamentoId" data-info="ad-departamento">
+                                <select name="departamentoId" id="input-departamento-anuncio" required data-validation="departamento" data-info="ad-departamento">
                                     <option value="">Selecciona un departamento</option>
                                 </select>
-                                <div class="msg-error" id="msg-error-departamento" data-error="departamentoId" style="display: none;"></div>
+                                <div class="msg-error" id="msg-error-departamento" data-error="departamento" style="display: none;"></div>
                             </div>
                             <div class="campo-grupo" data-field="ciudad" style="flex:1; min-width:160px;">
                                 <label for="input-ciudad-anuncio">Ciudad *</label>
-                                <select name="ciudadId" id="input-ciudad-anuncio" required data-validation="ciudadId" data-info="ad-ciudad">
+                                <select name="ciudadId" id="input-ciudad-anuncio" required data-validation="ciudad" data-info="ad-ciudad" disabled>
                                     <option value="">Primero selecciona un departamento</option>
                                 </select>
-                                <div class="msg-error" id="msg-error-ciudad" data-error="ciudadId" style="display: none;"></div>
+                                <div class="msg-error" id="msg-error-ciudad" data-error="ciudad" style="display: none;"></div>
                             </div>
                             <div class="campo-grupo" data-field="zona" style="flex:1; min-width:160px;">
                                 <label for="input-zona-anuncio">Zona</label>
@@ -181,22 +155,24 @@
                         </div>
                     </div>
                     <div class="form-actions">
-                        <button type="button" class="secondary-button" data-action="cancel-edit">
+                        <button type="button" class="secondary-button" data-action="cancel-create">
                             <i class="fas fa-times"></i>
                             Cancelar
                         </button>
-                        <button type="submit" class="primary-button" data-action="save-changes">
-                            <i class="fas fa-save"></i>
-                            Guardar Cambios
+                        <button type="button" class="primary-button" data-action="save-and-continue">
+                            <i class="fas fa-arrow-right"></i>
+                            Guardar y Continuar
                         </button>
+                        <!-- Campos ocultos para vistas y valoracion -->
+                        <input type="hidden" name="vistas" id="input-vistas" value="0">
+                        <input type="hidden" name="valoracion" id="input-valoracion" value="0">
                     </div>
                 </div>
-
                 <!-- SECCIÓN IMÁGENES -->
                 <div id="images-section" style="display:none;">
                     <div class="images-section" data-section="images">
                         <h3>Imágenes del producto</h3>
-                        <p>Actualiza las imágenes de tu anuncio. La primera será la imagen principal.</p>
+                        <p>Agrega hasta 4 imágenes. La primera será la imagen principal.</p>
                         <div class="upload-instructions">
                             <div class="instruction-item">
                                 <i class="fas fa-image"></i>
@@ -207,50 +183,37 @@
                                 <span>Máximo 5MB por imagen</span>
                             </div>
                             <div class="instruction-item">
-                                <i class="fas fa-expand-arrows-alt"></i>
+                                <i class="fas fa-star"></i>
                                 <span>Resolución mínima: 800x600px</span>
-                            </div>
-                            <div class="instruction-item">
-                                <i class="fas fa-info-circle"></i>
-                                <span>Deja vacío para mantener imagen actual</span>
                             </div>
                         </div>
                         <div class="ad-image-wrapper-container" data-component="image-previews">
-                            <div class="ad-image-wrapper primary" data-image-slot="0" data-status="current" data-current-image="">
-                                <div class="image-placeholder" data-placeholder="main" style="display: none;">
+                            <div class="ad-image-wrapper primary" data-image-slot="0" data-status="empty">
+                                <div class="image-placeholder" data-placeholder="main">
                                     <i class="fas fa-camera"></i>
                                     <span>Imagen Principal</span>
                                     <small>Haz clic para seleccionar</small>
                                 </div>
-                                <img class="current-image" src="" alt="Imagen actual" data-current="0">
                                 <img class="preview-image" style="display: none;" data-preview="0">
                                 <input type="file" class="image-input" name="images[]" accept="image/jpeg,image/png,image/webp" style="display:none" data-input="image-0">
-                                <div class="image-controls">
-                                    <button type="button" class="control-btn set-main" data-action="set-main" data-slot="0" title="Imagen principal">
+                                <div class="image-controls" style="display: none;">
+                                    <button type="button" class="control-btn set-main" data-action="set-main" data-slot="0">
                                         <i class="fas fa-star"></i>
                                     </button>
-                                    <button type="button" class="control-btn change-image" data-action="change-image" data-slot="0" title="Cambiar imagen">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button type="button" class="control-btn remove-image" data-action="remove-image" data-slot="0" title="Eliminar imagen">
+                                    <button type="button" class="control-btn remove-image" data-action="remove-image" data-slot="0">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </div>
-                                <div class="image-status-badge main">Principal</div>
                             </div>
-                            <div class="ad-image-wrapper" data-image-slot="1" data-status="current" data-current-image="">
-                                <div class="image-placeholder" style="display: none;">
+                            <div class="ad-image-wrapper" data-image-slot="1" data-status="empty">
+                                <div class="image-placeholder">
                                     <i class="fas fa-plus"></i>
                                     <span>Imagen 2</span>
                                 </div>
-                                <img class="current-image" src="" alt="Imagen actual" data-current="1">
                                 <img class="preview-image" style="display: none;" data-preview="1">
                                 <input type="file" class="image-input" name="images[]" accept="image/jpeg,image/png,image/webp" style="display:none" data-input="image-1">
-                                <div class="image-controls">
-                                    <button type="button" class="control-btn change-image" data-action="change-image" data-slot="1" title="Cambiar imagen">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button type="button" class="control-btn remove-image" data-action="remove-image" data-slot="1" title="Eliminar imagen">
+                                <div class="image-controls" style="display: none;">
+                                    <button type="button" class="control-btn remove-image" data-action="remove-image" data-slot="1">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </div>
@@ -259,7 +222,6 @@
                                 <div class="image-placeholder">
                                     <i class="fas fa-plus"></i>
                                     <span>Imagen 3</span>
-                                    <small>Añadir nueva</small>
                                 </div>
                                 <img class="preview-image" style="display: none;" data-preview="2">
                                 <input type="file" class="image-input" name="images[]" accept="image/jpeg,image/png,image/webp" style="display:none" data-input="image-2">
@@ -273,7 +235,6 @@
                                 <div class="image-placeholder">
                                     <i class="fas fa-plus"></i>
                                     <span>Imagen 4</span>
-                                    <small>Añadir nueva</small>
                                 </div>
                                 <img class="preview-image" style="display: none;" data-preview="3">
                                 <input type="file" class="image-input" name="images[]" accept="image/jpeg,image/png,image/webp" style="display:none" data-input="image-3">
@@ -284,170 +245,29 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- INFORMACIÓN DE CAMBIOS -->
-                        <div class="changes-summary" data-component="changes-summary" style="display: none;">
-                            <h4>Cambios a realizar:</h4>
-                            <ul id="changes-list" data-list="changes">
-                                <!-- Se llena dinámicamente -->
-                            </ul>
-                        </div>
                         <div class="form-actions">
-                            <button type="button" class="secondary-button" data-action="cancel-edit">
-                                <i class="fas fa-times"></i>
-                                Cancelar
+                            <button type="button" class="secondary-button" data-action="go-back">
+                                <i class="fas fa-arrow-left"></i>
+                                Volver
                             </button>
-                            <button type="button" class="secondary-button" data-action="reset-changes">
-                                <i class="fas fa-undo"></i>
-                                Deshacer Cambios
-                            </button>
-                            <button type="submit" class="primary-button" data-action="save-images">
-                                <i class="fas fa-save"></i>
-                                Guardar Cambios
+                            <button type="submit" class="primary-button" data-action="publish-ad">
+                                <i class="fas fa-check"></i>
+                                Publicar Anuncio
                             </button>
                         </div>
                     </div>
-                </div>
-
-                <!-- INFORMACIÓN BÁSICA -->
-                <div class="form-section" data-section="basic-info">
-                    <h3>Información Básica</h3>
-                    <div class="campo-grupo" data-field="titulo">
-                        <label for="input-titulo-anuncio">Título del Anuncio *</label>
-                        <input type="text" id="input-titulo-anuncio" name="titulo"
-                               placeholder="Ej: iPhone 15 Pro Max 256GB Como Nuevo"
-                               required maxlength="100" data-validation="titulo" data-info="ad-titulo">
-                        <div class="field-help">Máximo 100 caracteres. Sé específico y claro.</div>
-                        <div class="msg-error" id="msg-error-titulo" data-error="titulo" style="display: none;"></div>
-                    </div>
-                    <div class="campo-grupo" data-field="descripcion">
-                        <label for="input-descripcion-anuncio">Descripción del Anuncio *</label>
-                        <textarea id="input-descripcion-anuncio" name="descripcion"
-                                  placeholder="Describe tu producto: estado, características, accesorios incluidos, razón de venta..."
-                                  required maxlength="2000" rows="6" data-validation="descripcion" data-info="ad-descripcion"></textarea>
-                        <div class="field-help">
-                            <span id="description-count">0</span>/2000 caracteres. Incluye detalles importantes.
-                        </div>
-                        <div class="msg-error" id="msg-error-descripcion" data-error="descripcion" style="display: none;"></div>
-                    </div>
-                </div>
-
-                <!-- INFORMACIÓN DE PRECIO Y CATEGORÍA -->
-                <div class="form-section" data-section="price-category">
-                    <h3>Precio, Categoría y Condición</h3>
-                    <div class="form-row">
-                        <div class="campo-grupo" data-field="price" style="flex:1; min-width:180px;">
-                            <label for="input-precio-anuncio">Precio (USD) *</label>
-                            <input type="number" id="input-precio-anuncio" name="precio"
-                                   placeholder="0.00" min="0" step="0.01" required
-                                   data-validation="precio" data-info="ad-precio">
-                            <div class="field-help">Precio en dólares americanos</div>
-                            <div class="msg-error" id="msg-error-precio" data-error="precio" style="display: none;"></div>
-                            <label for="input-condicion-anuncio" style="margin-top:16px;">Condición *</label>
-                            <select name="estado" id="input-condicion-anuncio" required
-                                    data-validation="estado" data-info="ad-condicion">
-                                <option value="">Selecciona la condición</option>
-                                <option value="nuevo">Nuevo</option>
-                                <option value="usado">Usado</option>
-                                <option value="seminuevo">Seminuevo</option>
-                            </select>
-                            <div class="msg-error" id="msg-error-condicion" data-error="estado" style="display: none;"></div>
-                        </div>
-                        <div style="display:flex; flex-direction:column; flex:1; min-width:200px; gap:10px;">
-                            <div class="campo-grupo" data-field="category">
-                                <label for="input-categoria-anuncio">Categoría *</label>
-                                <select name="categoriaId" id="input-categoria-anuncio" required
-                                        data-validation="categoriaId" data-info="ad-categoria" data-action="load-subcategories">
-                                    <option value="">Selecciona una categoría</option>
-                                </select>
-                                <div class="msg-error" id="msg-error-categoria" data-error="categoriaId" style="display: none;"></div>
-                            </div>
-                            <div class="campo-grupo" data-field="subcategory">
-                                <label for="input-subcategoria-anuncio">Subcategoría *</label>
-                                <select name="subcategoriaId" id="input-subcategoria-anuncio" required
-                                        data-validation="subcategoriaId" data-info="ad-subcategoria">
-                                    <option value="">Primero selecciona una categoría</option>
-                                </select>
-                                <div class="msg-error" id="msg-error-subcategoria" data-error="subcategoriaId" style="display: none;"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- INFORMACIÓN ADICIONAL -->
-                <div class="form-section" data-section="additional-info">
-                    <h3>Ubicación</h3>
-                    <div class="form-row" style="gap: 16px; align-items: flex-end;">
-                        <div class="campo-grupo" data-field="departamento" style="flex:1; min-width:160px;">
-                            <label for="input-departamento-anuncio">Departamento *</label>
-                            <select name="departamentoId" id="input-departamento-anuncio" required data-validation="departamentoId" data-info="ad-departamento">
-                                <option value="">Selecciona un departamento</option>
-                            </select>
-                            <div class="msg-error" id="msg-error-departamento" data-error="departamentoId" style="display: none;"></div>
-                        </div>
-                        <div class="campo-grupo" data-field="ciudad" style="flex:1; min-width:160px;">
-                            <label for="input-ciudad-anuncio">Ciudad *</label>
-                            <select name="ciudadId" id="input-ciudad-anuncio" required data-validation="ciudadId" data-info="ad-ciudad">
-                                <option value="">Primero selecciona un departamento</option>
-                            </select>
-                            <div class="msg-error" id="msg-error-ciudad" data-error="ciudadId" style="display: none;"></div>
-                        </div>
-                        <div class="campo-grupo" data-field="zona" style="flex:1; min-width:160px;">
-                            <label for="input-zona-anuncio">Zona</label>
-                            <input type="text" id="input-zona-anuncio" name="zona" placeholder="Zona, barrio, referencia..." maxlength="100" data-validation="zona" data-info="ad-zona">
-                            <div class="field-help">Ubicación donde se encuentra el producto</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- INFORMACIÓN DE ACTUALIZACIÓN -->
-                <div class="form-section" data-section="update-info">
-                    <h3>Información de Actualización</h3>
-                    <div class="update-details">
-                        <p><strong>Última actualización:</strong> <span id="last-updated" data-info="last-updated">--</span></p>
-                        <p><strong>Vistas totales:</strong> <span id="total-views" data-info="total-views">--</span></p>
-                        <p><strong>Mensajes recibidos:</strong> <span id="total-messages" data-info="total-messages">--</span></p>
-                    </div>
-                </div>
-
-                <div class="form-actions">
-                    <button type="button" class="secondary-button" data-action="cancel-edit">
-                        <i class="fas fa-times"></i>
-                        Cancelar
-                    </button>
-                    <button type="button" class="danger-button" data-action="delete-ad">
-                        <i class="fas fa-trash"></i>
-                        Eliminar Anuncio
-                    </button>
-                    <button type="submit" class="primary-button" data-action="save-changes">
-                        <i class="fas fa-save"></i>
-                        Guardar Cambios
-                    </button>
                 </div>
             </form>
         </div>
-
-        <!-- MODAL DE CONFIRMACIÓN PARA ELIMINACIÓN -->
-        <div id="delete-modal" class="modal" style="display: none;" data-component="delete-modal">
-            <div class="modal-content">
-                <h3>Confirmar eliminación</h3>
-                <p>¿Estás seguro de que quieres eliminar este anuncio? Esta acción no se puede deshacer.</p>
-                <div class="modal-actions">
-                    <button class="secondary-button" data-action="cancel-delete">Cancelar</button>
-                    <button class="danger-button" data-action="confirm-delete">Eliminar</button>
-                </div>
-            </div>
-        </div>
-
-        
-    </main>    
+    </main>
     <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
-    <script src="../js/editarAnuncio.js"></script>
-
+    <script src="../js/Tabs_y_previsualizacion.js"></script>
+    <script src="../js/categorias.js"></script>
+    <script src="../js/ubicacion.js"></script>
 </body>
 <footer>
     <div class="copyright">
         <p>@2024 AstroMarket.Todos los derechos reservados</p>
     </div>
 </footer>
-
 </html>
