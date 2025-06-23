@@ -62,3 +62,10 @@ async function loguerse() {
         msgErrorEmail.innerHTML = 'Error de red o servidor';
     }
 }
+
+
+function cerrarSesion() {
+    localStorage.removeItem('usuario');
+    if (window.refrescarHeaderUsuario) window.refrescarHeaderUsuario();
+    window.location.href = '/login.html';
+}

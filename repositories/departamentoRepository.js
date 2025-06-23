@@ -1,3 +1,4 @@
+
 const dbconnection = require("../db/mysqlConecction");
 let connection = null;
 
@@ -19,3 +20,31 @@ exports.getCiudadesByDepartamento = async (departamentoId) => {
   const [ciudades] = await connection.query("SELECT * FROM ciudades WHERE departamentoId = ?",[departamentoId]);
   return ciudades;
 };
+
+
+exports.getDepartamentoById = async (id) => {
+  const connection = await getConnection();
+  const [departamento] = await connection.query("SELECT * FROM departamentos WHERE departamentoId = ?", [id]);
+  return departamento[0];
+};
+
+exports.createDepartamento = async (nombre) => {
+  const connection = await getConnection();
+  const [result] = await connection.query("INSERT INTO departamentos (nombre) VALUES (?)", [nombre]);
+  return { id: result.insertId, nombre };
+};
+
+
+exports.updateDepartamento = async (id, nombre) => {
+  const connection = await getConnection();
+  await connection.query("UPDATE departamentos SET nombre = ? WHERE departamentoId = ?", [nombre, id]);
+  return { id, nombre };
+};
+
+
+exports.deleteDepartamento = async (id) => {
+  const connection = await getConnection();
+  await connection.query("DELETE FROM departamentos WHERE departamentoId = ?", [id]);
+  return { id };
+};
+

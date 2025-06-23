@@ -22,3 +22,52 @@ exports.getCiudadesByDepartamento = async (req, res) => {
     res.status(500).json({ message: "Error al obtener las ciudades" });
   }
 };
+exports.getDepartamentoById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const departamento = await departamentoRepository.getDepartamentoById(id);
+    if (!departamento) {
+      return res.status(404).json({ message: "Departamento no encontrado" });
+    }
+    res.status(200).json(departamento);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error al obtener el departamento" });
+  }
+};
+
+exports.createDepartamento = async (req, res) => {
+  try {
+    const { nombre } = req.body;
+    if (!nombre) return res.status(400).json({ message: "El nombre es obligatorio" });
+    const nuevoDepartamento = await departamentoRepository.createDepartamento(nombre);
+    res.status(201).json(nuevoDepartamento);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error al crear el departamento" });
+  }
+};
+
+exports.updateDepartamento = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { nombre } = req.body;
+    if (!nombre) return res.status(400).json({ message: "El nombre es obligatorio" });
+    const updated = await departamentoRepository.updateDepartamento(id, nombre);
+    res.status(200).json(updated);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error al actualizar el departamento" });
+  }
+};
+
+exports.deleteDepartamento = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await departamentoRepository.deleteDepartamento(id);
+    res.status(200).json({ message: "Departamento eliminado", id });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error al eliminar el departamento" });
+  }
+};

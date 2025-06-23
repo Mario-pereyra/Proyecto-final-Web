@@ -6,12 +6,12 @@ exports.getConversaciones = async (req, res) => {
     if (!usuarioId) {
       return res.status(400).json({ message: "El ID de usuario es requerido." });
     }
-
- 
     if (isNaN(usuarioId) || Number(usuarioId) <= 0) {
       return res.status(400).json({ message: "El ID de usuario debe ser un número válido y positivo." });
     }
+
     const conversaciones = await mensajeRepository.getConversacionesPorUsuarioId(usuarioId);
+    
     if (!conversaciones || conversaciones.length === 0) {
       return res.status(200).json({ message: "No se encontraron conversaciones", conversaciones: [] });
     }
@@ -28,19 +28,20 @@ exports.getMensajes = async (req, res) => {
     const { conversacionId } = req.params;
     const { usuarioId } = req.query; // El ID del usuario se pasará como query param (ej: ?usuarioId=15)
 
-    if (!conversacionId || !usuarioId) {
+    if (!conversacionId) {
       return res.status(400).json({
-        message: "El ID de conversación y el ID de usuario son requeridos.",
+        message: "El ID de conversación es requerido.",
       });
     }
     if (isNaN(conversacionId) || Number(conversacionId) <= 0) {
       return res.status(400).json({ message: "El ID de conversación debe ser un número válido y positivo." });
     }
-    if (isNaN(usuarioId) || Number(usuarioId) <= 0) {
-      return res.status(400).json({ message: "El ID de usuario debe ser un número válido y positivo." });
+
+    // Si usuarioId está presente y es válido, marcar como leídos
+    if (usuarioId && !isNaN(usuarioId) && Number(usuarioId) > 0) {
+      await mensajeRepository.marcarMensajesComoLeidos(conversacionId, usuarioId);
     }
-  
-    mensajeRepository.marcarMensajesComoLeidos(conversacionId, usuarioId);
+
     const mensajes = await mensajeRepository.getMensajesPorConversacionId(conversacionId);
     res.status(200).json(mensajes);
   } catch (error) {

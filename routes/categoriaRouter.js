@@ -2,9 +2,14 @@ const express = require('express');
 const router = express.Router();
 const categoriaController = require('../controllers/categoriaController');
 
-// GET /api/categorias
+
+// Categorías
 router.get('/', categoriaController.getCategorias);
-// GET /api/categorias/:categoriaId/subcategorias
-router.get('/:categoriaId/subcategorias', categoriaController.getSubcategoriasByCategoria);
+router.get('/:id', categoriaController.getCategoriaById);
+router.post('/', categoriaController.createCategoria);
+router.put('/:id', categoriaController.updateCategoria);
+router.delete('/:id', categoriaController.deleteCategoria);
+
+
 
 module.exports = router;

@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const mensajeController = require("../controllers/mensajeController");
 
-// --- Definición de Endpoints para el Chat ---
+
 
 // Endpoint para iniciar o encontrar una conversación (desde la página del anuncio)
 // POST /api/chat/conversacion/iniciar

@@ -1,3 +1,8 @@
+exports.getImagenes = async () => {
+  const connection = await getConnection();
+  const [imagenes] = await connection.query("SELECT * FROM imagenes");
+  return imagenes;
+};
 const dbConnection = require("../db/mysqlConecction");
 
 let connection = null;
@@ -44,4 +49,16 @@ exports.deleteImagenById = async (imagenId) => {
     return null;
   }
   return resultado;
+};
+
+exports.getRutaImagenPrincipalByAnuncioId = async (anuncioId) => {
+  const connection = await getConnection();
+  const [rows] = await connection.query(
+    "SELECT ruta_archivo FROM imagenes WHERE anuncioId = ? AND es_principal = 1 LIMIT 1",
+    [anuncioId]
+  );
+  if (!rows || rows.length === 0) {
+    return null;
+  }
+  return rows[0].ruta_archivo;
 };

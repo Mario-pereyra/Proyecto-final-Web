@@ -82,13 +82,13 @@ exports.getAnunciosConImagenes = async () => {
   if (!anuncios || anuncios.length === 0) {
     return [];
   }
-  // Trae todas las imágenes asociadas
+
   const [imagenes] = await connection.query(
     `SELECT ai.anuncioId, i.imagenId, i.nombre_archivo, i.ruta_archivo, ai.es_principal, ai.orden
          FROM anuncio_imagenes ai
          JOIN imagenes i ON ai.imagenId = i.imagenId`
   );
-  // Asocia imágenes a cada anuncio
+
   anuncios.forEach((anuncio) => {
     anuncio.imagenes = imagenes.filter(
       (img) => img.anuncioId === anuncio.anuncioId
@@ -99,14 +99,11 @@ exports.getAnunciosConImagenes = async () => {
 
 exports.getAnuncioConImagenesById = async (anuncioId) => {
   const connection = await getConnection();
-  // Trae el anuncio
-  const [anuncioRows] = await connection.query(
-    "SELECT * FROM anuncios WHERE anuncioId = ?",
-    [anuncioId]
-  );
+  const [anuncioRows] = await connection.query("SELECT * FROM anuncios WHERE anuncioId = ?",[anuncioId]
+);
   if (!anuncioRows || anuncioRows.length === 0) return null;
   const anuncio = anuncioRows[0];
-  // Trae las imágenes asociadas
+
   const [imagenes] = await connection.query(
     `SELECT i.imagenId, i.nombre_archivo, i.ruta_archivo, ai.es_principal, ai.orden
          FROM anuncio_imagenes ai
@@ -119,15 +116,45 @@ exports.getAnuncioConImagenesById = async (anuncioId) => {
   return anuncio;
 };
 
-/**
- * Busca y filtra anuncios basándose en un objeto de filtros.
- * @param {object} filtros - Un objeto que puede contener: { categoria, departamentoId, ciudadId, precioMin, precioMax, busquedaTexto }
- * @returns {Promise<Array>} - Un array de anuncios que coinciden con los filtros.
- */
+
+
+
+exports.deleteAnuncioImagen = async (anuncioId, imagenId) => {
+  const connection = await getConnection();
+  await connection.query(
+    "DELETE FROM anuncio_imagenes WHERE anuncioId = ? AND imagenId = ?",
+    [anuncioId, imagenId]
+  );
+};
+
+exports.updateEstadoPublicacion = async (anuncioId, estado_publicacion) => {
+  const connection = await getConnection();
+  const [result] = await connection.query(
+    "UPDATE anuncios SET estado_publicacion = ? WHERE anuncioId = ?",
+    [estado_publicacion, anuncioId]
+  );
+  return result;
+};
+
+exports.getImagenesIdsByAnuncio = async (anuncioId) => {
+  const connection = await getConnection();
+  const [rows] = await connection.query(
+    "SELECT imagenId FROM anuncio_imagenes WHERE anuncioId = ?",
+    [anuncioId]
+  );
+  return rows.map((row) => row.imagenId);
+};
+
+
+exports.deleteAnuncioImagenes = async (anuncioId) => {
+  const connection = await getConnection();
+  await connection.query("DELETE FROM anuncio_imagenes WHERE anuncioId = ?", [
+    anuncioId,
+  ]);
+};
+
 exports.buscar = async (filtros) => {
   const conn = await getConnection();
-
-  // Base de la consulta SQL
   let sql = `
         SELECT 
             a.anuncioId, a.titulo, a.precio, a.estado,
@@ -147,8 +174,6 @@ exports.buscar = async (filtros) => {
 
   const whereClauses = [];
   const params = [];
-
-  // --- Construcción dinámica de la cláusula WHERE ---
 
   if (filtros.categoria) {
     whereClauses.push("cat.nombre = ?");
@@ -189,37 +214,3 @@ exports.buscar = async (filtros) => {
   return rows;
 };
 
-// Elimina la asociación de una imagen específica a un anuncio
-exports.deleteAnuncioImagen = async (anuncioId, imagenId) => {
-  const connection = await getConnection();
-  await connection.query(
-    "DELETE FROM anuncio_imagenes WHERE anuncioId = ? AND imagenId = ?",
-    [anuncioId, imagenId]
-  );
-};
-// Actualiza solo el estado_publicacion de un anuncio
-exports.updateEstadoPublicacion = async (anuncioId, estado_publicacion) => {
-  const connection = await getConnection();
-  const [result] = await connection.query(
-    "UPDATE anuncios SET estado_publicacion = ? WHERE anuncioId = ?",
-    [estado_publicacion, anuncioId]
-  );
-  return result;
-};
-// Obtiene los IDs de las imágenes asociadas a un anuncio
-exports.getImagenesIdsByAnuncio = async (anuncioId) => {
-  const connection = await getConnection();
-  const [rows] = await connection.query(
-    "SELECT imagenId FROM anuncio_imagenes WHERE anuncioId = ?",
-    [anuncioId]
-  );
-  return rows.map((row) => row.imagenId);
-};
-
-// Elimina los registros de anuncio_imagenes asociados a un anuncio
-exports.deleteAnuncioImagenes = async (anuncioId) => {
-  const connection = await getConnection();
-  await connection.query("DELETE FROM anuncio_imagenes WHERE anuncioId = ?", [
-    anuncioId,
-  ]);
-};

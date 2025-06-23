@@ -9,15 +9,15 @@ const getConnection = async () => {
 };
 
 exports.encontrarOCrearConversacion = async (anuncioId,compradorId,vendedorId) => {
-  const conn = await getConnection();
-  let [conversaciones] = await conn.query(
+  const connection = await getConnection();
+  let [conversaciones] = await connection.query(
     "SELECT conversacionId FROM conversaciones WHERE anuncioId = ? AND compradorId = ?",
     [anuncioId, compradorId]
   );
   if (conversaciones.length > 0) {
     return conversaciones[0].conversacionId;
   } else {
-    const [resultado] = await conn.query("INSERT INTO conversaciones (anuncioId, compradorId, vendedorId) VALUES (?, ?, ?)",
+    const [resultado] = await connection.query("INSERT INTO conversaciones (anuncioId, compradorId, vendedorId) VALUES (?, ?, ?)",
       [anuncioId, compradorId, vendedorId]
     );
     return resultado.insertId;
@@ -25,8 +25,8 @@ exports.encontrarOCrearConversacion = async (anuncioId,compradorId,vendedorId) =
 };
 
 exports.getConversacionesPorUsuarioId = async (usuarioId) => {
-  const conn = await getConnection();
-  const [filas] = await conn.query(
+  const connection = await getConnection();
+  const [filas] = await connection.query(
     `SELECT 
             c.conversacionId, 
             c.anuncioId,

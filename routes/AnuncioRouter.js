@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-// PUT /api/anuncios/:anuncioId/con-imagenes (actualiza anuncio y sus imágenes)
+// PUT /api/anuncios/:anuncioId/con-imagenes 
 router.put("/:anuncioId/con-imagenes", upload.array("images[]", 4), AnuncioController.updateAnuncioConImagenes
 );
 // PATCH /api/anuncios/:anuncioId/estado-publicacion
@@ -36,10 +36,7 @@ router.delete("/:anuncioId", AnuncioController.deleteAnuncioConImagenes);
 //GET /api/anuncios/con-imagenes
 router.get("/con-imagenes", AnuncioController.getAnunciosConImagenes);
 //GET /api/anuncios/:anuncioId/con-imagenes
-router.get(
-  "/:anuncioId/con-imagenes",
-  AnuncioController.getAnuncioConImagenesById
-);
+router.get("/:anuncioId/con-imagenes",AnuncioController.getAnuncioConImagenesById);
 // POST /api/anuncios/ (con imágenes)
 router.post("/", upload.array("images[]", 4),AnuncioController.createAnuncioConImagenes);
 
