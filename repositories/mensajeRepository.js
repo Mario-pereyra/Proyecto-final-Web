@@ -27,14 +27,20 @@ exports.findOrCreateConversation = async (anuncioId, compradorId, vendedorId) =>
     }
 };
 
-// ... la función getConversationsByUserId se mantiene igual que antes ...
 exports.getConversationsByUserId = async (usuarioId) => {
     const conn = await getConnection();
     const [rows] = await conn.query(
         `SELECT 
-            c.conversacionId, c.anuncioId, c.compradorId, c.vendedorId, c.fecha_ultimo_mensaje,
+            c.conversacionId, 
+            c.anuncioId,
+            c.compradorId,
+            c.vendedorId,
+            c.fecha_ultimo_mensaje,
             a.titulo AS anuncioTitulo,
-            (SELECT url FROM anuncio_imagenes WHERE anuncioId = c.anuncioId ORDER BY orden LIMIT 1) AS anuncioImagen,
+            -- ------ INICIO DE LA CORRECCIÓN ------
+            -- Esta subconsulta ahora une 'anuncio_imagenes' con 'imagenes' para obtener la 'ruta_archivo' correcta.
+            (SELECT i.ruta_archivo FROM anuncio_imagenes ai JOIN imagenes i ON ai.imagenId = i.imagenId WHERE ai.anuncioId = c.anuncioId ORDER BY ai.es_principal DESC, ai.orden ASC LIMIT 1) AS anuncioImagen,
+            -- ------ FIN DE LA CORRECCIÓN ------
             u_comprador.nombre_completo AS compradorNombre,
             u_vendedor.nombre_completo AS vendedorNombre,
             (SELECT contenido FROM mensajes WHERE conversacionId = c.conversacionId ORDER BY fecha_envio DESC LIMIT 1) AS ultimoMensaje

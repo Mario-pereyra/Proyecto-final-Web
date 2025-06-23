@@ -1,10 +1,9 @@
-
 const mensajeRepository = require('../repositories/mensajeRepository');
 
 /**
  * Obtiene todas las conversaciones de un usuario.
  */
-exports.getConversaciones = async (req, res) => {
+exports.getConversations = async (req, res) => {
     try {
         const usuarioId = req.params.usuarioId;
         if (!usuarioId) {
@@ -26,7 +25,7 @@ exports.getConversaciones = async (req, res) => {
  * Obtiene los mensajes de una conversación específica.
  * IMPORTANTE: También marca los mensajes como leídos para el usuario que hace la petición.
  */
-exports.getMensajes = async (req, res) => {
+exports.getMessages = async (req, res) => {
     try {
         const { conversacionId } = req.params;
         const { usuarioId } = req.query; // El ID del usuario se pasará como query param (ej: ?usuarioId=15)
@@ -53,7 +52,7 @@ exports.getMensajes = async (req, res) => {
 /**
  * Crea un nuevo mensaje en una conversación.
  */
-exports.createMensaje = async (req, res) => {
+exports.createMessage = async (req, res) => {
     try {
         const { conversacionId, emisorId, contenido } = req.body;
 
@@ -82,7 +81,7 @@ exports.createMensaje = async (req, res) => {
 /**
  * Inicia o encuentra una conversación. Se usa cuando un comprador contacta a un vendedor desde un anuncio.
  */
-exports.iniciarConversacion = async (req, res) => {
+exports.startConversation = async (req, res) => {
     try {
         const { anuncioId, compradorId, vendedorId } = req.body;
 

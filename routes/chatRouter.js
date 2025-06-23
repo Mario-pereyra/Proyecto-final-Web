@@ -6,19 +6,19 @@ const mensajeController = require('../controllers/mensajeController');
 
 // Endpoint para iniciar o encontrar una conversación (desde la página del anuncio)
 // POST /api/chat/conversations/start
-router.post('/conversacion/iniciar', mensajeController.iniciarConversacion);
+router.post('/conversations/start', mensajeController.startConversation);
 
 // Endpoint para obtener todas las conversaciones de un usuario específico
 // GET /api/chat/conversations/user/:usuarioId
-router.get('/conversaciones/usuario/:usuarioId', mensajeController.getConversaciones);
+router.get('/conversations/user/:usuarioId', mensajeController.getConversations);
 
 // Endpoint para obtener todos los mensajes de una conversación específica
 // GET /api/chat/conversations/:conversacionId/messages?usuarioId=XX
-router.get('/conversacion/:conversacionId/mensajes', mensajeController.getMensajes);
+router.get('/conversations/:conversacionId/messages', mensajeController.getMessages);
 
 // Endpoint para enviar un nuevo mensaje
 // POST /api/chat/messages
-router.post('/mensajes', mensajeController.createMensaje);
+router.post('/messages', mensajeController.createMessage);
 
 
 module.exports = router;
