@@ -92,6 +92,70 @@ a {
     color: rgb(147, 51, 234);
 }
 
+.bg-laptops {
+    background-color: rgb(219, 234, 254); 
+    color: rgb(37, 99, 235);             
+}
+
+
+.bg-smartphones {
+    background-color: rgb(220, 252, 231); 
+    color: rgb(22, 163, 74);             
+}
+
+
+.bg-gaming {
+    background-color: rgb(254, 226, 226); 
+    color: rgb(220, 38, 38);             
+}
+
+
+.bg-audio {
+    background-color: rgb(243, 232, 255); 
+    color: rgb(147, 51, 234);            
+}
+
+
+.bg-accesorios {
+    background-color: rgb(255, 237, 213); 
+    color: rgb(234, 88, 12);             
+}
+
+
+.bg-smartwatches {
+    background-color: rgb(207, 250, 254); 
+    color: rgb(8, 145, 178);             
+}
+
+
+.bg-camaras {
+    background-color: rgb(229, 231, 235); 
+    color: rgb(55, 65, 81);             
+
+}
+.bg-tablets {
+    background-color: rgb(254, 249, 195); 
+    color: rgb(202, 138, 4);             
+}
+
+
+.bg-hogar {
+    background-color: rgb(252, 231, 243); 
+    color: rgb(219, 39, 119);            
+}
+
+
+.bg-almacenamiento {
+    background-color: rgb(224, 231, 255); 
+    color: rgb(79, 70, 229);             
+}
+
+
+.category-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
 .card-title {
     font-size: 20px;
     font-weight: 600;
