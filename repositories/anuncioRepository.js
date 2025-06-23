@@ -10,9 +10,7 @@ const getConnection = async () => {
 
 exports.getAnuncios = async () => {
   const connection = await getConnection();
-  const [getAnunciosResultados] = await connection.query(
-    "SELECT* FROM anuncios "
-  );
+  const [getAnunciosResultados] = await connection.query("SELECT* FROM anuncios ");
   if (!getAnunciosResultados || getAnunciosResultados.length === 0) {
     return null;
   }
@@ -22,90 +20,36 @@ exports.getAnuncios = async () => {
 exports.getAnuncioById = async (anuncioId) => {
   const connection = await getConnection();
 
-  const [getAnuncioByIdResultado] = await connection.query(
-    "SELECT* FROM anuncios WHERE anuncioId = ?",
-    [anuncioId]
-  );
+  const [getAnuncioByIdResultado] = await connection.query("SELECT* FROM anuncios WHERE anuncioId = ?",[anuncioId]);
   if (!getAnuncioByIdResultado || getAnuncioByIdResultado.length === 0) {
     return null;
   }
   return getAnuncioByIdResultado;
 };
 
-exports.createAnuncio = async (
-  usuarioId,
-  titulo,
-  descripcion,
-  precio,
-  categoriaId,
-  subcategoriaId,
-  estado,
-  estado_publicacion,
-  departamentoId,
-  ciudadId,
-  zona,
-  vistas,
-  valoracion
-) => {
+exports.createAnuncio = async (usuarioId,titulo,descripcion,precio,categoriaId,
+  subcategoriaId,estado,estado_publicacion,departamentoId,ciudadId,zona,vistas,valoracion) => {
+
   const connection = await getConnection();
-  const [createAnuncioResultado] = await connection.query(
-    "INSERT INTO anuncios (usuarioId, titulo, descripcion, precio, categoriaId, subcategoriaId, estado, estado_publicacion, departamentoId, ciudadId, zona, vistas, valoracion) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-    [
-      usuarioId,
-      titulo,
-      descripcion,
-      precio,
-      categoriaId,
-      subcategoriaId,
-      estado,
-      estado_publicacion,
-      departamentoId,
-      ciudadId,
-      zona,
-      vistas,
-      valoracion,
-    ]
-  );
+  const [createAnuncioResultado] = await connection.query("INSERT INTO anuncios (usuarioId, titulo, descripcion, precio, categoriaId, subcategoriaId, estado, estado_publicacion, departamentoId, ciudadId, zona, vistas, valoracion) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
+    [usuarioId,titulo,descripcion,precio,categoriaId,subcategoriaId,estado,estado_publicacion,
+      departamentoId,ciudadId,zona,vistas,valoracion,]);
+
   if (!createAnuncioResultado || createAnuncioResultado.length === 0) {
     return null;
   }
   return createAnuncioResultado;
 };
 
-exports.updateAnuncio = async (
-  anuncioId,
-  titulo,
-  descripcion,
-  precio,
-  categoriaId,
-  subcategoriaId,
-  estado,
-  estado_publicacion,
-  departamentoId,
-  ciudadId,
-  zona,
-  vistas,
-  valoracion
-) => {
+exports.updateAnuncio = async (anuncioId,titulo,descripcion,precio,categoriaId,subcategoriaId,
+  estado,estado_publicacion,departamentoId,ciudadId,zona,vistas,valoracion) => {
+
   const connection = await getConnection();
   const [updateAnuncioResultado] = await connection.query(
     "UPDATE anuncios SET titulo = ?, descripcion = ?, precio = ?, categoriaId = ?, subcategoriaId = ?, estado = ?, estado_publicacion = ?, departamentoId = ?, ciudadId = ?, zona = ?, vistas = ?, valoracion = ? WHERE anuncioId = ?",
-    [
-      titulo,
-      descripcion,
-      precio,
-      categoriaId,
-      subcategoriaId,
-      estado,
-      estado_publicacion,
-      departamentoId,
-      ciudadId,
-      zona,
-      vistas,
-      valoracion,
-      anuncioId,
-    ]
-  );
+    [titulo,descripcion,precio,categoriaId,subcategoriaId,estado,estado_publicacion,departamentoId,
+      ciudadId,zona,vistas,valoracion,anuncioId,]);
+      
   if (!updateAnuncioResultado || updateAnuncioResultado.length === 0) {
     return null;
   }
@@ -115,8 +59,7 @@ exports.updateAnuncio = async (
 exports.deleteAnuncio = async (anuncioId) => {
   const connection = await getConnection();
 
-  const [deleteAnuncioResultado] = await connection.query(
-    "DELETE FROM anuncios WHERE anuncioId = ?  ",
+  const [deleteAnuncioResultado] = await connection.query("DELETE FROM anuncios WHERE anuncioId = ?  ",
     [anuncioId]
   );
   if (!deleteAnuncioResultado || deleteAnuncioResultado.length === 0) {
@@ -124,19 +67,21 @@ exports.deleteAnuncio = async (anuncioId) => {
   }
   return deleteAnuncioResultado;
 };
+
 exports.asociarImagen = async (anuncioId, imagenId, es_principal, orden) => {
   const connection = await getConnection();
-  await connection.query(
-    "INSERT INTO anuncio_imagenes (anuncioId, imagenId, es_principal, orden) VALUES (?, ?, ?, ?)",
+  await connection.query("INSERT INTO anuncio_imagenes (anuncioId, imagenId, es_principal, orden) VALUES (?, ?, ?, ?)",
     [anuncioId, imagenId, es_principal ? 1 : 0, orden]
   );
 };
 
 exports.getAnunciosConImagenes = async () => {
   const connection = await getConnection();
-  // Trae todos los anuncios
+ 
   const [anuncios] = await connection.query("SELECT * FROM anuncios");
-  if (!anuncios || anuncios.length === 0) return [];
+  if (!anuncios || anuncios.length === 0) {
+    return [];
+  }
   // Trae todas las imágenes asociadas
   const [imagenes] = await connection.query(
     `SELECT ai.anuncioId, i.imagenId, i.nombre_archivo, i.ruta_archivo, ai.es_principal, ai.orden

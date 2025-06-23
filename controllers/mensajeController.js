@@ -1,161 +1,111 @@
 const mensajeRepository = require("../repositories/mensajeRepository");
 
-/**
- * Obtiene todas las conversaciones de un usuario.
- */
-exports.getConversations = async (req, res) => {
+exports.getConversaciones = async (req, res) => {
   try {
     const usuarioId = req.params.usuarioId;
     if (!usuarioId) {
-      return res
-        .status(400)
-        .json({ message: "El ID de usuario es requerido." });
+      return res.status(400).json({ message: "El ID de usuario es requerido." });
     }
 
-    const conversations = await mensajeRepository.getConversationsByUserId(
-      usuarioId
-    );
-
-    // Aunque no haya conversaciones, la petición es exitosa. Se devuelve un array vacío.
-    res.status(200).json(conversations);
+ 
+    if (isNaN(usuarioId) || Number(usuarioId) <= 0) {
+      return res.status(400).json({ message: "El ID de usuario debe ser un número válido y positivo." });
+    }
+    const conversaciones = await mensajeRepository.getConversacionesPorUsuarioId(usuarioId);
+    if (!conversaciones || conversaciones.length === 0) {
+      return res.status(200).json({ message: "No se encontraron conversaciones", conversaciones: [] });
+    }
+    res.status(200).json({ conversaciones });
   } catch (error) {
-    console.error("Error en getConversations:", error);
-    res
-      .status(500)
-      .json({
-        message: "Error interno del servidor al obtener las conversaciones.",
-      });
+    console.error(error);
+    res.status(500).json({ message: "Error interno del servidor al obtener las conversaciones.", });
   }
 };
 
-/**
- * Obtiene los mensajes de una conversación específica.
- * IMPORTANTE: También marca los mensajes como leídos para el usuario que hace la petición.
- */
-exports.getMessages = async (req, res) => {
+
+exports.getMensajes = async (req, res) => {
   try {
     const { conversacionId } = req.params;
     const { usuarioId } = req.query; // El ID del usuario se pasará como query param (ej: ?usuarioId=15)
 
     if (!conversacionId || !usuarioId) {
-      return res
-        .status(400)
-        .json({
-          message: "El ID de conversación y el ID de usuario son requeridos.",
-        });
+      return res.status(400).json({
+        message: "El ID de conversación y el ID de usuario son requeridos.",
+      });
     }
-
-    // Primero, marcamos los mensajes como leídos por este usuario.
-    // No necesitamos esperar a que termine (await), puede hacerse en segundo plano.
-    mensajeRepository.markMessagesAsRead(conversacionId, usuarioId);
-
-    // Luego, obtenemos los mensajes para enviarlos en la respuesta.
-    const messages = await mensajeRepository.getMessagesByConversationId(
-      conversacionId
-    );
-
-    res.status(200).json(messages);
+    if (isNaN(conversacionId) || Number(conversacionId) <= 0) {
+      return res.status(400).json({ message: "El ID de conversación debe ser un número válido y positivo." });
+    }
+    if (isNaN(usuarioId) || Number(usuarioId) <= 0) {
+      return res.status(400).json({ message: "El ID de usuario debe ser un número válido y positivo." });
+    }
+  
+    mensajeRepository.marcarMensajesComoLeidos(conversacionId, usuarioId);
+    const mensajes = await mensajeRepository.getMensajesPorConversacionId(conversacionId);
+    res.status(200).json(mensajes);
   } catch (error) {
-    console.error("Error en getMessages:", error);
-    res
-      .status(500)
-      .json({ message: "Error interno del servidor al obtener los mensajes." });
+    console.error(error);
+    res.status(500).json({ message: "Error interno del servidor al obtener los mensajes." });
   }
 };
 
-/**
- * Crea un nuevo mensaje en una conversación.
- */
-exports.createMessage = async (req, res) => {
-  try {
-    const { conversacionId, emisorId, contenido } = req.body;
 
-    // Validaciones básicas
-    if (!conversacionId || !emisorId || !contenido) {
-      return res
-        .status(400)
-        .json({
-          message:
-            "Faltan datos requeridos (conversacionId, emisorId, contenido).",
-        });
+exports.crearMensaje = async (req, res) => {
+  const { conversacionId, emisorId, contenido } = req.body;
+  try {
+
+    if (isNaN(conversacionId) || Number(conversacionId) <= 0) {
+      return res.status(400).json({ message: "El ID de conversación debe ser un número válido y positivo." });
+    }
+    if (isNaN(emisorId) || Number(emisorId) <= 0) {
+      return res.status(400).json({ message: "El ID del emisor debe ser un número válido y positivo." });
+    }
+    if (typeof contenido !== 'string' || contenido.trim().length === 0) {
+      return res.status(400).json({ message: "El contenido del mensaje no puede estar vacío." });
+    }
+    if (contenido.length > 1000) {
+      return res.status(400).json({ message: "El contenido del mensaje no puede superar los 1000 caracteres." });
     }
 
-    const result = await mensajeRepository.createMessage(
-      conversacionId,
-      emisorId,
-      contenido
-    );
-
-    if (!result) {
-      // Si el repositorio devolvió null, significa que algo falló.
+    const resultado = await mensajeRepository.crearMensaje(conversacionId, emisorId, contenido);
+    if (!resultado) {
       return res.status(500).json({ message: "No se pudo crear el mensaje." });
     }
-
-    // Devolvemos una respuesta de éxito con el ID del nuevo mensaje.
-    res
-      .status(201)
-      .json({
-        message: "Mensaje creado con éxito.",
-        mensajeId: result.insertId,
-      });
+    res.status(201).json({ message: "Mensaje creado con éxito.", mensajeId: resultado.insertId });
   } catch (error) {
-    console.error("Error en createMessage:", error);
-    res
-      .status(500)
-      .json({ message: "Error interno del servidor al crear el mensaje." });
+    console.error(error);
+    res.status(500).json({ message: "Error interno del servidor al crear el mensaje." });
   }
 };
 
-/**
- * Inicia o encuentra una conversación. Se usa cuando un comprador contacta a un vendedor desde un anuncio.
- */
-exports.startConversation = async (req, res) => {
+
+exports.iniciarConversacion = async (req, res) => {
+  const { anuncioId, compradorId, vendedorId } = req.body;
   try {
-    const { anuncioId, compradorId, vendedorId } = req.body;
 
-    if (!anuncioId || !compradorId || !vendedorId) {
-      return res
-        .status(400)
-        .json({
-          message:
-            "Faltan datos requeridos (anuncioId, compradorId, vendedorId).",
-        });
+    if (isNaN(anuncioId) || Number(anuncioId) <= 0) {
+      return res.status(400).json({ message: "El ID de anuncio debe ser un número válido y positivo." });
     }
-
+    if (isNaN(compradorId) || Number(compradorId) <= 0) {
+      return res.status(400).json({ message: "El ID de comprador  debe ser un número válido y positivo." });
+    }
+    if (isNaN(vendedorId) || Number(vendedorId) <= 0) {
+      return res.status(400).json({ message: "El ID de  vendedor debe ser un número válido y positivo." });
+    }
     if (compradorId === vendedorId) {
-      return res
-        .status(400)
-        .json({
-          message:
-            "Un usuario no puede iniciar una conversación consigo mismo.",
-        });
+      return res.status(400).json({ message: "Un usuario no puede iniciar  una conversación consigo mismo." });
     }
 
-    const conversacionId = await mensajeRepository.findOrCreateConversation(
-      anuncioId,
-      compradorId,
-      vendedorId
-    );
-
+    const conversacionId = await mensajeRepository.encontrarOCrearConversacion(anuncioId,compradorId,vendedorId);
     if (!conversacionId) {
-      return res
-        .status(500)
-        .json({ message: "No se pudo iniciar la conversación." });
+      return res.status(500).json({ message: "No se pudo iniciar la conversación." });
     }
-
     // Devolvemos el ID de la conversación para que el frontend pueda redirigir o cargar el chat.
-    res
-      .status(201)
-      .json({
-        message: "Conversación iniciada/encontrada con éxito.",
-        conversacionId: conversacionId,
+    res.status(201).json({message: "Conversación iniciada/encontrada con éxito.",conversacionId: conversacionId,
       });
   } catch (error) {
-    console.error("Error en startConversation:", error);
-    res
-      .status(500)
-      .json({
-        message: "Error interno del servidor al iniciar la conversación.",
+    console.error(error);
+    res.status(500).json({message: "Error interno del servidor al iniciar la conversación.",
       });
   }
 };

@@ -12,10 +12,7 @@ const getConnection = async () => {
 exports.getImagenesById = async (imagenId) => {
   const connection = await getConnection();
 
-  const [imagen] = await connection.query(
-    "SELECT* FROM imagenes WHERE imagenId = ?",
-    [imagenId]
-  );
+  const [imagen] = await connection.query("SELECT* FROM imagenes WHERE imagenId = ?",[imagenId]);
   if (!imagen || imagen.length === 0) {
     return null;
   }
@@ -24,10 +21,7 @@ exports.getImagenesById = async (imagenId) => {
 
 exports.createImage = async (nombre_archivo, ruta_archivo) => {
   const connection = await getConnection();
-  const [resultado] = await connection.query(
-    "INSERT INTO imagenes (nombre_archivo, ruta_archivo) VALUES (?, ?)",
-    [nombre_archivo, ruta_archivo]
-  );
+  const [resultado] = await connection.query("INSERT INTO imagenes (nombre_archivo, ruta_archivo) VALUES (?, ?)",[nombre_archivo, ruta_archivo]);
   if (!resultado) {
     return null;
   }
@@ -36,10 +30,7 @@ exports.createImage = async (nombre_archivo, ruta_archivo) => {
 
 exports.updateImagenById = async (imagenId, nombre_archivo, ruta_archivo) => {
   const connection = await getConnection();
-  const [resultado] = await connection.query(
-    "UPDATE imagenes SET nombre_archivo = ?, ruta_archivo = ? WHERE imagenId = ?",
-    [nombre_archivo, ruta_archivo, imagenId]
-  );
+  const [resultado] = await connection.query("UPDATE imagenes SET nombre_archivo = ?, ruta_archivo = ? WHERE imagenId = ?",[nombre_archivo, ruta_archivo, imagenId]);
   if (!resultado) {
     return null;
   }
@@ -48,10 +39,7 @@ exports.updateImagenById = async (imagenId, nombre_archivo, ruta_archivo) => {
 
 exports.deleteImagenById = async (imagenId) => {
   const connection = await getConnection();
-  const resultado = await connection.query(
-    "DELETE FROM imagenes WHERE imagenId = ?",
-    [imagenId]
-  );
+  const resultado = await connection.query("DELETE FROM imagenes WHERE imagenId = ?",[imagenId]);
   if (!resultado) {
     return null;
   }

@@ -16,9 +16,6 @@ exports.getDepartamentos = async () => {
 
 exports.getCiudadesByDepartamento = async (departamentoId) => {
   const connection = await getConnection();
-  const [ciudades] = await connection.query(
-    "SELECT * FROM ciudades WHERE departamentoId = ?",
-    [departamentoId]
-  );
+  const [ciudades] = await connection.query("SELECT * FROM ciudades WHERE departamentoId = ?",[departamentoId]);
   return ciudades;
 };

@@ -1,14 +1,4 @@
-// PUT /api/anuncios/:anuncioId/con-imagenes (actualiza anuncio y sus imágenes)
-router.put(
-  "/:anuncioId/con-imagenes",
-  upload.array("images[]", 4),
-  AnuncioController.updateAnuncioConImagenes
-);
-// PATCH /api/anuncios/:anuncioId/estado-publicacion
-router.patch(
-  "/:anuncioId/estado-publicacion",
-  AnuncioController.updateEstadoPublicacion
-);
+
 const express = require("express");
 const router = express.Router();
 const multer = require("multer");
@@ -25,6 +15,12 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
+// PUT /api/anuncios/:anuncioId/con-imagenes (actualiza anuncio y sus imágenes)
+router.put("/:anuncioId/con-imagenes", upload.array("images[]", 4), AnuncioController.updateAnuncioConImagenes
+);
+// PATCH /api/anuncios/:anuncioId/estado-publicacion
+router.patch("/:anuncioId/estado-publicacion", AnuncioController.updateEstadoPublicacion
+);
 //Ejemplo de uso: /api/anuncios/buscar?categoria=Laptops%20y%20Computadoras&precioMax=1000
 router.get("/buscar", AnuncioController.buscarAnuncios);
 // GET /api/anuncios/
@@ -45,10 +41,6 @@ router.get(
   AnuncioController.getAnuncioConImagenesById
 );
 // POST /api/anuncios/ (con imágenes)
-router.post(
-  "/",
-  upload.array("images[]", 4),
-  AnuncioController.createAnuncioConImagenes
-);
+router.post("/", upload.array("images[]", 4),AnuncioController.createAnuncioConImagenes);
 
 module.exports = router;

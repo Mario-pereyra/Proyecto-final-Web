@@ -16,9 +16,6 @@ exports.getCategorias = async () => {
 
 exports.getSubcategoriasByCategoria = async (categoriaId) => {
   const connection = await getConnection();
-  const [subcategorias] = await connection.query(
-    "SELECT * FROM subcategorias WHERE categoriaId = ?",
-    [categoriaId]
-  );
+  const [subcategorias] = await connection.query("SELECT * FROM subcategorias WHERE categoriaId = ?",[categoriaId]);
   return subcategorias;
 };
