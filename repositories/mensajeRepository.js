@@ -1,36 +1,40 @@
-const dbConnection = require('../db/mysqlConecction');
+const dbConnection = require("../db/mysqlConecction");
 let connection = null;
 
 const getConnection = async () => {
-    if (connection === null) {
-        connection = await dbConnection();
-    }
-    return connection;
+  if (connection === null) {
+    connection = await dbConnection();
+  }
+  return connection;
 };
 
 // ... la función findOrCreateConversation se mantiene igual que antes ...
-exports.findOrCreateConversation = async (anuncioId, compradorId, vendedorId) => {
-    const conn = await getConnection();
-    let [conversations] = await conn.query(
-        'SELECT conversacionId FROM conversaciones WHERE anuncioId = ? AND compradorId = ?',
-        [anuncioId, compradorId]
-    );
+exports.findOrCreateConversation = async (
+  anuncioId,
+  compradorId,
+  vendedorId
+) => {
+  const conn = await getConnection();
+  let [conversations] = await conn.query(
+    "SELECT conversacionId FROM conversaciones WHERE anuncioId = ? AND compradorId = ?",
+    [anuncioId, compradorId]
+  );
 
-    if (conversations.length > 0) {
-        return conversations[0].conversacionId;
-    } else {
-        const [result] = await conn.query(
-            'INSERT INTO conversaciones (anuncioId, compradorId, vendedorId) VALUES (?, ?, ?)',
-            [anuncioId, compradorId, vendedorId]
-        );
-        return result.insertId;
-    }
+  if (conversations.length > 0) {
+    return conversations[0].conversacionId;
+  } else {
+    const [result] = await conn.query(
+      "INSERT INTO conversaciones (anuncioId, compradorId, vendedorId) VALUES (?, ?, ?)",
+      [anuncioId, compradorId, vendedorId]
+    );
+    return result.insertId;
+  }
 };
 
 exports.getConversationsByUserId = async (usuarioId) => {
-    const conn = await getConnection();
-    const [rows] = await conn.query(
-        `SELECT 
+  const conn = await getConnection();
+  const [rows] = await conn.query(
+    `SELECT 
             c.conversacionId, 
             c.anuncioId,
             c.compradorId,
@@ -50,20 +54,19 @@ exports.getConversationsByUserId = async (usuarioId) => {
          JOIN usuarios u_vendedor ON c.vendedorId = u_vendedor.usuarioId
          WHERE c.compradorId = ? OR c.vendedorId = ?
          ORDER BY c.fecha_ultimo_mensaje DESC`,
-        [usuarioId, usuarioId]
-    );
-    return rows;
+    [usuarioId, usuarioId]
+  );
+  return rows;
 };
-
 
 // ... la función getMessagesByConversationId se mantiene igual que antes ...
 exports.getMessagesByConversationId = async (conversacionId) => {
-    const conn = await getConnection();
-    const [rows] = await conn.query(
-        'SELECT mensajeId, conversacionId, emisorId, contenido, fecha_envio, leido FROM mensajes WHERE conversacionId = ? ORDER BY fecha_envio ASC',
-        [conversacionId]
-    );
-    return rows;
+  const conn = await getConnection();
+  const [rows] = await conn.query(
+    "SELECT mensajeId, conversacionId, emisorId, contenido, fecha_envio, leido FROM mensajes WHERE conversacionId = ? ORDER BY fecha_envio ASC",
+    [conversacionId]
+  );
+  return rows;
 };
 
 /**
@@ -75,43 +78,43 @@ exports.getMessagesByConversationId = async (conversacionId) => {
  * @returns {Promise<object|null>} - El resultado de la inserción o null si algo falla.
  */
 exports.createMessage = async (conversacionId, emisorId, contenido) => {
-    const conn = await getConnection();
+  const conn = await getConnection();
 
-    // 1. Insertamos el nuevo mensaje
-    const [insertResult] = await conn.query(
-        'INSERT INTO mensajes (conversacionId, emisorId, contenido, leido) VALUES (?, ?, ?, 0)',
-        [conversacionId, emisorId, contenido]
-    );
+  // 1. Insertamos el nuevo mensaje
+  const [insertResult] = await conn.query(
+    "INSERT INTO mensajes (conversacionId, emisorId, contenido, leido) VALUES (?, ?, ?, 0)",
+    [conversacionId, emisorId, contenido]
+  );
 
-    // Verificamos si la inserción fue exitosa. `affectedRows` nos dice si se creó una nueva fila.
-    if (!insertResult || insertResult.affectedRows === 0) {
-        console.error("Fallo al insertar el mensaje.");
-        return null; // La inserción falló, detenemos el proceso.
-    }
+  // Verificamos si la inserción fue exitosa. `affectedRows` nos dice si se creó una nueva fila.
+  if (!insertResult || insertResult.affectedRows === 0) {
+    console.error("Fallo al insertar el mensaje.");
+    return null; // La inserción falló, detenemos el proceso.
+  }
 
-    // 2. Actualizamos la tabla de conversaciones con la nueva fecha
-    const [updateResult] = await conn.query(
-        'UPDATE conversaciones SET fecha_ultimo_mensaje = CURRENT_TIMESTAMP WHERE conversacionId = ?',
-        [conversacionId]
-    );
+  // 2. Actualizamos la tabla de conversaciones con la nueva fecha
+  const [updateResult] = await conn.query(
+    "UPDATE conversaciones SET fecha_ultimo_mensaje = CURRENT_TIMESTAMP WHERE conversacionId = ?",
+    [conversacionId]
+  );
 
-    // Verificamos si la actualización fue exitosa.
-    if (!updateResult || updateResult.affectedRows === 0) {
-        console.error("Fallo al actualizar la fecha de la conversación.");
-        // Opcional: Podríamos intentar borrar el mensaje insertado para mantener la consistencia,
-        // pero por ahora, simplemente notificamos el fallo.
-        return null;
-    }
-    
-    // Si ambas operaciones fueron exitosas, devolvemos el resultado de la inserción.
-    return insertResult;
+  // Verificamos si la actualización fue exitosa.
+  if (!updateResult || updateResult.affectedRows === 0) {
+    console.error("Fallo al actualizar la fecha de la conversación.");
+    // Opcional: Podríamos intentar borrar el mensaje insertado para mantener la consistencia,
+    // pero por ahora, simplemente notificamos el fallo.
+    return null;
+  }
+
+  // Si ambas operaciones fueron exitosas, devolvemos el resultado de la inserción.
+  return insertResult;
 };
 
 // ... la función markMessagesAsRead se mantiene igual que antes ...
 exports.markMessagesAsRead = async (conversacionId, usuarioReceptorId) => {
-    const conn = await getConnection();
-    await conn.query(
-      'UPDATE mensajes SET leido = 1 WHERE conversacionId = ? AND emisorId != ? AND leido = 0',
-      [conversacionId, usuarioReceptorId]
-    );
+  const conn = await getConnection();
+  await conn.query(
+    "UPDATE mensajes SET leido = 1 WHERE conversacionId = ? AND emisorId != ? AND leido = 0",
+    [conversacionId, usuarioReceptorId]
+  );
 };

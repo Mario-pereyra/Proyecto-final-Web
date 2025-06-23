@@ -1,10 +1,13 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const departamentoController = require('../controllers/departamentoController');
+const departamentoController = require("../controllers/departamentoController");
 
 // GET /api/departamentos
-router.get('/', departamentoController.getDepartamentos);
+router.get("/", departamentoController.getDepartamentos);
 // GET /api/departamentos/:departamentoId/ciudades
-router.get('/:departamentoId/ciudades', departamentoController.getCiudadesByDepartamento);
+router.get(
+  "/:departamentoId/ciudades",
+  departamentoController.getCiudadesByDepartamento
+);
 
 module.exports = router;

@@ -23,6 +23,6 @@ app.use('/api/departamentos', departamentoRouter)
 app.use('/api/chat', chatRouter)
 
 app.listen(port, () => {
-    console.log(`El servidor corre en el puerto ${port}`); //cargar variable de entorno
+    console.log(`El servidor corre en el puerto ${port}`); 
 });
 
