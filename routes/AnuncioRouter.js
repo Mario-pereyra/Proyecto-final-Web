@@ -21,7 +21,7 @@ router.put("/:anuncioId/con-imagenes", upload.array("images[]", 4), AnuncioContr
 // PATCH /api/anuncios/:anuncioId/estado-publicacion
 router.patch("/:anuncioId/estado-publicacion", AnuncioController.updateEstadoPublicacion
 );
-//Ejemplo de uso: /api/anuncios/buscar?categoria=Laptops%20y%20Computadoras&precioMax=1000
+//GET /api/anuncios/buscar?categoria=Laptops%20y%20Computadoras&precioMax=1000
 router.get("/buscar", AnuncioController.buscarAnuncios);
 // GET /api/anuncios/
 router.get("/", AnuncioController.getAnuncios);

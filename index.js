@@ -29,6 +29,6 @@ app.use('/api/chat', chatRouter)
 app.use('/api/ciudades', ciudadRouter)
 
 app.listen(port, () => {
-    console.log(`El servidor corre en el puerto ${port}`); 
+    console.log(`El servidor y la pagina corre en el puerto ${port}`); 
 });
 

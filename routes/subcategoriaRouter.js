@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const subcategoriaController = require('../controllers/subcategoriaController');
 
-// Subcategorías
+
 router.get('/', subcategoriaController.getSubcategorias);
 router.get('/:id', subcategoriaController.getSubcategoriaById);
 router.post('/', subcategoriaController.createSubcategoria);

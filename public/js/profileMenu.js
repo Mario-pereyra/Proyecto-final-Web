@@ -3,13 +3,21 @@ document.addEventListener('DOMContentLoaded', function() {
   try { usuario = JSON.parse(localStorage.getItem('usuario')); } catch {}
   const navPrivado = document.querySelectorAll('.nav-privado');
   const navPublico = document.querySelectorAll('.nav-publico');
+  const btnIniciarSesion = document.querySelector('#btn-inciarSesion');
+  const btnRegistrarse = document.querySelector('#btn-registrarse');
+
+
   // Los de .nav-todos siempre visibles
   if (usuario && usuario.usuarioId) {
     navPrivado.forEach(el => el.style.display = '');
     navPublico.forEach(el => el.style.display = 'none');
+    if (btnIniciarSesion) btnIniciarSesion.style.display = 'none';
+    if (btnRegistrarse) btnRegistrarse.style.display = 'none';
   } else {
     navPrivado.forEach(el => el.style.display = 'none');
     navPublico.forEach(el => el.style.display = '');
+    if (btnIniciarSesion) btnIniciarSesion.style.display = '';
+    if (btnRegistrarse) btnRegistrarse.style.display = '';
   }
 });
 // Menú lateral/side bar de usuario y lógica de sesión
