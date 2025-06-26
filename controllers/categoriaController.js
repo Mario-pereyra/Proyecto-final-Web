@@ -42,8 +42,13 @@ exports.getCategoriaById = async (req, res) => {
 exports.createCategoria = async (req, res) => {
   try {
     const { nombre } = req.body;
-    if (!nombre) return res.status(400).json({ message: "El nombre es obligatorio" });
+    if (!nombre || typeof nombre !== 'string' || !nombre.trim()) {
+      return res.status(400).json({ message: "El nombre es obligatorio y debe ser un string no vacío" });
+    }
     const nuevaCategoria = await categoriaRepository.createCategoria(nombre);
+    if (!nuevaCategoria) {
+      return res.status(500).json({ message: "No se pudo crear la categoría" });
+    }
     res.status(201).json(nuevaCategoria);
   } catch (error) {
     console.error(error);
@@ -55,8 +60,13 @@ exports.updateCategoria = async (req, res) => {
   try {
     const { id } = req.params;
     const { nombre } = req.body;
-    if (!nombre) return res.status(400).json({ message: "El nombre es obligatorio" });
+    if (!nombre || typeof nombre !== 'string' || !nombre.trim()) {
+      return res.status(400).json({ message: "El nombre es obligatorio y debe ser un string no vacío" });
+    }
     const updated = await categoriaRepository.updateCategoria(id, nombre);
+    if (!updated) {
+      return res.status(404).json({ message: "Categoría no encontrada" });
+    }
     res.status(200).json(updated);
   } catch (error) {
     console.error(error);
@@ -67,7 +77,10 @@ exports.updateCategoria = async (req, res) => {
 exports.deleteCategoria = async (req, res) => {
   try {
     const { id } = req.params;
-    await categoriaRepository.deleteCategoria(id);
+    const deleted = await categoriaRepository.deleteCategoria(id);
+    if (!deleted) {
+      return res.status(404).json({ message: "Categoría no encontrada" });
+    }
     res.status(200).json({ message: "Categoría eliminada", id });
   } catch (error) {
     console.error(error);

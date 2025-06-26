@@ -41,6 +41,9 @@ exports.createDepartamento = async (req, res) => {
     const { nombre } = req.body;
     if (!nombre) return res.status(400).json({ message: "El nombre es obligatorio" });
     const nuevoDepartamento = await departamentoRepository.createDepartamento(nombre);
+    if (!nuevoDepartamento) {
+      return res.status(500).json({ message: "No se pudo crear el departamento" });
+    }
     res.status(201).json(nuevoDepartamento);
   } catch (error) {
     console.error(error);
@@ -54,6 +57,9 @@ exports.updateDepartamento = async (req, res) => {
     const { nombre } = req.body;
     if (!nombre) return res.status(400).json({ message: "El nombre es obligatorio" });
     const updated = await departamentoRepository.updateDepartamento(id, nombre);
+    if (!updated) {
+      return res.status(404).json({ message: "Departamento no encontrado" });
+    }
     res.status(200).json(updated);
   } catch (error) {
     console.error(error);
@@ -64,7 +70,10 @@ exports.updateDepartamento = async (req, res) => {
 exports.deleteDepartamento = async (req, res) => {
   try {
     const { id } = req.params;
-    await departamentoRepository.deleteDepartamento(id);
+    const deleted = await departamentoRepository.deleteDepartamento(id);
+    if (!deleted) {
+      return res.status(404).json({ message: "Departamento no encontrado" });
+    }
     res.status(200).json({ message: "Departamento eliminado", id });
   } catch (error) {
     console.error(error);

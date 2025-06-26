@@ -1,3 +1,4 @@
+
 const dbconnection = require("../db/mysqlConecction");
 let connection = null;
 
@@ -214,3 +215,35 @@ exports.buscar = async (filtros) => {
   return rows;
 };
 
+// Devuelve anuncios con nombres de subcategoría y usuario, e imágenes asociadas
+exports.getAnunciosConNombres = async () => {
+  const connection = await getConnection();
+  const [anuncios] = await connection.query(`
+    SELECT 
+      a.*, 
+      s.nombre AS subcategoriaNombre, 
+      u.nombre AS usuarioNombre
+    FROM anuncios a
+    LEFT JOIN subcategorias s ON a.subcategoriaId = s.subcategoriaId
+    LEFT JOIN usuarios u ON a.usuarioId = u.usuarioId
+  `);
+
+  if (!anuncios || anuncios.length === 0) {
+    return [];
+  }
+
+  // Obtener imágenes asociadas
+  const [imagenes] = await connection.query(
+    `SELECT ai.anuncioId, i.imagenId, i.nombre_archivo, i.ruta_archivo, ai.es_principal, ai.orden
+     FROM anuncio_imagenes ai
+     JOIN imagenes i ON ai.imagenId = i.imagenId`
+  );
+
+  anuncios.forEach((anuncio) => {
+    anuncio.imagenes = imagenes.filter(
+      (img) => img.anuncioId === anuncio.anuncioId
+    );
+  });
+
+  return anuncios;
+};

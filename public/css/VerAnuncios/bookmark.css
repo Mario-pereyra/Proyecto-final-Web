@@ -1,0 +1,31 @@
+/* Bookmark icon toggle styles for anuncios */
+.bookmark-checkbox {
+  display: none;
+}
+
+.bookmark-icon-label {
+  cursor: pointer;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+  background: #fff;
+  border-radius: 6px;
+  padding: 4px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+  transition: background 0.2s;
+}
+
+.bookmark-icon-label .fa-bookmark {
+  color: #bbb;
+  font-size: 1.5em;
+  transition: color 0.2s;
+}
+
+.bookmark-checkbox:checked + .bookmark-icon-label .fa-bookmark {
+  color: #007bff;
+}
+
+.bookmark-icon-label:hover .fa-bookmark {
+  color: #0056b3;
+}

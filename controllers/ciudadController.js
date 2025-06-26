@@ -31,6 +31,9 @@ exports.createCiudad = async (req, res) => {
       return res.status(400).json({ message: "Nombre y departamentoId son obligatorios" });
     }
     const nuevaCiudad = await ciudadRepository.createCiudad(nombre, departamentoId);
+    if (!nuevaCiudad) {
+      return res.status(500).json({ message: "No se pudo crear la ciudad" });
+    }
     res.status(201).json(nuevaCiudad);
   } catch (error) {
     console.error(error);
@@ -46,6 +49,9 @@ exports.updateCiudad = async (req, res) => {
       return res.status(400).json({ message: "Nombre y departamentoId son obligatorios" });
     }
     const updated = await ciudadRepository.updateCiudad(id, nombre, departamentoId);
+    if (!updated) {
+      return res.status(404).json({ message: "Ciudad no encontrada" });
+    }
     res.status(200).json(updated);
   } catch (error) {
     console.error(error);
@@ -56,7 +62,10 @@ exports.updateCiudad = async (req, res) => {
 exports.deleteCiudad = async (req, res) => {
   try {
     const { id } = req.params;
-    await ciudadRepository.deleteCiudad(id);
+    const deleted = await ciudadRepository.deleteCiudad(id);
+    if (!deleted) {
+      return res.status(404).json({ message: "Ciudad no encontrada" });
+    }
     res.status(200).json({ message: "Ciudad eliminada", ciudadId: id });
   } catch (error) {
     console.error(error);

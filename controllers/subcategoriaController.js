@@ -29,6 +29,9 @@ exports.createSubcategoria = async (req, res) => {
     const { nombre, categoriaId } = req.body;
     if (!nombre || !categoriaId) return res.status(400).json({ message: "Nombre y categoriaId son obligatorios" });
     const nuevaSubcategoria = await subcategoriaRepository.createSubcategoria(nombre, categoriaId);
+    if (!nuevaSubcategoria) {
+      return res.status(500).json({ message: "No se pudo crear la subcategoría" });
+    }
     res.status(201).json(nuevaSubcategoria);
   } catch (error) {
     console.error(error);
@@ -42,6 +45,9 @@ exports.updateSubcategoria = async (req, res) => {
     const { nombre, categoriaId } = req.body;
     if (!nombre || !categoriaId) return res.status(400).json({ message: "Nombre y categoriaId son obligatorios" });
     const updated = await subcategoriaRepository.updateSubcategoria(id, nombre, categoriaId);
+    if (!updated) {
+      return res.status(404).json({ message: "Subcategoría no encontrada" });
+    }
     res.status(200).json(updated);
   } catch (error) {
     console.error(error);
@@ -52,7 +58,10 @@ exports.updateSubcategoria = async (req, res) => {
 exports.deleteSubcategoria = async (req, res) => {
   try {
     const { id } = req.params;
-    await subcategoriaRepository.deleteSubcategoria(id);
+    const deleted = await subcategoriaRepository.deleteSubcategoria(id);
+    if (!deleted) {
+      return res.status(404).json({ message: "Subcategoría no encontrada" });
+    }
     res.status(200).json({ message: "Subcategoría eliminada", id });
   } catch (error) {
     console.error(error);

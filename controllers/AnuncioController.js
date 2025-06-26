@@ -4,13 +4,14 @@ const path = require("path");
 const anuncioRepository = require("../repositories/anuncioRepository");
 const imagenRepository = require("../repositories/imagenRepository");
 
+// Devuelve anuncios con nombres de subcategoría y usuario, e imágenes asociadas
 exports.getAnuncios = async (req, rep) => {
   try {
-    const getAnunciosResultados = await anuncioRepository.getAnuncios();
-    if (!getAnunciosResultados || getAnunciosResultados.length === 0) {
+    const anuncios = await anuncioRepository.getAnunciosConNombres();
+    if (!anuncios || anuncios.length === 0) {
       return rep.status(404).json({ message: "No se encontraron anuncios" });
     }
-    return rep.status(200).json(getAnunciosResultados);
+    return rep.status(200).json(anuncios);
   } catch (error) {
     console.error(error);
     return rep.status(500).json({ message: "Error al obtener todos los anuncios" });
@@ -32,19 +33,33 @@ exports.getAnuncioById = async (req, rep) => {
   }
 };
 exports.createAnuncio = async (req, rep) => {
-  const usuarioId = req.body.usuarioId;
-  const titulo = req.body.titulo;
-  const descripcion = req.body.descripcion;
-  const precio = req.body.precio;
-  const categoriaId = req.body.categoriaId;
-  const subcategoriaId = req.body.subcategoriaId;
-  const estado = req.body.estado;
-  const estado_publicacion = req.body.estado_publicacion;
-  const departamentoId = req.body.departamentoId;
-  const ciudadId = req.body.ciudadId;
-  const zona = req.body.zona;
-  const vistas = req.body.vistas;
-  const valoracion = req.body.valoracion;
+  const {
+    usuarioId,
+    titulo,
+    descripcion,
+    precio,
+    categoriaId,
+    subcategoriaId,
+    estado,
+    estado_publicacion,
+    departamentoId,
+    ciudadId,
+    zona,
+    vistas,
+    valoracion
+  } = req.body;
+
+  // Validaciones básicas
+  if (!usuarioId || isNaN(usuarioId)) return rep.status(400).json({ message: "usuarioId es obligatorio y debe ser numérico" });
+  if (!titulo || typeof titulo !== 'string' || !titulo.trim()) return rep.status(400).json({ message: "El título es obligatorio y debe ser un string no vacío" });
+  if (!descripcion || typeof descripcion !== 'string' || !descripcion.trim()) return rep.status(400).json({ message: "La descripción es obligatoria y debe ser un string no vacío" });
+  if (precio === undefined || isNaN(precio)) return rep.status(400).json({ message: "El precio es obligatorio y debe ser numérico" });
+  if (!categoriaId || isNaN(categoriaId)) return rep.status(400).json({ message: "categoriaId es obligatorio y debe ser numérico" });
+  if (!subcategoriaId || isNaN(subcategoriaId)) return rep.status(400).json({ message: "subcategoriaId es obligatorio y debe ser numérico" });
+  if (!estado || typeof estado !== 'string' || !estado.trim()) return rep.status(400).json({ message: "El estado es obligatorio y debe ser un string no vacío" });
+  if (!estado_publicacion || typeof estado_publicacion !== 'string' || !estado_publicacion.trim()) return rep.status(400).json({ message: "El estado_publicacion es obligatorio y debe ser un string no vacío" });
+  if (!departamentoId || isNaN(departamentoId)) return rep.status(400).json({ message: "departamentoId es obligatorio y debe ser numérico" });
+  if (!ciudadId || isNaN(ciudadId)) return rep.status(400).json({ message: "ciudadId es obligatorio y debe ser numérico" });
 
   try {
     const createAnuncioResultado = await anuncioRepository.createAnuncio(
@@ -148,7 +163,9 @@ exports.createAnuncioConImagenes = async (req, res) => {
 
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
-      const imagenId = await imagenRepository.createImage(file.filename,file.path);
+      // Convertir ruta a formato web universal
+      const rutaWeb = file.path.replace(/\\/g, '/');
+      const imagenId = await imagenRepository.createImage(file.filename, rutaWeb);
       await anuncioRepository.asociarImagen(anuncioId, imagenId, i === 0, i); // es_principal, orden
     }
 
@@ -326,9 +343,11 @@ exports.updateAnuncioConImagenes = async (req, rep) => {
       if (!file.mimetype.startsWith('image/')) {
         return rep.status(400).json({ message: `El archivo ${file.originalname} no es una imagen válida.` });
       }
+      // Convertir ruta a formato web universal
+      const rutaWeb = file.path.replace(/\\/g, '/');
       const imagenId = await imagenRepository.createImage(
         file.filename,
-        file.path
+        rutaWeb
       );
       await anuncioRepository.asociarImagen(anuncioId, imagenId, i === 0, i); // es_principal, orden
     }
