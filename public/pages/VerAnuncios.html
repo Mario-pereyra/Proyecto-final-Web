@@ -70,7 +70,7 @@
         </div>
     </header>
     <main>
-        <section class="ads-section">
+        <section class="">
 
             <div class="container-ads-section">
                 <h1 class="ads-section-title">Anuncios</h1>
@@ -83,15 +83,15 @@
                     <div class="ads-filter">
                         <form id="filter-form" data-form="filter">
                             <label for="filtro-categorias">Filtrar por:</label>
-                            <select id="product-filter" name="filtro-categorias" >
+                            <select id="product-filter" name="filtro-categorias">
                                 <option value="all">Todas las Categorías </option>
-                                
-                            </select> 
 
-                            <select id="filtro-subcategorias" name="filtro-subcategorias" >
+                            </select>
+
+                            <select id="filtro-subcategorias" name="filtro-subcategorias">
                                 <option value="all">Todas las Subcategorías</option>
-                                
-                            </select> 
+
+                            </select>
                             <button type="submit" value="Aplicar Filtro" id="btn-aplicar-filtros"
                                 data-action="apply-filter">Aplicar filtros</button>
                         </form> <button>
@@ -102,7 +102,7 @@
                 </div>
                 <div class="container-ads" id="ads-container" data-component="ads-list">
                     <div class="ads-card-container" id="ads-grid" data-list="products">
-                        <div class="ads-card" id="product-1" data-product="1" data-category="laptops" data-vendor="1"
+                        <!-- <div class="ads-card" id="product-1" data-product="1" data-category="laptops" data-vendor="1"
                             data-status="active">
                             <div class="ads-card-img">
                                 <a href="../pages/DetalleAnuncio.html" data-action="view-detail" data-product="1">
@@ -112,7 +112,7 @@
                                     </div>
                                 </a>
                                 <i class="fas fa-bookmark bookmark-icon" data-action="toggle-bookmark" data-product="1"
-                                    data-saved="false"></i>
+                                    data-saved="true"></i>
                             </div>
                             <div class="ads-card-details">
                                 <div class="ads-card-tags">
@@ -463,51 +463,49 @@
                                 <div class="ads-card-vendor-label">Vendedor:</div>
                                 <div class="ads-card-vendor-name">Tech tecnologic</div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
 
-                    
+
         </section>
     </main>
 
     <!-- PLANTILLA PARA JAVASCRIPT - OCULTA -->
     <template id="product-card-template">
-        <div class="ads-card" data-product="" data-category="" data-vendor="" data-status="active">
+        <div class="ads-card">
             <div class="ads-card-img">
-                <a href="#" data-action="view-detail" data-product="">
+                <a href="#">
                     <div class="ads-card-img-container">
-                        <img src="" alt="" data-image="product-main">
+                        <img src="../recursos/img/oculus_quest2_meta.webp" alt="Oculus Quest 2 Meta">
+                        <!-- recurso y nombre recurso-->
                     </div>
                 </a>
-                <i class="fas fa-bookmark bookmark-icon" data-action="toggle-bookmark" data-product=""
-                    data-saved="false"></i>
             </div>
             <div class="ads-card-details">
                 <div class="ads-card-tags">
-                    <div class="ads-card-category" data-info="category"></div>
-                    <div class="ads-card-condition" data-info="condition"></div>
+                    <div class="ads-card-category"></div> <!-- nombre  de la categorias -->
+                    <div class="ads-card-condition"></div> <!-- estado-->
                 </div>
-                <h3 class="ads-card-title" data-info="title"></h3>
-                <p class="ads-card-price" data-info="price"></p>
+                <h3 class="ads-card-title"></h3> <!--titulo-->
+                <p class="ads-card-price"></p> <!-- precio-->
             </div>
             <div class="ads-card-vendor">
                 <div class="ads-card-vendor-label">Vendedor:</div>
-                <div class="ads-card-vendor-name" data-info="vendor-name" data-vendor=""></div>
+                <div class="ads-card-vendor-name"></div> <!-- nombre usuario vendedor-->
             </div>
         </div>
     </template>
 
     <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
+    <script src="../js/profileMenu.js"></script>
+    <script src="../js/verAnuncios.js"></script> 
 
-    
+
 
 </body>
 <footer>
     <div class="copyright">
         <p>@2024 AstroMarket.Todos los derechos reservados</p>
     </div>
-
-    <script src="../js/profileMenu.js"></script>
 </footer>
-
 </html>

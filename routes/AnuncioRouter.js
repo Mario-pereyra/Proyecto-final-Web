@@ -24,7 +24,7 @@ router.patch("/:anuncioId/estado-publicacion", AnuncioController.updateEstadoPub
 //GET /api/anuncios/buscar?categoria=Laptops%20y%20Computadoras&precioMax=1000
 router.get("/buscar", AnuncioController.buscarAnuncios);
 // GET /api/anuncios/
-router.get("/", AnuncioController.getAnuncios);
+router.get("/", AnuncioController.getAnunciosConImagenes);
 // GET /api/anuncios/1
 router.get("/:anuncioId", AnuncioController.getAnuncioById);
 

@@ -95,11 +95,35 @@ main {
     list-style: none;
 }
 
+
 .requirements-list li {
     position: relative;
-    padding-left: 15px;
+    padding-left: 22px;
     font-size: 13px;
     color: #666;
+    transition: color 0.2s;
+}
+
+/* Icono por defecto */
+.requirements-list li:before {
+    content: "\2022";
+    position: absolute;
+    left: 0;
+    color: #999;
+    font-size: 16px;
+    top: 0;
+    transition: color 0.2s, content 0.2s;
+}
+
+/* Requisito cumplido visual */
+.requirements-list li.met {
+    color: #28a745;
+    font-weight: 500;
+}
+.requirements-list li.met:before {
+    content: "\2714";
+    color: #28a745;
+    font-size: 15px;
 }
 
 .requirements-list li:before {

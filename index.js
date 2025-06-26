@@ -16,6 +16,8 @@ const subcategoriaRouter = require('./routes/subcategoriaRouter')
 const departamentoRouter = require('./routes/departamentoRouter')
 const chatRouter = require('./routes/chatRouter')
 
+const anunciosGuardadosRouter = require('./routes/anunciosGuardadosRouter')
+
 const ciudadRouter = require('./routes/ciudadRouter')
 
 app.use('/api/usuario',usuarioRouter)
@@ -27,6 +29,8 @@ app.use('/api/departamentos', departamentoRouter)
 app.use('/api/chat', chatRouter)
 
 app.use('/api/ciudades', ciudadRouter)
+
+app.use('/api/anuncios_guardados', anunciosGuardadosRouter)
 
 app.listen(port, () => {
     console.log(`El servidor y la pagina corre en el puerto ${port}`); 

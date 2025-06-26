@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
             subcategoriaSelect.disabled = true;
             return;
         }
-        fetch(`/api/categorias/${categoriaId}/subcategorias`)
+        fetch(`/api/subcategorias/categoria/${categoriaId}`)
             .then(res => res.json())
             .then(subcategorias => {
                 subcategoriaSelect.innerHTML = '<option value="">Selecciona una subcategoría</option>';

@@ -78,6 +78,7 @@
 
             
             <form id="register-form" data-form="register" data-action="create-account">
+                <div class="msg-error" id="msg-register-global" style="margin-bottom:10px; display:none;"></div>
                 <div class="campo-grupo" data-field="fullName">
                     <label for="input-nombreCompleto">Nombre Completo *</label>
                     <input type="text" name="nombre_completo" id="input-nombreCompleto" placeholder="Tu nombre completo">
@@ -113,6 +114,7 @@
                     <span data-text="register-btn">Registrarse</span>
                     <span id="register-spinner" style="display: none;" data-state="loading">Creando cuenta...</span>
                 </button>
+                <div class="msg-error" id="msg-register-global-bottom" style="margin-top:10px; display:none;"></div>
             </form>
 
             <div class="login-options" style="margin-top: 20px; text-align: center;">
@@ -129,6 +131,7 @@
         <p>@2024 AstroMarket.Todos los derechos reservados</p>
     </div>
     <script src="../js/profileMenu.js"></script>
+    <script src="../js/registro-script.js"></script>
 </footer>
 
 </html>

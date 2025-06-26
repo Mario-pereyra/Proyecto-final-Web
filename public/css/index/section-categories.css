@@ -23,7 +23,9 @@ a {
     margin: 0 auto;
     width: 100%;
 }
-
+.ads-section-title{
+    margin-block: 20px;
+}
 .section-title {
     font-size: 29px;
     font-weight: 700;
@@ -50,6 +52,7 @@ a {
     width: 100%;
     max-width: 320px;
     min-width: 280px;
+    min-height: 265px;
     flex: 1 1 300px;
     transition: box-shadow 150ms ease-in-out;
 }
