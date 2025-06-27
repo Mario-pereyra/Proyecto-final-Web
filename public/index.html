@@ -16,8 +16,7 @@
     <meta property="og:image" content="https://i.ibb.co/pB8p68Tw/logo.png">
     <meta property="og:description" content="Tu marketplace de confianza para comprar y vender productos tecnológicos.">
 
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="all.min.css">
+
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/index/section-hero.css">
     <link rel="stylesheet" href="css/index/section-categories.css">
@@ -63,17 +62,13 @@
                 </li>
                 <li class="nav-privado" style="display:none">
                     <a href="pages/MensajesComprador.html">
-                        Mensajes-Comprador
+                        Mensajes Comprador
                     </a>
                 </li>
-                <li class="nav-privado" style="display:none">
-                    <a href="pages/MensajesVendedorV2.html">
-                        Mensajes-Vendedor
-                    </a>
-                </li>
+                
                 <li class="nav-privado" style="display:none">
                     <a href="./pages/PanelVendedor.html">
-                        Panel-vendedor
+                        Panel vendedor
                     </a>
                 </li>
             </ul>
@@ -88,11 +83,11 @@
                 </div>
             </div>
 
-            
+
         </div>
     </header>
     <main class="contenedor-main" data-component="home-main">
-        
+
 
         <section class="hero" data-component="hero-section">
             <div class="container-hero">
@@ -111,7 +106,7 @@
                             <button class="primary-button" id="btn-inciarSesion">Iniciar Sesión</button>
                         </a>
                         <a href="pages/Registro.html">
-                            <button class="primary-button" id="btn-registrarse" >Registrarse</button>
+                            <button class="primary-button" id="btn-registrarse">Registrarse</button>
                         </a>
                     </div>
 
@@ -229,7 +224,7 @@
                             title="Guardar anuncio">
                             <i class="fas fa-bookmark"></i>
                         </button>
-                        
+
                     </div>
                     <div class="ads-card-details">
                         <div class="ads-card-tags">
@@ -247,7 +242,7 @@
                         <div class="ads-card-vendor-label">Vendedor:</div>
                         <div class="ads-card-vendor-name" data-info="vendor-name">Tech Store</div>
                     </div>
-                    
+
                 </div>
 
                 <div class="ads-card" data-component="featured-ad-card" data-ad-id="2" data-category="smartphones">
@@ -262,7 +257,7 @@
                             title="Guardar anuncio">
                             <i class="fas fa-bookmark"></i>
                         </button>
-                        
+
                     </div>
                     <div class="ads-card-details">
                         <div class="ads-card-tags">
@@ -280,7 +275,7 @@
                         <div class="ads-card-vendor-label">Vendedor:</div>
                         <div class="ads-card-vendor-name" data-info="vendor-name">Mobile Shop</div>
                     </div>
-                    
+
                 </div>
 
                 <div class="ads-card" data-component="featured-ad-card" data-ad-id="3" data-category="gaming">
@@ -295,7 +290,7 @@
                             title="Guardar anuncio">
                             <i class="fas fa-bookmark"></i>
                         </button>
-                       
+
                     </div>
                     <div class="ads-card-details">
                         <div class="ads-card-tags">
@@ -313,7 +308,7 @@
                         <div class="ads-card-vendor-label">Vendedor:</div>
                         <div class="ads-card-vendor-name" data-info="vendor-name">Gaming World</div>
                     </div>
-                    
+
                 </div>
 
                 <div class="ads-card" data-component="featured-ad-card" data-ad-id="4" data-category="audio">
@@ -328,7 +323,7 @@
                             title="Guardar anuncio">
                             <i class="fas fa-bookmark"></i>
                         </button>
-                       
+
                     </div>
                     <div class="ads-card-details">
                         <div class="ads-card-tags">
@@ -346,7 +341,7 @@
                         <div class="ads-card-vendor-label">Vendedor:</div>
                         <div class="ads-card-vendor-name" data-info="vendor-name">Audio Pro</div>
                     </div>
-                    
+
                 </div>
             </div>
 
@@ -360,7 +355,7 @@
 
         <div class="ads-card">
             <div class="ads-card-img">
-                <a href="#"> 
+                <a href="#">
                     <section class="platform-stats" data-component="platform-stats">
                         <div class="stats-container">
                             <h2 class="section-title">Únete a nuestra comunidad</h2>
@@ -414,47 +409,10 @@
                         </div>
                     </section>
 
-                    
+
     </main>
 
     <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
-
-    <!-- Templates for dynamic content -->
-    <template id="featured-ad-card-template" data-template="featured-ad-card">
-        <div class="ads-card" data-component="featured-ad-card">
-            <div class="ads-card-img">
-                <a href="#" data-action="view-ad-detail">
-                    <div class="ads-card-img-container">
-                        <img src="" alt="" data-image="ad-thumbnail">
-                    </div>
-                </a>
-                <button class="bookmark-icon" data-action="toggle-bookmark" title="Guardar anuncio">
-                    <i class="fas fa-bookmark"></i>
-                </button>
-                
-            </div>
-            <div class="ads-card-details">
-                <div class="ads-card-tags">
-                    <div class="ads-card-category" data-info="ad-category"></div>
-                    <div class="ads-card-condition" data-info="ad-condition"></div>
-                </div>
-                <h3 class="ads-card-title" data-info="ad-title"></h3>
-                <p class="ads-card-price" data-info="ad-price"></p>
-                <div class="ads-card-rating" data-info="vendor-rating">
-                    <span class="stars"></span>
-                    <span class="rating-text"></span>
-                </div>
-            </div>
-            <div class="ads-card-vendor">
-                <div class="ads-card-vendor-label">Vendedor:</div>
-                <div class="ads-card-vendor-name" data-info="vendor-name"></div>
-            </div>
-            
-        </div>
-    </template>
-
-    
-    <script src="js//header-script"></script>
     <script src="js/profileMenu.js"></script>
     <script src="js/featured-ads.js"></script>
 </body>
