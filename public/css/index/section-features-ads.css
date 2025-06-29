@@ -14,7 +14,8 @@
 }
 .stats-grid{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    flex-wrap: wrap;
     gap: 2px;    
 }
 .ads-card-actions{
@@ -23,4 +24,17 @@
     justify-content: space-evenly;
     padding-bottom: 10px;
     
+}
+.stat-item{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center ;
+    gap: 2px;
+}
+.stat-label{
+    text-align: center;
+}
+.cta-section{
+    text-align: center;
 }

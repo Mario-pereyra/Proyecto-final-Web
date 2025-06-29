@@ -15,13 +15,14 @@
     <meta property="og:title" content="AstroMarket - Marketplace de Tecnología">
     <meta property="og:image" content="https://i.ibb.co/pB8p68Tw/logo.png">
     <meta property="og:description" content="Tu marketplace de confianza para comprar y vender productos tecnológicos.">
-
-
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/index/section-hero.css">
     <link rel="stylesheet" href="css/index/section-categories.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/index/section-features-ads.css">
+    <link rel="stylesheet" href="css/index/section-stats.css">
+    <link rel="stylesheet" href="css/index/section-cta.css">
+    <link rel="stylesheet" href="css/index/section-faq.css">
     <link rel="stylesheet" href="css/footer.css">
 </head>
 
@@ -31,7 +32,7 @@
             <h1 class="logo">AstroMarket</h1>
         </a>
         <div class="contenedor-buscador" data-component="main-search">
-            <i class="fas fa-search"></i>
+
             <input type="text" class="buscador" id="main-search-input" placeholder="Buscar productos..."
                 data-action="main-search">
             <button type="button" class="search-btn" data-action="perform-search">
@@ -65,7 +66,7 @@
                         Mensajes Comprador
                     </a>
                 </li>
-                
+
                 <li class="nav-privado" style="display:none">
                     <a href="./pages/PanelVendedor.html">
                         Panel vendedor
@@ -353,64 +354,104 @@
             </div>
         </section>
 
-        <div class="ads-card">
-            <div class="ads-card-img">
-                <a href="#">
-                    <section class="platform-stats" data-component="platform-stats">
-                        <div class="stats-container">
-                            <h2 class="section-title">Únete a nuestra comunidad</h2>
-                            <div class="stats-grid">
-                                <div class="stat-item" data-component="stat-item">
-                                    <div class="stat-icon">
-                                        <i class="fa-solid fa-users"></i>
-                                    </div>
-                                    <div class="stat-number" data-info="users-count">10,000+</div>
-                                    <div class="stat-label">Usuarios Activos</div>
-                                </div>
-                                <div class="stat-item" data-component="stat-item">
-                                    <div class="stat-icon">
-                                        <i class="fa-solid fa-box"></i>
-                                    </div>
-                                    <div class="stat-number" data-info="products-count">25,000+</div>
-                                    <div class="stat-label">Productos Disponibles</div>
-                                </div>
-                                <div class="stat-item" data-component="stat-item">
-                                    <div class="stat-icon">
-                                        <i class="fa-solid fa-handshake"></i>
-                                    </div>
-                                    <div class="stat-number" data-info="transactions-count">50,000+</div>
-                                    <div class="stat-label">Transacciones Exitosas</div>
-                                </div>
-                                <div class="stat-item" data-component="stat-item">
-                                    <div class="stat-icon">
-                                        <i class="fa-solid fa-star"></i>
-                                    </div>
-                                    <div class="stat-number" data-info="satisfaction-rate">4.8/5</div>
-                                    <div class="stat-label">Satisfacción del Cliente</div>
-                                </div>
-                            </div>
+
+        <section class="platform-stats" data-component="platform-stats">
+            <div class="stats-container">
+                <h2 class="section-title">Únete a nuestra comunidad</h2>
+                <div class="stats-grid">
+                    <div class="stat-item" data-component="stat-item">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-users"></i>
                         </div>
-                    </section>
-                    <section class="cta-section" data-component="cta-section">
-                        <div class="cta-container">
-                            <h2>¿Tienes algo para vender?</h2>
-                            <p>Únete a miles de vendedores que confían en AstroMarket para vender sus productos
-                                tecnológicos</p>
-                            <div class="cta-actions">
-                                <a href="pages/CrearAnuncio-informacion.html" class="btn-primary"
-                                    data-action="start-selling">
-                                    Comenzar a Vender
-                                    <i class="fa-solid fa-arrow-right"></i>
-                                </a>
-                                <a href="pages/VerAnuncios.html" class="btn-secondary" data-action="browse-products">
-                                    Explorar Productos
-                                </a>
-                            </div>
+                        <div class="stat-number" data-info="users-count">10,000+</div>
+                        <div class="stat-label">Usuarios Activos</div>
+                    </div>
+                    <div class="stat-item" data-component="stat-item">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-box"></i>
                         </div>
-                    </section>
+                        <div class="stat-number" data-info="products-count">25,000+</div>
+                        <div class="stat-label">Productos Disponibles</div>
+                    </div>
+                    <div class="stat-item" data-component="stat-item">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-handshake"></i>
+                        </div>
+                        <div class="stat-number" data-info="transactions-count">50,000+</div>
+                        <div class="stat-label">Transacciones Exitosas</div>
+                    </div>
+                    <div class="stat-item" data-component="stat-item">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <div class="stat-number" data-info="satisfaction-rate">4.8/5</div>
+                        <div class="stat-label">Satisfacción del Cliente</div>
+                    </div>
+                </div>
+            </div>
+        </section>        <section class="cta-section" data-component="cta-section">
+            <div class="cta-container">
+                <h2>¿Tienes algo para vender?</h2>
+                <p>Únete a miles de vendedores que confían en AstroMarket para vender sus productos
+                    tecnológicos</p>
+                <div class="cta-actions">
+                    <a href="pages/CrearAnuncio-informacion.html" class="btn-primary" data-action="start-selling">
+                        Comenzar a Vender
+                    </a>
+                    <i class="fa-solid fa-arrow-down"></i>
+                    <a href="pages/VerAnuncios.html" class="btn-secondary" data-action="browse-products">
+                        Explorar Productos
+                    </a>
+                </div>
+            </div>
+        </section>
 
 
     </main>
+
+    <section class="faq-section" data-component="faq-section">
+        <div class="faq-container">
+            <h2 class="section-title">Preguntas Frecuentes</h2>
+            <div class="faq-grid">
+                <details class="faq-item">
+                    <summary class="faq-question">
+                        ¿Cómo puedo comprar un producto?
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>Para comprar un producto, simplemente navega por nuestro catálogo, selecciona el artículo que te interesa y haz clic en el botón "Contactar al Vendedor". Podrás comunicarte directamente con el vendedor para acordar los detalles de la compra y el envío.</p>
+                    </div>
+                </details>
+                <details class="faq-item">
+                    <summary class="faq-question">
+                        ¿Es seguro vender en AstroMarket?
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>¡Totalmente! En AstroMarket, verificamos a nuestros vendedores y ofrecemos un sistema de mensajería seguro para que puedas comunicarte con los compradores sin preocupaciones. Además, nuestro sistema de valoraciones te ayuda a construir una reputación de confianza.</p>
+                    </div>
+                </details>
+                <details class="faq-item">
+                    <summary class="faq-question">
+                        ¿Qué métodos de pago se aceptan?
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>Los métodos de pago se acuerdan directamente entre el comprador y el vendedor. AstroMarket no procesa pagos directamente, lo que te da la flexibilidad de elegir el método que más te convenga, ya sea transferencia bancaria, pago en efectivo o plataformas de pago en línea.</p>
+                    </div>
+                </details>
+                <details class="faq-item">
+                    <summary class="faq-question">
+                        ¿Cómo puedo crear un anuncio para vender mi producto?
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>Una vez que te hayas registrado e iniciado sesión, dirígete a tu "Panel de Vendedor" y haz clic en "Crear Anuncio". Sigue los pasos para subir fotos, añadir una descripción detallada y fijar un precio. ¡Publicar tu anuncio es rápido y sencillo!</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
 
     <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
     <script src="js/profileMenu.js"></script>

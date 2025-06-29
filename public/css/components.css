@@ -228,7 +228,7 @@ body {
 
 @media (min-width: 1024px) and (max-width: 1399px) {
     .ads-card-container {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
     }
     .ads-card-img-container{
         display: flex;

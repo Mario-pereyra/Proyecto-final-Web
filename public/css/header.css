@@ -20,14 +20,13 @@ menu ul {
     flex-direction: row;
     justify-content: start;
     align-items: center;
+    margin-bottom: 5px;
     margin-left: 20px;
     margin-right: 20px;
-    margin-bottom: 15px;
     border-radius: 100px;
     border: #474747 1px solid;
-    
     height: 30px;
-    padding: 0px 5px;
+    padding: 0px 15px;
     gap: 5px;
 }
 
@@ -163,7 +162,7 @@ menu ul {
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 0px;
+        
         width: 250px;
     }
 
@@ -188,7 +187,7 @@ menu ul {
 .header-user-profile {
     display: flex;
     align-items: center;
-    margin-left: auto;
+    justify-content: center;
     padding-left: 20px;
     padding-bottom: 10px;
 }
@@ -219,7 +218,7 @@ menu ul {
 .header-profile-pic {
     width: 45px;
     height: 45px;
-    border-radius: 50%;
+    border-radius: 21px;
     object-fit: cover;
     border: 3px solid #007bff;
     transition: border-color 0.3s ease;
@@ -283,14 +282,12 @@ menu ul {
     }
     
 
-    .header-user-info {
-        display: none;
-    }
+    
     
     .header-profile-container {
         padding: 6px;
-        gap: 0;
-        border-radius: 50%;
+        gap: 3px;
+        border-radius: 21px;
         min-width: 45px;
         min-height: 45px;
         justify-content: center;

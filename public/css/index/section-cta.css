@@ -1,0 +1,147 @@
+/* CTA Section */
+.cta-section {
+    background-color: #f8f9fa;
+    color: #212529;
+    padding: 80px 24px;
+    position: relative;
+    text-align: center;
+    border-top: 1px solid #e9ecef;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.cta-container {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.cta-section h2 {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: #212529;
+    line-height: 1.2;
+}
+
+.cta-section p {
+    font-size: 19px;
+    margin-bottom: 40px;
+    color: #6c757d;
+    line-height: 1.6;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.cta-actions .btn-primary,
+.cta-actions .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;    padding: 16px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    min-width: 200px;
+    border: none;
+}
+
+.cta-actions .btn-primary {
+    background-color: rgba(24, 24, 27, 0.9);
+    color: rgb(250, 250, 250);
+}
+
+.cta-actions .btn-primary:hover {
+    background-color: rgba(24, 24, 27, 1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cta-actions .btn-secondary {
+    background-color: transparent;
+    color: #6c757d;
+    border: 2px solid #6c757d;
+}
+
+.cta-actions .btn-secondary:hover {
+    background-color: #6c757d;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(108, 117, 125, 0.3);
+}
+
+.cta-actions .fa-arrow-down {
+    font-size: 22px;
+    color: #6c757d;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .cta-section {
+        padding: 60px 16px;
+    }
+    
+    .cta-section h2 {
+        font-size: 32px;
+    }
+    
+    .cta-section p {
+        font-size: 16px;
+        margin-bottom: 32px;
+    }
+    
+    .cta-actions .btn-primary,
+    .cta-actions .btn-secondary {
+        padding: 14px 24px;
+        font-size: 15px;
+        min-width: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cta-section {
+        padding: 48px 12px;
+    }
+    
+    .cta-section h2 {
+        font-size: 26px;
+        margin-bottom: 16px;
+    }
+    
+    .cta-section p {
+        font-size: 14px;
+        margin-bottom: 24px;
+    }
+    
+    .cta-actions {
+        gap: 16px;
+    }
+    
+    .cta-actions .btn-primary,
+    .cta-actions .btn-secondary {
+        padding: 12px 20px;
+        font-size: 14px;
+        min-width: 160px;
+    }
+}
