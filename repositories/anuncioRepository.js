@@ -11,7 +11,17 @@ const getConnection = async () => {
 
 exports.getAnuncios = async () => {
   const connection = await getConnection();
-  const [getAnunciosResultados] = await connection.query("SELECT* FROM anuncios ");
+  const [getAnunciosResultados] = await connection.query(`
+    SELECT 
+      a.*, 
+      c.nombre AS categoriaNombre,
+      s.nombre AS subcategoriaNombre,
+      COALESCE(u.nombre_completo, 'Usuario desconocido') AS usuarioNombre
+    FROM anuncios a
+    LEFT JOIN categorias c ON a.categoriaId = c.categoriaId
+    LEFT JOIN subcategorias s ON a.subcategoriaId = s.subcategoriaId
+    LEFT JOIN usuarios u ON a.usuarioId = u.usuarioId
+  `);
   if (!getAnunciosResultados || getAnunciosResultados.length === 0) {
     return null;
   }
@@ -21,7 +31,18 @@ exports.getAnuncios = async () => {
 exports.getAnuncioById = async (anuncioId) => {
   const connection = await getConnection();
 
-  const [getAnuncioByIdResultado] = await connection.query("SELECT* FROM anuncios WHERE anuncioId = ?",[anuncioId]);
+  const [getAnuncioByIdResultado] = await connection.query(`
+    SELECT 
+      a.*, 
+      c.nombre AS categoriaNombre,
+      s.nombre AS subcategoriaNombre,
+      COALESCE(u.nombre_completo, 'Usuario desconocido') AS usuarioNombre
+    FROM anuncios a
+    LEFT JOIN categorias c ON a.categoriaId = c.categoriaId
+    LEFT JOIN subcategorias s ON a.subcategoriaId = s.subcategoriaId
+    LEFT JOIN usuarios u ON a.usuarioId = u.usuarioId
+    WHERE a.anuncioId = ?
+  `,[anuncioId]);
   if (!getAnuncioByIdResultado || getAnuncioByIdResultado.length === 0) {
     return null;
   }
@@ -79,10 +100,21 @@ exports.asociarImagen = async (anuncioId, imagenId, es_principal, orden) => {
 exports.getAnunciosConImagenes = async () => {
   const connection = await getConnection();
  
-  const [anuncios] = await connection.query("SELECT * FROM anuncios");
+  const [anuncios] = await connection.query(`
+    SELECT 
+      a.*, 
+      c.nombre AS categoriaNombre,
+      s.nombre AS subcategoriaNombre,
+      COALESCE(u.nombre_completo, 'Usuario desconocido') AS usuarioNombre
+    FROM anuncios a
+    LEFT JOIN categorias c ON a.categoriaId = c.categoriaId
+    LEFT JOIN subcategorias s ON a.subcategoriaId = s.subcategoriaId
+    LEFT JOIN usuarios u ON a.usuarioId = u.usuarioId
+  `);
   if (!anuncios || anuncios.length === 0) {
     return [];
   }
+
 
   const [imagenes] = await connection.query(
     `SELECT ai.anuncioId, i.imagenId, i.nombre_archivo, i.ruta_archivo, ai.es_principal, ai.orden
@@ -100,7 +132,18 @@ exports.getAnunciosConImagenes = async () => {
 
 exports.getAnuncioConImagenesById = async (anuncioId) => {
   const connection = await getConnection();
-  const [anuncioRows] = await connection.query("SELECT * FROM anuncios WHERE anuncioId = ?",[anuncioId]
+  const [anuncioRows] = await connection.query(`
+    SELECT 
+      a.*, 
+      c.nombre AS categoriaNombre,
+      s.nombre AS subcategoriaNombre,
+      COALESCE(u.nombre_completo, 'Usuario desconocido') AS usuarioNombre
+    FROM anuncios a
+    LEFT JOIN categorias c ON a.categoriaId = c.categoriaId
+    LEFT JOIN subcategorias s ON a.subcategoriaId = s.subcategoriaId
+    LEFT JOIN usuarios u ON a.usuarioId = u.usuarioId
+    WHERE a.anuncioId = ?
+  `,[anuncioId]
 );
   if (!anuncioRows || anuncioRows.length === 0) return null;
   const anuncio = anuncioRows[0];
@@ -163,22 +206,32 @@ exports.buscar = async (filtros) => {
             d.nombre AS departamento,
             cat.nombre AS categoria,
             subcat.nombre AS subcategoria,
+            COALESCE(u.nombre_completo, 'Usuario desconocido') AS usuarioNombre,
             (SELECT i.ruta_archivo FROM anuncio_imagenes ai JOIN imagenes i ON ai.imagenId = i.imagenId WHERE ai.anuncioId = a.anuncioId AND ai.es_principal = 1 LIMIT 1) AS imagen_principal
         FROM anuncios a
         JOIN ciudades c ON a.ciudadId = c.ciudadId
-        -- ------ INICIO DE LA CORRECCIÓN ------
-        JOIN departamentos d ON a.departamentoId = d.departamentoId -- Corregido: 'departmentoId' a 'departamentoId'
-        -- ------ FIN DE LA CORRECCIÓN ------
+        JOIN departamentos d ON a.departamentoId = d.departamentoId
         JOIN categorias cat ON a.categoriaId = cat.categoriaId
         JOIN subcategorias subcat ON a.subcategoriaId = subcat.subcategoriaId
+        LEFT JOIN usuarios u ON a.usuarioId = u.usuarioId
     `;
 
-  const whereClauses = [];
-  const params = [];
-
+  const whereClauses = ['a.estado_publicacion = ?'];
+  const params = ['activo'];
+  // Filtro por categoría (nombre o ID)
   if (filtros.categoria) {
     whereClauses.push("cat.nombre = ?");
     params.push(filtros.categoria);
+  }
+  if (filtros.categoriaId) {
+    whereClauses.push("a.categoriaId = ?");
+    params.push(filtros.categoriaId);
+  }
+  
+  // Filtro por subcategoría (nombre o ID)
+  if (filtros.subcategoria) {
+    whereClauses.push("subcat.nombre = ?");
+    params.push(filtros.subcategoria);
   }
   if (filtros.subcategoriaId) {
     whereClauses.push("a.subcategoriaId = ?");
@@ -201,15 +254,17 @@ exports.buscar = async (filtros) => {
     params.push(filtros.precioMax);
   }
   if (filtros.busquedaTexto) {
-    whereClauses.push("a.titulo LIKE ?");
-    params.push(`%${filtros.busquedaTexto}%`);
+    whereClauses.push("(a.titulo LIKE ? OR a.descripcion LIKE ?)");
+    params.push(`%${filtros.busquedaTexto}%`, `%${filtros.busquedaTexto}%`);
   }
 
   if (whereClauses.length > 0) {
     sql += " WHERE " + whereClauses.join(" AND ");
   }
-
   sql += " ORDER BY a.fecha_creacion DESC";
+
+  console.log('Query SQL:', sql);
+  console.log('Parámetros:', params);
 
   const [rows] = await conn.query(sql, params);
   return rows;
@@ -222,11 +277,24 @@ exports.getAnunciosConNombres = async () => {
     SELECT 
       a.*, 
       s.nombre AS subcategoriaNombre, 
-      u.nombre AS usuarioNombre
+      c.nombre AS categoriaNombre,
+      COALESCE(u.nombre_completo, 'Usuario desconocido') AS usuarioNombre
     FROM anuncios a
     LEFT JOIN subcategorias s ON a.subcategoriaId = s.subcategoriaId
+    LEFT JOIN categorias c ON a.categoriaId = c.categoriaId
     LEFT JOIN usuarios u ON a.usuarioId = u.usuarioId
+    WHERE a.estado_publicacion = 'activo'
+    ORDER BY a.fecha_creacion DESC
   `);
+
+  console.log('Anuncios obtenidos:', anuncios.length);
+  if (anuncios.length > 0) {
+    console.log('Primer anuncio:', {
+      titulo: anuncios[0].titulo,
+      subcategoriaNombre: anuncios[0].subcategoriaNombre,
+      usuarioNombre: anuncios[0].usuarioNombre
+    });
+  }
 
   if (!anuncios || anuncios.length === 0) {
     return [];
@@ -236,7 +304,8 @@ exports.getAnunciosConNombres = async () => {
   const [imagenes] = await connection.query(
     `SELECT ai.anuncioId, i.imagenId, i.nombre_archivo, i.ruta_archivo, ai.es_principal, ai.orden
      FROM anuncio_imagenes ai
-     JOIN imagenes i ON ai.imagenId = i.imagenId`
+     JOIN imagenes i ON ai.imagenId = i.imagenId
+     ORDER BY ai.es_principal DESC, ai.orden ASC`
   );
 
   anuncios.forEach((anuncio) => {

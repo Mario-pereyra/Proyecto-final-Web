@@ -20,9 +20,6 @@ exports.getCategoriaById = async (id) => {
   return categoria[0];
 };
 
-
-
-
 exports.createCategoria = async (nombre) => {
   const connection = await getConnection();
   const [result] = await connection.query("INSERT INTO categorias (nombre) VALUES (?)", [nombre]);
@@ -39,5 +36,22 @@ exports.deleteCategoria = async (id) => {
   const connection = await getConnection();
   await connection.query("DELETE FROM categorias WHERE categoriaId = ?", [id]);
   return { id };
+};
+
+exports.getCategoriasConConteo = async () => {
+  const connection = await getConnection();
+  const [categorias] = await connection.query(`
+    SELECT 
+      c.categoriaId,
+      c.nombre,
+      COUNT(a.anuncioId) as totalAnuncios
+    FROM categorias c
+    LEFT JOIN anuncios a ON c.categoriaId = a.categoriaId 
+      AND a.estado_publicacion = 'activo'
+    GROUP BY c.categoriaId, c.nombre
+    ORDER BY totalAnuncios DESC, c.nombre ASC
+  `);
+  
+  return categorias;
 };
 

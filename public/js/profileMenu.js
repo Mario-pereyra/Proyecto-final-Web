@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function() {
   function mostrarUsuarioEnHeader() {
     const userSpan = document.querySelector('.header-user-name[data-info="user-name"]');
     const roleSpan = document.querySelector('.header-user-role[data-info="user-role"]');
-    const avatarImg = document.getElementById('header-profile-image');
     let usuario = null;
     try {
       usuario = JSON.parse(localStorage.getItem('usuario'));
@@ -35,13 +34,13 @@ document.addEventListener('DOMContentLoaded', function() {
     if (usuario && usuario.usuarioId) {
       userSpan.textContent = usuario.nombre || usuario.nombre_completo || 'Usuario';
       roleSpan.textContent = usuario.rol || 'Usuario';
-      if (usuario.avatar && avatarImg) avatarImg.src = usuario.avatar;
+      
       if (profileTrigger) profileTrigger.style.display = '';
       if (profileMenu) profileMenu.style.display = '';
     } else {
       userSpan.textContent = 'Desconocido';
       roleSpan.textContent = 'Visitante';
-      if (avatarImg) avatarImg.src = 'recursos/img/npc.jpg';
+     
       if (profileTrigger) profileTrigger.style.display = '';
       if (profileMenu) profileMenu.style.display = 'none';
     }

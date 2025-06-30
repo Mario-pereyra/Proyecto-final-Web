@@ -1,5 +1,3 @@
-
-
 const categoriaRepository = require("../repositories/categoriaRepository");
 
 exports.getCategorias = async (req, res) => {
@@ -85,6 +83,16 @@ exports.deleteCategoria = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error al eliminar la categoría" });
+  }
+};
+
+exports.getCategoriasConConteo = async (req, res) => {
+  try {
+    const categorias = await categoriaRepository.getCategoriasConConteo();
+    return res.status(200).json(categorias);
+  } catch (error) {
+    console.error('Error al obtener categorías con conteo:', error);
+    return res.status(500).json({ message: 'Error al obtener categorías' });
   }
 };
 

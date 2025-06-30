@@ -13,6 +13,11 @@ exports.getSubcategorias = async () => {
   const [subcategorias] = await connection.query("SELECT * FROM subcategorias");
   return subcategorias;
 };
+exports.getCategoriaById = async (id) => {
+  const connection = await getConnection();
+  const [categoria] = await connection.query("SELECT * FROM categorias WHERE categoriaId = ?", [id]);
+  return categoria[0];
+};
 
 
 exports.getSubcategoriaById = async (id) => {
@@ -51,4 +56,17 @@ exports.deleteSubcategoria = async (id) => {
   const connection = await getConnection();
   await connection.query("DELETE FROM subcategorias WHERE subcategoriaId = ?", [id]);
   return { subcategoriaId: id };
+};
+
+exports.getSubcategoriasPorCategoria = async (categoriaNombre) => {
+  const connection = await getConnection();
+  const [subcategorias] = await connection.query(`
+    SELECT s.subcategoriaId, s.nombre 
+    FROM subcategorias s
+    JOIN categorias c ON s.categoriaId = c.categoriaId
+    WHERE c.nombre = ?
+    ORDER BY s.nombre ASC
+  `, [categoriaNombre]);
+  
+  return subcategorias;
 };

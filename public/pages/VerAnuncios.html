@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anuncios</title>
     <link rel="stylesheet" href="../css/vendors/fonts.css">
-    <link rel="stylesheet" href="../css/VerAnuncios/Buscador.css">
-    <link rel="stylesheet" href="../css/VerAnuncios/header.css">
+    <link rel="stylesheet" href="../css/VerAnuncios/Buscador.css">    <link rel="stylesheet" href="../css/VerAnuncios/header.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/VerAnuncios/bookmark.css">
+    <link rel="stylesheet" href="../css/VerAnuncios/modal.css">
 
 
 </head>
@@ -98,376 +98,14 @@
                         </form> <button>
                     </div>
                     <div id="results-count" data-info="results-count">
-                        <p>8 resultados encontrados</p>
+                        <p><span id ="totalAnuncios"></span> resultados encontrados</p>
                     </div>
                 </div>
                 <div class="container-ads" id="ads-container" data-component="ads-list">
                     <div class="ads-card-container" id="ads-grid" data-list="products">
-                        <div class="ads-card" id="product-1" data-product="1" data-category="laptops" data-vendor="1"
-                            data-status="active">
-                            <div class="ads-card-img">
-                                <a href="../pages/DetalleAnuncio.html" data-action="view-detail" data-product="1">
-                                    <div class="ads-card-img-container">
-                                        <img src="../recursos/img/MacBook_Pro_16.webp" alt="MacBook_Pro_16"
-                                            data-image="product-main">
-                                    </div>
-                                </a>
-                                
-                            </div>
-                            <button type="button"><i class="fas fa-bookmark bookmark-icon" data-action="toggle-bookmark" data-product="1"
-                                    data-saved="true"></i></button>
-                            <div class="ads-card-details">
-                                <div class="ads-card-tags">
-                                    <div class="ads-card-category" data-info="category">Laptops</div>
-                                    <div class="ads-card-condition" data-info="condition">Nuevo</div>
-                                </div>
-                                <h3 class="ads-card-title" data-info="title">MacBook Pro 16 pulgadas</h3>
-                                <p class="ads-card-price" data-info="price">$2.499,99</p>
-                            </div>
-                            <div class="ads-card-vendor">
-                                <div class="ads-card-vendor-label">Vendedor:</div>
-                                <div class="ads-card-vendor-name" data-info="vendor-name" data-vendor="1">Tech
-                                    tecnologic</div>
-                            </div>
-                        </div>
-                        <div class="ads-card" id="product-2" data-product="2" data-category="smartphones"
-                            data-vendor="1" data-status="active">
-                            <div class="ads-card-img">
-                                <a href="#" data-action="view-detail" data-product="2">
-                                    <div class="ads-card-img-container">
-                                        <img src="../recursos/img/Iphone_15_Pro_256GB_Negro.webp" alt="iPhone_15_Pro"
-                                            data-image="product-main">
-                                    </div>
-                                </a>
-                                <i class="fas fa-bookmark bookmark-icon" data-action="toggle-bookmark" data-product="2"
-                                    data-saved="false"></i>
-                            </div>
-                            <div class="ads-card-details">
-                                <div class="ads-card-tags">
-                                    <div class="ads-card-category" data-info="category">Smartphones</div>
-                                    <div class="ads-card-condition" data-info="condition">Nuevo</div>
-                                </div>
-                                <h3 class="ads-card-title" data-info="title">iPhone 15 Pro Max 256GB</h3>
-                                <p class="ads-card-price" data-info="price">$1.299,99</p>
-                            </div>
-                            <div class="ads-card-vendor">
-                                <div class="ads-card-vendor-label">Vendedor:</div>
-                                <div class="ads-card-vendor-name" data-info="vendor-name" data-vendor="1">Tech
-                                    tecnologic</div>
-                            </div>
-                        </div>
 
-                        <div class="ads-card">
-                            <div class="ads-card-img">
-                                <a href="#">
-                                    <div class="ads-card-img-container">
-                                        <img src="../recursos/img/Samsung S24 Ultra 12+256GB gris.webp"
-                                            alt="MacBook_Pro_16">
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="ads-card-details">
-                                <div class="ads-card-tags">
-                                    <div class="ads-card-category">Laptops</div>
-                                    <div class="ads-card-condition">Nuevo</div>
-                                </div>
-                                <h3 class="ads-card-title">Samsung Galaxy S24 Ultra</h3>
-                                <p class="ads-card-price">$1.199,99</p>
-                            </div>
-                            <div class="ads-card-vendor">
-                                <div class="ads-card-vendor-label">Vendedor:</div>
-                                <div class="ads-card-vendor-name">Tech tecnologic</div>
-                            </div>
-                        </div>
-
-                        <div class="ads-card">
-                            <div class="ads-card-img">
-                                <a href="#">
-                                    <div class="ads-card-img-container">
-                                        <img src="../recursos/img/Play_station_5.webp" alt="PlayStation 5">
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="ads-card-details">
-                                <div class="ads-card-tags">
-                                    <div class="ads-card-category">Gaming</div>
-                                    <div class="ads-card-condition">Nuevo</div>
-                                </div>
-                                <h3 class="ads-card-title">PlayStation 5</h3>
-                                <p class="ads-card-price">$799,99</p>
-                            </div>
-                            <div class="ads-card-vendor">
-                                <div class="ads-card-vendor-label">Vendedor:</div>
-                                <div class="ads-card-vendor-name">Tech tecnologic</div>
-                            </div>
-                        </div>
-
-                        <div class="ads-card">
-                            <div class="ads-card-img">
-                                <a href="#">
-                                    <div class="ads-card-img-container">
-                                        <img src="../recursos/img/Ipad_pro.jpg" alt="iPad Pro">
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="ads-card-details">
-                                <div class="ads-card-tags">
-                                    <div class="ads-card-category">Tablets</div>
-                                    <div class="ads-card-condition">Nuevo</div>
-                                </div>
-                                <h3 class="ads-card-title">iPad Pro</h3>
-                                <p class="ads-card-price">$1.099,99</p>
-                            </div>
-                            <div class="ads-card-vendor">
-                                <div class="ads-card-vendor-label">Vendedor:</div>
-                                <div class="ads-card-vendor-name">Tech tecnologic</div>
-                            </div>
-                        </div>
-
-                        <div class="ads-card">
-                            <div class="ads-card-img">
-                                <a href="#">
-                                    <div class="ads-card-img-container">
-                                        <img src="../recursos/img/canon_eos-r10.jpg" alt="Canon EOS R10">
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="ads-card-details">
-                                <div class="ads-card-tags">
-                                    <div class="ads-card-category">Cámaras</div>
-                                    <div class="ads-card-condition">Nuevo</div>
-                                </div>
-                                <h3 class="ads-card-title">Canon EOS R10</h3>
-                                <p class="ads-card-price">$999,99</p>
-                            </div>
-                            <div class="ads-card-vendor">
-                                <div class="ads-card-vendor-label">Vendedor:</div>
-                                <div class="ads-card-vendor-name">Tech tecnologic</div>
-                            </div>
-                        </div>
-                        <div class="ads-card">
-                            <div class="ads-card-img">
-                                <a href="#">
-                                    <div class="ads-card-img-container">
-                                        <img src="../recursos/img/apple_watch_series_9_45_webp.webp"
-                                            alt="Apple Watch Series 9 45mm">
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="ads-card-details">
-                                <div class="ads-card-tags">
-                                    <div class="ads-card-category">Smartwatches</div>
-                                    <div class="ads-card-condition">Nuevo</div>
-                                </div>
-                                <h3 class="ads-card-title">Apple Watch Series 9 45mm</h3>
-                                <p class="ads-card-price">$499,99</p>
-                            </div>
-                            <div class="ads-card-vendor">
-                                <div class="ads-card-vendor-label">Vendedor:</div>
-                                <div class="ads-card-vendor-name">Tech tecnologic</div>
-                            </div>
-                        </div>
-
-                        <div class="ads-card">
-                            <div class="ads-card-img">
-                                <a href="#">
-                                    <div class="ads-card-img-container">
-                                        <img src="../recursos/img/Anker-20000mAh-A1367H11-1-Power-Bank-15Wjpg.jpg"
-                                            alt="Anker Power Bank 20000mAh">
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="ads-card-details">
-                                <div class="ads-card-tags">
-                                    <div class="ads-card-category">Accesorios Electrónicos</div>
-                                    <div class="ads-card-condition">Nuevo</div>
-                                </div>
-                                <h3 class="ads-card-title">Anker Power Bank 20000mAh 15W</h3>
-                                <p class="ads-card-price">$39,99</p>
-                            </div>
-                            <div class="ads-card-vendor">
-                                <div class="ads-card-vendor-label">Vendedor:</div>
-                                <div class="ads-card-vendor-name">Tech tecnologic</div>
-                            </div>
-                        </div>
-
-                        <div class="ads-card">
-                            <div class="ads-card-img">
-                                <a href="#">
-                                    <div class="ads-card-img-container">
-                                        <img src="../recursos/img/nintendo-switch.jpg" alt="Nintendo Switch">
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="ads-card-details">
-                                <div class="ads-card-tags">
-                                    <div class="ads-card-category">Gaming</div>
-                                    <div class="ads-card-condition">Nuevo</div>
-                                </div>
-                                <h3 class="ads-card-title">Nintendo Switch</h3>
-                                <p class="ads-card-price">$349,99</p>
-                            </div>
-                            <div class="ads-card-vendor">
-                                <div class="ads-card-vendor-label">Vendedor:</div>
-                                <div class="ads-card-vendor-name">Tech tecnologic</div>
-                            </div>
-                        </div>
-                        <div class="ads-card">
-                            <div class="ads-card-img">
-                                <a href="#">
-                                    <div class="ads-card-img-container">
-                                        <img src="../recursos/img/One_plus12.png" alt="OnePlus 12">
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="ads-card-details">
-                                <div class="ads-card-tags">
-                                    <div class="ads-card-category">Celulares y Smartphones</div>
-                                    <div class="ads-card-condition">Nuevo</div>
-                                </div>
-                                <h3 class="ads-card-title">OnePlus 12</h3>
-                                <p class="ads-card-price">$899,99</p>
-                            </div>
-                            <div class="ads-card-vendor">
-                                <div class="ads-card-vendor-label">Vendedor:</div>
-                                <div class="ads-card-vendor-name">Tech tecnologic</div>
-                            </div>
-                        </div>
-
-                        <div class="ads-card">
-                            <div class="ads-card-img">
-                                <a href="#">
-                                    <div class="ads-card-img-container">
-                                        <img src="../recursos/img/Play_station_4.png" alt="PlayStation 4">
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="ads-card-details">
-                                <div class="ads-card-tags">
-                                    <div class="ads-card-category">Gaming</div>
-                                    <div class="ads-card-condition">Usado</div>
-                                </div>
-                                <h3 class="ads-card-title">PlayStation 4</h3>
-                                <p class="ads-card-price">$299,99</p>
-                            </div>
-                            <div class="ads-card-vendor">
-                                <div class="ads-card-vendor-label">Vendedor:</div>
-                                <div class="ads-card-vendor-name">Tech tecnologic</div>
-                            </div>
-                        </div>
-
-                        <div class="ads-card">
-                            <div class="ads-card-img">
-                                <a href="#">
-                                    <div class="ads-card-img-container">
-                                        <img src="../recursos/img/Xiaomi_14_ultra.jpeg" alt="Xiaomi 14 Ultra">
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="ads-card-details">
-                                <div class="ads-card-tags">
-                                    <div class="ads-card-category">Celulares y Smartphones</div>
-                                    <div class="ads-card-condition">Nuevo</div>
-                                </div>
-                                <h3 class="ads-card-title">Xiaomi 14 Ultra</h3>
-                                <p class="ads-card-price">$1.299,99</p>
-                            </div>
-                            <div class="ads-card-vendor">
-                                <div class="ads-card-vendor-label">Vendedor:</div>
-                                <div class="ads-card-vendor-name">Tech tecnologic</div>
-                            </div>
-                        </div>
-                        <div class="ads-card">
-                            <div class="ads-card-img">
-                                <a href="#">
-                                    <div class="ads-card-img-container">
-                                        <img src="../recursos/img/Mi_smart-plug.webp" alt="Xiaomi Mi Smart Plug">
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="ads-card-details">
-                                <div class="ads-card-tags">
-                                    <div class="ads-card-category">Dispositivos de Hogar Inteligente</div>
-                                    <div class="ads-card-condition">Nuevo</div>
-                                </div>
-                                <h3 class="ads-card-title">Xiaomi Mi Smart Plug</h3>
-                                <p class="ads-card-price">$24,99</p>
-                            </div>
-                            <div class="ads-card-vendor">
-                                <div class="ads-card-vendor-label">Vendedor:</div>
-                                <div class="ads-card-vendor-name">Tech tecnologic</div>
-                            </div>
-                        </div>
-
-                        <div class="ads-card">
-                            <div class="ads-card-img">
-                                <a href="#">
-                                    <div class="ads-card-img-container">
-                                        <img src="../recursos/img/Alexa_echo_dot_4ta_generaci_n_color_blanco.webp"
-                                            alt="Echo Dot 4ta Generación Blanco">
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="ads-card-details">
-                                <div class="ads-card-tags">
-                                    <div class="ads-card-category">Dispositivos de Hogar Inteligente</div>
-                                    <div class="ads-card-condition">Nuevo</div>
-                                </div>
-                                <h3 class="ads-card-title">Echo Dot 4ta Generación (Color Blanco)</h3>
-                                <p class="ads-card-price">$49,99</p>
-                            </div>
-                            <div class="ads-card-vendor">
-                                <div class="ads-card-vendor-label">Vendedor:</div>
-                                <div class="ads-card-vendor-name">Tech tecnologic</div>
-                            </div>
-                        </div>
-
-                        <div class="ads-card">
-                            <div class="ads-card-img">
-                                <a href="#">
-                                    <div class="ads-card-img-container">
-                                        <img src="../recursos/img/logitech_gprox-superlight-1.jpg"
-                                            alt="Logitech G Pro X Superlight">
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="ads-card-details">
-                                <div class="ads-card-tags">
-                                    <div class="ads-card-category">Accesorios Electrónicos</div>
-                                    <div class="ads-card-condition">Nuevo</div>
-                                </div>
-                                <h3 class="ads-card-title">Logitech G Pro X Superlight</h3>
-                                <p class="ads-card-price">$129,99</p>
-                            </div>
-                            <div class="ads-card-vendor">
-                                <div class="ads-card-vendor-label">Vendedor:</div>
-                                <div class="ads-card-vendor-name">Tech tecnologic</div>
-                            </div>
-                        </div>
-
-                        <div class="ads-card">
-                            <div class="ads-card-img">
-                                <a href="#">
-                                    <div class="ads-card-img-container">
-                                        <img src="../recursos/img/oculus_quest2_meta.webp" alt="Oculus Quest 2 Meta">
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="ads-card-details">
-                                <div class="ads-card-tags">
-                                    <div class="ads-card-category">Realidad Virtual</div>
-                                    <div class="ads-card-condition">Nuevo</div>
-                                </div>
-                                <h3 class="ads-card-title">Oculus Quest 2 Meta 128GB</h3>
-                                <p class="ads-card-price">$399,99</p>
-                            </div>
-                            <div class="ads-card-vendor">
-                                <div class="ads-card-vendor-label">Vendedor:</div>
-                                <div class="ads-card-vendor-name">Tech tecnologic</div>
-                            </div>
-                        </div>
                     </div>
-
+                </div>
 
         </section>
     </main>
@@ -494,13 +132,28 @@
             <div class="ads-card-vendor">
                 <div class="ads-card-vendor-label">Vendedor:</div>
                 <div class="ads-card-vendor-name"></div> <!-- nombre usuario vendedor-->
+            </div>        </div>
+    </template>
+
+    <!-- Modal de Confirmación para Quitar Favoritos -->
+    <div id="confirmModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>¿Quitar de favoritos?</h3>
+            </div>
+            <div class="modal-body">
+                <p>¿Estás seguro de que deseas quitar este anuncio de tus favoritos?</p>
+            </div>
+            <div class="modal-footer">
+                <button id="confirmCancel" class="btn-cancel">Cancelar</button>
+                <button id="confirmRemove" class="btn-confirm">Confirmar</button>
             </div>
         </div>
-    </template>
+    </div>
 
     <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
     <script src="../js/profileMenu.js"></script>
-    <script src="../js/verAnuncios.js"></script> 
+    <script src="../js/verAnuncios.js"></script>
 
 
 
@@ -510,4 +163,5 @@
         <p>@2024 AstroMarket.Todos los derechos reservados</p>
     </div>
 </footer>
+
 </html>

@@ -1,0 +1,108 @@
+/* Estilos adicionales para nuevas categorías */
+
+.bg-tablets {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.bg-accessories {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.bg-default {
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+}
+
+/* Mejoras para la visualización de categorías */
+.category-card {
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+}
+
+.category-card a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.category-card:hover {
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+}
+
+.category-stats {
+    margin-top: auto;
+    padding-top: 10px;
+}
+
+.category-stats {
+    margin-top: auto;
+    padding-top: 16px;
+    text-align: center;
+}
+
+.product-count {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 500;
+}
+
+.product-count {
+    background-color: rgb(249, 250, 251);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgb(75, 85, 99);
+    border: 1px solid rgb(229, 231, 235);
+}
+
+.product-count::before {
+    content: "";
+}
+
+/* Asegurar que los iconos se vean bien */
+.icon-placeholder i {
+    display: block;
+    width: 100%;
+    height: 100%;
+    line-height: 64px;
+}
+
+/* Espaciado correcto para el contenido */
+.card-content {
+    padding: 0;
+    margin-top: 8px;
+}
+
+.card-description {
+    margin-top: 8px;
+    line-height: 1.4;
+}
+
+/* Estilos responsivos para categorías */
+@media (max-width: 768px) {
+    .categories-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .category-card {
+        padding: 15px;
+    }
+    
+    .icon-placeholder {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .icon-placeholder i {
+        font-size: 1.2rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .categories-container {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+}

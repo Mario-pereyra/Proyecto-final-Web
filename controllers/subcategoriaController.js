@@ -79,3 +79,19 @@ exports.getSubcategoriasByCategoria = async (req, res) => {
     res.status(500).json({ message: "Error al obtener las subcategorías" });
   }
 };
+
+exports.getSubcategoriasPorCategoria = async (req, res) => {
+  const categoriaNombre = req.params.categoriaNombre;
+  
+  if (!categoriaNombre) {
+    return res.status(400).json({ message: 'Nombre de categoría requerido' });
+  }
+  
+  try {
+    const subcategorias = await subcategoriaRepository.getSubcategoriasPorCategoria(categoriaNombre);
+    return res.status(200).json(subcategorias);
+  } catch (error) {
+    console.error('Error al obtener subcategorías:', error);
+    return res.status(500).json({ message: 'Error al obtener subcategorías' });
+  }
+};

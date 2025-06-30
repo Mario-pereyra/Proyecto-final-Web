@@ -1,31 +1,64 @@
 /* Bookmark icon toggle styles for anuncios */
-.bookmark-checkbox {
-  display: none;
-}
-
 .bookmark-icon-label {
   cursor: pointer;
   position: absolute;
   top: 8px;
   right: 8px;
   z-index: 2;
-  background: #fff;
-  border-radius: 6px;
-  padding: 4px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
-  transition: background 0.2s;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  padding: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.bookmark-icon-label:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 .bookmark-icon-label .fa-bookmark {
-  color: #bbb;
-  font-size: 1.5em;
-  transition: color 0.2s;
+  color: #ccc;
+  font-size: 1.4em;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1));
 }
 
-.bookmark-checkbox:checked + .bookmark-icon-label .fa-bookmark {
-  color: #007bff;
+/* Estado activo - favorito guardado */
+.bookmark-icon-label .fa-bookmark.active {
+  color: #ff6b6b;
+  transform: scale(1.1);
 }
 
+/* Hover states */
 .bookmark-icon-label:hover .fa-bookmark {
-  color: #0056b3;
+  color: #ff8787;
+}
+
+.bookmark-icon-label .fa-bookmark.active:hover {
+  color: #ff5252;
+}
+
+/* Animación al hacer clic */
+.bookmark-icon-label:active {
+  transform: scale(0.95);
+}
+
+/* Efecto de pulso para favoritos activos */
+.bookmark-icon-label .fa-bookmark.active {
+  animation: pulse-favorite 0.6s ease-out;
+}
+
+@keyframes pulse-favorite {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1.1);
+  }
 }

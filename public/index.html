@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/index/section-hero.css">
     <link rel="stylesheet" href="css/index/section-categories.css">
-    <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/index/section-features-ads.css">
+    <link rel="stylesheet" href="css/components.css">    <link rel="stylesheet" href="css/index/section-features-ads.css">
     <link rel="stylesheet" href="css/index/section-stats.css">
     <link rel="stylesheet" href="css/index/section-cta.css">
     <link rel="stylesheet" href="css/index/section-faq.css">
+    <link rel="stylesheet" href="css/index/categorias-dinamicas.css">
     <link rel="stylesheet" href="css/footer.css">
 </head>
 
@@ -127,8 +127,8 @@
         <section class="popular-categories" data-component="categories-section">
             <h2 class="section-title">Categorías Populares</h2>
 
-            <div class="categories-container" data-component="categories-grid">
-                <a href="pages/VerAnuncios.html?category=laptops" class="category-card" data-action="browse-category"
+            <div class="categories-container" data-component="categories-grid" data-categoriaId="">
+                <a href="pages/VerAnuncios.html?category=Laptops%y%Computadoras" class="category-card" data-action="browse-category"
                     data-category="laptops">
                     <div class="icon-placeholder bg-laptops">
                         <i class="fa-solid fa-laptop" style="font-size:1.5rem;"></i>
@@ -234,10 +234,7 @@
                         </div>
                         <h3 class="ads-card-title" data-info="ad-title">MacBook Pro 16 pulgadas</h3>
                         <p class="ads-card-price" data-info="ad-price">$2.499,99</p>
-                        <div class="ads-card-rating" data-info="vendor-rating">
-                            <span class="stars">★★★★☆</span>
-                            <span class="rating-text">(4.2)</span>
-                        </div>
+                        
                     </div>
                     <div class="ads-card-vendor">
                         <div class="ads-card-vendor-label">Vendedor:</div>
@@ -248,7 +245,7 @@
 
                 <div class="ads-card" data-component="featured-ad-card" data-ad-id="2" data-category="smartphones">
                     <div class="ads-card-img">
-                        <a href="pages/DetalleAnuncio.html?id=2" data-action="view-ad-detail" data-ad-id="2">
+                        <a href="pages/DetalleAnuncio.html?anuncioId=2" data-action="view-ad-detail" data-ad-id="2">
                             <div class="ads-card-img-container">
                                 <img src="recursos/img/Iphone_15_Pro_256GB_Negro.webp" alt="iPhone 15 Pro"
                                     data-image="ad-thumbnail">
@@ -267,10 +264,7 @@
                         </div>
                         <h3 class="ads-card-title" data-info="ad-title">iPhone 15 Pro 256GB</h3>
                         <p class="ads-card-price" data-info="ad-price">$1.299,99</p>
-                        <div class="ads-card-rating" data-info="vendor-rating">
-                            <span class="stars">★★★★★</span>
-                            <span class="rating-text">(4.8)</span>
-                        </div>
+                        
                     </div>
                     <div class="ads-card-vendor">
                         <div class="ads-card-vendor-label">Vendedor:</div>
@@ -281,7 +275,7 @@
 
                 <div class="ads-card" data-component="featured-ad-card" data-ad-id="3" data-category="gaming">
                     <div class="ads-card-img">
-                        <a href="pages/DetalleAnuncio.html?id=3" data-action="view-ad-detail" data-ad-id="3">
+                        <a href="pages/DetalleAnuncio.html?anuncioId=3" data-action="view-ad-detail" data-ad-id="3">
                             <div class="ads-card-img-container">
                                 <img src="recursos/img/Play_station_5.webp" alt="PlayStation 5"
                                     data-image="ad-thumbnail">
@@ -300,10 +294,7 @@
                         </div>
                         <h3 class="ads-card-title" data-info="ad-title">PlayStation 5</h3>
                         <p class="ads-card-price" data-info="ad-price">$599,99</p>
-                        <div class="ads-card-rating" data-info="vendor-rating">
-                            <span class="stars">★★★★☆</span>
-                            <span class="rating-text">(4.5)</span>
-                        </div>
+                        
                     </div>
                     <div class="ads-card-vendor">
                         <div class="ads-card-vendor-label">Vendedor:</div>
@@ -314,7 +305,7 @@
 
                 <div class="ads-card" data-component="featured-ad-card" data-ad-id="4" data-category="audio">
                     <div class="ads-card-img">
-                        <a href="pages/DetalleAnuncio.html?id=4" data-action="view-ad-detail" data-ad-id="4">
+                        <a href="pages/DetalleAnuncio.html?anuncioId=4" data-action="view-ad-detail" data-ad-id="4">
                             <div class="ads-card-img-container">
                                 <img src="recursos/img/Sony_WH_1000XM5.webp" alt="Sony WH-1000XM5"
                                     data-image="ad-thumbnail">
@@ -333,10 +324,7 @@
                         </div>
                         <h3 class="ads-card-title" data-info="ad-title">Sony WH-1000XM5</h3>
                         <p class="ads-card-price" data-info="ad-price">$399,99</p>
-                        <div class="ads-card-rating" data-info="vendor-rating">
-                            <span class="stars">★★★★★</span>
-                            <span class="rating-text">(4.9)</span>
-                        </div>
+                        
                     </div>
                     <div class="ads-card-vendor">
                         <div class="ads-card-vendor-label">Vendedor:</div>
@@ -451,11 +439,10 @@
                 </details>
             </div>
         </div>
-    </section>
-
-    <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
+    </section>    <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
     <script src="js/profileMenu.js"></script>
     <script src="js/featured-ads.js"></script>
+    <script src="js/index-categorias.js"></script>
 </body>
 
 <footer data-component="main-footer">

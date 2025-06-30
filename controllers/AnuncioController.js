@@ -3,6 +3,7 @@ const path = require("path");
 
 const anuncioRepository = require("../repositories/anuncioRepository");
 const imagenRepository = require("../repositories/imagenRepository");
+const subcategoriaRepository = require('../repositories/subcategoriaRepository')
 
 // Devuelve anuncios con nombres de subcategoría y usuario, e imágenes asociadas
 exports.getAnuncios = async (req, rep) => {
@@ -126,6 +127,9 @@ exports.deleteAnuncio = async (req, rep) => {
 exports.getAnunciosConImagenes = async (req, res) => {
   try {
     const anuncios = await anuncioRepository.getAnunciosConImagenes();
+    const categoriaNombre= await subcategoriaRepository.getSubcategoriaById(anuncios.categoriaId);
+    const subcategoria= await subcategoriaRepository.getSubcategoriaById(anuncios.subcategoriaId) 
+    
     return res.status(200).json(anuncios);
   } catch (error) {
     console.error(error);
