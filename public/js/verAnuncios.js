@@ -33,6 +33,10 @@ if (usuario) {
 let anunciosGuardados = [];
 let pendingRemoveAnuncioId = null; // Para el modal de confirmación
 
+// Flag para evitar carga múltiple
+let isLoadingAnuncios = false;
+let anunciosAlreadyLoaded = false;
+
 // Función para obtener parámetros de la URL
 function getUrlParams() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -83,6 +87,11 @@ function aplicarFiltrosDesdeURL() {
 
 // Función para realizar búsqueda filtrada
 function realizarBusquedaFiltrada() {
+  console.log('🔍 Ejecutando búsqueda filtrada...');
+  
+  // Resetear flag de anuncios cargados porque estamos haciendo una búsqueda nueva
+  anunciosAlreadyLoaded = false;
+  
   const categoria = document.getElementById('product-filter')?.value;
   const subcategoria = document.getElementById('filtro-subcategorias')?.value;
   const busqueda = document.getElementById('search-input')?.value;
@@ -111,12 +120,10 @@ function realizarBusquedaFiltrada() {
       const totalAnunciosElement = document.getElementById('totalAnuncios');
       if (totalAnunciosElement) {
         totalAnunciosElement.textContent = anuncios.length;
-      }
-      
-      // Generar HTML para los resultados
+      }      // Generar HTML para los resultados
       let html = '';
       anuncios.forEach(anuncio => {
-        const ruta = anuncio.imagen_principal || '../recursos/img/imagen-no-disponible.jpg';
+        const ruta = anuncio.imagen_principal ? `/${anuncio.imagen_principal}` : '/recursos/img/imagen-no-disponible.jpg';
         const precio = anuncio.precio ? `$${anuncio.precio}` : 'Precio no disponible';
         
         html += `
@@ -127,13 +134,12 @@ function realizarBusquedaFiltrada() {
               </div>
               <a href="#">
                 <div class="ads-card-img-container">
-                  <img src="../../${ruta}" alt="${anuncio.titulo}" onerror="this.src='../../recursos/img/imagen-no-disponible.jpg'">
+                  <img src="${ruta}" alt="${anuncio.titulo}" onerror="this.src='/recursos/img/imagen-no-disponible.jpg'">
                 </div>
               </a>
-            </div>
-            <div class="ads-card-details">
+            </div>            <div class="ads-card-details">
               <div class="ads-card-tags">
-                <div class="ads-card-category">${anuncio.subcategoria || 'Sin categoría'}</div>
+                <div class="ads-card-category">${anuncio.subcategoriaNombre || 'Sin categoría'}</div>
                 <div class="ads-card-condition">${anuncio.estado || 'No especificado'}</div>
               </div>
               <h3 class="ads-card-title">${anuncio.titulo}</h3>
@@ -178,7 +184,13 @@ function getUserId() {
 
 // Función para cargar anuncios inicial (será llamada desde DOMContentLoaded)
 function cargarAnunciosInicial() {
-  console.log('Iniciando carga de datos...');
+  if (isLoadingAnuncios || anunciosAlreadyLoaded) {
+    console.log('⚠️ Ya se están cargando o ya se cargaron los anuncios, omitiendo...');
+    return Promise.resolve();
+  }
+  
+  isLoadingAnuncios = true;
+  console.log('🔄 Iniciando carga de datos...');
   console.log('Usuario para petición:', usuario);
 
   // No aplicar filtros automáticamente aquí, solo cargar todos los anuncios
@@ -230,13 +242,13 @@ function cargarAnunciosInicial() {
       console.log('Subcategoría:', anuncio.subcategoriaNombre);
       console.log('Usuario:', anuncio.usuarioNombre);
       console.log('Imágenes:', anuncio.imagenes?.length || 0);
-    }
-    
-    // Manejar imagen por defecto
-    let ruta = '../recursos/img/imagen-no-disponible.jpg';
-    if (anuncio.imagenes && anuncio.imagenes.length > 0) {
+    }    // Manejar imagen por defecto
+    let ruta = '/recursos/img/imagen-no-disponible.jpg';
+    if (anuncio.imagen_principal) {
+      ruta = `/${anuncio.imagen_principal}`;
+    } else if (anuncio.imagenes && anuncio.imagenes.length > 0) {
       const principal = anuncio.imagenes.find(img => img.es_principal === 1) || anuncio.imagenes[0];
-      ruta = principal.ruta_archivo;
+      ruta = `/${principal.ruta_archivo}`;
     }
     
     // Verificar si está guardado
@@ -262,10 +274,9 @@ function cargarAnunciosInicial() {
         <div class="ads-card-img" style="position:relative;">
           <div class="bookmark-icon-label" data-anuncio-id="${anuncioIdFinal}" title="${isGuardado ? 'Quitar de favoritos' : 'Agregar a favoritos'}" aria-label="${isGuardado ? 'Quitar de favoritos' : 'Agregar a favoritos'}">
             <span class="fa fa-bookmark${isGuardado ? ' active' : ''}" data-is-favorite="${isGuardado}"></span>
-          </div>
-          <a href="#">
+          </div>          <a href="#">
             <div class="ads-card-img-container">
-              <img src="../../${ruta}" alt="${titulo}" onerror="this.src='../../recursos/img/imagen-no-disponible.jpg'">
+              <img src="${ruta}" alt="${titulo}" onerror="this.src='/recursos/img/imagen-no-disponible.jpg'">
             </div>
           </a>
         </div>
@@ -283,12 +294,15 @@ function cargarAnunciosInicial() {
         </div>
       </div>`;
   });
-  
   const containerAnuncios = document.querySelector('#ads-grid');
   containerAnuncios.innerHTML = html;
-  // 3. Configurar eventos de favoritos y filtros
+  // 3. Configurar eventos de favoritos (no filtros aquí para evitar duplicación)
   setupFavoriteHandlers();
-  setupFilterHandlers();
+  
+  // Marcar como completado
+  anunciosAlreadyLoaded = true;
+  isLoadingAnuncios = false;
+  console.log('✅ Anuncios cargados exitosamente');
   
   // 4. Cargar categorías en selects
   cargarCategoriasEnSelects();
@@ -309,6 +323,10 @@ function cargarAnunciosInicial() {
         Intentar de nuevo
       </button>    </div>
   `;
+  
+  // Resetear flags en caso de error
+  isLoadingAnuncios = false;
+  anunciosAlreadyLoaded = false;
   });
 }
 
@@ -629,17 +647,19 @@ document.addEventListener('DOMContentLoaded', async () => {
   
   // 1. Cargar categorías en los selects primero
   await cargarCategoriasEnSelects();
+    // 2. Configurar eventos de filtros una sola vez
+  setupFilterHandlers();
   
-  // 2. Verificar si hay parámetros de URL
+  // 3. Verificar si hay parámetros de URL
   const params = getUrlParams();
   console.log('Parámetros de URL detectados:', params);
   
-  // 3. Si hay parámetros, aplicar filtros y buscar
+  // 4. Si hay parámetros, aplicar filtros y buscar
   if (params.categoria || params.busqueda) {
     console.log('Aplicando filtros desde URL...');
     aplicarFiltrosDesdeURL();
   } else {
-    // 4. Si no hay parámetros, cargar todos los anuncios
+    // 5. Si no hay parámetros, cargar todos los anuncios
     console.log('No hay filtros en URL, cargando todos los anuncios...');
     await cargarAnunciosInicial();
   }

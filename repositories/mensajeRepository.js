@@ -8,7 +8,11 @@ const getConnection = async () => {
   return connection;
 };
 
-exports.encontrarOCrearConversacion = async (anuncioId,compradorId,vendedorId) => {
+exports.encontrarOCrearConversacion = async (
+  anuncioId,
+  compradorId,
+  vendedorId
+) => {
   const connection = await getConnection();
   let [conversaciones] = await connection.query(
     "SELECT conversacionId FROM conversaciones WHERE anuncioId = ? AND compradorId = ?",
@@ -17,7 +21,8 @@ exports.encontrarOCrearConversacion = async (anuncioId,compradorId,vendedorId) =
   if (conversaciones.length > 0) {
     return conversaciones[0].conversacionId;
   } else {
-    const [resultado] = await connection.query("INSERT INTO conversaciones (anuncioId, compradorId, vendedorId) VALUES (?, ?, ?)",
+    const [resultado] = await connection.query(
+      "INSERT INTO conversaciones (anuncioId, compradorId, vendedorId) VALUES (?, ?, ?)",
       [anuncioId, compradorId, vendedorId]
     );
     return resultado.insertId;
@@ -51,19 +56,27 @@ exports.getConversacionesPorUsuarioId = async (usuarioId) => {
 
 exports.getMensajesPorConversacionId = async (conversacionId) => {
   const conn = await getConnection();
-  const [filas] = await conn.query("SELECT mensajeId, conversacionId, emisorId, contenido, fecha_envio, leido FROM mensajes WHERE conversacionId = ? ORDER BY fecha_envio ASC",[conversacionId]);
+  const [filas] = await conn.query(
+    "SELECT mensajeId, conversacionId, emisorId, contenido, fecha_envio, leido FROM mensajes WHERE conversacionId = ? ORDER BY fecha_envio ASC",
+    [conversacionId]
+  );
   return filas;
 };
 
-
 exports.crearMensaje = async (conversacionId, emisorId, contenido) => {
   const conn = await getConnection();
-  const [resultadoInsert] = await conn.query("INSERT INTO mensajes (conversacionId, emisorId, contenido, leido) VALUES (?, ?, ?, 0)",[conversacionId, emisorId, contenido]);
+  const [resultadoInsert] = await conn.query(
+    "INSERT INTO mensajes (conversacionId, emisorId, contenido, leido) VALUES (?, ?, ?, 0)",
+    [conversacionId, emisorId, contenido]
+  );
   if (!resultadoInsert || resultadoInsert.affectedRows === 0) {
     console.error("Fallo al insertar el mensaje.");
     return null;
   }
-  const [resultadoUpdate] = await conn.query("UPDATE conversaciones SET fecha_ultimo_mensaje = CURRENT_TIMESTAMP WHERE conversacionId = ?",[conversacionId]);
+  const [resultadoUpdate] = await conn.query(
+    "UPDATE conversaciones SET fecha_ultimo_mensaje = CURRENT_TIMESTAMP WHERE conversacionId = ?",
+    [conversacionId]
+  );
   if (!resultadoUpdate || resultadoUpdate.affectedRows === 0) {
     console.error("Fallo al actualizar la fecha de la conversación.");
     return null;
@@ -71,9 +84,13 @@ exports.crearMensaje = async (conversacionId, emisorId, contenido) => {
   return resultadoInsert;
 };
 
-exports.marcarMensajesComoLeidos = async (conversacionId, usuarioReceptorId) => {
+exports.marcarMensajesComoLeidos = async (
+  conversacionId,
+  usuarioReceptorId
+) => {
   const conn = await getConnection();
-  await conn.query("UPDATE mensajes SET leido = 1 WHERE conversacionId = ? AND emisorId != ? AND leido = 0",
+  await conn.query(
+    "UPDATE mensajes SET leido = 1 WHERE conversacionId = ? AND emisorId != ? AND leido = 0",
     [conversacionId, usuarioReceptorId]
   );
 };

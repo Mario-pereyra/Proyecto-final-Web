@@ -1,4 +1,3 @@
-
 const dbconnection = require("../db/mysqlConecction");
 let connection = null;
 
@@ -31,7 +30,8 @@ exports.getAnuncios = async () => {
 exports.getAnuncioById = async (anuncioId) => {
   const connection = await getConnection();
 
-  const [getAnuncioByIdResultado] = await connection.query(`
+  const [getAnuncioByIdResultado] = await connection.query(
+    `
     SELECT 
       a.*, 
       c.nombre AS categoriaNombre,
@@ -42,20 +42,49 @@ exports.getAnuncioById = async (anuncioId) => {
     LEFT JOIN subcategorias s ON a.subcategoriaId = s.subcategoriaId
     LEFT JOIN usuarios u ON a.usuarioId = u.usuarioId
     WHERE a.anuncioId = ?
-  `,[anuncioId]);
+  `,
+    [anuncioId]
+  );
   if (!getAnuncioByIdResultado || getAnuncioByIdResultado.length === 0) {
     return null;
   }
   return getAnuncioByIdResultado;
 };
 
-exports.createAnuncio = async (usuarioId,titulo,descripcion,precio,categoriaId,
-  subcategoriaId,estado,estado_publicacion,departamentoId,ciudadId,zona,vistas,valoracion) => {
-
+exports.createAnuncio = async (
+  usuarioId,
+  titulo,
+  descripcion,
+  precio,
+  categoriaId,
+  subcategoriaId,
+  estado,
+  estado_publicacion,
+  departamentoId,
+  ciudadId,
+  zona,
+  vistas,
+  valoracion
+) => {
   const connection = await getConnection();
-  const [createAnuncioResultado] = await connection.query("INSERT INTO anuncios (usuarioId, titulo, descripcion, precio, categoriaId, subcategoriaId, estado, estado_publicacion, departamentoId, ciudadId, zona, vistas, valoracion) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-    [usuarioId,titulo,descripcion,precio,categoriaId,subcategoriaId,estado,estado_publicacion,
-      departamentoId,ciudadId,zona,vistas,valoracion,]);
+  const [createAnuncioResultado] = await connection.query(
+    "INSERT INTO anuncios (usuarioId, titulo, descripcion, precio, categoriaId, subcategoriaId, estado, estado_publicacion, departamentoId, ciudadId, zona, vistas, valoracion) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
+    [
+      usuarioId,
+      titulo,
+      descripcion,
+      precio,
+      categoriaId,
+      subcategoriaId,
+      estado,
+      estado_publicacion,
+      departamentoId,
+      ciudadId,
+      zona,
+      vistas,
+      valoracion,
+    ]
+  );
 
   if (!createAnuncioResultado || createAnuncioResultado.length === 0) {
     return null;
@@ -63,15 +92,41 @@ exports.createAnuncio = async (usuarioId,titulo,descripcion,precio,categoriaId,
   return createAnuncioResultado;
 };
 
-exports.updateAnuncio = async (anuncioId,titulo,descripcion,precio,categoriaId,subcategoriaId,
-  estado,estado_publicacion,departamentoId,ciudadId,zona,vistas,valoracion) => {
-
+exports.updateAnuncio = async (
+  anuncioId,
+  titulo,
+  descripcion,
+  precio,
+  categoriaId,
+  subcategoriaId,
+  estado,
+  estado_publicacion,
+  departamentoId,
+  ciudadId,
+  zona,
+  vistas,
+  valoracion
+) => {
   const connection = await getConnection();
   const [updateAnuncioResultado] = await connection.query(
     "UPDATE anuncios SET titulo = ?, descripcion = ?, precio = ?, categoriaId = ?, subcategoriaId = ?, estado = ?, estado_publicacion = ?, departamentoId = ?, ciudadId = ?, zona = ?, vistas = ?, valoracion = ? WHERE anuncioId = ?",
-    [titulo,descripcion,precio,categoriaId,subcategoriaId,estado,estado_publicacion,departamentoId,
-      ciudadId,zona,vistas,valoracion,anuncioId,]);
-      
+    [
+      titulo,
+      descripcion,
+      precio,
+      categoriaId,
+      subcategoriaId,
+      estado,
+      estado_publicacion,
+      departamentoId,
+      ciudadId,
+      zona,
+      vistas,
+      valoracion,
+      anuncioId,
+    ]
+  );
+
   if (!updateAnuncioResultado || updateAnuncioResultado.length === 0) {
     return null;
   }
@@ -81,7 +136,8 @@ exports.updateAnuncio = async (anuncioId,titulo,descripcion,precio,categoriaId,s
 exports.deleteAnuncio = async (anuncioId) => {
   const connection = await getConnection();
 
-  const [deleteAnuncioResultado] = await connection.query("DELETE FROM anuncios WHERE anuncioId = ?  ",
+  const [deleteAnuncioResultado] = await connection.query(
+    "DELETE FROM anuncios WHERE anuncioId = ?  ",
     [anuncioId]
   );
   if (!deleteAnuncioResultado || deleteAnuncioResultado.length === 0) {
@@ -92,14 +148,15 @@ exports.deleteAnuncio = async (anuncioId) => {
 
 exports.asociarImagen = async (anuncioId, imagenId, es_principal, orden) => {
   const connection = await getConnection();
-  await connection.query("INSERT INTO anuncio_imagenes (anuncioId, imagenId, es_principal, orden) VALUES (?, ?, ?, ?)",
+  await connection.query(
+    "INSERT INTO anuncio_imagenes (anuncioId, imagenId, es_principal, orden) VALUES (?, ?, ?, ?)",
     [anuncioId, imagenId, es_principal ? 1 : 0, orden]
   );
 };
 
 exports.getAnunciosConImagenes = async () => {
   const connection = await getConnection();
- 
+
   const [anuncios] = await connection.query(`
     SELECT 
       a.*, 
@@ -114,7 +171,6 @@ exports.getAnunciosConImagenes = async () => {
   if (!anuncios || anuncios.length === 0) {
     return [];
   }
-
 
   const [imagenes] = await connection.query(
     `SELECT ai.anuncioId, i.imagenId, i.nombre_archivo, i.ruta_archivo, ai.es_principal, ai.orden
@@ -132,7 +188,8 @@ exports.getAnunciosConImagenes = async () => {
 
 exports.getAnuncioConImagenesById = async (anuncioId) => {
   const connection = await getConnection();
-  const [anuncioRows] = await connection.query(`
+  const [anuncioRows] = await connection.query(
+    `
     SELECT 
       a.*, 
       c.nombre AS categoriaNombre,
@@ -143,8 +200,9 @@ exports.getAnuncioConImagenesById = async (anuncioId) => {
     LEFT JOIN subcategorias s ON a.subcategoriaId = s.subcategoriaId
     LEFT JOIN usuarios u ON a.usuarioId = u.usuarioId
     WHERE a.anuncioId = ?
-  `,[anuncioId]
-);
+  `,
+    [anuncioId]
+  );
   if (!anuncioRows || anuncioRows.length === 0) return null;
   const anuncio = anuncioRows[0];
 
@@ -159,9 +217,6 @@ exports.getAnuncioConImagenesById = async (anuncioId) => {
   anuncio.imagenes = imagenes;
   return anuncio;
 };
-
-
-
 
 exports.deleteAnuncioImagen = async (anuncioId, imagenId) => {
   const connection = await getConnection();
@@ -189,7 +244,6 @@ exports.getImagenesIdsByAnuncio = async (anuncioId) => {
   return rows.map((row) => row.imagenId);
 };
 
-
 exports.deleteAnuncioImagenes = async (anuncioId) => {
   const connection = await getConnection();
   await connection.query("DELETE FROM anuncio_imagenes WHERE anuncioId = ?", [
@@ -198,14 +252,13 @@ exports.deleteAnuncioImagenes = async (anuncioId) => {
 };
 
 exports.buscar = async (filtros) => {
-  const conn = await getConnection();
-  let sql = `
+  const conn = await getConnection();  let sql = `
         SELECT 
             a.anuncioId, a.titulo, a.precio, a.estado,
             c.nombre AS ciudad,
             d.nombre AS departamento,
             cat.nombre AS categoria,
-            subcat.nombre AS subcategoria,
+            subcat.nombre AS subcategoriaNombre,
             COALESCE(u.nombre_completo, 'Usuario desconocido') AS usuarioNombre,
             (SELECT i.ruta_archivo FROM anuncio_imagenes ai JOIN imagenes i ON ai.imagenId = i.imagenId WHERE ai.anuncioId = a.anuncioId AND ai.es_principal = 1 LIMIT 1) AS imagen_principal
         FROM anuncios a
@@ -216,8 +269,8 @@ exports.buscar = async (filtros) => {
         LEFT JOIN usuarios u ON a.usuarioId = u.usuarioId
     `;
 
-  const whereClauses = ['a.estado_publicacion = ?'];
-  const params = ['activo'];
+  const whereClauses = ["a.estado_publicacion = ?"];
+  const params = ["activo"];
   // Filtro por categoría (nombre o ID)
   if (filtros.categoria) {
     whereClauses.push("cat.nombre = ?");
@@ -227,7 +280,7 @@ exports.buscar = async (filtros) => {
     whereClauses.push("a.categoriaId = ?");
     params.push(filtros.categoriaId);
   }
-  
+
   // Filtro por subcategoría (nombre o ID)
   if (filtros.subcategoria) {
     whereClauses.push("subcat.nombre = ?");
@@ -263,8 +316,8 @@ exports.buscar = async (filtros) => {
   }
   sql += " ORDER BY a.fecha_creacion DESC";
 
-  console.log('Query SQL:', sql);
-  console.log('Parámetros:', params);
+  console.log("Query SQL:", sql);
+  console.log("Parámetros:", params);
 
   const [rows] = await conn.query(sql, params);
   return rows;
@@ -287,12 +340,12 @@ exports.getAnunciosConNombres = async () => {
     ORDER BY a.fecha_creacion DESC
   `);
 
-  console.log('Anuncios obtenidos:', anuncios.length);
+  console.log("Anuncios obtenidos:", anuncios.length);
   if (anuncios.length > 0) {
-    console.log('Primer anuncio:', {
+    console.log("Primer anuncio:", {
       titulo: anuncios[0].titulo,
       subcategoriaNombre: anuncios[0].subcategoriaNombre,
-      usuarioNombre: anuncios[0].usuarioNombre
+      usuarioNombre: anuncios[0].usuarioNombre,
     });
   }
 
