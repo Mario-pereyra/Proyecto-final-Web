@@ -126,37 +126,38 @@ function realizarBusquedaFiltrada() {
         const ruta = anuncio.imagen_principal ? `/${anuncio.imagen_principal}` : '/recursos/img/imagen-no-disponible.jpg';
         const precio = anuncio.precio ? `$${anuncio.precio}` : 'Precio no disponible';
         
-        html += `
-          <div class="ads-card" data-anuncio-id="${anuncio.anuncioId}">
-            <div class="ads-card-img" style="position:relative;">
-              <div class="bookmark-icon-label" data-anuncio-id="${anuncio.anuncioId}" title="Agregar a favoritos">
-                <span class="fa fa-bookmark" data-is-favorite="false"></span>
-              </div>
-              <a href="#">
-                <div class="ads-card-img-container">
-                  <img src="${ruta}" alt="${anuncio.titulo}" onerror="this.src='/recursos/img/imagen-no-disponible.jpg'">
-                </div>
-              </a>
-            </div>            <div class="ads-card-details">
-              <div class="ads-card-tags">
-                <div class="ads-card-category">${anuncio.subcategoriaNombre || 'Sin categoría'}</div>
-                <div class="ads-card-condition">${anuncio.estado || 'No especificado'}</div>
-              </div>
-              <h3 class="ads-card-title">${anuncio.titulo}</h3>
-              <p class="ads-card-price">${precio}</p>
-            </div>
-            <div class="ads-card-vendor">
-              <div class="ads-card-vendor-label">Vendedor:</div>
-              <div class="ads-card-vendor-name">${anuncio.usuarioNombre || 'Usuario desconocido'}</div>
-            </div>
-          </div>`;
+        html += 
+          `<div class="ads-card" data-anuncio-id="${anuncio.anuncioId}">
+    <div class="ads-card-img" style="position:relative;">
+        <div class="bookmark-icon-label" data-anuncio-id="${anuncio.anuncioId}" title="Agregar a favoritos">
+            <span class="fa fa-bookmark" data-is-favorite="false"></span>
+        </div>
+        <a href="#">
+            <img src="${ruta}" alt="${anuncio.titulo}" onerror="this.src='/recursos/img/imagen-no-disponible.jpg'">
+        </a>
+    </div>
+    <div class="ads-card-details">
+        <div class="ads-card-tags">
+            <div class="ads-card-category">${anuncio.subcategoriaNombre || 'Sin categoría'}</div>
+            <div class="ads-card-condition">${anuncio.estado || 'No especificado'}</div>
+        </div>
+        <h3 class="ads-card-title">${anuncio.titulo}</h3>
+        <p class="ads-card-price">${precio}</p>
+    </div>
+    <div class="ads-card-vendor">
+        <div class="ads-card-vendor-label">Vendedor:</div>
+        <div class="ads-card-vendor-name">${anuncio.usuarioNombre || 'Usuario desconocido'}</div>
+    </div>
+</div>`;
       });
-      
-      const containerAnuncios = document.querySelector('#ads-grid');
+        const containerAnuncios = document.querySelector('#ads-grid');
       containerAnuncios.innerHTML = html;
       
       // Reconfigurar eventos de favoritos
       setupFavoriteHandlers();
+      
+      // Agregar listeners para incrementar vistas
+      addViewIncrementListeners();
     })
     .catch(error => {
       console.error('Error en búsqueda filtrada:', error);
@@ -293,11 +294,13 @@ function cargarAnunciosInicial() {
           <div class="ads-card-vendor-name">${usuarioNombre}</div>
         </div>
       </div>`;
-  });
-  const containerAnuncios = document.querySelector('#ads-grid');
+  });  const containerAnuncios = document.querySelector('#ads-grid');
   containerAnuncios.innerHTML = html;
   // 3. Configurar eventos de favoritos (no filtros aquí para evitar duplicación)
   setupFavoriteHandlers();
+  
+  // Agregar listeners para incrementar vistas
+  addViewIncrementListeners();
   
   // Marcar como completado
   anunciosAlreadyLoaded = true;
@@ -664,3 +667,43 @@ document.addEventListener('DOMContentLoaded', async () => {
     await cargarAnunciosInicial();
   }
 });
+
+// Función para incrementar vistas de un anuncio
+async function incrementarVistaAnuncio(anuncioId) {
+  try {
+    const response = await fetch(`/api/anuncios/${anuncioId}/incrementar-vistas`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    
+    if (response.ok) {
+      console.log(`Vista incrementada para anuncio ${anuncioId}`);
+    } else {
+      console.error('Error al incrementar vista:', response.status);
+    }
+  } catch (error) {
+    console.error('Error al incrementar vistas:', error);
+  }
+}
+
+// Agregar event listeners para incrementar vistas cuando se hace clic en un anuncio
+function addViewIncrementListeners() {
+  const anuncioLinks = document.querySelectorAll('a[href*="DetalleAnuncio.html"]');
+  anuncioLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      const urlParams = new URLSearchParams(href.split('?')[1]);
+      const anuncioId = urlParams.get('anuncioId') || urlParams.get('id');
+      
+      if (anuncioId) {
+        // Incrementar vista sin esperar la respuesta para no ralentizar la navegación
+        incrementarVistaAnuncio(anuncioId);
+      }
+    });
+  });
+}
+
+// Llamar a la función para agregar listeners de incremento de vistas
+addViewIncrementListeners();

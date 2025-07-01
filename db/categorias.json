@@ -1,0 +1,42 @@
+[
+  {
+    "categoriaId": 1,
+    "nombre": "Celulares y Smartphones"
+  },
+  {
+    "categoriaId": 2,
+    "nombre": "Laptops y Computadoras"
+  },
+  {
+    "categoriaId": 3,
+    "nombre": "Tablets y E-readers"
+  },
+  {
+    "categoriaId": 4,
+    "nombre": "Audio y Sonido"
+  },
+  {
+    "categoriaId": 5,
+    "nombre": "Smartwatches y Wearables"
+  },
+  {
+    "categoriaId": 6,
+    "nombre": "Dispositivos de Hogar Inteligente"
+  },
+  {
+    "categoriaId": 7,
+    "nombre": "Gaming"
+  },
+  {
+    "categoriaId": 8,
+    "nombre": "Cámaras y Drones"
+  },
+  {
+    "categoriaId": 9,
+    "nombre": "Accesorios Electrónicos Generales"
+  },
+  {
+    "categoriaId": 10,
+    "nombre": "Almacenamiento"
+  }
+]

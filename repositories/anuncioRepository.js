@@ -369,3 +369,39 @@ exports.getAnunciosConNombres = async () => {
 
   return anuncios;
 };
+
+// Incrementar vistas de un anuncio
+exports.incrementarVistas = async (anuncioId) => {
+  const connection = await getConnection();
+  const [result] = await connection.query(
+    "UPDATE anuncios SET vistas = vistas + 1 WHERE anuncioId = ?",
+    [anuncioId]
+  );
+  return result.affectedRows > 0;
+};
+
+// Obtener anuncios más vistos
+exports.getAnunciosMasVistos = async (limit = 4) => {
+  const connection = await getConnection();
+  const [anuncios] = await connection.query(`
+    SELECT 
+      a.anuncioId, a.titulo, a.precio, a.estado, a.vistas,
+      c.nombre AS ciudad,
+      d.nombre AS departamento,
+      cat.nombre AS categoria,
+      subcat.nombre AS subcategoriaNombre,
+      COALESCE(u.nombre_completo, 'Usuario desconocido') AS usuarioNombre,
+      (SELECT i.ruta_archivo FROM anuncio_imagenes ai JOIN imagenes i ON ai.imagenId = i.imagenId WHERE ai.anuncioId = a.anuncioId AND ai.es_principal = 1 LIMIT 1) AS imagen_principal
+    FROM anuncios a
+    JOIN ciudades c ON a.ciudadId = c.ciudadId
+    JOIN departamentos d ON a.departamentoId = d.departamentoId
+    JOIN categorias cat ON a.categoriaId = cat.categoriaId
+    JOIN subcategorias subcat ON a.subcategoriaId = subcat.subcategoriaId
+    LEFT JOIN usuarios u ON a.usuarioId = u.usuarioId
+    WHERE a.estado_publicacion = 'activo'
+    ORDER BY a.vistas DESC, a.fecha_creacion DESC
+    LIMIT ?
+  `, [limit]);
+  
+  return anuncios;
+};

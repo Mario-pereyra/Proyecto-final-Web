@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anuncios Guardados - AstroMarket</title>
-    <link rel="stylesheet" href="../css/vendors/fonts.css">
+    <title>Anuncios Guardados - AstroMarket</title>    <link rel="stylesheet" href="../css/vendors/fonts.css">
     <link rel="stylesheet" href="../css/VerAnuncios/Buscador.css">
     <link rel="stylesheet" href="../css/VerAnuncios/header.css">
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/AnunciosGuardados/estados.css">
 </head>
 
 <body>
@@ -66,26 +66,7 @@
                 </div>
             </div>
 
-            <!-- User Profile Menu -->
-            <div class="header-profile-menu" id="header-profile-menu" data-component="header-profile-menu"
-                data-state="hidden">
-                <div class="profile-menu-item" data-action="view-profile">
-                    <i class="fa-solid fa-user"></i>
-                    Ver Perfil
-                </div>
-                <div class="profile-menu-item" data-action="view-saved-ads">
-                    <i class="fa-solid fa-bookmark"></i>
-                    Anuncios Guardados
-                </div>
-                <div class="profile-menu-item" data-action="view-vendor-panel">
-                    <i class="fa-solid fa-store"></i>
-                    Panel Vendedor
-                </div>
-                <div class="profile-menu-item" data-action="logout">
-                    <i class="fa-solid fa-sign-out-alt"></i>
-                    Cerrar Sesión
-                </div>
-            </div>
+            
         </div>
     </header>
     <main data-component="saved-ads-main">
@@ -150,76 +131,9 @@
                         <p id="results-count" data-info="results-count">8 anuncios guardados</p>
 
                     </div>
-                </div>
-
-                <div class="container-ads" id="ads-container" data-component="saved-ads-container" data-view="grid">
+                </div>                <div class="container-ads" id="ads-container" data-component="saved-ads-container" data-view="grid">
                     <div class="ads-card-container" id="ads-list" data-info="ads-list">
-                        <!-- Saved ads will be populated here -->
-                        <div class="ads-card" data-component="featured-ad-card" data-ad-id="1" data-category="laptops">
-                            <div class="ads-card-img">
-                                <a href="pages/DetalleAnuncio.html?id=1" data-action="view-ad-detail" data-ad-id="1">
-                                    <div class="ads-card-img-container">
-                                        <img src="../recursos/img/MacBook_Pro_16.webp" alt="MacBook Pro 16"
-                                            data-image="ad-thumbnail">
-                                    </div>
-                                </a>
-                                <button class="bookmark-icon" data-action="toggle-bookmark" data-ad-id="1"
-                                    title="Guardar anuncio">
-                                    <i class="fas fa-bookmark"></i>
-                                </button>
-
-                            </div>
-                            <div class="ads-card-details">
-                                <div class="ads-card-tags">
-                                    <div class="ads-card-category" data-info="ad-category">Laptops</div>
-                                    <div class="ads-card-condition" data-info="ad-condition">Nuevo</div>
-                                </div>
-                                <h3 class="ads-card-title" data-info="ad-title">MacBook Pro 16 pulgadas</h3>
-                                <p class="ads-card-price" data-info="ad-price">$2.499,99</p>
-                                <div class="ads-card-rating" data-info="vendor-rating">
-                                    <span class="stars">★★★★☆</span>
-                                    <span class="rating-text">(4.2)</span>
-                                </div>
-                            </div>
-                            <div class="ads-card-vendor">
-                                <div class="ads-card-vendor-label">Vendedor:</div>
-                                <div class="ads-card-vendor-name" data-info="vendor-name">Tech Store</div>
-                            </div>
-
-                        </div>
-
-                        <div class="ads-card" data-component="featured-ad-card" data-ad-id="2" data-category="smartphones">
-                    <div class="ads-card-img">
-                        <a href="pages/DetalleAnuncio.html?id=2" data-action="view-ad-detail" data-ad-id="2">
-                            <div class="ads-card-img-container">
-                                <img src="../recursos/img/Iphone_15_Pro_256GB_Negro.webp" alt="iPhone 15 Pro"
-                                    data-image="ad-thumbnail">
-                            </div>
-                        </a>
-                        <button class="bookmark-icon" data-action="toggle-bookmark" data-ad-id="2"
-                            title="Guardar anuncio">
-                            <i class="fas fa-bookmark"></i>
-                        </button>
-                        
-                    </div>
-                    <div class="ads-card-details">
-                        <div class="ads-card-tags">
-                            <div class="ads-card-category" data-info="ad-category">Smartphones</div>
-                            <div class="ads-card-condition" data-info="ad-condition">Nuevo</div>
-                        </div>
-                        <h3 class="ads-card-title" data-info="ad-title">iPhone 15 Pro 256GB</h3>
-                        <p class="ads-card-price" data-info="ad-price">$1.299,99</p>
-                        <div class="ads-card-rating" data-info="vendor-rating">
-                            <span class="stars">★★★★★</span>
-                            <span class="rating-text">(4.8)</span>
-                        </div>
-                    </div>
-                    <div class="ads-card-vendor">
-                        <div class="ads-card-vendor-label">Vendedor:</div>
-                        <div class="ads-card-vendor-name" data-info="vendor-name">Mobile Shop</div>
-                    </div>
-                    
-                </div>
+                        <!-- Saved ads will be populated here dynamically -->
                     </div>
                 </div>
 
@@ -367,8 +281,8 @@
 <footer data-component="main-footer">
     <div class="copyright">
         <p>&copy; 2024 AstroMarket. Todos los derechos reservados</p>
-    </div>
-    <script src="../js/profileMenu.js"></script>
+    </div>    <script src="../js/profileMenu.js"></script>
+    <script src="../js/anunciosGuardados.js"></script>
 </footer>
 
 </html>

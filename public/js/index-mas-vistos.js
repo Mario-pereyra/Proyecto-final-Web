@@ -1,5 +1,5 @@
-// Gestión de anuncios destacados en la página principal
-class FeaturedAdsManager {
+// Gestión de anuncios más vistos en la página principal
+class MostViewedAdsManager {
     constructor() {
         this.baseURL = '/api/anuncios';
         this.isLoading = false;
@@ -7,38 +7,36 @@ class FeaturedAdsManager {
     }
 
     init() {
-        this.loadFeaturedAds();
+        this.loadMostViewedAds();
     }
 
-    async loadFeaturedAds() {
+    async loadMostViewedAds() {
         if (this.isLoading) return;
         
         this.isLoading = true;
-        const container = document.getElementById('featured-ads-list');
-        const loadingElement = document.getElementById('featured-ads-loading');
+        const container = document.getElementById('most-viewed-ads-list');
+        const loadingElement = document.getElementById('most-viewed-loading');
         
         try {
             if (loadingElement) {
                 loadingElement.style.display = 'block';
             }
 
-            const response = await fetch(`${this.baseURL}/con-imagenes`);
+            const response = await fetch(`${this.baseURL}/mas-vistos`);
             if (!response.ok) {
                 throw new Error(`Error HTTP: ${response.status}`);
             }
 
             const anuncios = await response.json();
-            console.log('Anuncios destacados cargados:', anuncios);
+            console.log('Anuncios más vistos cargados:', anuncios);
 
             if (anuncios && anuncios.length > 0) {
-                // Tomar solo los primeros 4 anuncios para destacados
-                const anunciosDestacados = anuncios.slice(0, 4);
-                this.renderFeaturedAds(anunciosDestacados, container);
+                this.renderMostViewedAds(anuncios, container);
             } else {
                 this.renderNoResults(container);
             }
         } catch (error) {
-            console.error('Error al cargar anuncios destacados:', error);
+            console.error('Error al cargar anuncios más vistos:', error);
             this.renderError(container);
         } finally {
             if (loadingElement) {
@@ -48,7 +46,7 @@ class FeaturedAdsManager {
         }
     }
 
-    renderFeaturedAds(anuncios, container) {
+    renderMostViewedAds(anuncios, container) {
         const anunciosHTML = anuncios.map(anuncio => this.createAdCard(anuncio)).join('');
         container.innerHTML = anunciosHTML;
         
@@ -60,11 +58,11 @@ class FeaturedAdsManager {
         // Manejar la ruta de la imagen correctamente
         let imagenPrincipal;
         if (anuncio.imagenes && anuncio.imagenes.length > 0) {
-            const principal = anuncio.imagenes.find(img => img.es_principal === 1) || anuncio.imagenes[0];
-            if (principal.ruta_archivo.startsWith('uploads/')) {
-                imagenPrincipal = `/${principal.ruta_archivo}`;
+            const nombreImagen = anuncio.imagenes[0].nombre_archivo;
+            if (nombreImagen.startsWith('uploads/')) {
+                imagenPrincipal = `/${nombreImagen}`;
             } else {
-                imagenPrincipal = `/uploads/${principal.ruta_archivo}`;
+                imagenPrincipal = `/uploads/${nombreImagen}`;
             }
         } else if (anuncio.imagen_principal) {
             if (anuncio.imagen_principal.startsWith('uploads/')) {
@@ -117,7 +115,7 @@ class FeaturedAdsManager {
 
     addClickListeners() {
         // Agregar event listeners para incrementar vistas cuando se hace clic en un anuncio
-        const adLinks = document.querySelectorAll('.featured-ads .ad-link');
+        const adLinks = document.querySelectorAll('.most-viewed-ads .ad-link');
         adLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 const href = link.getAttribute('href');
@@ -149,7 +147,7 @@ class FeaturedAdsManager {
     renderNoResults(container) {
         container.innerHTML = `
             <div class="no-results">
-                <p>No se encontraron anuncios destacados en este momento.</p>
+                <p>No se encontraron anuncios en este momento.</p>
             </div>
         `;
     }
@@ -157,7 +155,7 @@ class FeaturedAdsManager {
     renderError(container) {
         container.innerHTML = `
             <div class="error-message">
-                <p>Error al cargar los anuncios destacados. Por favor, inténtalo más tarde.</p>
+                <p>Error al cargar los anuncios más vistos. Por favor, inténtalo más tarde.</p>
             </div>
         `;
     }
@@ -165,5 +163,5 @@ class FeaturedAdsManager {
 
 // Inicializar cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {
-    new FeaturedAdsManager();
+    new MostViewedAdsManager();
 });

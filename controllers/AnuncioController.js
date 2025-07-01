@@ -542,3 +542,32 @@ exports.updateAnuncioConImagenes = async (req, rep) => {
       .json({ message: "Error al actualizar el anuncio y sus imágenes" });
   }
 };
+
+// Incrementar vistas de un anuncio
+exports.incrementarVistas = async (req, rep) => {
+  const anuncioId = req.params.anuncioId;
+  try {
+    const resultado = await anuncioRepository.incrementarVistas(anuncioId);
+    if (resultado.affectedRows === 0) {
+      return rep.status(404).json({ message: `No se encontró el anuncio con el id ${anuncioId}` });
+    }
+    return rep.status(200).json({ message: "Vista incrementada correctamente" });
+  } catch (error) {
+    console.error(error);
+    return rep.status(500).json({ message: "Error al incrementar las vistas" });
+  }
+};
+
+// Obtener anuncios más vistos
+exports.getAnunciosMasVistos = async (req, rep) => {
+  try {
+    const anuncios = await anuncioRepository.getAnunciosMasVistos();
+    if (!anuncios || anuncios.length === 0) {
+      return rep.status(404).json({ message: "No se encontraron anuncios" });
+    }
+    return rep.status(200).json(anuncios);
+  } catch (error) {
+    console.error(error);
+    return rep.status(500).json({ message: "Error al obtener los anuncios más vistos" });
+  }
+};

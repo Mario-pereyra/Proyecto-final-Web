@@ -18,7 +18,8 @@
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/index/section-hero.css">
     <link rel="stylesheet" href="css/index/section-categories.css">
-    <link rel="stylesheet" href="css/components.css">    <link rel="stylesheet" href="css/index/section-features-ads.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/index/section-features-ads.css">
     <link rel="stylesheet" href="css/index/section-stats.css">
     <link rel="stylesheet" href="css/index/section-cta.css">
     <link rel="stylesheet" href="css/index/section-faq.css">
@@ -59,6 +60,11 @@
                 <li class="nav-publico">
                     <a href="pages/Registro.html">
                         Registrarse
+                    </a>
+                </li>
+                <li class="nav-privado">
+                    <a href="pages/AnunciosGuardados.html">
+                       Guardados
                     </a>
                 </li>
                 <li class="nav-privado" style="display:none">
@@ -128,8 +134,8 @@
             <h2 class="section-title">Categorías Populares</h2>
 
             <div class="categories-container" data-component="categories-grid" data-categoriaId="">
-                <a href="pages/VerAnuncios.html?category=Laptops%y%Computadoras" class="category-card" data-action="browse-category"
-                    data-category="laptops">
+                <a href="pages/VerAnuncios.html?category=Laptops%y%Computadoras" class="category-card"
+                    data-action="browse-category" data-category="laptops">
                     <div class="icon-placeholder bg-laptops">
                         <i class="fa-solid fa-laptop" style="font-size:1.5rem;"></i>
                     </div>
@@ -200,146 +206,31 @@
                     </div>
                 </a>
             </div>
-
             <div class="categories-actions">
                 <a href="pages/Categorias.html" class="btn-secondary" data-action="view-all-categories">
                     Ver Todas las Categorías
                     <i class="fa-solid fa-arrow-right"></i>
                 </a>
             </div>
-        </section>
-        <section class="featured-ads" data-component="featured-ads-section">
+        </section> <!-- Sección de Anuncios Más Vistos -->
+        <section class="most-viewed-ads" data-component="most-viewed-ads-section">
             <h2 class="section-title">Anuncios Destacados</h2>
-            <p class="section-subtitle">Los productos más populares y mejor valorados</p>
 
-            <div class="ads-card-container" data-component="featured-ads-grid" id="featured-ads-list">
-                <div class="ads-card" data-component="featured-ad-card" data-ad-id="1" data-category="laptops">
-                    <div class="ads-card-img">
-                        <a href="pages/DetalleAnuncio.html?id=1" data-action="view-ad-detail" data-ad-id="1">
-                            <div class="ads-card-img-container">
-                                <img src="recursos/img/MacBook_Pro_16.webp" alt="MacBook Pro 16"
-                                    data-image="ad-thumbnail">
-                            </div>
-                        </a>
-                        <button class="bookmark-icon" data-action="toggle-bookmark" data-ad-id="1"
-                            title="Guardar anuncio">
-                            <i class="fas fa-bookmark"></i>
-                        </button>
-
-                    </div>
-                    <div class="ads-card-details">
-                        <div class="ads-card-tags">
-                            <div class="ads-card-category" data-info="ad-category">Laptops</div>
-                            <div class="ads-card-condition" data-info="ad-condition">Nuevo</div>
-                        </div>
-                        <h3 class="ads-card-title" data-info="ad-title">MacBook Pro 16 pulgadas</h3>
-                        <p class="ads-card-price" data-info="ad-price">$2.499,99</p>
-                        
-                    </div>
-                    <div class="ads-card-vendor">
-                        <div class="ads-card-vendor-label">Vendedor:</div>
-                        <div class="ads-card-vendor-name" data-info="vendor-name">Tech Store</div>
-                    </div>
-
-                </div>
-
-                <div class="ads-card" data-component="featured-ad-card" data-ad-id="2" data-category="smartphones">
-                    <div class="ads-card-img">
-                        <a href="pages/DetalleAnuncio.html?anuncioId=2" data-action="view-ad-detail" data-ad-id="2">
-                            <div class="ads-card-img-container">
-                                <img src="recursos/img/Iphone_15_Pro_256GB_Negro.webp" alt="iPhone 15 Pro"
-                                    data-image="ad-thumbnail">
-                            </div>
-                        </a>
-                        <button class="bookmark-icon" data-action="toggle-bookmark" data-ad-id="2"
-                            title="Guardar anuncio">
-                            <i class="fas fa-bookmark"></i>
-                        </button>
-
-                    </div>
-                    <div class="ads-card-details">
-                        <div class="ads-card-tags">
-                            <div class="ads-card-category" data-info="ad-category">Smartphones</div>
-                            <div class="ads-card-condition" data-info="ad-condition">Nuevo</div>
-                        </div>
-                        <h3 class="ads-card-title" data-info="ad-title">iPhone 15 Pro 256GB</h3>
-                        <p class="ads-card-price" data-info="ad-price">$1.299,99</p>
-                        
-                    </div>
-                    <div class="ads-card-vendor">
-                        <div class="ads-card-vendor-label">Vendedor:</div>
-                        <div class="ads-card-vendor-name" data-info="vendor-name">Mobile Shop</div>
-                    </div>
-
-                </div>
-
-                <div class="ads-card" data-component="featured-ad-card" data-ad-id="3" data-category="gaming">
-                    <div class="ads-card-img">
-                        <a href="pages/DetalleAnuncio.html?anuncioId=3" data-action="view-ad-detail" data-ad-id="3">
-                            <div class="ads-card-img-container">
-                                <img src="recursos/img/Play_station_5.webp" alt="PlayStation 5"
-                                    data-image="ad-thumbnail">
-                            </div>
-                        </a>
-                        <button class="bookmark-icon" data-action="toggle-bookmark" data-ad-id="3"
-                            title="Guardar anuncio">
-                            <i class="fas fa-bookmark"></i>
-                        </button>
-
-                    </div>
-                    <div class="ads-card-details">
-                        <div class="ads-card-tags">
-                            <div class="ads-card-category" data-info="ad-category">Gaming</div>
-                            <div class="ads-card-condition" data-info="ad-condition">Nuevo</div>
-                        </div>
-                        <h3 class="ads-card-title" data-info="ad-title">PlayStation 5</h3>
-                        <p class="ads-card-price" data-info="ad-price">$599,99</p>
-                        
-                    </div>
-                    <div class="ads-card-vendor">
-                        <div class="ads-card-vendor-label">Vendedor:</div>
-                        <div class="ads-card-vendor-name" data-info="vendor-name">Gaming World</div>
-                    </div>
-
-                </div>
-
-                <div class="ads-card" data-component="featured-ad-card" data-ad-id="4" data-category="audio">
-                    <div class="ads-card-img">
-                        <a href="pages/DetalleAnuncio.html?anuncioId=4" data-action="view-ad-detail" data-ad-id="4">
-                            <div class="ads-card-img-container">
-                                <img src="recursos/img/Sony_WH_1000XM5.webp" alt="Sony WH-1000XM5"
-                                    data-image="ad-thumbnail">
-                            </div>
-                        </a>
-                        <button class="bookmark-icon" data-action="toggle-bookmark" data-ad-id="4"
-                            title="Guardar anuncio">
-                            <i class="fas fa-bookmark"></i>
-                        </button>
-
-                    </div>
-                    <div class="ads-card-details">
-                        <div class="ads-card-tags">
-                            <div class="ads-card-category" data-info="ad-category">Audio</div>
-                            <div class="ads-card-condition" data-info="ad-condition">Usado</div>
-                        </div>
-                        <h3 class="ads-card-title" data-info="ad-title">Sony WH-1000XM5</h3>
-                        <p class="ads-card-price" data-info="ad-price">$399,99</p>
-                        
-                    </div>
-                    <div class="ads-card-vendor">
-                        <div class="ads-card-vendor-label">Vendedor:</div>
-                        <div class="ads-card-vendor-name" data-info="vendor-name">Audio Pro</div>
-                    </div>
-
+            <div class="ads-card-container" data-component="most-viewed-ads-grid" id="most-viewed-ads-list">
+                <!-- Los anuncios más vistos se cargarán dinámicamente aquí -->
+                <div class="loading-container" id="most-viewed-loading">
+                    <div class="loading-spinner">Cargando anuncios más vistos...</div>
                 </div>
             </div>
+        </section>
 
-            <div class="featured-ads-actions">
-                <a href="pages/VerAnuncios.html" class="btn-primary" data-action="view-all-ads">
-                    Ver Todos los Anuncios
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
-            </div>
+
+        <div class="featured-ads-actions">
+            <a href="pages/VerAnuncios.html" class="btn-primary" data-action="view-all-ads">
+                Ver Todos los Anuncios
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
         </section>
 
 
@@ -377,7 +268,8 @@
                     </div>
                 </div>
             </div>
-        </section>        <section class="cta-section" data-component="cta-section">
+        </section>
+        <section class="cta-section" data-component="cta-section">
             <div class="cta-container">
                 <h2>¿Tienes algo para vender?</h2>
                 <p>Únete a miles de vendedores que confían en AstroMarket para vender sus productos
@@ -407,7 +299,9 @@
                         <i class="fa-solid fa-chevron-down"></i>
                     </summary>
                     <div class="faq-answer">
-                        <p>Para comprar un producto, simplemente navega por nuestro catálogo, selecciona el artículo que te interesa y haz clic en el botón "Contactar al Vendedor". Podrás comunicarte directamente con el vendedor para acordar los detalles de la compra y el envío.</p>
+                        <p>Para comprar un producto, simplemente navega por nuestro catálogo, selecciona el artículo que
+                            te interesa y haz clic en el botón "Contactar al Vendedor". Podrás comunicarte directamente
+                            con el vendedor para acordar los detalles de la compra y el envío.</p>
                     </div>
                 </details>
                 <details class="faq-item">
@@ -416,7 +310,10 @@
                         <i class="fa-solid fa-chevron-down"></i>
                     </summary>
                     <div class="faq-answer">
-                        <p>¡Totalmente! En AstroMarket, verificamos a nuestros vendedores y ofrecemos un sistema de mensajería seguro para que puedas comunicarte con los compradores sin preocupaciones. Además, nuestro sistema de valoraciones te ayuda a construir una reputación de confianza.</p>
+                        <p>¡Totalmente! En AstroMarket, verificamos a nuestros vendedores y ofrecemos un sistema de
+                            mensajería seguro para que puedas comunicarte con los compradores sin preocupaciones.
+                            Además, nuestro sistema de valoraciones te ayuda a construir una reputación de confianza.
+                        </p>
                     </div>
                 </details>
                 <details class="faq-item">
@@ -425,7 +322,10 @@
                         <i class="fa-solid fa-chevron-down"></i>
                     </summary>
                     <div class="faq-answer">
-                        <p>Los métodos de pago se acuerdan directamente entre el comprador y el vendedor. AstroMarket no procesa pagos directamente, lo que te da la flexibilidad de elegir el método que más te convenga, ya sea transferencia bancaria, pago en efectivo o plataformas de pago en línea.</p>
+                        <p>Los métodos de pago se acuerdan directamente entre el comprador y el vendedor. AstroMarket no
+                            procesa pagos directamente, lo que te da la flexibilidad de elegir el método que más te
+                            convenga, ya sea transferencia bancaria, pago en efectivo o plataformas de pago en línea.
+                        </p>
                     </div>
                 </details>
                 <details class="faq-item">
@@ -434,15 +334,19 @@
                         <i class="fa-solid fa-chevron-down"></i>
                     </summary>
                     <div class="faq-answer">
-                        <p>Una vez que te hayas registrado e iniciado sesión, dirígete a tu "Panel de Vendedor" y haz clic en "Crear Anuncio". Sigue los pasos para subir fotos, añadir una descripción detallada y fijar un precio. ¡Publicar tu anuncio es rápido y sencillo!</p>
+                        <p>Una vez que te hayas registrado e iniciado sesión, dirígete a tu "Panel de Vendedor" y haz
+                            clic en "Crear Anuncio". Sigue los pasos para subir fotos, añadir una descripción detallada
+                            y fijar un precio. ¡Publicar tu anuncio es rápido y sencillo!</p>
                     </div>
                 </details>
             </div>
         </div>
-    </section>    <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
+    </section>
+    <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
     <script src="js/profileMenu.js"></script>
     <script src="js/featured-ads.js"></script>
     <script src="js/index-categorias.js"></script>
+    <script src="js/index-mas-vistos.js"></script>
 </body>
 
 <footer data-component="main-footer">

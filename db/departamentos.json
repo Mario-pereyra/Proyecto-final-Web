@@ -1,0 +1,38 @@
+[
+  {
+    "departamentoId": 1,
+    "nombre": "Santa Cruz"
+  },
+  {
+    "departamentoId": 2,
+    "nombre": "La Paz"
+  },
+  {
+    "departamentoId": 3,
+    "nombre": "Cochabamba"
+  },
+  {
+    "departamentoId": 4,
+    "nombre": "Tarija"
+  },
+  {
+    "departamentoId": 5,
+    "nombre": "Chuquisaca"
+  },
+  {
+    "departamentoId": 6,
+    "nombre": "Oruro"
+  },
+  {
+    "departamentoId": 7,
+    "nombre": "Potosí"
+  },
+  {
+    "departamentoId": 8,
+    "nombre": "Beni"
+  },
+  {
+    "departamentoId": 9,
+    "nombre": "Pando"
+  }
+]

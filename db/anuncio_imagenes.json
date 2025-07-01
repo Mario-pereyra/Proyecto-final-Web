@@ -1,0 +1,254 @@
+[
+  {
+    "anuncioImagenId": 9,
+    "anuncioId": 3,
+    "imagenId": 9,
+    "es_principal": 1,
+    "orden": 0
+  },
+  {
+    "anuncioImagenId": 10,
+    "anuncioId": 3,
+    "imagenId": 10,
+    "es_principal": 0,
+    "orden": 1
+  },
+  {
+    "anuncioImagenId": 11,
+    "anuncioId": 3,
+    "imagenId": 11,
+    "es_principal": 0,
+    "orden": 2
+  },
+  {
+    "anuncioImagenId": 12,
+    "anuncioId": 3,
+    "imagenId": 12,
+    "es_principal": 0,
+    "orden": 3
+  },
+  {
+    "anuncioImagenId": 13,
+    "anuncioId": 4,
+    "imagenId": 13,
+    "es_principal": 1,
+    "orden": 0
+  },
+  {
+    "anuncioImagenId": 14,
+    "anuncioId": 4,
+    "imagenId": 14,
+    "es_principal": 0,
+    "orden": 1
+  },
+  {
+    "anuncioImagenId": 15,
+    "anuncioId": 4,
+    "imagenId": 15,
+    "es_principal": 0,
+    "orden": 2
+  },
+  {
+    "anuncioImagenId": 16,
+    "anuncioId": 4,
+    "imagenId": 16,
+    "es_principal": 0,
+    "orden": 3
+  },
+  {
+    "anuncioImagenId": 17,
+    "anuncioId": 5,
+    "imagenId": 17,
+    "es_principal": 1,
+    "orden": 0
+  },
+  {
+    "anuncioImagenId": 18,
+    "anuncioId": 5,
+    "imagenId": 18,
+    "es_principal": 0,
+    "orden": 1
+  },
+  {
+    "anuncioImagenId": 19,
+    "anuncioId": 5,
+    "imagenId": 19,
+    "es_principal": 0,
+    "orden": 2
+  },
+  {
+    "anuncioImagenId": 20,
+    "anuncioId": 5,
+    "imagenId": 20,
+    "es_principal": 0,
+    "orden": 3
+  },
+  {
+    "anuncioImagenId": 21,
+    "anuncioId": 6,
+    "imagenId": 21,
+    "es_principal": 1,
+    "orden": 0
+  },
+  {
+    "anuncioImagenId": 22,
+    "anuncioId": 6,
+    "imagenId": 22,
+    "es_principal": 0,
+    "orden": 1
+  },
+  {
+    "anuncioImagenId": 23,
+    "anuncioId": 6,
+    "imagenId": 23,
+    "es_principal": 0,
+    "orden": 2
+  },
+  {
+    "anuncioImagenId": 24,
+    "anuncioId": 6,
+    "imagenId": 24,
+    "es_principal": 0,
+    "orden": 3
+  },
+  {
+    "anuncioImagenId": 25,
+    "anuncioId": 7,
+    "imagenId": 25,
+    "es_principal": 1,
+    "orden": 0
+  },
+  {
+    "anuncioImagenId": 26,
+    "anuncioId": 7,
+    "imagenId": 26,
+    "es_principal": 0,
+    "orden": 1
+  },
+  {
+    "anuncioImagenId": 27,
+    "anuncioId": 7,
+    "imagenId": 27,
+    "es_principal": 0,
+    "orden": 2
+  },
+  {
+    "anuncioImagenId": 28,
+    "anuncioId": 7,
+    "imagenId": 28,
+    "es_principal": 0,
+    "orden": 3
+  },
+  {
+    "anuncioImagenId": 29,
+    "anuncioId": 8,
+    "imagenId": 29,
+    "es_principal": 1,
+    "orden": 0
+  },
+  {
+    "anuncioImagenId": 30,
+    "anuncioId": 8,
+    "imagenId": 30,
+    "es_principal": 0,
+    "orden": 1
+  },
+  {
+    "anuncioImagenId": 31,
+    "anuncioId": 8,
+    "imagenId": 31,
+    "es_principal": 0,
+    "orden": 2
+  },
+  {
+    "anuncioImagenId": 32,
+    "anuncioId": 8,
+    "imagenId": 32,
+    "es_principal": 0,
+    "orden": 3
+  },
+  {
+    "anuncioImagenId": 37,
+    "anuncioId": 11,
+    "imagenId": 37,
+    "es_principal": 1,
+    "orden": 0
+  },
+  {
+    "anuncioImagenId": 38,
+    "anuncioId": 11,
+    "imagenId": 38,
+    "es_principal": 0,
+    "orden": 1
+  },
+  {
+    "anuncioImagenId": 39,
+    "anuncioId": 11,
+    "imagenId": 39,
+    "es_principal": 0,
+    "orden": 2
+  },
+  {
+    "anuncioImagenId": 40,
+    "anuncioId": 11,
+    "imagenId": 40,
+    "es_principal": 0,
+    "orden": 3
+  },
+  {
+    "anuncioImagenId": 41,
+    "anuncioId": 12,
+    "imagenId": 41,
+    "es_principal": 1,
+    "orden": 0
+  },
+  {
+    "anuncioImagenId": 42,
+    "anuncioId": 12,
+    "imagenId": 42,
+    "es_principal": 0,
+    "orden": 1
+  },
+  {
+    "anuncioImagenId": 43,
+    "anuncioId": 12,
+    "imagenId": 43,
+    "es_principal": 0,
+    "orden": 2
+  },
+  {
+    "anuncioImagenId": 44,
+    "anuncioId": 12,
+    "imagenId": 44,
+    "es_principal": 0,
+    "orden": 3
+  },
+  {
+    "anuncioImagenId": 45,
+    "anuncioId": 13,
+    "imagenId": 45,
+    "es_principal": 1,
+    "orden": 0
+  },
+  {
+    "anuncioImagenId": 46,
+    "anuncioId": 13,
+    "imagenId": 46,
+    "es_principal": 0,
+    "orden": 1
+  },
+  {
+    "anuncioImagenId": 47,
+    "anuncioId": 13,
+    "imagenId": 47,
+    "es_principal": 0,
+    "orden": 2
+  },
+  {
+    "anuncioImagenId": 48,
+    "anuncioId": 13,
+    "imagenId": 48,
+    "es_principal": 0,
+    "orden": 3
+  }
+]

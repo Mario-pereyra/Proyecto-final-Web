@@ -1,0 +1,202 @@
+[
+  {
+    "ciudadId": 1,
+    "nombre": "Santa Cruz de la Sierra",
+    "departamentoId": 1
+  },
+  {
+    "ciudadId": 2,
+    "nombre": "Montero",
+    "departamentoId": 1
+  },
+  {
+    "ciudadId": 3,
+    "nombre": "Warnes",
+    "departamentoId": 1
+  },
+  {
+    "ciudadId": 4,
+    "nombre": "La Guardia",
+    "departamentoId": 1
+  },
+  {
+    "ciudadId": 5,
+    "nombre": "El Torno",
+    "departamentoId": 1
+  },
+  {
+    "ciudadId": 6,
+    "nombre": "Cotoca",
+    "departamentoId": 1
+  },
+  {
+    "ciudadId": 7,
+    "nombre": "San Ignacio de Velasco",
+    "departamentoId": 1
+  },
+  {
+    "ciudadId": 8,
+    "nombre": "Camiri",
+    "departamentoId": 1
+  },
+  {
+    "ciudadId": 9,
+    "nombre": "La Paz",
+    "departamentoId": 2
+  },
+  {
+    "ciudadId": 10,
+    "nombre": "El Alto",
+    "departamentoId": 2
+  },
+  {
+    "ciudadId": 11,
+    "nombre": "Viacha",
+    "departamentoId": 2
+  },
+  {
+    "ciudadId": 12,
+    "nombre": "Achocalla",
+    "departamentoId": 2
+  },
+  {
+    "ciudadId": 13,
+    "nombre": "Caranavi",
+    "departamentoId": 2
+  },
+  {
+    "ciudadId": 14,
+    "nombre": "Coroico",
+    "departamentoId": 2
+  },
+  {
+    "ciudadId": 15,
+    "nombre": "Cochabamba",
+    "departamentoId": 3
+  },
+  {
+    "ciudadId": 16,
+    "nombre": "Quillacollo",
+    "departamentoId": 3
+  },
+  {
+    "ciudadId": 17,
+    "nombre": "Sacaba",
+    "departamentoId": 3
+  },
+  {
+    "ciudadId": 18,
+    "nombre": "Tiquipaya",
+    "departamentoId": 3
+  },
+  {
+    "ciudadId": 19,
+    "nombre": "Vinto",
+    "departamentoId": 3
+  },
+  {
+    "ciudadId": 20,
+    "nombre": "Sipe Sipe",
+    "departamentoId": 3
+  },
+  {
+    "ciudadId": 21,
+    "nombre": "Colcapirhua",
+    "departamentoId": 3
+  },
+  {
+    "ciudadId": 22,
+    "nombre": "Tarija",
+    "departamentoId": 4
+  },
+  {
+    "ciudadId": 23,
+    "nombre": "Yacuiba",
+    "departamentoId": 4
+  },
+  {
+    "ciudadId": 24,
+    "nombre": "Villa Montes",
+    "departamentoId": 4
+  },
+  {
+    "ciudadId": 25,
+    "nombre": "Bermejo",
+    "departamentoId": 4
+  },
+  {
+    "ciudadId": 26,
+    "nombre": "Sucre",
+    "departamentoId": 5
+  },
+  {
+    "ciudadId": 27,
+    "nombre": "Monteagudo",
+    "departamentoId": 5
+  },
+  {
+    "ciudadId": 28,
+    "nombre": "Camargo",
+    "departamentoId": 5
+  },
+  {
+    "ciudadId": 29,
+    "nombre": "Oruro",
+    "departamentoId": 6
+  },
+  {
+    "ciudadId": 30,
+    "nombre": "Huanuni",
+    "departamentoId": 6
+  },
+  {
+    "ciudadId": 31,
+    "nombre": "Challapata",
+    "departamentoId": 6
+  },
+  {
+    "ciudadId": 32,
+    "nombre": "Potosí",
+    "departamentoId": 7
+  },
+  {
+    "ciudadId": 33,
+    "nombre": "Uyuni",
+    "departamentoId": 7
+  },
+  {
+    "ciudadId": 34,
+    "nombre": "Tupiza",
+    "departamentoId": 7
+  },
+  {
+    "ciudadId": 35,
+    "nombre": "Villazón",
+    "departamentoId": 7
+  },
+  {
+    "ciudadId": 36,
+    "nombre": "Trinidad",
+    "departamentoId": 8
+  },
+  {
+    "ciudadId": 37,
+    "nombre": "Riberalta",
+    "departamentoId": 8
+  },
+  {
+    "ciudadId": 38,
+    "nombre": "Guayaramerín",
+    "departamentoId": 8
+  },
+  {
+    "ciudadId": 39,
+    "nombre": "Rurrenabaque",
+    "departamentoId": 8
+  },
+  {
+    "ciudadId": 40,
+    "nombre": "Cobija",
+    "departamentoId": 9
+  }
+]

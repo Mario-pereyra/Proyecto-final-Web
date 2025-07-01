@@ -1,0 +1,14 @@
+[
+  {
+    "usuarioId": 1,
+    "nombre_completo": "Mario Pereyra",
+    "correo": "Marioelprogamer710@gmail.com",
+    "contrasena": "Admin123"
+  },
+  {
+    "usuarioId": 2,
+    "nombre_completo": "Paula Mendez",
+    "correo": "palap@gmail.com",
+    "contrasena": "Palap123"
+  }
+]

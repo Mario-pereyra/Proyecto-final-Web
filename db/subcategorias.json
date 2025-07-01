@@ -1,0 +1,262 @@
+[
+  {
+    "subcategoriaId": 1,
+    "nombre": "Android",
+    "categoriaId": 1
+  },
+  {
+    "subcategoriaId": 2,
+    "nombre": "iPhone",
+    "categoriaId": 1
+  },
+  {
+    "subcategoriaId": 3,
+    "nombre": "Teléfonos Básicos",
+    "categoriaId": 1
+  },
+  {
+    "subcategoriaId": 4,
+    "nombre": "Accesorios para Celulares",
+    "categoriaId": 1
+  },
+  {
+    "subcategoriaId": 5,
+    "nombre": "Laptops Gaming",
+    "categoriaId": 2
+  },
+  {
+    "subcategoriaId": 6,
+    "nombre": "Ultrabooks",
+    "categoriaId": 2
+  },
+  {
+    "subcategoriaId": 7,
+    "nombre": "Laptops 2 en 1",
+    "categoriaId": 2
+  },
+  {
+    "subcategoriaId": 8,
+    "nombre": "PCs de Escritorio Gaming",
+    "categoriaId": 2
+  },
+  {
+    "subcategoriaId": 9,
+    "nombre": "PCs de Escritorio Workstation",
+    "categoriaId": 2
+  },
+  {
+    "subcategoriaId": 10,
+    "nombre": "Componentes de PC",
+    "categoriaId": 2
+  },
+  {
+    "subcategoriaId": 11,
+    "nombre": "Monitores",
+    "categoriaId": 2
+  },
+  {
+    "subcategoriaId": 12,
+    "nombre": "Accesorios para Computadoras",
+    "categoriaId": 2
+  },
+  {
+    "subcategoriaId": 13,
+    "nombre": "Tablets Android",
+    "categoriaId": 3
+  },
+  {
+    "subcategoriaId": 14,
+    "nombre": "iPad",
+    "categoriaId": 3
+  },
+  {
+    "subcategoriaId": 15,
+    "nombre": "E-readers",
+    "categoriaId": 3
+  },
+  {
+    "subcategoriaId": 16,
+    "nombre": "Accesorios para Tablets",
+    "categoriaId": 3
+  },
+  {
+    "subcategoriaId": 17,
+    "nombre": "Auriculares",
+    "categoriaId": 4
+  },
+  {
+    "subcategoriaId": 18,
+    "nombre": "Parlantes Bluetooth",
+    "categoriaId": 4
+  },
+  {
+    "subcategoriaId": 19,
+    "nombre": "Barras de Sonido",
+    "categoriaId": 4
+  },
+  {
+    "subcategoriaId": 20,
+    "nombre": "Equipos de Sonido",
+    "categoriaId": 4
+  },
+  {
+    "subcategoriaId": 21,
+    "nombre": "Micrófonos",
+    "categoriaId": 4
+  },
+  {
+    "subcategoriaId": 22,
+    "nombre": "Smartwatches",
+    "categoriaId": 5
+  },
+  {
+    "subcategoriaId": 23,
+    "nombre": "Pulseras de Actividad",
+    "categoriaId": 5
+  },
+  {
+    "subcategoriaId": 24,
+    "nombre": "Anillos Inteligentes",
+    "categoriaId": 5
+  },
+  {
+    "subcategoriaId": 25,
+    "nombre": "Gafas Inteligentes",
+    "categoriaId": 5
+  },
+  {
+    "subcategoriaId": 26,
+    "nombre": "Asistentes de Voz",
+    "categoriaId": 6
+  },
+  {
+    "subcategoriaId": 27,
+    "nombre": "Iluminación Inteligente",
+    "categoriaId": 6
+  },
+  {
+    "subcategoriaId": 28,
+    "nombre": "Cámaras de Seguridad",
+    "categoriaId": 6
+  },
+  {
+    "subcategoriaId": 29,
+    "nombre": "Termostatos Inteligentes",
+    "categoriaId": 6
+  },
+  {
+    "subcategoriaId": 30,
+    "nombre": "Enchufes Inteligentes",
+    "categoriaId": 6
+  },
+  {
+    "subcategoriaId": 31,
+    "nombre": "Robots Aspiradores",
+    "categoriaId": 6
+  },
+  {
+    "subcategoriaId": 32,
+    "nombre": "Consolas",
+    "categoriaId": 7
+  },
+  {
+    "subcategoriaId": 33,
+    "nombre": "Videojuegos",
+    "categoriaId": 7
+  },
+  {
+    "subcategoriaId": 34,
+    "nombre": "Accesorios Gaming",
+    "categoriaId": 7
+  },
+  {
+    "subcategoriaId": 35,
+    "nombre": "Realidad Virtual (VR) y Aumentada (AR)",
+    "categoriaId": 7
+  },
+  {
+    "subcategoriaId": 36,
+    "nombre": "Cámaras Digitales",
+    "categoriaId": 8
+  },
+  {
+    "subcategoriaId": 37,
+    "nombre": "Cámaras de Acción",
+    "categoriaId": 8
+  },
+  {
+    "subcategoriaId": 38,
+    "nombre": "Drones",
+    "categoriaId": 8
+  },
+  {
+    "subcategoriaId": 39,
+    "nombre": "Accesorios de Fotografía",
+    "categoriaId": 8
+  },
+  {
+    "subcategoriaId": 40,
+    "nombre": "Power Banks",
+    "categoriaId": 9
+  },
+  {
+    "subcategoriaId": 41,
+    "nombre": "Cargadores y Cables",
+    "categoriaId": 9
+  },
+  {
+    "subcategoriaId": 42,
+    "nombre": "Adaptadores",
+    "categoriaId": 9
+  },
+  {
+    "subcategoriaId": 43,
+    "nombre": "Hubs USB",
+    "categoriaId": 9
+  },
+  {
+    "subcategoriaId": 44,
+    "nombre": "Memorias USB",
+    "categoriaId": 9
+  },
+  {
+    "subcategoriaId": 45,
+    "nombre": "Tarjetas SD",
+    "categoriaId": 9
+  },
+  {
+    "subcategoriaId": 46,
+    "nombre": "Protectores de Voltaje",
+    "categoriaId": 9
+  },
+  {
+    "subcategoriaId": 47,
+    "nombre": "Routers y Conectividad",
+    "categoriaId": 9
+  },
+  {
+    "subcategoriaId": 48,
+    "nombre": "Discos Duros Externos",
+    "categoriaId": 10
+  },
+  {
+    "subcategoriaId": 49,
+    "nombre": "SSD Portátiles",
+    "categoriaId": 10
+  },
+  {
+    "subcategoriaId": 50,
+    "nombre": "NAS (Network Attached Storage)",
+    "categoriaId": 10
+  },
+  {
+    "subcategoriaId": 51,
+    "nombre": "Pendrives",
+    "categoriaId": 10
+  },
+  {
+    "subcategoriaId": 52,
+    "nombre": "Tarjetas de Memoria",
+    "categoriaId": 10
+  }
+]
