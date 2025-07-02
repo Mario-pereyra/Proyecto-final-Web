@@ -1,0 +1,180 @@
+/* Estilos para navegación por pestañas en Mensajes.html */
+
+.tabs-navigation {
+    background-color: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 70px; /* Altura del header */
+    z-index: 100;
+}
+
+.tabs-container {
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.tab-button {
+    background: none;
+    border: none;
+    padding: 16px 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #6c757d;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.tab-button:hover {
+    color: #007bff;
+    background-color: #f8f9fa;
+}
+
+.tab-button.active {
+    color: #007bff;
+    border-bottom-color: #007bff;
+    background-color: #f8f9ff;
+}
+
+.tab-button i {
+    font-size: 16px;
+}
+
+.tab-button span {
+    font-weight: 600;
+}
+
+/* Contenido de las pestañas */
+.tab-content {
+    display: none;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .tabs-container {
+        padding: 0 16px;
+    }
+    
+    .tab-button {
+        padding: 12px 16px;
+        font-size: 13px;
+    }
+    
+    .tab-button span {
+        display: none;
+    }
+    
+    .tab-button i {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tab-button {
+        flex: 1;
+        justify-content: center;
+        padding: 12px 8px;
+    }
+}
+
+/* Ajustes para el contenido principal */
+main[data-component="unified-messages-main"] {
+    margin-top: 0;
+}
+
+/* Indicadores de notificación en pestañas */
+.tab-button .notification-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: #dc3545;
+    color: white;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 10px;
+    min-width: 16px;
+    text-align: center;
+    line-height: 1;
+}
+
+/* Estados de carga */
+.tab-content.loading {
+    position: relative;
+    min-height: 200px;
+}
+
+.tab-content.loading::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Mejoras visuales */
+.tab-button:focus {
+    outline: 2px solid #007bff;
+    outline-offset: -2px;
+}
+
+.tab-button:active {
+    transform: translateY(1px);
+}
+
+/* Tema oscuro (opcional) */
+@media (prefers-color-scheme: dark) {
+    .tabs-navigation {
+        background-color: #2d3748;
+        border-bottom-color: #4a5568;
+    }
+    
+    .tab-button {
+        color: #a0aec0;
+    }
+    
+    .tab-button:hover {
+        color: #63b3ed;
+        background-color: #4a5568;
+    }
+    
+    .tab-button.active {
+        color: #63b3ed;
+        background-color: #2a4365;
+        border-bottom-color: #63b3ed;
+    }
+}

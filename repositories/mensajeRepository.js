@@ -94,3 +94,24 @@ exports.marcarMensajesComoLeidos = async (
     [conversacionId, usuarioReceptorId]
   );
 };
+
+exports.getMensajesNuevos = async (conversacionId, lastMessageId = 0) => {
+  const conn = await getConnection();
+  const [filas] = await conn.query(
+    `SELECT mensajeId, conversacionId, emisorId, contenido, fecha_envio, leido, estado_entrega
+     FROM mensajes 
+     WHERE conversacionId = ? AND mensajeId > ? 
+     ORDER BY fecha_envio ASC`,
+    [conversacionId, lastMessageId]
+  );
+  return filas;
+};
+
+exports.getUltimoMensajeId = async (conversacionId) => {
+  const conn = await getConnection();
+  const [filas] = await conn.query(
+    "SELECT MAX(mensajeId) as ultimoId FROM mensajes WHERE conversacionId = ?",
+    [conversacionId]
+  );
+  return filas[0]?.ultimoId || 0;
+};

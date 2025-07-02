@@ -374,6 +374,73 @@ class DetalleAnuncioManager {
         }
     }
 
+    async iniciarConversacion() {
+        // Verificar si el usuario está logueado
+        const userSession = localStorage.getItem('userSession');
+        if (!userSession) {
+            this.showNotification('Debes iniciar sesión para contactar al vendedor', 'warning');
+            setTimeout(() => {
+                window.location.href = 'Login.html';
+            }, 2000);
+            return;
+        }
+
+        const usuario = JSON.parse(userSession);
+        const compradorId = usuario.usuarioId;
+        const vendedorId = this.anuncioData.usuarioId;
+
+        // Verificar que no sea el mismo usuario
+        if (compradorId === vendedorId) {
+            this.showNotification('No puedes contactarte contigo mismo', 'warning');
+            return;
+        }
+
+        try {
+            // Mostrar loading
+            const btnStartConversation = document.getElementById('btn-start-conversation');
+            if (btnStartConversation) {
+                btnStartConversation.disabled = true;
+                btnStartConversation.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Iniciando...';
+            }
+
+            // Crear o encontrar conversación
+            const response = await fetch('/api/chat/conversacion/iniciar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    anuncioId: this.anuncioId,
+                    compradorId: compradorId,
+                    vendedorId: vendedorId
+                })
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                this.showNotification('Conversación iniciada exitosamente', 'success');
+                // Redirigir a mensajes de comprador
+                setTimeout(() => {
+                    window.location.href = `MensajesComprador.html?conversacionId=${result.conversacionId}`;
+                }, 1000);
+            } else {
+                throw new Error(result.message || 'Error al iniciar conversación');
+            }
+
+        } catch (error) {
+            console.error('Error al iniciar conversación:', error);
+            this.showNotification('Error al iniciar la conversación. Inténtalo de nuevo.', 'error');
+        } finally {
+            // Restaurar botón
+            const btnStartConversation = document.getElementById('btn-start-conversation');
+            if (btnStartConversation) {
+                btnStartConversation.disabled = false;
+                btnStartConversation.innerHTML = '<i class="fa fa-comments"></i> Contactar Vendedor';
+            }
+        }
+    }
+
     setupContactSection() {
         const loginSection = document.getElementById('login-required');
         const contactSection = document.getElementById('contact-section');
@@ -422,15 +489,11 @@ class DetalleAnuncioManager {
             btn.addEventListener('click', () => {
                 window.location.href = 'Login.html';
             });
-        });
-
-        // Event listener para iniciar conversación
+        });        // Event listener para iniciar conversación
         const btnStartConversation = document.getElementById('btn-start-conversation');
         if (btnStartConversation) {
-            btnStartConversation.addEventListener('click', () => {
-                // Redirigir a mensajes con parámetros
-                const vendorId = this.anuncioData.usuarioId;
-                window.location.href = `MensajesComprador.html?vendorId=${vendorId}&anuncioId=${this.anuncioId}`;
+            btnStartConversation.addEventListener('click', async () => {
+                await this.iniciarConversacion();
             });
         }
 

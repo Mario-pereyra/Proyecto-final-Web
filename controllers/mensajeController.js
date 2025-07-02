@@ -66,12 +66,11 @@ exports.crearMensaje = async (req, res) => {
     }
     if (contenido.length > 1000) {
       return res.status(400).json({ message: "El contenido del mensaje no puede superar los 1000 caracteres." });
-    }
-
-    const resultado = await mensajeRepository.crearMensaje(conversacionId, emisorId, contenido);
+    }    const resultado = await mensajeRepository.crearMensaje(conversacionId, emisorId, contenido);
     if (!resultado) {
       return res.status(500).json({ message: "No se pudo crear el mensaje." });
     }
+
     res.status(201).json({ message: "Mensaje creado con éxito.", mensajeId: resultado.insertId });
   } catch (error) {
     console.error(error);
@@ -110,3 +109,49 @@ exports.iniciarConversacion = async (req, res) => {
       });
   }
 };
+
+// Long polling simplificado - 5 segundos máximo
+exports.longPollMensajes = async (req, res) => {
+  try {
+    const { conversacionId } = req.params;
+    const { usuarioId, lastMessageId = 0 } = req.query;
+    
+    if (!conversacionId || isNaN(conversacionId)) {
+      return res.status(400).json({ message: "ID de conversación inválido" });
+    }
+    
+    if (!usuarioId || isNaN(usuarioId)) {
+      return res.status(400).json({ message: "ID de usuario inválido" });
+    }
+
+    // Verificar inmediatamente si hay nuevos mensajes
+    const nuevosMensajes = await mensajeRepository.getMensajesNuevos(conversacionId, parseInt(lastMessageId));
+    
+    if (nuevosMensajes && nuevosMensajes.length > 0) {
+      // Marcar mensajes como leídos si no son del usuario actual
+      const mensajesOtroUsuario = nuevosMensajes.filter(m => m.emisorId != usuarioId);
+      if (mensajesOtroUsuario.length > 0) {
+        await mensajeRepository.marcarMensajesComoLeidos(conversacionId, usuarioId);
+      }
+      
+      return res.status(200).json({ 
+        mensajes: nuevosMensajes,
+        hasNewMessages: true 
+      });
+    }
+
+    // Si no hay mensajes, esperar 5 segundos y responder vacío
+    setTimeout(() => {
+      res.status(200).json({ 
+        mensajes: [],
+        hasNewMessages: false 
+      });
+    }, 5000);
+
+  } catch (error) {
+    console.error('Error en long polling:', error);
+    res.status(500).json({ message: "Error interno del servidor" });
+  }
+};
+
+

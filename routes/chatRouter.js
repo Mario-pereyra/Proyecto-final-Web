@@ -20,4 +20,8 @@ router.get("/conversacion/:conversacionId/mensajes", mensajeController.getMensaj
 // POST /api/chat/mensajes
 router.post("/mensajes", mensajeController.crearMensaje);
 
+// Endpoint para long polling de mensajes nuevos
+// GET /api/chat/conversacion/:conversacionId/poll?usuarioId=XX&lastMessageId=XX
+router.get("/conversacion/:conversacionId/poll", mensajeController.longPollMensajes);
+
 module.exports = router;
