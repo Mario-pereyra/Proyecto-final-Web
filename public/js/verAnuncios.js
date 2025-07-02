@@ -125,15 +125,15 @@ function realizarBusquedaFiltrada() {
       anuncios.forEach(anuncio => {
         const ruta = anuncio.imagen_principal ? `/${anuncio.imagen_principal}` : '/recursos/img/imagen-no-disponible.jpg';
         const precio = anuncio.precio ? `$${anuncio.precio}` : 'Precio no disponible';
-        
-        html += 
+          html += 
           `<div class="ads-card" data-anuncio-id="${anuncio.anuncioId}">
     <div class="ads-card-img" style="position:relative;">
         <div class="bookmark-icon-label" data-anuncio-id="${anuncio.anuncioId}" title="Agregar a favoritos">
             <span class="fa fa-bookmark" data-is-favorite="false"></span>
-        </div>
-        <a href="#">
-            <img src="${ruta}" alt="${anuncio.titulo}" onerror="this.src='/recursos/img/imagen-no-disponible.jpg'">
+        </div>        <a href="DetalleAnuncio.html?anuncioId=${anuncio.anuncioId}">
+            <div class="ads-card-img-container">
+                <img src="${ruta}" alt="${anuncio.titulo}" onerror="this.src='/recursos/img/imagen-no-disponible.jpg'">
+            </div>
         </a>
     </div>
     <div class="ads-card-details">
@@ -275,7 +275,7 @@ function cargarAnunciosInicial() {
         <div class="ads-card-img" style="position:relative;">
           <div class="bookmark-icon-label" data-anuncio-id="${anuncioIdFinal}" title="${isGuardado ? 'Quitar de favoritos' : 'Agregar a favoritos'}" aria-label="${isGuardado ? 'Quitar de favoritos' : 'Agregar a favoritos'}">
             <span class="fa fa-bookmark${isGuardado ? ' active' : ''}" data-is-favorite="${isGuardado}"></span>
-          </div>          <a href="#">
+          </div>          <a href="DetalleAnuncio.html?anuncioId=${anuncioIdFinal}">
             <div class="ads-card-img-container">
               <img src="${ruta}" alt="${titulo}" onerror="this.src='/recursos/img/imagen-no-disponible.jpg'">
             </div>

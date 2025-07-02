@@ -194,11 +194,15 @@ exports.getAnuncioConImagenesById = async (anuncioId) => {
       a.*, 
       c.nombre AS categoriaNombre,
       s.nombre AS subcategoriaNombre,
-      COALESCE(u.nombre_completo, 'Usuario desconocido') AS usuarioNombre
+      COALESCE(u.nombre_completo, 'Usuario desconocido') AS usuarioNombre,
+      d.nombre AS departamentoNombre,
+      ci.nombre AS ciudadNombre
     FROM anuncios a
     LEFT JOIN categorias c ON a.categoriaId = c.categoriaId
     LEFT JOIN subcategorias s ON a.subcategoriaId = s.subcategoriaId
     LEFT JOIN usuarios u ON a.usuarioId = u.usuarioId
+    LEFT JOIN departamentos d ON a.departamentoId = d.departamentoId
+    LEFT JOIN ciudades ci ON a.ciudadId = ci.ciudadId
     WHERE a.anuncioId = ?
   `,
     [anuncioId]

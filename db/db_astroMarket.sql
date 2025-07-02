@@ -4,8 +4,7 @@ CREATE TABLE usuarios (
     usuarioId INT AUTO_INCREMENT PRIMARY KEY,
     nombre_completo VARCHAR(100) NOT NULL,
     correo VARCHAR(100) NOT NULL UNIQUE,
-    contrasena VARCHAR(100) NOT NULL,
-    
+    contrasena VARCHAR(100) NOT NULL
 );
 
 
@@ -42,7 +41,7 @@ CREATE TABLE anuncios (
     precio DECIMAL(10,2) NOT NULL,
     categoriaId INT NOT NULL,
     subcategoriaId INT NOT NULL,
-    estado ENUM('nuevo', 'usado') NOT NULL,
+    estado ENUM('nuevo', 'usado', 'seminuevo') NOT NULL,
     estado_publicacion ENUM('activo', 'inactivo', 'vendido') NOT NULL DEFAULT 'activo',
     departamentoId INT NOT NULL,
     ciudadId INT NOT NULL,

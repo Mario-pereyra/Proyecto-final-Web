@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalles del Anuncio</title>
-    <link rel="stylesheet" href="../css/vendors/fonts.css">
+    <title>Detalles del Anuncio</title>    <link rel="stylesheet" href="../css/vendors/fonts.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/DetalleAnuncio/section-DetalleAnuncio.css">
+    <link rel="stylesheet" href="../css/DetalleAnuncio/detalleAnuncio-dinamico.css">
 </head>
 
 <body>
@@ -71,12 +71,11 @@
             <div class="container-ads-section">
                 <h1 class="ads-section-title">Detalles del anuncio</h1>
 
-                <hr>
-                <div class="detail" id="ad-content" data-product="" data-vendor="">
+                <hr>                <div class="detail" id="ad-content" data-product="" data-vendor="">
                     <div class="ad-details-gallery" data-component="gallery">
                         <div class="ad-main-img-container" data-image="main-container">
-                            <img class="ad-main-img" id="main-image" src="../recursos/img/MacBook_Pro_16.webp"
-                                alt="Imagen principal" data-image="main">
+                            <img class="ad-main-img" id="main-image" src="../recursos/img/no-image.png"
+                                alt="Cargando..." data-image="main">
                             <button class="bookmark-btn" id="bookmark-btn" data-action="toggle-bookmark" data-product=""
                                 data-saved="false">
                                 <i class="fas fa-bookmark" id="bookmark-icon"></i>
@@ -84,50 +83,27 @@
                             </button>
                         </div>
                         <div class="ad-thumbnails" data-component="thumbnails">
-                            <div class="ad-thumbnail active" data-image="thumb-1">
-                                <img class="ad-thumbnail-img" src="../recursos/img/MacBook_Pro_16.webp" alt="Imagen 1"
-                                    data-action="change-main-image"
-                                    data-image-src="../recursos/img/MacBook_Pro_16.webp">
-                            </div>
-                            <div class="ad-thumbnail" data-image="thumb-2">
-                                <img class="ad-thumbnail-img" src="../recursos/img/Iphone_15_Pro_256GB_Negro.webp"
-                                    alt="Imagen 2" data-action="change-main-image"
-                                    data-image-src="../recursos/img/Iphone_15_Pro_256GB_Negro.webp">
-                            </div>
-                            <div class="ad-thumbnail" data-image="thumb-3">
-                                <img class="ad-thumbnail-img" src="../recursos/img/Iphone_15_Pro_256GB_Negro.webp"
-                                    alt="Imagen 3" data-action="change-main-image"
-                                    data-image-src="../recursos/img/Iphone_15_Pro_256GB_Negro.webp">
-                            </div>
-                            <div class="ad-thumbnail" data-image="thumb-4">
-                                <img class="ad-thumbnail-img" src="../recursos/img/Iphone_15_Pro_256GB_Negro.webp"
-                                    alt="Imagen 4" data-action="change-main-image"
-                                    data-image-src="../recursos/img/Iphone_15_Pro_256GB_Negro.webp">
-                            </div>
+                            <!-- Thumbnails se cargarán dinámicamente -->
                         </div>
                     </div>
 
                     <div class="ads-detail-info-container">
                         <div class="ads-details-info" data-component="product-info">
-                            <h2 class="ads-card-title" id="product-title" data-info="title">MacBook Pro 16</h2>
-                            <p class="ads-card-price" id="product-price" data-info="price">$2999</p>
+                            <h2 class="ads-card-title" id="product-title" data-info="title">Cargando...</h2>
+                            <p class="ads-card-price" id="product-price" data-info="price">$0.00</p>
                             <div class="ads-card-tags">
-                                <div class="ads-card-category" id="product-category" data-info="category">Laptops</div>
-                                <div class="ads-card-condition" id="product-condition" data-info="condition">Nuevo</div>
+                                <div class="ads-card-category" id="product-category" data-info="category">Cargando...</div>
+                                <div class="ads-card-condition" id="product-condition" data-info="condition">...</div>
                             </div>
                             <div class="product-metadata" data-info="metadata">
-                                <p><strong>Publicado:</strong> <span id="publish-date" data-info="publish-date">Hace 2
-                                        días</span></p>
-                                <p><strong>Ubicación:</strong> <span id="location" data-info="location">Ciudad,
-                                        País</span></p>
-                                <p><strong>Vistas:</strong> <span id="view-count" data-info="views">127</span></p>
+                                <p><strong>Publicado:</strong> <span id="publish-date" data-info="publish-date">Cargando...</span></p>
+                                <p><strong>Ubicación:</strong> <span id="location" data-info="location">Cargando...</span></p>
+                                <p><strong>Vistas:</strong> <span id="view-count" data-info="views">0</span></p>
                             </div>
                             <div class="description-section">
                                 <h3>Descripción</h3>
                                 <div class="product-description" id="product-description" data-info="description">
-                                    <p>MacBook Pro con chip M2 Pro, 16GB RAM, 512GB SSD. Pantalla Liquid Retina XDR,
-                                        Magic Keyboard con Touch ID. Color Space Gray. Incluye cargador original y caja.
-                                    </p>
+                                    <p>Cargando descripción...</p>
                                 </div>
                             </div>
                         </div>
@@ -135,13 +111,9 @@
                         <div class="contact-vendor" data-component="vendor-contact">
                             <div class="header-chat-details">
                                 <div class="vendor-profile" data-info="vendor-profile">
-                                    <i class="fa fa-user" aria-hidden="true"></i>
-                                    <div class="vendor-info">
-                                        <h3 class="vendor-name" id="vendor-name" data-info="vendor-name">Tech Store</h3>
-                                        <p class="vendor-status" id="vendor-status" data-info="vendor-status">En línea
-                                        </p>
-                                        <p class="vendor-rating" id="vendor-rating" data-info="vendor-rating">⭐ 4.8 (23
-                                            reseñas)</p>
+                                    <i class="fa fa-user" aria-hidden="true"></i>                                    <div class="vendor-info">
+                                        <h3 class="vendor-name" id="vendor-name" data-info="vendor-name">Cargando...</h3>
+                                        <p class="vendor-status" id="vendor-status" data-info="vendor-status">...</p>
                                     </div>
                                 </div>
                                 <div class="ads-card-details">
@@ -170,11 +142,7 @@
                                         <i class="fa-solid fa-message"></i>
                                         Enviar mensaje
                                     </button>
-
                                 </div>
-
-                                
-                               
                             </div>
                         </div>
                     </div>
@@ -182,124 +150,11 @@
             </div>
         </section>
 
-    </main>
-    <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
+    </main>    <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
+    <script src="../js/detalleAnuncio-fixed.js"></script>
 
-    <!-- ESTILOS PARA ELEMENTOS DEL BACKEND -->
-    <style>
-        
-        /* Botón de bookmark */
-        .bookmark-btn {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(255, 255, 255, 0.9);
-            border: none;
-            border-radius: 20px;
-            padding: 8px 12px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 12px;
-            transition: all 0.3s ease;
-        }
-
-        .bookmark-btn:hover {
-            background: white;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        .bookmark-btn.saved {
-            background: #007bff;
-            color: white;
-        }
-
-        /* Thumbnails activos */
-        .ad-thumbnail {
-            cursor: pointer;
-            opacity: 0.6;
-            transition: opacity 0.3s ease;
-        }
-
-        .ad-thumbnail.active,
-        .ad-thumbnail:hover {
-            opacity: 1;
-        }
-
-        /* Metadata del producto */
-        .product-metadata {
-            margin: 15px 0;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 4px;
-        }
-
-        .product-metadata p {
-            margin: 5px 0;
-            font-size: 14px;
-        }
-
-        /* Rating del vendedor */
-        .vendor-rating {
-            font-size: 12px;
-            color: #666;
-        }
-
-        /* Sección de contacto */
-        .contact-vendor-login {
-            text-align: center;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 4px;
-        }
-
-        .contact-vendor-authenticated {
-            padding: 20px;
-        }
-
-        .action-buttons {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .action-buttons button {
-            flex: 1;
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .primary-button {
-            background: #007bff;
-            color: white;
-        }
-
-        .secondary-button {
-            background: #6c757d;
-            color: white;
-        }
-
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            
-
-            .bookmark-btn {
-                top: 10px;
-                right: 10px;
-                padding: 6px 10px;
-            }
-        }
-    </style>
-
+ 
+   
 </body>
 <footer>
     <div class="copyright">

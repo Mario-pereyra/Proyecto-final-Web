@@ -1,0 +1,186 @@
+/* Estilos específicos para DetalleAnuncio.html */
+
+/* Estados de carga y error */
+.loading-container,
+.error-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    text-align: center;
+}
+
+.loading-spinner {
+    font-size: 1.2rem;
+    color: #666;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+.error-container h3 {
+    margin: 1rem 0 0.5rem 0;
+    color: #dc3545;
+    font-size: 1.5rem;
+}
+
+.error-container p {
+    margin-bottom: 2rem;
+    color: #666;
+    font-size: 1rem;
+}
+
+/* Botón de guardar */
+.bookmark-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 8px;
+    padding: 12px 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #333;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bookmark-btn:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.bookmark-btn.saved {
+    background: rgba(0, 123, 255, 0.1);
+    color: #007bff;
+    border: 1px solid rgba(0, 123, 255, 0.3);
+}
+
+.bookmark-btn.saved:hover {
+    background: rgba(0, 123, 255, 0.2);
+}
+
+.bookmark-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: rgba(128, 128, 128, 0.3);
+}
+
+.bookmark-btn:disabled:hover {
+    transform: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Mensaje para anuncio propio */
+.own-ad-message {
+    text-align: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.own-ad-message i {
+    font-size: 2rem;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.own-ad-message p {
+    margin: 10px 0 20px 0;
+    color: #666;
+    font-size: 1rem;
+}
+
+/* Thumbnails activos */
+.ad-thumbnail.active {
+    border: 2px solid #007bff;
+    border-radius: 4px;
+}
+
+.ad-thumbnail-img {
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.ad-thumbnail-img:hover {
+    opacity: 0.8;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+    .bookmark-btn {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+    
+    .ad-main-img-container {
+        position: relative;
+    }
+    
+    .loading-container,
+    .error-container {
+        min-height: 300px;
+        padding: 20px;
+    }
+}
+
+/* Metadatos del producto */
+.product-metadata {
+    margin: 20px 0;
+    padding: 15px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.product-metadata p {
+    margin: 8px 0;
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.product-metadata strong {
+    color: #333;
+}
+
+/* Sección de descripción */
+.description-section {
+    margin-top: 25px;
+}
+
+.description-section h3 {
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.product-description {
+    line-height: 1.6;
+    color: #555;
+}
+
+.product-description p {
+    margin-bottom: 12px;
+}
+
+/* Animaciones */
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}

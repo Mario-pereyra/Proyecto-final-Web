@@ -221,15 +221,8 @@ main {
     border-radius: 4px;
 }
 
-.product-metadata p {
-    margin: 5px 0;
+.product-metadata p {    margin: 5px 0;
     font-size: 14px;
-}
-
-/* Rating del vendedor */
-.vendor-rating {
-    font-size: 12px;
-    color: #666;
 }
 
 /* Sección de contacto */

@@ -86,9 +86,8 @@
 
             <!-- FORMULARIO UNIFICADO -->
             <form id="create-ad-form" enctype="multipart/form-data" action="/api/anuncios" method="POST">
-                <!-- SECCIÓN INFORMACIÓN -->
-                <!-- Campo oculto para usuarioId (rellenado por JS al loguear, por defecto 0) -->
-                <input type="hidden" id="input-usuario-id" name="usuarioId" value="1">
+                <!-- SECCIÓN INFORMACIÓN -->                <!-- Campo oculto para usuarioId (rellenado por JS al loguear, por defecto 0) -->
+                <input type="hidden" id="input-usuario-id" name="usuarioId" value="0">
                 <div id="info-section" style="display:block;">
                     <div class="form-section" data-section="basic-info">
                         <h3>Información Básica</h3>
@@ -284,16 +283,17 @@
                 </div>
             </form>
         </div>
-    </main>
-    <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
+    </main>    <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
     <script src="../js/Tabs_y_previsualizacion.js"></script>
     <script src="../js/categorias.js"></script>
     <script src="../js/ubicacion.js"></script>
+    <script src="../js/profileMenu.js"></script>
+    <script src="../js/crearAnuncio.js"></script>
 </body>
 <footer>
     <div class="copyright">
         <p>@2024 AstroMarket.Todos los derechos reservados</p>
     </div>
-    <script src="../js/profileMenu.js"></script>
+    
 </footer>
 </html>
