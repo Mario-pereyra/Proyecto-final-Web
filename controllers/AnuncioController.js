@@ -571,3 +571,113 @@ exports.getAnunciosMasVistos = async (req, rep) => {
     return rep.status(500).json({ message: "Error al obtener los anuncios más vistos" });
   }
 };
+
+// Obtener anuncios de un vendedor específico
+exports.getAnunciosByVendedor = async (req, res) => {
+  const usuarioId = req.params.usuarioId;
+  
+  if (!usuarioId || isNaN(usuarioId)) {
+    return res.status(400).json({ 
+      message: "usuarioId es obligatorio y debe ser numérico" 
+    });
+  }
+
+  try {
+    const anuncios = await anuncioRepository.getAnunciosByVendedor(usuarioId);
+    
+    if (!anuncios || anuncios.length === 0) {
+      return res.status(200).json([]);
+    }
+    
+    return res.status(200).json(anuncios);
+  } catch (error) {
+    console.error('Error al obtener anuncios del vendedor:', error);
+    return res.status(500).json({ 
+      message: "Error al obtener los anuncios del vendedor" 
+    });
+  }
+};
+
+// Actualizar estado de publicación de un anuncio del vendedor
+exports.updateEstadoAnuncioVendedor = async (req, res) => {
+  const { anuncioId, usuarioId } = req.params;
+  const { estado_publicacion } = req.body;
+  
+  const estadosValidos = ['activo', 'inactivo', 'vendido'];
+  
+  if (!anuncioId || isNaN(anuncioId)) {
+    return res.status(400).json({ 
+      message: "anuncioId es obligatorio y debe ser numérico" 
+    });
+  }
+  
+  if (!usuarioId || isNaN(usuarioId)) {
+    return res.status(400).json({ 
+      message: "usuarioId es obligatorio y debe ser numérico" 
+    });
+  }
+  
+  if (!estado_publicacion || !estadosValidos.includes(estado_publicacion)) {
+    return res.status(400).json({ 
+      message: `Estado de publicación no válido. Opciones: ${estadosValidos.join(', ')}` 
+    });
+  }
+
+  try {
+    const resultado = await anuncioRepository.updateAnuncioEstado(
+      anuncioId, 
+      usuarioId, 
+      estado_publicacion
+    );
+    
+    if (resultado.affectedRows === 0) {
+      return res.status(404).json({ 
+        message: "No se encontró el anuncio o no pertenece al usuario" 
+      });
+    }
+    
+    return res.status(200).json({ 
+      message: `Estado actualizado a '${estado_publicacion}' correctamente` 
+    });
+  } catch (error) {
+    console.error('Error al actualizar estado del anuncio:', error);
+    return res.status(500).json({ 
+      message: "Error al actualizar el estado del anuncio" 
+    });
+  }
+};
+
+// Eliminar anuncio del vendedor
+exports.deleteAnuncioVendedor = async (req, res) => {
+  const { anuncioId, usuarioId } = req.params;
+  
+  if (!anuncioId || isNaN(anuncioId)) {
+    return res.status(400).json({ 
+      message: "anuncioId es obligatorio y debe ser numérico" 
+    });
+  }
+  
+  if (!usuarioId || isNaN(usuarioId)) {
+    return res.status(400).json({ 
+      message: "usuarioId es obligatorio y debe ser numérico" 
+    });
+  }
+  try {
+    const resultado = await anuncioRepository.deleteAnuncioVendedor(anuncioId, usuarioId);
+    
+    if (resultado.affectedRows === 0) {
+      return res.status(404).json({ 
+        message: "No se encontró el anuncio o no pertenece al usuario" 
+      });
+    }
+    
+    return res.status(200).json({ 
+      message: "Anuncio eliminado correctamente" 
+    });
+  } catch (error) {
+    console.error('Error al eliminar anuncio del vendedor:', error);
+    return res.status(500).json({ 
+      message: "Error al eliminar el anuncio" 
+    });
+  }
+};

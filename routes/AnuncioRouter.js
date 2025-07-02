@@ -17,6 +17,9 @@ const upload = multer({ storage });
 // GET /api/anuncios/mas-vistos (debe ir antes de las rutas dinámicas)
 router.get("/mas-vistos", AnuncioController.getAnunciosMasVistos);
 
+// GET /api/anuncios/vendedor/:usuarioId
+router.get("/vendedor/:usuarioId", AnuncioController.getAnunciosByVendedor);
+
 //GET /api/anuncios/buscar?categoria=Laptops%20y%20Computadoras&precioMax=1000
 router.get("/buscar", AnuncioController.buscarAnuncios);
 
@@ -28,6 +31,9 @@ router.put("/:anuncioId/con-imagenes", upload.array("images[]", 4), AnuncioContr
 );
 // PATCH /api/anuncios/:anuncioId/estado-publicacion
 router.patch("/:anuncioId/estado-publicacion", AnuncioController.updateEstadoPublicacion
+);
+// PATCH /api/anuncios/:anuncioId/vendedor/:usuarioId/estado
+router.patch("/:anuncioId/vendedor/:usuarioId/estado", AnuncioController.updateEstadoAnuncioVendedor
 );
 // PATCH /api/anuncios/:anuncioId/incrementar-vistas
 router.patch("/:anuncioId/incrementar-vistas", AnuncioController.incrementarVistas);
@@ -44,6 +50,8 @@ router.get("/:anuncioId/con-imagenes",AnuncioController.getAnuncioConImagenesByI
 router.put("/:anuncioId", AnuncioController.updateAnuncio);
 // DELETE /api/anuncios/:anuncioId (elimina anuncio y sus imágenes asociadas)
 router.delete("/:anuncioId", AnuncioController.deleteAnuncioConImagenes);
+// DELETE /api/anuncios/:anuncioId/vendedor/:usuarioId
+router.delete("/:anuncioId/vendedor/:usuarioId", AnuncioController.deleteAnuncioVendedor);
 
 // POST /api/anuncios/ (con imágenes)
 router.post("/", upload.array("images[]", 4),AnuncioController.createAnuncioConImagenes);

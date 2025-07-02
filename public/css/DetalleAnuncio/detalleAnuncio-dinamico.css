@@ -124,15 +124,58 @@
         padding: 8px 12px;
         font-size: 0.8rem;
     }
-    
-    .ad-main-img-container {
+      .ad-main-img-container {
         position: relative;
+        height: 300px;
+    }
+    
+    .ad-details-gallery {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    .detail {
+        flex-direction: column;
+        gap: 20px;
     }
     
     .loading-container,
     .error-container {
         min-height: 300px;
         padding: 20px;
+    }
+    
+    /* Mejorar thumbnails en móvil */
+    .ad-thumbnails {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 6px;
+        margin-top: 10px;
+    }
+      .ad-thumbnail {
+        height: 60px;
+    }
+}
+
+/* Responsive para tablets */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .detail {
+        display: flex;
+        flex-direction: row;
+        
+        align-items: flex-start;
+    }
+    
+    .ad-details-gallery {
+        width: 50%;
+        flex-shrink: 0;
+    }
+      .ad-main-img-container {
+        height: 380px;
+    }
+    
+    .ads-detail-info-container {
+        width: 50%;
+        flex: 1;
     }
 }
 

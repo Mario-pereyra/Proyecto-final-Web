@@ -1,54 +1,468 @@
+/* Panel del Vendedor - Estilo moderno */
 main {
     padding: 20px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.container-btn-new-ad {
+/* Header del panel mejorado */
+.panel-header {
+    max-width: 1200px;
+    margin: 0 auto 30px auto;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+.panel-title h1 {
+    margin: 0 0 5px 0;
+    color: #2c3e50;
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.panel-title p {
+    margin: 0;
+    color: #6c757d;
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+.container-btn-new-ad .primary-button {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(0, 123, 255, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.container-btn-new-ad .primary-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4);
+    background: linear-gradient(135deg, #0056b3, #003d82);
+}
+
+/* Tabs mejorados */
 .selector-tabs {
+    max-width: 1200px;
+    margin: 0 auto 30px auto;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    margin-bottom: 20px;
-    margin-top: 20px;
+    gap: 0;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 16px;
+    padding: 10px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.ad-container {
+.tab-button {
+    flex: 1;
+    padding: 16px 30px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 12px;
     display: flex;
-    flex-direction: column;
-    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #6c757d;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
 
+.tab-button.active {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    box-shadow: 0 4px 16px rgba(0, 123, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.tab-button:hover:not(.active) {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    color: #495057;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Contenedor de controles mejorado */
+.ads-controls {
+    max-width: 1200px;
+    margin: 0 auto 30px auto;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Inputs modernos */
+.ads-controls input[type="text"],
+.ads-controls select {
+    padding: 12px 16px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    background: #ffffff;
+}
+
+.ads-controls input[type="text"]:focus,
+.ads-controls select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+    transform: translateY(-1px);
+}
+
+/* Cards de anuncios mejoradas */
+.ads-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+    padding: 20px 0;
 }
 
 .ad-card {
-    border: 1px solid #ddd;
-    padding: 15px;
-   
-    
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+.ad-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15);
+}
+
+/* Imagen de la card mejorada */
 .ad-image-wrapper-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
 }
 
 .ad-image-wrapper {
-    width: 200px;
-    height: 150px;
-    background-color: #f8f9fa;
-    border-radius: 8px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.ad-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+.ad-card:hover .ad-image {
+    transform: scale(1.05);
+}
+
+/* Overlay gradiente para mejor legibilidad */
+.ad-image-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent 60%, rgba(0, 0, 0, 0.1) 100%);
+    pointer-events: none;
+}
+
+/* Contenido de la card mejorado */
+.ad-content {
+    padding: 20px;
+}
+
+.ad-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin: 0 0 10px 0;
+    line-height: 1.3;    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
     overflow: hidden;
+}
 
+.ad-price {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #007bff;
+    margin: 0 0 15px 0;
+    text-shadow: 0 1px 2px rgba(0, 123, 255, 0.2);
+}
 
+/* Tags mejorados */
+.ad-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 15px 0;
+}
+
+.ad-tags span {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.ad-category {
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+    color: #1976d2;
+}
+
+.ad-condition {
+    background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+    color: #388e3c;
+}
+
+/* Estados con colores mejorados */
+.ad-status.active {
+    background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+    color: #2e7d32;
+}
+
+.ad-status.inactive {
+    background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+    color: #f57c00;
+}
+
+.ad-status.pending {
+    background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+    color: #f57c00;
+}
+
+/* Estadísticas mejoradas */
+.ad-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin: 15px 0;
+    padding: 15px;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.ad-stat-item {
+    text-align: center;
+    padding: 8px;
+}
+
+.ad-stat-value {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #007bff;
+    margin-bottom: 4px;
+}
+
+.ad-stat-label {
+    display: block;
+    font-size: 0.8rem;
+    color: #6c757d;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Botones de acción mejorados */
+.ad-actions {
+    padding: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    background: linear-gradient(135deg, #f8f9fa, #ffffff);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.action-btn {
+    flex: 1;
+    min-width: 45%;
+    padding: 10px 16px;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 8px;
 }
+
+.edit-btn {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+}
+
+.edit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(40, 167, 69, 0.4);
+}
+
+.delete-btn {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    color: white;
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+}
+
+.delete-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(220, 53, 69, 0.4);
+}
+
+.messages-btn {
+    background: linear-gradient(135deg, #ffc107, #e0a800);
+    color: #212529;
+    box-shadow: 0 2px 8px rgba(255, 193, 7, 0.3);
+}
+
+.messages-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(255, 193, 7, 0.4);
+}
+
+.view-btn {
+    background: linear-gradient(135deg, #6f42c1, #5a32a3);
+    color: white;
+    box-shadow: 0 2px 8px rgba(111, 66, 193, 0.3);
+}
+
+.view-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(111, 66, 193, 0.4);
+}
+
+/* Switch de visibilidad mejorado */
+.visibility-switch {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 20px;
+    background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+    border-radius: 12px;
+    margin: 15px 0;
+}
+
+.visibility-switch input[type="checkbox"] {
+    width: 50px;
+    height: 25px;
+    appearance: none;
+    background: #ddd;
+    border-radius: 25px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.visibility-switch input[type="checkbox"]:checked {
+    background: linear-gradient(135deg, #28a745, #20c997);
+}
+
+.visibility-switch input[type="checkbox"]::before {
+    content: '';
+    position: absolute;
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+    background: white;
+    top: 2px;
+    left: 2px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.visibility-switch input[type="checkbox"]:checked::before {
+    transform: translateX(25px);
+}
+
+/* Responsive mejorado */
+@media (max-width: 768px) {
+    .panel-header {
+        padding: 20px;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .panel-title h1 {
+        font-size: 1.8rem;
+    }
+    
+    .ads-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 10px;
+    }
+    
+    .ad-actions {
+        flex-direction: column;
+    }
+    
+    .action-btn {
+        min-width: 100%;
+    }
+    
+    .selector-tabs {
+        padding: 8px;
+    }
+    
+    .tab-button {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    main {
+        padding: 10px;
+    }
+    
+    .panel-title h1 {
+        font-size: 1.5rem;
+    }
+    
+    .ad-stats {
+        grid-template-columns: 1fr;
+    }
+}
+
 
 .ad-image {
     width: 100%;
@@ -104,4 +518,123 @@ main {
     .ad-card{
         justify-content: space-evenly;
     }
+}
+
+/* Estilos para los estados de los anuncios */
+.ad-status {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.ad-status.active {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.ad-status.inactive {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.ad-status.sold {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+
+/* Estilos para mensajes sin leer */
+.unread-messages {
+    background-color: #fff3cd;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border-left: 3px solid #ffc107;
+}
+
+.unread-messages .stat-value {
+    color: #856404;
+    font-weight: bold;
+}
+
+/* Estilos para notificaciones */
+.loading-container,
+.error-container,
+.auth-message,
+.no-results {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.loading-container i,
+.error-container i,
+.auth-message i,
+.no-results i {
+    display: block;
+    margin-bottom: 15px;
+}
+
+/* Mejorar visibilidad del checkbox */
+.visibility-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.visibility-checkbox {
+    transform: scale(1.2);
+}
+
+/* Animaciones suaves */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.ad-card {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Mejoras de accesibilidad */
+.action-btn:focus {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+}
+
+.visibility-checkbox:focus {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+}
+
+/* Efectos de hover mejorados */
+.ad-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(0, 123, 255, 0.02), rgba(0, 123, 255, 0.05));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    border-radius: 12px;
+}
+
+.ad-card:hover::before {
+    opacity: 1;
+}
+
+/* Estados de carga mejorados */
+.loading-skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
 }

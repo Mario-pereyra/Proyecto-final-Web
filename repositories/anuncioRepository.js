@@ -409,3 +409,128 @@ exports.getAnunciosMasVistos = async (limit = 4) => {
   
   return anuncios;
 };
+
+exports.getAnunciosByVendedor = async (usuarioId) => {
+  const connection = await getConnection();
+  const [anuncios] = await connection.query(`
+    SELECT 
+      a.anuncioId,
+      a.titulo,
+      a.descripcion,
+      a.precio,
+      a.estado,
+      a.estado_publicacion,
+      a.vistas,
+      a.valoracion,
+      a.fecha_creacion,
+      a.fecha_modificacion,
+      a.zona,
+      c.nombre AS categoriaNombre,
+      s.nombre AS subcategoriaNombre,
+      d.nombre AS departamentoNombre,
+      ci.nombre AS ciudadNombre,
+      u.nombre_completo AS usuarioNombre,
+      -- Obtener imagen principal
+      (SELECT i.nombre_archivo 
+       FROM anuncio_imagenes ai 
+       JOIN imagenes i ON ai.imagenId = i.imagenId 
+       WHERE ai.anuncioId = a.anuncioId AND ai.es_principal = 1 
+       LIMIT 1) AS imagen_principal,
+      -- Contar mensajes del anuncio
+      (SELECT COUNT(DISTINCT c.conversacionId) 
+       FROM conversaciones c 
+       WHERE c.anuncioId = a.anuncioId) AS total_conversaciones,
+      -- Contar mensajes no leídos para el vendedor
+      (SELECT COUNT(m.mensajeId) 
+       FROM conversaciones co 
+       JOIN mensajes m ON co.conversacionId = m.conversacionId 
+       WHERE co.anuncioId = a.anuncioId 
+       AND co.vendedorId = a.usuarioId 
+       AND m.emisorId != a.usuarioId 
+       AND m.leido = 0) AS mensajes_no_leidos
+    FROM anuncios a
+    LEFT JOIN categorias c ON a.categoriaId = c.categoriaId
+    LEFT JOIN subcategorias s ON a.subcategoriaId = s.subcategoriaId
+    LEFT JOIN departamentos d ON a.departamentoId = d.departamentoId
+    LEFT JOIN ciudades ci ON a.ciudadId = ci.ciudadId
+    LEFT JOIN usuarios u ON a.usuarioId = u.usuarioId
+    WHERE a.usuarioId = ?
+    ORDER BY a.fecha_creacion DESC
+  `, [usuarioId]);
+  
+  return anuncios;
+};
+
+exports.updateAnuncioEstado = async (anuncioId, usuarioId, nuevoEstado) => {
+  const connection = await getConnection();
+  const [result] = await connection.query(`
+    UPDATE anuncios 
+    SET estado_publicacion = ? 
+    WHERE anuncioId = ? AND usuarioId = ?
+  `, [nuevoEstado, anuncioId, usuarioId]);
+  
+  return result;
+};
+
+exports.deleteAnuncioVendedor = async (anuncioId, usuarioId) => {
+  const connection = await getConnection();
+  
+  // Comenzar transacción
+  await connection.beginTransaction();
+  
+  try {
+    // Eliminar imágenes asociadas
+    await connection.query(`
+      DELETE i FROM imagenes i 
+      JOIN anuncio_imagenes ai ON i.imagenId = ai.imagenId 
+      WHERE ai.anuncioId = ? AND EXISTS (
+        SELECT 1 FROM anuncios a WHERE a.anuncioId = ? AND a.usuarioId = ?
+      )
+    `, [anuncioId, anuncioId, usuarioId]);
+    
+    // Eliminar relaciones de anuncio_imagenes
+    await connection.query(`
+      DELETE ai FROM anuncio_imagenes ai 
+      JOIN anuncios a ON ai.anuncioId = a.anuncioId 
+      WHERE ai.anuncioId = ? AND a.usuarioId = ?
+    `, [anuncioId, usuarioId]);
+    
+    // Eliminar mensajes de conversaciones
+    await connection.query(`
+      DELETE m FROM mensajes m 
+      JOIN conversaciones c ON m.conversacionId = c.conversacionId 
+      WHERE c.anuncioId = ? AND c.vendedorId = ?
+    `, [anuncioId, usuarioId]);
+    
+    // Eliminar conversaciones
+    await connection.query(`
+      DELETE FROM conversaciones 
+      WHERE anuncioId = ? AND vendedorId = ?
+    `, [anuncioId, usuarioId]);
+    
+    // Eliminar anuncios guardados
+    await connection.query(`
+      DELETE FROM anuncios_guardados 
+      WHERE anuncioId = ?
+    `, [anuncioId]);
+    
+    // Eliminar auditoría
+    await connection.query(`
+      DELETE FROM auditoria_anuncios 
+      WHERE anuncioId = ?
+    `, [anuncioId]);
+    
+    // Finalmente eliminar el anuncio
+    const [result] = await connection.query(`
+      DELETE FROM anuncios 
+      WHERE anuncioId = ? AND usuarioId = ?
+    `, [anuncioId, usuarioId]);
+    
+    await connection.commit();
+    return result;
+    
+  } catch (error) {
+    await connection.rollback();
+    throw error;
+  }
+};
