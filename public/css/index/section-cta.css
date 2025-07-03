@@ -1,4 +1,4 @@
-/* CTA Section */
+
 .cta-section {
     background-color: #f8f9fa;
     color: #212529;
@@ -96,7 +96,7 @@
     }
 }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
     .cta-section {
         padding: 60px 16px;

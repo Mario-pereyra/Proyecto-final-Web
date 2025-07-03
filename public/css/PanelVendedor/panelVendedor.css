@@ -437,7 +437,7 @@ main {
 
 
 
-/* Estilos para los estados de los anuncios */
+
 .ad-status {
     padding: 4px 8px;
     border-radius: 4px;
@@ -460,7 +460,7 @@ main {
     color: #0c5460;
 }
 
-/* Estilos para mensajes sin leer */
+
 .unread-messages {
     background-color: #fff3cd;
     padding: 4px 8px;
@@ -473,7 +473,7 @@ main {
     font-weight: 600;
 }
 
-/* Estilos para notificaciones */
+
 .loading-container,
 .error-container,
 .auth-message,
@@ -492,7 +492,6 @@ main {
     color: #007bff;
 }
 
-/* Mejorar visibilidad del checkbox */
 .visibility-label {
     display: flex;
     align-items: center;
@@ -505,7 +504,7 @@ main {
     transform: scale(1.1);
 }
 
-/* Animaciones suaves */
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
@@ -515,7 +514,7 @@ main {
     animation: fadeIn 0.3s ease-out;
 }
 
-/* Mejoras de accesibilidad */
+
 .action-btn:focus {
     outline: 2px solid #007bff;
     outline-offset: 1px;
@@ -526,7 +525,7 @@ main {
     outline-offset: 1px;
 }
 
-/* Estados de carga */
+
 .loading-skeleton {
     background: #f0f0f0;
     border-radius: 4px;

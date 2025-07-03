@@ -30,7 +30,7 @@
     margin-left: 0px;
 }
 
-/* CARDS */
+
 
 * {
     box-sizing: border-box;
@@ -90,7 +90,7 @@ body {
 }
 
 .ads-card-img img {
-    /* Estas propiedades aseguran que la imagen se escale correctamente */
+    
      max-width: 100%;
     max-height: 100%;
     width: auto;

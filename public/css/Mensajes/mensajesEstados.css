@@ -1,4 +1,4 @@
-/* Estilos para estados vacíos en las páginas de mensajes */
+
 
 .empty-state {
     display: flex;
@@ -31,7 +31,7 @@
     max-width: 280px;
 }
 
-/* Indicadores de estado en conversaciones */
+
 .conversation-item.unread {
     background-color: #f8f9ff;
     border-left: 3px solid #007bff;
@@ -54,7 +54,7 @@
     display: inline-block;
 }
 
-/* Animaciones para mensajes nuevos */
+
 @keyframes slideInMessage {
     from {
         opacity: 0;
@@ -70,7 +70,7 @@
     animation: slideInMessage 0.3s ease-out;
 }
 
-/* Indicador de conexión */
+
 .connection-status {
     position: fixed;
     top: 80px;
@@ -101,7 +101,7 @@
     border: 1px solid #f5c6cb;
 }
 
-/* Responsive mejoras */
+
 @media (max-width: 768px) {
     .empty-state {
         padding: 20px 16px;

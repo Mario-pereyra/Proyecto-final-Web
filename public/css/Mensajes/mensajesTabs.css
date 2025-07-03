@@ -1,11 +1,11 @@
-/* Estilos para navegación por pestañas en Mensajes.html */
+
 
 .tabs-navigation {
     background-color: #fff;
     border-bottom: 1px solid #e0e0e0;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     position: sticky;
-    top: 70px; /* Altura del header */
+    top: 70px; 
     z-index: 100;
 }
 
@@ -51,7 +51,7 @@
     font-weight: 600;
 }
 
-/* Contenido de las pestañas */
+
 .tab-content {
     display: none;
     animation: fadeIn 0.3s ease-in-out;
@@ -72,7 +72,7 @@
     }
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
     .tabs-container {
         padding: 0 16px;
@@ -100,12 +100,12 @@
     }
 }
 
-/* Ajustes para el contenido principal */
+
 main[data-component="unified-messages-main"] {
     margin-top: 0;
 }
 
-/* Indicadores de notificación en pestañas */
+
 .tab-button .notification-badge {
     position: absolute;
     top: 8px;
@@ -121,7 +121,7 @@ main[data-component="unified-messages-main"] {
     line-height: 1;
 }
 
-/* Estados de carga */
+
 .tab-content.loading {
     position: relative;
     min-height: 200px;
@@ -146,7 +146,7 @@ main[data-component="unified-messages-main"] {
     100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-/* Mejoras visuales */
+
 .tab-button:focus {
     outline: 2px solid #007bff;
     outline-offset: -2px;
@@ -156,7 +156,7 @@ main[data-component="unified-messages-main"] {
     transform: translateY(1px);
 }
 
-/* Tema oscuro (opcional) */
+
 @media (prefers-color-scheme: dark) {
     .tabs-navigation {
         background-color: #2d3748;

@@ -118,7 +118,7 @@ main {
     text-decoration: underline;
 }
 
-/* Responsive Design */
+
 @media (max-width: 480px) {
     main {
         padding: 10px;

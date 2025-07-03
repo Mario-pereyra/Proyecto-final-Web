@@ -199,7 +199,7 @@ main {
     color: white;
 }
 
-/* Thumbnails activos */
+
 .ad-thumbnail {
     cursor: pointer;
     opacity: 0.6;
@@ -211,7 +211,7 @@ main {
     opacity: 1;
 }
 
-/* Metadata del producto */
+
 .product-metadata {
     margin: 15px 0;
     padding: 15px;
@@ -223,7 +223,7 @@ main {
     font-size: 14px;
 }
 
-/* Sección de contacto */
+
 .contact-vendor-login {
     text-align: center;
     padding: 20px;
@@ -264,7 +264,7 @@ main {
     color: white;
 }
 
-/* Mejorar espaciado del contenido */
+
 .ads-detail-info-container {
     padding: 7px;
 }
@@ -341,7 +341,6 @@ main {
     }
 }
 
-/* Desktop grande */
 @media(min-width:1200px) {
     .detail {
         gap: 10px;

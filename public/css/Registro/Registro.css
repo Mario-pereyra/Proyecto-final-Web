@@ -104,7 +104,7 @@ main {
     transition: color 0.2s;
 }
 
-/* Icono por defecto */
+
 .requirements-list li:before {
     content: "\2022";
     position: absolute;
@@ -115,7 +115,7 @@ main {
     transition: color 0.2s, content 0.2s;
 }
 
-/* Requisito cumplido visual */
+
 .requirements-list li.met {
     color: #28a745;
     font-weight: 500;
@@ -176,7 +176,7 @@ main {
     text-decoration: underline;
 }
 
-/* Responsive Design */
+
 @media (max-width: 480px) {
     main {
         padding: 10px;

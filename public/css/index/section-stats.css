@@ -1,4 +1,4 @@
-/* Platform Stats Section */
+
 .platform-stats {
     
     color: white;
@@ -78,7 +78,7 @@
 }
 
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
     .platform-stats {
         padding: 40px 16px;

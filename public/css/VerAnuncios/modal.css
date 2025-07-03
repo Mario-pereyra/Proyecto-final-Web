@@ -1,4 +1,4 @@
-/* Modal de confirmación */
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -100,7 +100,7 @@
   transform: translateY(0);
 }
 
-/* Animación de salida */
+
 .modal-overlay.fade-out {
   animation: modalFadeOut 0.2s ease-out forwards;
 }

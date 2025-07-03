@@ -1,4 +1,4 @@
-/* Estilos adicionales para nuevas categorías */
+
 
 .bg-tablets {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -12,7 +12,7 @@
     background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
 }
 
-/* Mejoras para la visualización de categorías */
+
 .category-card {
     transition: all 0.3s ease;
     text-decoration: none;
@@ -60,7 +60,7 @@
     content: "";
 }
 
-/* Asegurar que los iconos se vean bien */
+
 .icon-placeholder i {
     display: block;
     width: 100%;
@@ -68,7 +68,7 @@
     line-height: 64px;
 }
 
-/* Espaciado correcto para el contenido */
+
 .card-content {
     padding: 0;
     margin-top: 8px;
@@ -79,7 +79,7 @@
     line-height: 1.4;
 }
 
-/* Estilos responsivos para categorías */
+
 @media (max-width: 768px) {
     .categories-container {
         grid-template-columns: repeat(2, 1fr);

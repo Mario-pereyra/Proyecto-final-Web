@@ -1,4 +1,4 @@
-/* Bookmark icon toggle styles for anuncios */
+
 .bookmark-icon-label {
   cursor: pointer;
   position: absolute;
@@ -26,13 +26,12 @@
   filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1));
 }
 
-/* Estado activo - favorito guardado */
+
 .bookmark-icon-label .fa-bookmark.active {
   color: #ff6b6b;
   transform: scale(1.1);
 }
 
-/* Hover states */
 .bookmark-icon-label:hover .fa-bookmark {
   color: #ff8787;
 }
@@ -41,12 +40,12 @@
   color: #ff5252;
 }
 
-/* Animación al hacer clic */
+
 .bookmark-icon-label:active {
   transform: scale(0.95);
 }
 
-/* Efecto de pulso para favoritos activos */
+
 .bookmark-icon-label .fa-bookmark.active {
   animation: pulse-favorite 0.6s ease-out;
 }

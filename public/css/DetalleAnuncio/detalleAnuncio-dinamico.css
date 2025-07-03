@@ -1,6 +1,4 @@
-/* Estilos específicos para DetalleAnuncio.html */
 
-/* Estados de carga y error */
 .loading-container,
 .error-container {
     display: flex;
@@ -35,7 +33,7 @@
     font-size: 1rem;
 }
 
-/* Botón de guardar */
+
 .bookmark-btn {
     position: absolute;
     top: 15px;
@@ -82,7 +80,6 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Mensaje para anuncio propio */
 .own-ad-message {
     text-align: center;
     padding: 20px;
@@ -103,7 +100,7 @@
     font-size: 1rem;
 }
 
-/* Thumbnails activos */
+
 .ad-thumbnail.active {
     border: 2px solid #007bff;
     border-radius: 4px;
@@ -118,7 +115,7 @@
     opacity: 0.8;
 }
 
-/* Responsive improvements */
+
 @media (max-width: 768px) {
     .bookmark-btn {
         padding: 8px 12px;
@@ -145,7 +142,7 @@
         padding: 20px;
     }
     
-    /* Mejorar thumbnails en móvil */
+  
     .ad-thumbnails {
         grid-template-columns: repeat(4, 1fr);
         gap: 6px;
@@ -156,7 +153,7 @@
     }
 }
 
-/* Responsive para tablets */
+
 @media (min-width: 769px) and (max-width: 1024px) {
     .detail {
         display: flex;
@@ -179,7 +176,6 @@
     }
 }
 
-/* Metadatos del producto */
 .product-metadata {
     margin: 20px 0;
     padding: 15px 0;
@@ -197,7 +193,7 @@
     color: #333;
 }
 
-/* Sección de descripción */
+
 .description-section {
     margin-top: 25px;
 }
@@ -218,7 +214,7 @@
     margin-bottom: 12px;
 }
 
-/* Animaciones */
+
 .fade-in {
     animation: fadeIn 0.5s ease-in;
 }

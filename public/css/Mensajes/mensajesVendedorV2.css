@@ -1,6 +1,3 @@
-/* ============================================
-   SISTEMA DE NAVEGACIÓN DE 3 NIVELES
-============================================ */
 
 .chat-container {
     display: flex;
@@ -15,14 +12,12 @@
     min-height: 80vh;
 }
 
-/* Ocultar checkboxes de navegación */
+
 .view-toggle {
     display: none;
 }
 
-/* ============================================
-   NIVEL 1: LISTA DE PRODUCTOS
-============================================ */
+
 
 .products-list {
     display: flex;
@@ -152,9 +147,7 @@
     text-align: center;
 }
 
-/* ============================================
-   NIVEL 2: LISTA DE CONVERSACIONES
-============================================ */
+
 
 .conversations-list {
     display: none;
@@ -344,9 +337,6 @@
     display: inline-block;
 }
 
-/* ============================================
-   NIVEL 3: CHAT ACTIVO
-============================================ */
 
 .chat-view {
     display: none;
@@ -513,12 +503,9 @@
     background: #0056b3;
 }
 
-/* ============================================
-   NAVEGACIÓN MÓVIL (3 NIVELES)
-============================================ */
 
 @media (max-width: 425px) {
-    /* Por defecto: mostrar solo productos */
+    
     .products-list {
         display: flex;
     }
@@ -528,7 +515,7 @@
         display: none;
     }
 
-    /* Nivel 1 → Nivel 2: Producto seleccionado */
+   
     #product-view-switch:checked ~ .products-list {
         display: none;
     }
@@ -537,7 +524,7 @@
         display: flex;
     }
 
-    /* Nivel 2 → Nivel 3: Conversación seleccionada */
+  
     #conversations-view-switch:checked ~ .products-list,
     #conversations-view-switch:checked ~ .conversations-list {
         display: none;
@@ -547,7 +534,7 @@
         display: flex;
     }
 
-    /* Chat activo (nivel 3) */
+
     #chat-view-switch:checked ~ .products-list,
     #chat-view-switch:checked ~ .conversations-list {
         display: none;
@@ -567,9 +554,7 @@
     }
 }
 
-/* ============================================
-   NAVEGACIÓN TABLET (LAYOUT GRID 2x2)
-============================================ */
+
 
 @media (min-width: 426px) and (max-width: 768px) {
     .chat-container {
@@ -584,7 +569,7 @@
         background-color: #e0e0e0;
     }
 
-    /* GRID AREAS */
+
     .products-list {
         grid-area: products;
         display: flex !important;
@@ -608,24 +593,24 @@
         max-height: 50vh;
     }
 
-    /* El chat siempre está visible y activo */
+ 
     .chat-container {
         grid-template-rows: 1fr 1fr;
     }
 
-    /* Ocultar botones back en este layout */
+ 
     .back-button,
     .chat-back-button {
         display: none;
     }
 
-    /* Habilitar clicks en tablets */
+ 
     .products-container label,
     .conversations-container label {
         pointer-events: auto;
     }
 
-    /* Ajustes de tamaño para el layout compacto */
+
     .product-item {
         padding: 8px 12px;
     }
@@ -678,7 +663,7 @@
         font-size: 12px;
     }
 
-    /* Optimizar chat para layout horizontal */
+    
     .chat-messages {
         padding: 16px 20px;
         min-height: 35vh;
@@ -699,7 +684,7 @@
         margin: 8px;
     }
 
-    /* Scrollbars más delgados */
+ 
     .products-container,
     .conversations-container,
     .chat-messages {
@@ -720,16 +705,14 @@
     }
 }
 
-/* ============================================
-   NAVEGACIÓN DESKTOP (3 COLUMNAS FIJAS)
-============================================ */
+
 
 @media (min-width: 769px) {
     .chat-container {
         flex-direction: row;
     }
 
-    /* Mostrar las 3 columnas en desktop */
+
     .products-list {
         flex: 0 0 25%;
         border-right: 1px solid #e0e0e0;
@@ -747,13 +730,13 @@
         display: flex !important;
     }
 
-    /* Ocultar botones de navegación en desktop */
+
     .back-button,
     .chat-back-button {
         display: none;
     }
 
-    /* Deshabilitar labels en desktop para evitar clicks */
+
     .products-container label,
     .conversations-container label {
         pointer-events: none;
@@ -789,9 +772,7 @@
     }
 }
 
-/* ============================================
-   LAPTOP Y PC (PANTALLAS GRANDES)
-============================================ */
+
 
 @media (min-width: 1025px) {
     .chat-container {
@@ -807,23 +788,20 @@
     }
 }
 
-/* ============================================
-   FIXES PARA FOOTER Y LAYOUT
-============================================ */
 
-/* Asegurar que el chat-view tenga suficiente espacio */
+
 .chat-view {
     position: relative;
     z-index: 5;
 }
 
-/* Evitar que el footer de la página tape el chat */
+
 body {
     margin-bottom: 0;
     padding-bottom: 0;
 }
 
-/* Asegurar que el footer de la página no interfiera */
+
 footer {
     position: relative;
     z-index: 1;
@@ -831,7 +809,7 @@ footer {
     clear: both;
 }
 
-/* Para tablets: asegurar que el grid no sea tapado */
+
 @media (min-width: 426px) and (max-width: 768px) {
     body {
         padding-bottom: 10px;

@@ -1,4 +1,4 @@
-/* Estados para Anuncios Guardados */
+
 
 .loading-container,
 .empty-state,
@@ -56,7 +56,7 @@
     background-color: #0056b3;
 }
 
-/* Notification styles */
+
 .notification {
     position: fixed;
     top: 20px;
@@ -107,7 +107,7 @@
     }
 }
 
-/* Bookmark button active state */
+
 .bookmark-icon.active {
     color: #007bff;
 }

@@ -1,4 +1,4 @@
-/* FAQ Section Styles */
+
 .faq-section {
     padding: 48px 24px;
     background-color: #fff;
@@ -41,11 +41,11 @@
     font-size: 18px;
     font-weight: 600;
     cursor: pointer;
-    list-style: none; /* Remove default marker */
+    list-style: none; 
 }
 
 .faq-question::-webkit-details-marker {
-    display: none; /* Hide the default triangle in Chrome/Safari */
+    display: none; 
 }
 
 .faq-question i {
@@ -62,7 +62,7 @@
     line-height: 1.6;
 }
 
-/* Responsive Styles */
+
 @media (max-width: 768px) {
     .faq-section {
         padding: 32px 16px;
