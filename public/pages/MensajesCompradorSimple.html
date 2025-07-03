@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mensajes - AstroMarket</title>    <link rel="stylesheet" href="../css/vendors/fonts.css">
+    <title>Mensajes - AstroMarket</title>
+    <link rel="stylesheet" href="../css/vendors/fonts.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/Mensajes/mensajesVendedor.css">
     <link rel="stylesheet" href="../css/Mensajes/mensajesEstados.css">
 </head>
-
 <body>
     <header class="header">
         <a href="../index.html">
@@ -23,48 +22,34 @@
             <input id="menu-switch" type="checkbox">
             <ul>
                 <li class="nav-todos">
-                    <a href="VerAnuncios.html">
-                        Ver Anuncios
-                    </a>
+                    <a href="VerAnuncios.html">Ver Anuncios</a>
                 </li>
                 <li class="nav-publico">
-                    <a href="Login.html">
-                        Iniciar Sesión
-                    </a>
+                    <a href="Login.html">Iniciar Sesión</a>
                 </li>
                 <li class="nav-publico">
-                    <a href="Registro.html">
-                        Registrarse
-                    </a>
+                    <a href="Registro.html">Registrarse</a>
                 </li>
                 <li class="nav-privado" style="display:none">
-                    <a href="MensajesComprador.html">
-                        Mensajes-Comprador
-                    </a>
+                    <a href="MensajesComprador.html">Mensajes-Comprador</a>
                 </li>
                 <li class="nav-privado" style="display:none">
-                    <a href="MensajesVendedorV2.html">
-                        Mensajes-Vendedor
-                    </a>
+                    <a href="MensajesVendedorV2.html">Mensajes-Vendedor</a>
                 </li>
                 <li class="nav-privado" style="display:none">
-                    <a href="PanelVendedor.html">
-                        Panel-vendedor
-                    </a>
+                    <a href="PanelVendedor.html">Panel-vendedor</a>
                 </li>
             </ul>
         </nav>
         <div class="header-user-profile" id="header-profile" data-component="header-user-profile">
             <div class="header-profile-container" data-info="header-profile" id="profile-trigger">
-                <img src="../img/icono-user.png" alt="Foto perfil" class="header-profile-pic" id="header-profile-image" data-image="header-user-avatar">
+                <img src="../recursos/img/npc.jpg" alt="Foto perfil" class="header-profile-pic" id="header-profile-image" data-image="header-user-avatar">
                 <div class="header-user-info" data-info="header-user-details">
                     <span class="header-user-name" data-info="user-name">Desconocido</span>
                     <span class="header-user-role" data-info="user-role">Visitante</span>
                 </div>
             </div>
-
         </div>
-        
     </header>   
 
     <main data-component="buyer-messages-main">
@@ -75,7 +60,8 @@
                 <div class="conversations-header">
                     <h1>Mensajes - Comprador</h1>
                 </div>
-                    <div class="list-container" id="conversations-list-container">
+                
+                <div class="list-container" id="conversations-list-container">
                     <!-- Las conversaciones se cargarán aquí dinámicamente -->
                 </div>
             </aside>
@@ -86,19 +72,21 @@
                         <i class="fa fa-chevron-left"></i>
                     </label>
                     <div class="user-info">
-                        <img src="../recursos/img/npc.jpg" alt="Foto de Carlos" class="profile-pic" id="chat-header-avatar">
+                        <img src="../recursos/img/npc.jpg" alt="Foto de vendedor" class="profile-pic" id="chat-header-avatar">
                     </div>
                     <div class="vendor-info">
-                        <h3 class="vendor-name" id="chat-header-name">Carlos Gutierrez</h3>
-                        <p class="vendor-status" id="chat-header-status">En línea</p>
+                        <h3 class="vendor-name" id="chat-header-name">Selecciona una conversación</h3>
+                        <p class="vendor-status" id="chat-header-status">Chat Simple</p>
                     </div>
                     <div class="product-context">
                         <img src="../recursos/img/MacBook_Pro_16.webp" alt="Producto" class="product-context-image" id="chat-header-product-img" style="width: 64px; height: 64px; object-fit: cover; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); background: #f3f3f3;">
                         <div class="product-context-details">
-                            <span class="product-context-name" id="chat-header-product-name">MacBook Pro 16"</span>
+                            <span class="product-context-name" id="chat-header-product-name">Producto</span>
                         </div>
                     </div>
-                </div>                <div class="chat-messages" id="chat-messages-container">
+                </div>
+
+                <div class="chat-messages" id="chat-messages-container">
                     <!-- Los mensajes se cargarán aquí dinámicamente -->
                 </div>
 
@@ -112,47 +100,16 @@
                 </div>
             </section>
         </div>
-    </main>    <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
-    <script src="../js/profileMenu.js"></script>
-    
-    <!-- Configurar usuario de prueba si no existe -->
-    <script>
-        if (!localStorage.getItem('userSession')) {
-            localStorage.setItem('userSession', JSON.stringify({
-                usuarioId: 1,
-                nombre: 'Mario Pereyra',
-                email: 'mario.pereyra@email.com'
-            }));
-        }
-    </script>
-    
-    <script src="../js/chat.js"></script>
+    </main>    
 
-    <template id="conversation-item-template">
-        </template>
-    <template id="message-template">
-        </template>
-      <footer data-component="main-footer">
+    <footer data-component="main-footer">
         <div class="copyright">
             <p>&copy; 2024 AstroMarket. Todos los derechos reservados</p>
         </div>
-</footer>
+    </footer>
 
-    <!-- Script para configurar usuario automáticamente -->
-    <script>
-        // Configurar usuario de prueba automáticamente
-        if (!localStorage.getItem('userSession')) {
-            localStorage.setItem('userSession', JSON.stringify({
-                usuarioId: 1,
-                nombre: 'Mario Pereyra',
-                email: 'mario.pereyra@email.com'
-            }));
-            console.log('✅ Usuario de prueba configurado automáticamente');
-        }
-    </script>
-    
-    <!-- Script del chat -->
+    <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
+    <script src="../js/profileMenu.js"></script>
     <script src="../js/chat.js"></script>
-
 </body>
 </html>
