@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anuncios</title>
     <link rel="stylesheet" href="../css/vendors/fonts.css">
-    <link rel="stylesheet" href="../css/VerAnuncios/Buscador.css">    <link rel="stylesheet" href="../css/VerAnuncios/header.css">
+    <link rel="stylesheet" href="../css/VerAnuncios/Buscador.css">    
+    <link rel="stylesheet" href="../css/VerAnuncios/header.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/VerAnuncios/bookmark.css">
     <link rel="stylesheet" href="../css/VerAnuncios/modal.css">
@@ -110,32 +111,33 @@
         </section>
     </main>
 
-    <!-- PLANTILLA PARA JAVASCRIPT - OCULTA -->
+
     <template id="product-card-template">
         <div class="ads-card">
             <div class="ads-card-img">
                 <a href="#">
                     <div class="ads-card-img-container">
                         <img src="../recursos/img/oculus_quest2_meta.webp" alt="Oculus Quest 2 Meta">
-                        <!-- recurso y nombre recurso-->
+
                     </div>
                 </a>
             </div>
             <div class="ads-card-details">
                 <div class="ads-card-tags">
-                    <div class="ads-card-category"></div> <!-- nombre  de la categorias -->
-                    <div class="ads-card-condition"></div> <!-- estado-->
+                    <div class="ads-card-category"></div>
+                    <div class="ads-card-condition"></div> 
                 </div>
-                <h3 class="ads-card-title"></h3> <!--titulo-->
-                <p class="ads-card-price"></p> <!-- precio-->
+                <h3 class="ads-card-title"></h3> 
+                <p class="ads-card-price"></p> 
             </div>
             <div class="ads-card-vendor">
                 <div class="ads-card-vendor-label">Vendedor:</div>
-                <div class="ads-card-vendor-name"></div> <!-- nombre usuario vendedor-->
-            </div>        </div>
+                <div class="ads-card-vendor-name"></div> 
+            </div>       
+         </div>
     </template>
 
-    <!-- Modal de Confirmación para Quitar Favoritos -->
+    
     <div id="confirmModal" class="modal-overlay" style="display: none;">
         <div class="modal-content">
             <div class="modal-header">

@@ -69,7 +69,7 @@ select:focus {
     box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
 }
 
-input[type="submit"] {
+input[type="submit"] ,#btn-aplicar-filtros{
     background-color: #28a745;
     color: white;
     padding: 5px 10px;

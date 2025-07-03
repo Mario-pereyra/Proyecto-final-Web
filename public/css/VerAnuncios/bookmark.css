@@ -28,16 +28,16 @@
 
 
 .bookmark-icon-label .fa-bookmark.active {
-  color: #ff6b6b;
+  color: #007bff;
   transform: scale(1.1);
 }
 
 .bookmark-icon-label:hover .fa-bookmark {
-  color: #ff8787;
+  color: #007bff;
 }
 
 .bookmark-icon-label .fa-bookmark.active:hover {
-  color: #ff5252;
+  color: #007bff;
 }
 
 
