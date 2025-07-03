@@ -27,7 +27,7 @@
     padding-right: 12px;
     border-radius: 6px;
     margin-right: 0px;
-    margin-left: 16px;
+    margin-left: 0px;
 }
 
 /* CARDS */
@@ -45,9 +45,7 @@ body {
 
 .ads-card-img-container {
     width: 100%;
-    /* O la anchura que desees para el contenedor */
     height: 200px;
-    /* Establece una altura fija para el contenedor */
     overflow: hidden;
 }
 
@@ -59,14 +57,12 @@ body {
     background-color: #f8f9fa;
     padding: 10px;
     box-sizing: border-box;
-
-    /* --- LÍNEAS CLAVE PARA EL CENTRADO --- */
-    display: flex;             /* 1. Activa el modelo de caja flexible (Flexbox) */
-    align-items: center;       /* 2. ¡Esta línea centra la imagen VERTICALMENTE! */
+    display: flex;             
+    align-items: center;       
     justify-content: center;  
 }
 
-/* Bookmark icon styling */
+
 .bookmark-icon {
     position: absolute;
     top: 12px;
