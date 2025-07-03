@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Chat - AstroMarket</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 20px; border: 1px solid #ccc; border-radius: 5px; }
+        .test-button { padding: 10px 20px; margin: 10px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        .test-results { background: #f8f9fa; padding: 15px; margin: 10px 0; border-radius: 5px; font-family: monospace; white-space: pre-wrap; }
+        .test-input { padding: 8px; margin: 5px; width: 300px; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test del Sistema de Chat</h1>
+
+    <!-- Test de Sesión -->
+    <div class="test-section">
+        <h2>1. Test de Sesión de Usuario</h2>
+        <button class="test-button" onclick="testSession()">Verificar Sesión</button>
+        <button class="test-button" onclick="createTestSession()">Crear Sesión de Prueba</button>
+        <div id="session-results" class="test-results"></div>
+    </div>    <!-- Test de API -->
+    <div class="test-section">
+        <h2>2. Test de APIs</h2>
+        <input type="number" id="user-id" class="test-input" placeholder="ID de Usuario" value="1">        <button class="test-button" onclick="testConversacionesAPI()">Test Conversaciones</button>
+        <button class="test-button" onclick="testAnunciosAPI()">Test Anuncios</button>
+        <button class="test-button" onclick="listarUsuarios()">👥 Listar Usuarios</button>
+        <button class="test-button" onclick="crearDatosPrueba()">🔧 Crear Datos de Prueba</button>
+        <div id="api-results" class="test-results"></div>
+    </div>
+
+    <!-- Test de Chat -->
+    <div class="test-section">
+        <h2>3. Test de Funcionalidad Chat</h2>
+        <button class="test-button" onclick="testChatManager()">Inicializar Chat</button>
+        <button class="test-button" onclick="testLongPolling()">Test Long Polling</button>
+        <div id="chat-results" class="test-results"></div>    </div>
+
+    <script src="js/mensajesSimple.js"></script>
+    <script src="js/test-mensajes.js"></script>
+    <script>
+        // Test 1: Sesión
+        function testSession() {
+            const results = document.getElementById('session-results');
+            results.textContent = 'Verificando sesión...\n';
+            
+            // Verificar localStorage
+            const keys = Object.keys(localStorage);
+            results.textContent += `Claves en localStorage: ${keys.join(', ')}\n`;
+            
+            const userSession = localStorage.getItem('userSession');
+            if (userSession) {
+                try {
+                    const user = JSON.parse(userSession);
+                    results.textContent += `✅ Sesión encontrada:\n${JSON.stringify(user, null, 2)}\n`;
+                } catch (e) {
+                    results.textContent += `❌ Error al parsear sesión: ${e.message}\n`;
+                }
+            } else {
+                results.textContent += '❌ No hay sesión en userSession\n';
+                
+                // Probar otras claves
+                const user = localStorage.getItem('user');
+                const usuario = localStorage.getItem('usuario');
+                if (user) results.textContent += `Encontrado 'user': ${user}\n`;
+                if (usuario) results.textContent += `Encontrado 'usuario': ${usuario}\n`;
+            }
+        }
+
+        function createTestSession() {
+            const testUser = {
+                usuarioId: 1,
+                nombre_completo: "Usuario de Prueba",
+                email: "test@example.com"
+            };
+            localStorage.setItem('userSession', JSON.stringify(testUser));
+            document.getElementById('session-results').textContent = '✅ Sesión de prueba creada';
+        }
+
+        // Test 2: APIs
+        async function testConversacionesAPI() {
+            const results = document.getElementById('api-results');
+            const userId = document.getElementById('user-id').value;
+            results.textContent = `Probando API de conversaciones para usuario ${userId}...\n`;
+            
+            try {
+                const response = await fetch(`/api/chat/conversaciones/usuario/${userId}`);
+                results.textContent += `Status: ${response.status}\n`;
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    results.textContent += `✅ Respuesta recibida:\n${JSON.stringify(data, null, 2)}\n`;
+                } else {
+                    const error = await response.text();
+                    results.textContent += `❌ Error: ${error}\n`;
+                }
+            } catch (error) {
+                results.textContent += `❌ Error de conexión: ${error.message}\n`;
+            }
+        }
+
+        async function testAnunciosAPI() {
+            const results = document.getElementById('api-results');
+            const userId = document.getElementById('user-id').value;
+            results.textContent += `\nProbando API de anuncios para usuario ${userId}...\n`;
+            
+            try {
+                const response = await fetch(`/api/anuncios/vendedor/${userId}`);
+                results.textContent += `Status: ${response.status}\n`;
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    results.textContent += `✅ Anuncios encontrados: ${data.length}\n`;
+                    results.textContent += `${JSON.stringify(data, null, 2)}\n`;
+                } else {
+                    const error = await response.text();
+                    results.textContent += `❌ Error: ${error}\n`;
+                }
+            } catch (error) {
+                results.textContent += `❌ Error de conexión: ${error.message}\n`;
+            }
+        }        // Función para listar usuarios disponibles
+        async function listarUsuarios() {
+            const results = document.getElementById('api-results');
+            results.textContent += '\n👥 Listando usuarios disponibles...\n';
+            
+            try {
+                const response = await fetch('/api/usuario');
+                
+                if (response.ok) {
+                    const usuarios = await response.json();
+                    results.textContent += `✅ Usuarios encontrados: ${usuarios.length}\n`;
+                    usuarios.slice(0, 5).forEach(u => {
+                        results.textContent += `- ID ${u.usuarioId}: ${u.nombre_completo} (${u.email})\n`;
+                    });
+                    
+                    if (usuarios.length >= 2) {
+                        results.textContent += `💡 Puedes usar ID ${usuarios[0].usuarioId} como comprador e ID ${usuarios[1].usuarioId} como vendedor\n`;
+                    }
+                } else {
+                    results.textContent += `❌ Error al obtener usuarios: ${response.status}\n`;
+                }
+            } catch (error) {
+                results.textContent += `❌ Error: ${error.message}\n`;
+            }
+        }        // Función para crear datos de prueba
+        async function crearDatosPrueba() {
+            const results = document.getElementById('api-results');
+            results.textContent += '\n🔧 Creando datos de prueba...\n';
+            
+            try {
+                // === CASO 1: Mario (1) comprador → Paula (2) vendedora ===
+                
+                // Primero, verificar qué anuncios tiene Paula (ID 2)
+                results.textContent += '1. Verificando anuncios de Paula Mendez (ID 2)...\n';
+                const responseAnunciosPaula = await fetch('/api/anuncios/vendedor/2');
+                
+                if (responseAnunciosPaula.ok) {
+                    const anunciosPaula = await responseAnunciosPaula.json();
+                    results.textContent += `✅ Paula tiene ${anunciosPaula.length} anuncios\n`;
+                    
+                    if (anunciosPaula.length > 0) {
+                        const primerAnuncioPaula = anunciosPaula[0];
+                        results.textContent += `Primer anuncio de Paula: ${primerAnuncioPaula.titulo} (ID: ${primerAnuncioPaula.anuncioId})\n`;
+                        
+                        // Crear conversación: Mario compra a Paula
+                        const responseMarioCompra = await fetch('/api/chat/conversacion/iniciar', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                anuncioId: primerAnuncioPaula.anuncioId,
+                                compradorId: 1,    // Mario como comprador
+                                vendedorId: 2      // Paula como vendedora
+                            })
+                        });
+                        
+                        if (responseMarioCompra.ok) {
+                            const dataMarioCompra = await responseMarioCompra.json();
+                            results.textContent += `✅ Conversación Mario→Paula creada: ID ${dataMarioCompra.conversacionId}\n`;
+                            
+                            // Mensajes para esta conversación
+                            const mensajesMarioCompra = [
+                                `Hola Paula, me interesa tu ${primerAnuncioPaula.titulo}. ¿Está disponible?`,
+                                'Hola Mario! Sí, está disponible. ¿Tienes alguna pregunta específica?',
+                                '¿En qué estado se encuentra? ¿Has tenido muchas consultas?',
+                                'Está en muy buen estado. Has sido el primero en preguntar por él.',
+                                '¿Podrías enviarme más detalles o fotos adicionales?',
+                                'Por supuesto, te envío toda la información que necesites.'
+                            ];
+                            
+                            for (let i = 0; i < mensajesMarioCompra.length; i++) {
+                                await fetch('/api/chat/mensajes', {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({
+                                        conversacionId: dataMarioCompra.conversacionId,
+                                        emisorId: i % 2 === 0 ? 1 : 2, // Mario (1) inicia, Paula (2) responde
+                                        contenido: mensajesMarioCompra[i]
+                                    })
+                                });
+                                await new Promise(resolve => setTimeout(resolve, 300));
+                            }
+                            
+                            results.textContent += `✅ ${mensajesMarioCompra.length} mensajes Mario→Paula creados\n`;
+                        }
+                    } else {
+                        results.textContent += '⚠️ Paula no tiene anuncios, creando solo conversaciones con anuncios de Mario\n';
+                    }
+                } else {
+                    results.textContent += '❌ Error al obtener anuncios de Paula\n';
+                }
+                
+                // === CASO 2: Paula (2) compradora → Mario (1) vendedor ===
+                results.textContent += '\n2. Creando conversación Paula→Mario...\n';
+                
+                // Paula compra Samsung Galaxy S24 de Mario
+                const responsePaulaCompra = await fetch('/api/chat/conversacion/iniciar', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        anuncioId: 3,      // Samsung Galaxy S24 de Mario
+                        compradorId: 2,    // Paula como compradora
+                        vendedorId: 1      // Mario como vendedor
+                    })
+                });
+                
+                if (responsePaulaCompra.ok) {
+                    const dataPaulaCompra = await responsePaulaCompra.json();
+                    results.textContent += `✅ Conversación Paula→Mario creada: ID ${dataPaulaCompra.conversacionId}\n`;
+                    
+                    const mensajesPaulaCompra = [
+                        'Hola Mario, me interesa tu Samsung Galaxy S24. ¿Aún está disponible?',
+                        'Hola Paula! Sí, está disponible. Es completamente nuevo, nunca usado.',
+                        '¿Podrías enviarme más fotos del dispositivo por favor?',
+                        'Por supuesto, te envío fotos adicionales. ¿Tienes alguna pregunta específica?',
+                        '¿Incluye la caja original y todos los accesorios?',
+                        'Sí, incluye todo: caja, cargador, cable y auriculares originales.'
+                    ];
+                    
+                    for (let i = 0; i < mensajesPaulaCompra.length; i++) {
+                        await fetch('/api/chat/mensajes', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                conversacionId: dataPaulaCompra.conversacionId,
+                                emisorId: i % 2 === 0 ? 2 : 1, // Paula (2) inicia, Mario (1) responde
+                                contenido: mensajesPaulaCompra[i]
+                            })
+                        });
+                        await new Promise(resolve => setTimeout(resolve, 300));
+                    }
+                    
+                    results.textContent += `✅ ${mensajesPaulaCompra.length} mensajes Paula→Mario creados\n`;
+                }
+                
+                // === CASO 3: Segunda conversación Paula→Mario (iPhone) ===
+                const responsePaulaCompra2 = await fetch('/api/chat/conversacion/iniciar', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        anuncioId: 4,      // iPhone 13 Pro Max de Mario
+                        compradorId: 2,    // Paula como compradora
+                        vendedorId: 1      // Mario como vendedor
+                    })
+                });
+                
+                if (responsePaulaCompra2.ok) {
+                    const dataPaulaCompra2 = await responsePaulaCompra2.json();
+                    results.textContent += `✅ Segunda conversación Paula→Mario creada: ID ${dataPaulaCompra2.conversacionId}\n`;
+                    
+                    const mensajes2 = [
+                        'Hola de nuevo Mario, también me interesa el iPhone 13 Pro Max',
+                        'Hola Paula! Ese también está disponible. Está usado pero en excelente estado.',
+                        '¿Qué incluye el iPhone? ¿Tienes la factura original?',
+                        'Incluye caja, cable y cargador originales. Tengo la factura de compra.'
+                    ];
+                    
+                    for (let i = 0; i < mensajes2.length; i++) {
+                        await fetch('/api/chat/mensajes', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                conversacionId: dataPaulaCompra2.conversacionId,
+                                emisorId: i % 2 === 0 ? 2 : 1,
+                                contenido: mensajes2[i]
+                            })
+                        });
+                        await new Promise(resolve => setTimeout(resolve, 300));
+                    }
+                }
+                
+                results.textContent += '\n🎉 ¡Datos de prueba completados! Ahora tienes:\n';
+                results.textContent += '• Mario como comprador de anuncios de Paula\n';
+                results.textContent += '• Paula como compradora de anuncios de Mario\n';
+                results.textContent += '• Múltiples conversaciones para probar ambas vistas\n\n';
+                results.textContent += '📝 Para probar:\n';
+                results.textContent += '1. Usuario ID 1 (Mario): Verá como vendedor Y como comprador\n';
+                results.textContent += '2. Usuario ID 2 (Paula): Verá como vendedora Y como compradora\n';
+                results.textContent += '3. Test Long Polling con cualquier conversación\n';
+                
+            } catch (error) {
+                results.textContent += `❌ Error: ${error.message}\n`;
+            }
+        }
+
+        // Test 3: Chat Manager
+        function testChatManager() {
+            const results = document.getElementById('chat-results');
+            results.textContent = 'Probando inicialización del Chat Manager...\n';
+            
+            try {
+                // Simular la clase MensajesSimple
+                const testManager = {
+                    usuarioActual: null,
+                    cargarUsuario: function() {
+                        const userSession = localStorage.getItem('userSession');
+                        if (userSession) {
+                            this.usuarioActual = JSON.parse(userSession);
+                            return true;
+                        }
+                        return false;
+                    }
+                };
+                
+                if (testManager.cargarUsuario()) {
+                    results.textContent += `✅ Usuario cargado: ${testManager.usuarioActual.nombre_completo}\n`;
+                    results.textContent += `ID: ${testManager.usuarioActual.usuarioId}\n`;
+                } else {
+                    results.textContent += '❌ No se pudo cargar usuario\n';
+                }
+            } catch (error) {
+                results.textContent += `❌ Error: ${error.message}\n`;
+            }
+        }
+
+        async function testLongPolling() {
+            const results = document.getElementById('chat-results');
+            results.textContent += '\nProbando Long Polling...\n';
+            
+            try {
+                const userId = document.getElementById('user-id').value;
+                const conversacionId = 1; // ID de prueba
+                
+                results.textContent += `Haciendo long polling para conversación ${conversacionId}...\n`;
+                
+                const startTime = Date.now();
+                const response = await fetch(`/api/chat/conversacion/${conversacionId}/poll?usuarioId=${userId}&lastMessageId=0`);
+                const endTime = Date.now();
+                
+                results.textContent += `Tiempo de respuesta: ${endTime - startTime}ms\n`;
+                results.textContent += `Status: ${response.status}\n`;
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    results.textContent += `✅ Long polling funcionando:\n${JSON.stringify(data, null, 2)}\n`;
+                } else {
+                    const error = await response.text();
+                    results.textContent += `❌ Error: ${error}\n`;
+                }
+            } catch (error) {
+                results.textContent += `❌ Error: ${error.message}\n`;
+            }
+        }        // Auto-ejecutar test de sesión al cargar
+        window.onload = function() {
+            testSession();
+            
+            // Auto-configurar usuario de prueba para el chat
+            if (!localStorage.getItem('usuarioId')) {
+                localStorage.setItem('usuarioId', '1'); // Mario por defecto
+                localStorage.setItem('usuarioNombre', 'Mario Pereyra');
+            }
+            
+            // Mostrar información de prueba en consola
+            console.log('🎯 PÁGINA DE PRUEBAS CARGADA');
+            console.log('Usuario actual: Mario Pereyra (ID: 1)');
+            console.log('Conversaciones disponibles:');
+            console.log('- Conv 1: Mario compra laptop de Paula');
+            console.log('- Conv 2: Paula compra Samsung de Mario');  
+            console.log('- Conv 3: Mario compra bicicleta de Paula');
+            console.log('\n📋 COMANDOS DISPONIBLES:');
+            console.log('- simularConversacion() - Simula una conversación en tiempo real');
+            console.log('- enviarMensajePrueba(conversacionId, autorId, "mensaje") - Envía mensaje manual');
+            console.log('- Para cambiar usuario: localStorage.setItem("usuarioId", "2") para Paula');
+        };
+    </script>
+</body>
+</html>

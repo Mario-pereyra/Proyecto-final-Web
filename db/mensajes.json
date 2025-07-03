@@ -1,1 +1,98 @@
-[]
+[
+  {
+    "mensajeId": 1,
+    "conversacionId": 1,
+    "autorId": 1,
+    "contenido": "Hola Paula, me interesa tu laptop HP Pavilion. ¿Está disponible?",
+    "fechaEnvio": "2025-01-28 14:00:00",
+    "leido": true
+  },
+  {
+    "mensajeId": 2,
+    "conversacionId": 1,
+    "autorId": 2,
+    "contenido": "¡Hola Mario! Sí, está disponible. La laptop está en muy buen estado, apenas la he usado para trabajo.",
+    "fechaEnvio": "2025-01-28 14:15:00",
+    "leido": true
+  },
+  {
+    "mensajeId": 3,
+    "conversacionId": 1,
+    "autorId": 1,
+    "contenido": "Perfecto. ¿Podrías enviarme más fotos del estado actual? ¿Y el precio es negociable?",
+    "fechaEnvio": "2025-01-28 14:30:00",
+    "leido": true
+  },
+  {
+    "mensajeId": 4,
+    "conversacionId": 1,
+    "autorId": 2,
+    "contenido": "Claro, te envío fotos por WhatsApp. El precio podría ser $420 si la compras esta semana.",
+    "fechaEnvio": "2025-01-28 16:45:00",
+    "leido": false
+  },
+  {
+    "mensajeId": 5,
+    "conversacionId": 2,
+    "autorId": 2,
+    "contenido": "Hola Mario, vi tu Samsung Galaxy S24. ¿Viene con cargador original?",
+    "fechaEnvio": "2025-01-28 15:30:00",
+    "leido": true
+  },
+  {
+    "mensajeId": 6,
+    "conversacionId": 2,
+    "autorId": 1,
+    "contenido": "¡Hola Paula! Sí, incluye cargador original, caja y protector de pantalla ya instalado.",
+    "fechaEnvio": "2025-01-28 15:45:00",
+    "leido": true
+  },
+  {
+    "mensajeId": 7,
+    "conversacionId": 2,
+    "autorId": 2,
+    "contenido": "Excelente. ¿Dónde podríamos encontrarnos para verlo? Estoy en zona sur.",
+    "fechaEnvio": "2025-01-28 16:00:00",
+    "leido": true
+  },
+  {
+    "mensajeId": 8,
+    "conversacionId": 2,
+    "autorId": 1,
+    "contenido": "Podemos encontrarnos en el centro comercial Megacenter. ¿Te parece mañana a las 3 PM?",
+    "fechaEnvio": "2025-01-28 17:20:00",
+    "leido": false
+  },
+  {
+    "mensajeId": 9,
+    "conversacionId": 3,
+    "autorId": 1,
+    "contenido": "Paula, también me interesa tu bicicleta Trek. ¿Cuánto tiempo de uso tiene?",
+    "fechaEnvio": "2025-01-28 16:00:00",
+    "leido": true
+  },
+  {
+    "mensajeId": 10,
+    "conversacionId": 3,
+    "autorId": 2,
+    "contenido": "Hola Mario! La bicicleta tiene aproximadamente 8 meses de uso, pero solo los fines de semana. Está muy bien mantenida.",
+    "fechaEnvio": "2025-01-28 16:30:00",
+    "leido": true
+  },
+  {
+    "mensajeId": 11,
+    "conversacionId": 3,
+    "autorId": 1,
+    "contenido": "Suena bien. Si me das un buen precio por la laptop y la bicicleta juntas, podría llevarme ambas.",
+    "fechaEnvio": "2025-01-28 17:00:00",
+    "leido": true
+  },
+  {
+    "mensajeId": 12,
+    "conversacionId": 3,
+    "autorId": 2,
+    "contenido": "¡Qué buena idea! Por ambas te podría hacer $650 en total. ¿Qué te parece?",
+    "fechaEnvio": "2025-01-28 18:15:00",
+    "leido": false
+  }
+]

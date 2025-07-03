@@ -1,1 +1,29 @@
-[]
+[
+  {
+    "conversacionId": 1,
+    "compradorId": 1,
+    "vendedorId": 2,
+    "anuncioId": 100,
+    "fechaCreacion": "2025-01-28 14:00:00",
+    "ultimaActividad": "2025-01-28 16:45:00",
+    "estado": "activa"
+  },
+  {
+    "conversacionId": 2,
+    "compradorId": 2,
+    "vendedorId": 1,
+    "anuncioId": 3,
+    "fechaCreacion": "2025-01-28 15:30:00",
+    "ultimaActividad": "2025-01-28 17:20:00",
+    "estado": "activa"
+  },
+  {
+    "conversacionId": 3,
+    "compradorId": 1,
+    "vendedorId": 2,
+    "anuncioId": 101,
+    "fechaCreacion": "2025-01-28 16:00:00",
+    "ultimaActividad": "2025-01-28 18:15:00",
+    "estado": "activa"
+  }
+]

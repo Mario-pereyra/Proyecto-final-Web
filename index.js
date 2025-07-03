@@ -16,6 +16,7 @@ const categoriaRouter = require('./routes/categoriaRouter')
 const subcategoriaRouter = require('./routes/subcategoriaRouter')
 const departamentoRouter = require('./routes/departamentoRouter')
 const chatRouter = require('./routes/chatRouter')
+const datosPruebaRouter = require('./routes/datosPruebaRouter')
 
 const anunciosGuardadosRouter = require('./routes/anunciosGuardadosRouter')
 
@@ -28,6 +29,7 @@ app.use('/api/categorias', categoriaRouter)
 app.use('/api/subcategorias', subcategoriaRouter)
 app.use('/api/departamentos', departamentoRouter)
 app.use('/api/chat', chatRouter)
+app.use('/api/datos-prueba', datosPruebaRouter)
 
 app.use('/api/ciudades', ciudadRouter)
 

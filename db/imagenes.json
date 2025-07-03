@@ -214,5 +214,21 @@
     "nombre_archivo": "1751319732295-435823343.jpg",
     "ruta_archivo": "uploads/1751319732295-435823343.jpg",
     "fecha_creacion": "2025-06-30 17:42:12"
+  },
+  {
+    "imagenId": 200,
+    "anuncioId": 100,
+    "nombreArchivo": "laptop-hp-1.jpg",
+    "rutaArchivo": "uploads/laptop-hp-1.jpg",
+    "esPrincipal": true,
+    "fechaSubida": "2025-01-28 10:00:00"
+  },
+  {
+    "imagenId": 201,
+    "anuncioId": 101,
+    "nombreArchivo": "bicicleta-trek-1.jpg",
+    "rutaArchivo": "uploads/bicicleta-trek-1.jpg",
+    "esPrincipal": true,
+    "fechaSubida": "2025-01-28 11:30:00"
   }
 ]

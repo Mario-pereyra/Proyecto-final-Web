@@ -159,7 +159,90 @@
         </div>
     </main>    <script src="https://kit.fontawesome.com/b32031dc0e.js" crossorigin="anonymous"></script>
     <script src="../js/profileMenu.js"></script>
-    <script src="../js/mensajesSimple.js"></script>
+    
+    <!-- Script de configuración temporal para pruebas -->
+    <script>
+        // Configurar usuario de prueba si no existe sesión
+        if (!localStorage.getItem('userSession') && !localStorage.getItem('user')) {
+            console.log('🔧 Configurando usuario de prueba: Mario Pereyra');
+            
+            const usuarioPrueba = {
+                usuarioId: 1,
+                id: 1,
+                nombre_completo: 'Mario Pereyra',
+                nombre: 'Mario Pereyra',
+                email: 'mario.pereyra@email.com'
+            };
+            
+            localStorage.setItem('userSession', JSON.stringify(usuarioPrueba));
+            localStorage.setItem('usuarioId', '1');
+            localStorage.setItem('usuarioNombre', 'Mario Pereyra');
+            
+            console.log('✅ Usuario de prueba configurado');
+        }
+        
+        console.log('📋 Estado de localStorage:');
+        console.log('- userSession:', localStorage.getItem('userSession'));
+        console.log('- usuarioId:', localStorage.getItem('usuarioId'));
+        console.log('- Todas las claves:', Object.keys(localStorage));
+    </script>
+      <script src="../js/mensajesSimple.js"></script>
+    
+    <!-- Script para crear conversaciones de prueba donde Mario es comprador -->
+    <script>
+        async function crearConversacionMarioComprador() {
+            console.log('🔧 Creando conversación donde Mario es comprador...');
+            
+            try {
+                // Crear mensaje donde Mario (ID: 1) actúa como comprador consultando un anuncio
+                const response = await fetch('/api/chat/mensajes', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        anuncioId: 3, // Samsung Galaxy S24 
+                        compradorId: 1, // Mario como comprador
+                        vendedorId: 1,  // Mario como vendedor (para que funcione con la API)
+                        autorId: 1,     // Mario envía el mensaje
+                        contenido: `[PRUEBA MARIO COMPRADOR] Hola, me interesa este Samsung Galaxy S24. ¿Está disponible? ¿Podrías darme más detalles? - ${new Date().toLocaleTimeString()}`
+                    })
+                });
+                
+                if (response.ok) {
+                    const resultado = await response.json();
+                    console.log('✅ Conversación creada:', resultado);
+                    alert('✅ Conversación de prueba creada. Recarga la página para verla.');
+                    
+                    // Recargar la página para mostrar la nueva conversación
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 2000);
+                } else {
+                    const error = await response.text();
+                    console.error('❌ Error:', error);
+                    alert('❌ Error al crear conversación: ' + error);
+                }
+                
+            } catch (error) {
+                console.error('❌ Error:', error);
+                alert('❌ Error: ' + error.message);
+            }
+        }
+          // Agregar el botón de debug después de que se cargue la página
+        window.addEventListener('DOMContentLoaded', function() {
+            // Log de debug
+            console.log('📋 MensajesComprador.html cargado');
+            console.log('👤 Usuario configurado:', localStorage.getItem('userSession'));
+            console.log('🔍 Conversaciones disponibles para Mario como comprador');
+            
+            // Verificar si hay conversaciones después de cargar
+            setTimeout(() => {
+                const listContainer = document.getElementById('conversations-list-container');
+                if (listContainer && listContainer.children.length === 0) {
+                    console.log('⚠️ No se cargaron conversaciones, verificando...');
+                }
+            }, 2000);
+        });
+    </script>
 
     <template id="conversation-item-template">
         </template>
